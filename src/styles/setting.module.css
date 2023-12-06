@@ -39,7 +39,7 @@
   display: flex;
   justify-content: space-around;
   border: 1px solid #4444;
-  height: 42px;
+  height: 35px;
   align-items: center;
   border-radius: 7px;
 }
@@ -50,10 +50,10 @@
   justify-content: center;
   height: 100%;
   align-items: center;
-  border-right: 1px solid #4444;
+  /* border-right: 1px solid #4444; */
   cursor: pointer;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
 }
 
 .response_mode p {
@@ -61,35 +61,32 @@
   color: #848484;
 }
 
-.answers_lenght {
+.answers_length {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
 }
 
-.answers_lenght span {
-  
-}
-.answers_lenght .three_answers_length_options {
-  width: 400px;
+.answers_length .three_answers_length_options {
+  width: 300px;
   display: flex;
   justify-content: space-around;
   border: 1px solid #4444;
-  height: 42px;
+  height: 35px;
   align-items: center;
-  border-radius: 26px;
+  border-radius: 7px;
 }
 
-.answers_lenght .three_answers_length_options span {
+.answers_length .three_answers_length_options span {
   width: 100%;
   display: flex;
   justify-content: center;
   height: 100%;
   align-items: center;
-  border-right: 1px solid #4444;
+  /* border-right: 1px solid #4444; */
   cursor: pointer;
-  border-top-left-radius: 26px;
-  border-bottom-left-radius: 26px;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
 }
 
 .content_source {
@@ -103,7 +100,7 @@
   display: flex;
   justify-content: space-around;
   border: 1px solid #4444;
-  height: 42px;
+  height: 35px;
   align-items: center;
   border-radius: 7px;
 }
@@ -114,7 +111,7 @@
   justify-content: center;
   height: 100%;
   align-items: center;
-  border-right: 1px solid #4444;
+  /* border-right: 1px solid #4444; */
   cursor: pointer;
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
@@ -138,27 +135,34 @@
   border-radius: 6px;
 }
 
-#medium {
+.advanced {
+  border-top-right-radius: 7px !important;
+  border-bottom-right-radius: 7px !important;
   border-top-left-radius: unset !important;
   border-bottom-left-radius: unset !important;
 }
 
-#long {
-  border-top-right-radius: 26px !important;
-  border-bottom-right-radius: 26px !important;
+.medium {
+  border-top-left-radius: unset !important;
+  border-bottom-left-radius: unset !important;
+}
+
+.long {
+  border-top-right-radius: 7px !important;
+  border-bottom-right-radius: 7px !important;
   border-top-left-radius: unset !important;
   border-bottom-left-radius: unset !important;
 }
 
 .expanded {
-  border-top-right-radius: 26px !important;
-  border-bottom-right-radius: 26px !important;
+  border-top-right-radius: 7px !important;
+  border-bottom-right-radius: 7px !important;
   border-top-left-radius: unset !important;
   border-bottom-left-radius: unset !important;
 }
 
 .response_mode .two_selection_response span:last-child,
-.answers_lenght .three_answers_length_options span:last-child,
+.answers_length .three_answers_length_options span:last-child,
 .content_source .two_content_source_options span:last-child {
   border: unset !important;
 }

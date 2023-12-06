@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import {Rhscontext} from "@/context/provider";
+import { Rhscontext } from "@/context/provider";
 
 function useDragandDrop() {
   const context = useContext(Rhscontext);
@@ -43,16 +43,13 @@ function useDragandDrop() {
     function handleDrop(e) {
       var dt = e.dataTransfer;
       var dragfiles = dt.files;
-      console.log(files);
       handlefiledsaved(dragfiles);
     }
 
     function handlefiledsaved(dragfiles) {
       try {
         if (files.length > 0) {
-          console.log("yes");
           let newAddedFiles = Array.from(files);
-          console.log(files);
           for (let i = 0; i < dragfiles.length; i++) {
             console.log(dragfiles[i]);
             newAddedFiles.push(dragfiles[i]);

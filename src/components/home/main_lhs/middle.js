@@ -2,11 +2,14 @@ import styles from "@/styles/home/lhs/middle.module.css";
 import File from "../reusable/file";
 import { files } from "@/data/file";
 import { useContext } from "react";
-import { Lhscontext } from "@/context/lhsprovider";
+import { Gcommoncontext } from "@/context/common_global";
 import Folder from "../reusable/folder";
 export default function Lmiddle() {
-  const { filemeta } = useContext(Lhscontext);
-  if (filemeta.length > 0) {
+  const { filemeta } = useContext(Gcommoncontext);
+
+  console.log(filemeta);
+
+  if (filemeta?.length > 0) {
     return (
       <div className={styles.rhs_middle_content}>
         <div className={styles.middle_allchats}>

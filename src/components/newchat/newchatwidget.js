@@ -3,25 +3,32 @@ import { useState, useEffect } from "react";
 import styles from "@/styles/newchat/newchat.module.css";
 import { useContext } from "react";
 import { Rhscontext } from "@/context/provider";
+import { Gcommoncontext } from "@/context/common_global";
 import Popup from "../home/reusable/popup";
 import Reset from "../home/reusable/reset";
-function Rnewchat() {
-  const context = useContext(Rhscontext);
+import Button from "../home/reusable/button";
+import { useRouter } from "next/router";
 
-  const { files, setfiles } = context;
+function Rnewchat() {
+  const Gcontext = useContext(Gcommoncontext);
+  const Rcontext = useContext(Rhscontext);
+
+  const { filemeta, setfilemeta, setcurrdoc } = Gcontext;
+
+  const { files, setfiles } = Rcontext;
+
   const { dragfunc } = useDragandDrop();
   const [isGroup, setisGroup] = useState(false);
+
+  const [grpname, setGrpname] = useState("");
 
   useEffect(() => {
     dragfunc(files);
   }, [files]);
 
-  console.log(files);
-
   const handleFileChange = (e) => {
     if (files.length > 0) {
       let newAddedFiles = Array.from(files);
-      console.log(files);
       for (let i = 0; i < e.target.files.length; i++) {
         newAddedFiles.push(e.target.files[i]);
       }
@@ -43,38 +50,53 @@ function Rnewchat() {
     setisGroup(e.target.checked);
   }
 
-  function addDoc(e) {
-    e.preventDefault();
-    if (isGroup) {
-      let newSavedchatadded = [];
-      for (let i = 0; i < files.length; i++) {
-        newSavedchatadded.push({
-          filename: files[i].name,
-          Lastedit: "now",
-        });
-      }
-      let groupCreate = {
-        type: "group",
-        filename: "Untiled Group Chat",
-        file: [...newSavedchatadded],
-      };
-
-      setSavedChat([groupCreate, ...SavedChat]);
-      setSelectedFile(groupCreate);
-      naviget(`/home/detail/${groupCreate.filename}`);
-    } else {
-      let newSavedchatadded = [];
-      for (let i = 0; i < files.length; i++) {
-        newSavedchatadded.push({
-          type: "file",
-          filename: files[i].name,
-          Lastedit: "now",
-        });
-      }
-      setSavedChat([...newSavedchatadded, ...SavedChat]);
-      setSelectedFile(newSavedchatadded[0]);
-      naviget(`/home/detail/${newSavedchatadded[0].filename}`);
+  function addGroupfile(e) {
+    console.log("clicked");
+    let newSavedchatadded = [];
+    for (let i = 0; i < files.length; i++) {
+      newSavedchatadded.push({
+        type: "file",
+        id: "fedgerg34ertgefg34t3",
+        slug: "Actual slug of file",
+        name: "",
+        filename: files[i].name,
+      });
     }
+    let groupCreate = {
+      id: "fedgerg34ertgefg34t3",
+      groupname: grpname,
+      type: "group",
+      childs: [...newSavedchatadded],
+      Lastedit: "now",
+    };
+
+    setfilemeta([groupCreate, ...filemeta]);
+    setcurrdoc(groupCreate.childs[0]);
+
+    // clear all
+    setfiles([]);
+    setGrpname("");
+    setisGroup(false);
+  }
+
+  function addSingelfile(e) {
+    let newSavedchatadded = [];
+    for (let i = 0; i < files.length; i++) {
+      newSavedchatadded.push({
+        id: "fedgerg34ertgefg34t3",
+        type: "file",
+        slug: "Actual slug of file",
+        name: "",
+        filename: files[i].name,
+        Lastedit: "now",
+      });
+    }
+    setfilemeta([...newSavedchatadded, ...filemeta]);
+    setcurrdoc(newSavedchatadded[0]);
+
+    // clear all
+    setfiles([]);
+    setGrpname("");
   }
 
   return (
@@ -97,7 +119,7 @@ function Rnewchat() {
                 onChange={handleFileChange}
               />
               {/* )} */}
-              {files.length > 0 ? (
+              {files?.length > 0 ? (
                 <>
                   <div className={styles.upload_indicator}>
                     <div className={styles.uplaod_sub_indicator}>
@@ -137,7 +159,7 @@ function Rnewchat() {
                         ))}
                       </div>
                       <div className={styles.two_btns_uploading}>
-                        <div className={styles.new_chat} onClick={addDoc}>
+                        {/* <div className={styles.new_chat} onClick={addDoc}>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -156,18 +178,60 @@ function Rnewchat() {
                             <polyline points="16 16 12 12 8 16"></polyline>
                           </svg>
                           &nbsp; &nbsp; New Chat
-                        </div>
+                        </div> */}
                         <div>
-                          <div
-                            data-g-popup-tab
-                            className={styles.conditon_upload}
-                          >
-                            <input type="checkbox" onChange={simple} />
+                          <div className={styles.conditon_upload}>
+                            <input
+                              type="checkbox"
+                              value={grpname}
+                              onChange={simple}
+                            />
                             <span>upload all docs as a Group Chat</span>
                           </div>
-                          <Popup custom_styles_width={{ minWidth: 150 }}>
-                            <Reset />
-                          </Popup>
+                          <br />
+
+                          {isGroup ? (
+                            <div>
+                              <input
+                                type="text"
+                                onChange={(e) => setGrpname(e.target.value)}
+                              />
+                              <span onClick={() => setisGroup(!isGroup)}>
+                                cancel
+                              </span>
+                            </div>
+                          ) : (
+                            <></>
+                          )}
+                          {!isGroup ? (
+                            // Normal single file upload btn.
+                            <>
+                              <Button
+                                title={"Create Chat"}
+                                callback={addSingelfile}
+                              />
+                            </>
+                          ) : (
+                            <>
+                              {/* <Button
+                                title={"Create Chat"}
+                                callback={addGroupfile}
+                              /> */}
+                            </>
+                          )}
+
+                          {isGroup && grpname !== "" ? (
+                            // Normal single file upload btn.
+                            <>
+                              <Button
+                                title={"Create Chat"}
+                                callback={addGroupfile}
+                              />
+                            </>
+                          ) : (
+                            <></>
+                          )}
+                          {/* <Button title={"Create Chat"} /> */}
                         </div>
                       </div>
                     </div>

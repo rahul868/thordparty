@@ -1,5 +1,11 @@
 import styles from "@/styles/reusable/btn.module.css";
-export default function Button({ disable, callback, title, cstyles }) {
+export default function Button({
+  disable,
+  callback,
+  title,
+  cstyles,
+  className,
+}) {
   const callthis = () => {
     document.querySelectorAll("[data-g-navbar-flyer]").forEach((ele) => {
       ele.classList.remove("popup_container_active");
