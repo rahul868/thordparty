@@ -1,0 +1,125 @@
+.msg_for_ai {
+  width: 90%;
+  display: flex;
+  background: #fff8f8;
+  border-radius: 10px;
+  margin: 12px 0px;
+  float: left;
+}
+
+.msg_for_ai .msg_sub_for_ai {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  padding: 11px;
+  align-items: flex-end;
+}
+
+.msg_for_ai .msg_sub_for_ai .source_r {
+  display: flex;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 5px 8px;
+  border-radius: 4px;
+  margin-top: 10px;
+  min-width: 200px;
+  width: 280px;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.msg_for_ai .msg_sub_for_ai .source_r span {
+  font-size: 13px;
+  color: #666;
+  padding-left: 10px;
+}
+.msg_for_ai .msg_sub_for_ai .box_wrapper_msg {
+  display: flex;
+  align-items: start;
+  gap: 1rem;
+}
+
+.msg_for_ai .msg_sub_for_ai .box_wrapper_msg img {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
+.msg_for_ai .msg_sub_for_ai .box_wrapper_msg .summary_content {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.msg_for_ai .msg_sub_for_ai .box_wrapper_msg span svg {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.msg_for_ai .msg_sub_for_ai .bottom_options_like {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.msg_for_ai .msg_sub_for_ai .bottom_options_like .user_define {
+  display: flex;
+  gap: 1.5rem;
+  align-items: end;
+}
+
+.msg_for_ai .msg_sub_for_ai .bottom_options_like .user_define span {
+  font-size: 12px;
+  padding: 6px 10px;
+  border: 1px solid rgba(68, 68, 68, 0.2666666667);
+  border-radius: 12px;
+  align-items: center;
+  display: flex;
+}
+
+.msg_for_ai .msg_sub_for_ai .bottom_options_like .user_define .like_unlike {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.msg_for_ai
+  .msg_sub_for_ai
+  .bottom_options_like
+  .user_define
+  .like_unlike
+  .green {
+  color: #4444;
+}
+
+.msg_for_ai
+  .msg_sub_for_ai
+  .bottom_options_like
+  .user_define
+  .like_unlike
+  .green
+  .icon_green:hover {
+  fill: green;
+  cursor: pointer;
+}
+
+.msg_for_ai
+  .msg_sub_for_ai
+  .bottom_options_like
+  .user_define
+  .like_unlike
+  .red {
+  color: #4444;
+}
+
+.msg_for_ai
+  .msg_sub_for_ai
+  .bottom_options_like
+  .user_define
+  .like_unlike
+  .red
+  .icon_red:hover {
+  fill: red;
+  cursor: pointer;
+}

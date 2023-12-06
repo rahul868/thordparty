@@ -1,0 +1,22 @@
+.alert_wrapper {
+    height: 40px;
+    width: auto;
+    min-width: 200px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: black;
+    position: fixed;
+    bottom: 20px;
+    left: 45%;
+    right: 45%;
+    z-index: calc(var(--popup-global-index) + 10);
+    box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px,
+    rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px;
+}
+
+.alert_wrapper .alert_content{
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+}

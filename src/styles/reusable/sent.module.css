@@ -1,0 +1,43 @@
+.sentiment_wrapper {
+  width: 100%;
+}
+
+.sentiment_wrapper .sentiment_subwrapper {
+  width: 95%;
+  max-width: 95%;
+  margin: auto;
+  position: absolute;
+  bottom: calc(10px + 50px);
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-behavior: smooth; /* This enables smooth scrolling */
+  scrollbar-width: thin !important; /* For Firefox */
+  scrollbar-color: transparent transparent !important; /* For Firefox */
+  -ms-overflow-style: none !important; /* For Internet Explorer and Edge */
+}
+
+.sentiment_subwrapper::-webkit-scrollbar {
+  width: 0 !important; /* For Chrome, Safari, and Opera */
+}
+
+.sentiment_wrapper .sentiment_subwrapper span {
+  font-size: 13px;
+  color: #37352f;
+}
+
+.sentiment_wrapper .sentiment_subwrapper .sent_item {
+  background-color: #f1f1f1;
+  margin-right: 10px;
+  padding: 8px;
+  border-radius: 7px;
+  cursor: pointer;
+  user-select: none;
+}
+.sentiment_wrapper .sentiment_subwrapper .sent_item:hover {
+    background-color: dodgerblue;
+}
+.sentiment_wrapper .sentiment_subwrapper .sent_item span:hover {
+  color: white;
+  font-weight: bold;
+}

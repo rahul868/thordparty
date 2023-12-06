@@ -1,0 +1,41 @@
+/* Desktop css  */
+
+.app_container {
+  display: flex;
+  max-width: 1400px;
+  margin: 0px auto;
+  height: 100vh;
+}
+#left_section {
+  flex-grow: 0;
+  flex-shrink: 0;
+  position: relative;
+  /* z-index: calc(var(--overlay-global-index) - 5); */
+  width: 300px;
+  min-width: 270px;
+  height: 100vh;
+  max-height: 100vh;
+  padding: 5px;
+  color: #1f1f1f;
+  font-weight: 500;
+  background-color: rgb(251, 251, 250);
+  border-right: 1px solid #eee;
+}
+
+.main_rhs_container {
+  flex: 1;
+  height: 100%;
+}
+
+/* Mobile view CSS */
+
+@media (max-width: 767px) {
+  /* .container {
+      flex-direction: column;
+    }
+  
+    .left-bar {
+      width: 100%;
+      min-width: auto;
+    } */
+}

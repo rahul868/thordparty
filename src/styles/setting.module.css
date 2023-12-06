@@ -1,0 +1,209 @@
+.chat_additional_setting {
+  border-radius: 12px;
+  max-height: 100%;
+  font-size: 14px;
+}
+
+.wrapping_setting {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 12px;
+}
+
+.heading_for_setting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.heading_for_setting span {
+  font-size: 18px;
+  color: #3f3f3f;
+  font-weight: 600;
+}
+
+.response_mode {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.response_mode .cheked {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.response_mode .two_selection_response {
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid #4444;
+  height: 42px;
+  align-items: center;
+  border-radius: 7px;
+}
+
+.response_mode .two_selection_response span {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  border-right: 1px solid #4444;
+  cursor: pointer;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.response_mode p {
+  font-size: 13px;
+  color: #848484;
+}
+
+.answers_lenght {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.answers_lenght span {
+  
+}
+.answers_lenght .three_answers_length_options {
+  width: 400px;
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid #4444;
+  height: 42px;
+  align-items: center;
+  border-radius: 26px;
+}
+
+.answers_lenght .three_answers_length_options span {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  border-right: 1px solid #4444;
+  cursor: pointer;
+  border-top-left-radius: 26px;
+  border-bottom-left-radius: 26px;
+}
+
+.content_source {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.content_source .two_content_source_options {
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid #4444;
+  height: 42px;
+  align-items: center;
+  border-radius: 7px;
+}
+
+.content_source .two_content_source_options span {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  border-right: 1px solid #4444;
+  cursor: pointer;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+}
+
+.content_source p {
+  font-size: 12px;
+  color: #848484;
+}
+
+.manage {
+  border-top-right-radius: 26px !important;
+  border-bottom-right-radius: 26px !important;
+  border-top-left-radius: unset !important;
+  border-bottom-left-radius: unset !important;
+}
+
+.manage p {
+  border: 1px solid #444;
+  padding: 3px;
+  border-radius: 6px;
+}
+
+#medium {
+  border-top-left-radius: unset !important;
+  border-bottom-left-radius: unset !important;
+}
+
+#long {
+  border-top-right-radius: 26px !important;
+  border-bottom-right-radius: 26px !important;
+  border-top-left-radius: unset !important;
+  border-bottom-left-radius: unset !important;
+}
+
+.expanded {
+  border-top-right-radius: 26px !important;
+  border-bottom-right-radius: 26px !important;
+  border-top-left-radius: unset !important;
+  border-bottom-left-radius: unset !important;
+}
+
+.response_mode .two_selection_response span:last-child,
+.answers_lenght .three_answers_length_options span:last-child,
+.content_source .two_content_source_options span:last-child {
+  border: unset !important;
+}
+
+.active_response {
+  background-color: rgb(239, 243, 244);
+}
+
+.custom-dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 150px;
+}
+
+.dropdown-button {
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-content {
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 5px;
+  top: 78px;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.dropdown-content div {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-content div:hover {
+  background-color: #f2f2f2;
+}

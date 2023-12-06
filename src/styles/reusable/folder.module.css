@@ -1,0 +1,27 @@
+.folder_wrapper .folder_name_wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-size: 14px;
+  min-height: 27px;
+  padding: 7px 10px;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.folder_wrapper .folder_name_wrapper:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.folder_wrapper .folder_name_wrapper span {
+  padding-left: 6px;
+}
+
+.folder_wrapper .folder_childswrapper {
+  display: none;
+  padding-left: 18px;
+  transition: display 200ms;
+}
+

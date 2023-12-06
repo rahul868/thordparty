@@ -1,0 +1,8 @@
+.rhs_chat_content {
+  height: inherit;
+}
+.rhs_chat_content .middle_wrapper_messages {
+  overflow-y: auto;
+  max-height: calc(100% - calc(var(--common-header-size) + 15px));
+  padding: 0px 10px;
+}
