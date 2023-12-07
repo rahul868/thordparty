@@ -5,23 +5,22 @@ import { useContext } from "react";
 import { Rhscontext } from "@/context/provider";
 import Popup from "../home/reusable/popup";
 import Reset from "../home/reusable/reset";
+import Button from "../home/reusable/button";
 function Rnewchat() {
   const context = useContext(Rhscontext);
 
   const { files, setfiles } = context;
   const { dragfunc } = useDragandDrop();
+  const [grpname, setGrpname] = useState("");
   const [isGroup, setisGroup] = useState(false);
 
   useEffect(() => {
     dragfunc(files);
   }, [files]);
 
-  console.log(files);
-
   const handleFileChange = (e) => {
     if (files.length > 0) {
       let newAddedFiles = Array.from(files);
-      console.log(files);
       for (let i = 0; i < e.target.files.length; i++) {
         newAddedFiles.push(e.target.files[i]);
       }
@@ -39,13 +38,14 @@ function Rnewchat() {
     setfiles(newarr);
   }
 
-  function simple(e) {
+  function changeSwitch(e) {
     setisGroup(e.target.checked);
   }
 
-  function addDoc(e) {
-    e.preventDefault();
+  function addDoc() {
     if (isGroup) {
+      // close document selection model data is in context.
+      // open new model for name entry
       let newSavedchatadded = [];
       for (let i = 0; i < files.length; i++) {
         newSavedchatadded.push({
@@ -136,40 +136,41 @@ function Rnewchat() {
                           </div>
                         ))}
                       </div>
-                      <div className={styles.two_btns_uploading}>
-                        <div className={styles.new_chat} onClick={addDoc}>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="feather feather-upload-cloud"
-                          >
-                            <polyline points="16 16 12 12 8 16"></polyline>
-                            <line x1="12" y1="12" x2="12" y2="21"></line>
-                            <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
-                            <polyline points="16 16 12 12 8 16"></polyline>
-                          </svg>
-                          &nbsp; &nbsp; New Chat
-                        </div>
-                        <div>
-                          <div
-                            data-g-popup-tab
-                            className={styles.conditon_upload}
-                          >
-                            <input type="checkbox" onChange={simple} />
-                            <span>upload all docs as a Group Chat</span>
-                          </div>
-                          <Popup custom_styles_width={{ minWidth: 150 }}>
-                            <Reset />
-                          </Popup>
-                        </div>
+                      <div className={styles.conditon_upload}>
+                        <input
+                          type="checkbox"
+                          value={isGroup}
+                          onChange={simple}
+                        />
+                        <span>upload all docs as a Group Chat</span>
                       </div>
+                      {isGroup ? (
+                        <div>
+                          <input
+                            type="text"
+                            onChange={(e) => setGrpname(e.target.value)}
+                          />
+                          <span onClick={() => setisGroup(!isGroup)}>
+                            cancel
+                          </span>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
+
+                      {!isGroup ? (
+                        // Normal single file upload btn.
+                        <></>
+                      ) : (
+                        <></>
+                      )}
+
+                      {isGroup && grpname !== "" ? (
+                        // Normal single file upload btn.
+                        <></>
+                      ) : (
+                        <></>
+                      )}
                     </div>
                   </div>
                 </>

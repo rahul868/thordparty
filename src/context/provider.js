@@ -8,8 +8,6 @@ const Rhsprovider = (props) => {
       isChatAi: true,
       re_type: "normal",
       timestamp: 1701848854312,
-      avatar:
-        "https://w7.pngwing.com/pngs/704/673/png-transparent-openai-chatgpt-logo-thumbnail.png",
       summary:
         "This is a piece of advice on how to write data in an application. It suggests that writing data sequentially can improve the chances of it being stored sequentially. It also recommends avoiding frequent file create/delete operations to maintain sequential storage.",
     },

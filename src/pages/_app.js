@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import "@/styles/popupmodel.css";
 import { Cagliostro } from "next/font/google";
 import { useEffect } from "react";
+import { Gcommonprovider } from "@/context/common_global";
 
 export default function App({ Component, pageProps }) {
   useEffect(() => {
@@ -22,9 +23,9 @@ export default function App({ Component, pageProps }) {
       }
       if (check_for_navtab_ele || check_for_internal_ele) {
         if (check_for_internal_ele.nextElementSibling) {
-          // document.querySelectorAll("[data-g-navbar-flyer]").forEach((ele) => {
-          //   ele.classList.remove("popup_container_active");
-          // });
+          document.querySelectorAll("[data-g-navbar-flyer]").forEach((ele) => {
+            ele.classList.remove("popup_container_active");
+          });
           check_for_internal_ele.nextElementSibling.classList.add(
             "popup_container_active"
           );
@@ -76,5 +77,9 @@ export default function App({ Component, pageProps }) {
       });
     });
   });
-  return <Component {...pageProps} />;
+  return (
+    <Gcommonprovider>
+      <Component {...pageProps} />
+    </Gcommonprovider>
+  );
 }

@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useContext } from "react";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "../styles/home.module.css";
@@ -9,11 +10,10 @@ import Rnewchat from "@/components/newchat/newchatwidget";
 import Alert from "@/components/home/reusable/alert";
 import { Rhsprovider } from "@/context/provider";
 import { Lhsprovider } from "@/context/lhsprovider";
-import { Gcommonprovider } from "@/context/common_global";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Gcommoncontext } from "@/context/common_global";
 
 export default function Home() {
+  const { alertstatus, alertmsg, alerttype } = useContext(Gcommoncontext);
   return (
     <>
       <Head>
@@ -26,26 +26,28 @@ export default function Home() {
           url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
         </style>
       </Head>
-
+      <Alert
+        alertstatus={alertstatus}
+        alerttype={alerttype}
+        alertmsg={alertmsg}
+      />
       {/* Main home page template which can include  */}
-      <Gcommonprovider>
-        <div className={styles.app_container}>
-          {/* LHS SECTION */}
-          <div id={styles.left_section}>
-            {/* SECTION 1. HEADER 2. CONTENT 3.FOOTER */}
-            <Lhsprovider>
+      <div className={styles.app_container}>
+        {/* LHS SECTION */}
+        <div id={styles.left_section}>
+          {/* SECTION 1. HEADER 2. CONTENT 3.FOOTER */}
+          <Lhsprovider>
             <Lhswrapper />
-            </Lhsprovider>
-          </div>
-
-          {/* RHS SECTION */}
-          <main className={styles.main_rhs_container}>
-            <Rhsprovider>
-              <Rhswrapper />
-            </Rhsprovider>
-          </main>
+          </Lhsprovider>
         </div>
-      </Gcommonprovider>
+
+        {/* RHS SECTION */}
+        <main className={styles.main_rhs_container}>
+          <Rhsprovider>
+            <Rhswrapper />
+          </Rhsprovider>
+        </main>
+      </div>
 
       <div className="overlay" g-overlay id="overlay"></div>
       {/* <Alert msg="Hello this is testing" /> */}

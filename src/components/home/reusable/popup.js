@@ -1,11 +1,11 @@
 import styles from "@/styles/reusable/popup.module.css";
 import { useEffect } from "react";
 
-function Popup({ children, custom_styles, custom_styles_width }) {
- 
+function Popup({ children, custom_styles, custom_styles_width, uid }) {
   return (
     <>
       <div
+        id={uid}
         style={custom_styles}
         className="popup_container"
         data-g-navbar-flyer

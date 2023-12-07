@@ -22,7 +22,7 @@ const Lhsprovider = (props) => {
     {
       id: "fedgerg34ertgefg34t3",
       type: "file",
-      slug: "Actual slug of file",
+      slug: "https://www.cl.cam.ac.uk/teaching/1011/OpSystems/os1a-slides.pdf",
       name: "",
       filename: uniqueNamesGenerator(config),
       Lastedit: "now",
