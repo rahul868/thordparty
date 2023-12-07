@@ -5,7 +5,7 @@ import Lhswrapper from "@/components/home/main_lhs/lhswrapper";
 import Rhswrapper from "@/components/home/main_rhs/rhswrapper";
 import { Rhsprovider } from "@/context/provider";
 import { Lhsprovider } from "@/context/lhsprovider";
-import { Gcommonprovider } from "@/context/common_global";
+import {Alert} from "@/components/home/reusable/alert"
 import { Gcommoncontext } from "@/context/common_global";
 import Landingrhs from "@/components/landing/landingrhs";
 import { useContext } from "react";
@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const context = useContext(Gcommoncontext);
-
+  const { alertstatus, alertmsg, alerttype } = useContext(Gcommoncontext);
   const { filemeta } = context;
 
   return (
@@ -29,7 +29,11 @@ export default function Home() {
           url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
         </style>
       </Head>
-
+      <Alert
+        alertstatus={alertstatus}
+        alerttype={alerttype}
+        alertmsg={alertmsg}
+      />
       {/* Main home page template which can include  */}
       {/* <Gcommonprovider> */}
       <div className={styles.app_container}>

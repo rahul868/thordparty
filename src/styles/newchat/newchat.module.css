@@ -246,6 +246,21 @@
   justify-content: center;
   gap: 0.6rem;
 }
+.upload_indicator .uplaod_sub_indicator .two_btns_uploading .grp_name_input {
+
+}
+
+.upload_indicator .uplaod_sub_indicator .two_btns_uploading .grp_name_input #grp_input {
+  border: none;
+  outline: none;
+  font-size: 13px;
+  color: #37352f;
+  background: transparent;
+  padding: 5px;
+  margin: unset;
+  margin-right: 15px;
+  width: 100%;
+}
 
 .upload_indicator
   .uplaod_sub_indicator

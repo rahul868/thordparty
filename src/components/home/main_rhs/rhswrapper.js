@@ -21,7 +21,7 @@ export default function Rhswrapper() {
         <section id={styles.document_viewer}>
           {/* DOCUMENT SECTION */}
           <div className={styles.doc_viewercontainer}>
-            <Rdocviewer />
+             <Rdocviewer />
           </div>
         </section>
       </div>

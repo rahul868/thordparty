@@ -23,9 +23,9 @@ export default function App({ Component, pageProps }) {
       }
       if (check_for_navtab_ele || check_for_internal_ele) {
         if (check_for_internal_ele.nextElementSibling) {
-          // document.querySelectorAll("[data-g-navbar-flyer]").forEach((ele) => {
-          //   ele.classList.remove("popup_container_active");
-          // });
+          document.querySelectorAll("[data-g-navbar-flyer]").forEach((ele) => {
+            ele.classList.remove("popup_container_active");
+          });
           check_for_internal_ele.nextElementSibling.classList.add(
             "popup_container_active"
           );
