@@ -1,14 +1,16 @@
 import styles from "@/styles/home/rhs/chatinput.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { Rhscontext } from "@/context/provider";
 import Popuplist from "./popuplist";
-
-export default function Rchatinput({ call }) {
+import { Gcommoncontext } from "@/context/common_global";
+export default function Rchatinput() {
   const [query, setquery] = useState("");
-  const context = useContext(Rhscontext);
-  const { setSavedMessages, SavedMessages } = context;
+  const { setSavedMessages } = useContext(Rhscontext);
 
+  const [isresponding, setisresponding] = useState(false);
+
+  const { currdoc, user } = useContext(Gcommoncontext);
   const chat_opts = [
     {
       name: "Highlight",
@@ -163,54 +165,83 @@ export default function Rchatinput({ call }) {
     },
   ];
 
+  const sendPrompt = async (promptobj) => {
+    setSavedMessages((prevMessages) => [...prevMessages, promptobj]);
+    setisresponding(true);
+    try {
+      // Simulate API call for user file metadata
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/chat?email=${user.email}&prompt=${
+          promptobj.summary
+        }&fileid=${currdoc.id}&filename=${currdoc.name}&chat_type=${"QnA"}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to update group");
+      }
+      const result = await response.json();
+      setSavedMessages((prevMessages) => [...prevMessages, result]);
+      return { success: true };
+    } catch (err) {
+      return { success: false };
+    } finally {
+      setisresponding(false);
+    }
+  };
+
   function sendenterquery(e, isbtn) {
     if (e.key == "Enter" || isbtn) {
       let obj = {
-        isChatAi: false,
-        avatar:
-          "https://w7.pngwing.com/pngs/704/673/png-transparent-openai-chatgpt-logo-thumbnail.png",
+        isChatUI: false,
+        re_type: "string",
+        timeStamp: Date.now().toString(),
         summary: query,
+        source: "string",
       };
-
-      query && setSavedMessages([...SavedMessages, obj]);
+      sendPrompt(obj);
       setquery("");
     }
   }
 
   function sendbtnquery(e) {
     let obj = {
-      isChatAi: false,
-      type: "normal",
-      avatar:
-        "https://w7.pngwing.com/pngs/704/673/png-transparent-openai-chatgpt-logo-thumbnail.png",
+      isChatUI: false,
+      re_type: "string",
+      timeStamp: Date.now().toString(),
       summary: query,
+      source: "string",
     };
-
-    query && setSavedMessages([...SavedMessages, obj]);
+    sendPrompt(obj);
     setquery("");
   }
 
   function applysentquery(sent) {
     // API call
     let obj = {
-      isChatAi: false,
-      type: "sentiment",
-      avatar: null,
-      summary: sent.name,
+      isChatUI: false,
+      re_type: "string",
+      timeStamp: Date.now().toString(),
+      summary: query,
+      source: "string",
     };
-
-    setSavedMessages([...SavedMessages, obj]);
+    sendPrompt(obj);
     setquery("");
   }
 
   return (
     <div data-g-nav-container className={styles.chatinput_wrapper}>
-      <div className={styles.chatinput_subwrapper}>
-        <div className={styles.msg_firstsec}>
-          <div data-g-opt-flyer className={styles.option_flyer_wrapper}>
-            <div className={styles.option_flyer_subwrapper}>
-              <Popuplist list={chat_opts} />
-              {/* <div className={styles.opt_wrapper}>
+      {isresponding ? (
+        <div className={styles.server_response_container}>
+          <div className={styles.server_response_content}>
+            Server is responding...
+          </div>
+        </div>
+      ) : (
+        <div className={styles.chatinput_subwrapper}>
+          <div className={styles.msg_firstsec}>
+            <div data-g-opt-flyer className={styles.option_flyer_wrapper}>
+              <div className={styles.option_flyer_subwrapper}>
+                <Popuplist list={chat_opts} />
+                {/* <div className={styles.opt_wrapper}>
                 {chat_opts.map((item) => {
                   return (
                     <div
@@ -223,61 +254,62 @@ export default function Rchatinput({ call }) {
                   );
                 })}
               </div> */}
+              </div>
             </div>
+            <div data-g-chatsec className={styles.msg_input_profile}>
+              <svg
+                className="settingsIntegration"
+                display="block"
+                viewBox="0 0 20 20"
+                style={{
+                  width: 20,
+                  height: 20,
+                  WebkitFlexShrink: "0",
+                  MsFlexShrink: "0",
+                  flexShrink: "0",
+                  fill: "white",
+                }}
+              >
+                <path d="M4.633 9.42h3.154c1.093 0 1.632-.532 1.632-1.656V4.655C9.42 3.532 8.88 3 7.787 3H4.633C3.532 3 3 3.532 3 4.655v3.109c0 1.124.532 1.655 1.633 1.655zm7.58 0h3.162C16.468 9.42 17 8.887 17 7.763V4.655C17 3.532 16.468 3 15.374 3h-3.16c-1.094 0-1.633.532-1.633 1.655v3.109c0 1.124.539 1.655 1.633 1.655zm-7.58-1.251c-.262 0-.382-.135-.382-.405V4.648c0-.27.12-.405.382-.405h3.146c.262 0 .39.135.39.405v3.116c0 .27-.128.405-.39.405H4.633zm7.588 0c-.262 0-.39-.135-.39-.405V4.648c0-.27.128-.405.39-.405h3.146c.262 0 .39.135.39.405v3.116c0 .27-.128.405-.39.405h-3.146zM4.633 17h3.154c1.093 0 1.632-.532 1.632-1.655v-3.109c0-1.124-.539-1.655-1.632-1.655H4.633C3.532 10.58 3 11.112 3 12.236v3.109C3 16.468 3.532 17 4.633 17zm7.58 0h3.162C16.468 17 17 16.468 17 15.345v-3.109c0-1.124-.532-1.655-1.626-1.655h-3.16c-1.094 0-1.633.531-1.633 1.655v3.109c0 1.123.539 1.655 1.633 1.655zm-7.58-1.25c-.262 0-.382-.128-.382-.398v-3.116c0-.277.12-.405.382-.405h3.146c.262 0 .39.128.39.405v3.116c0 .27-.128.397-.39.397H4.633zm7.588 0c-.262 0-.39-.128-.39-.398v-3.116c0-.277.128-.405.39-.405h3.146c.262 0 .39.128.39.405v3.116c0 .27-.128.397-.39.397h-3.146z"></path>
+              </svg>
+            </div>
+            <input
+              placeholder="Type you question here..."
+              id={styles.message_input}
+              value={query}
+              type="text"
+              onChange={(e) => setquery(e.target.value)}
+              onKeyDown={(e) => sendenterquery(e)}
+            />
           </div>
-          <div data-g-chatsec className={styles.msg_input_profile}>
-            <svg
-              className="settingsIntegration"
-              display="block"
-              viewBox="0 0 20 20"
+
+          {query == "" ? (
+            <div
               style={{
-                width: 20,
-                height: 20,
-                WebkitFlexShrink: "0",
-                MsFlexShrink: "0",
-                flexShrink: "0",
-                fill: "white",
+                color: "#666",
+                fontWeight: 600,
+                fontSize: 13,
+                cursor: "not-allowed",
+                userSelect: "none",
               }}
             >
-              <path d="M4.633 9.42h3.154c1.093 0 1.632-.532 1.632-1.656V4.655C9.42 3.532 8.88 3 7.787 3H4.633C3.532 3 3 3.532 3 4.655v3.109c0 1.124.532 1.655 1.633 1.655zm7.58 0h3.162C16.468 9.42 17 8.887 17 7.763V4.655C17 3.532 16.468 3 15.374 3h-3.16c-1.094 0-1.633.532-1.633 1.655v3.109c0 1.124.539 1.655 1.633 1.655zm-7.58-1.251c-.262 0-.382-.135-.382-.405V4.648c0-.27.12-.405.382-.405h3.146c.262 0 .39.135.39.405v3.116c0 .27-.128.405-.39.405H4.633zm7.588 0c-.262 0-.39-.135-.39-.405V4.648c0-.27.128-.405.39-.405h3.146c.262 0 .39.135.39.405v3.116c0 .27-.128.405-.39.405h-3.146zM4.633 17h3.154c1.093 0 1.632-.532 1.632-1.655v-3.109c0-1.124-.539-1.655-1.632-1.655H4.633C3.532 10.58 3 11.112 3 12.236v3.109C3 16.468 3.532 17 4.633 17zm7.58 0h3.162C16.468 17 17 16.468 17 15.345v-3.109c0-1.124-.532-1.655-1.626-1.655h-3.16c-1.094 0-1.633.531-1.633 1.655v3.109c0 1.123.539 1.655 1.633 1.655zm-7.58-1.25c-.262 0-.382-.128-.382-.398v-3.116c0-.277.12-.405.382-.405h3.146c.262 0 .39.128.39.405v3.116c0 .27-.128.397-.39.397H4.633zm7.588 0c-.262 0-.39-.128-.39-.398v-3.116c0-.277.128-.405.39-.405h3.146c.262 0 .39.128.39.405v3.116c0 .27-.128.397-.39.397h-3.146z"></path>
-            </svg>
-          </div>
-          <input
-            placeholder="Type you question here..."
-            id={styles.message_input}
-            value={query}
-            type="text"
-            onChange={(e) => setquery(e.target.value)}
-            onKeyDown={(e) => sendenterquery(e)}
-          />
+              <span>Send</span>
+            </div>
+          ) : (
+            <div
+              onClick={(e) => sendbtnquery(e)}
+              style={{
+                color: "dodgerblue",
+                fontWeight: 600,
+                fontSize: 13,
+                cursor: "pointer",
+              }}
+            >
+              <span>Send</span>
+            </div>
+          )}
         </div>
-
-        {query == "" ? (
-          <div
-            style={{
-              color: "#666",
-              fontWeight: 600,
-              fontSize: 13,
-              cursor: "not-allowed",
-              userSelect: "none",
-            }}
-          >
-            <span>Send</span>
-          </div>
-        ) : (
-          <div
-            onClick={(e) => sendbtnquery(e)}
-            style={{
-              color: "dodgerblue",
-              fontWeight: 600,
-              fontSize: 13,
-              cursor: "pointer",
-            }}
-          >
-            <span>Send</span>
-          </div>
-        )}
-      </div>
+      )}
     </div>
   );
 }

@@ -1,10 +1,10 @@
 .landing_for_rhs_main {
   width: 100%;
   height: 100%;
-  margin-top: 80px;
+  margin-top: 55px;
   background: #f1f1f1;
   border-radius: 20px;
-  padding: 20px 40px;
+  padding: 15px 40px;
 }
 
 .landing_for_rhs_main .landing_rhs_sub_wrapper {
@@ -17,7 +17,7 @@
 .landing_heading_part {
   display: flex;
   flex-direction: column;
-  gap: 1.3rem;
+  gap: 1rem;
 }
 
 .landing_heading_part .welcome_root .wel_desgine {

@@ -62,7 +62,18 @@
   display: flex;
   gap: 1rem;
 }
-
+.groupname_container {
+  margin-bottom: 10px;
+}
+.groupname_container #grpname_input {
+   padding: 11px 13px;
+    background: #f1f1f1;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-size: 13px;
+    width: 100%;
+}
 .right_create_chat
   .middle_upload_sec
   .middle_upload
@@ -130,7 +141,7 @@
 }
 
 .upload_indicator .uplaod_sub_indicator .from_files_show_all {
-  height: 250px;
+  min-height: 150px;
   width: auto;
   min-width: 300px !important;
   max-width: 450px;

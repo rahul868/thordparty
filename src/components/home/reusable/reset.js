@@ -10,6 +10,10 @@ function Reset({ currfile }) {
 
   function handledmove() {
     setSavedMessages([]);
+    document.querySelectorAll("[data-g-navbar-flyer]").forEach((ele) => {
+      ele.classList.remove("popup_container_active");
+    });
+    document.querySelector("#overlay").classList.remove("active_overlay");
     del_chats_local(currfile);
   }
 

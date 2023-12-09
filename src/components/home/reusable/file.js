@@ -5,10 +5,9 @@ import { Gcommoncontext } from "@/context/common_global";
 
 export default function File({ file }) {
   const { setcurrdoc, currdoc } = useContext(Gcommoncontext);
- 
   function file_switching_process() {
     // Entire process of fetching data for file will go here.
-    setcurrdoc("");
+    setcurrdoc(null);
     setcurrdoc(file);
   }
   function limit_string(text, maxLength) {
@@ -50,7 +49,7 @@ export default function File({ file }) {
         </svg>
       </div>
       <span style={{ color: file.id === currdoc.id ? "dodgerblue" : "" }}>
-        {limit_string(file.filename, 20)}
+        {limit_string(file.name, 20)}
       </span>
     </div>
   );

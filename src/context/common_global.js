@@ -1,4 +1,4 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import {
   uniqueNamesGenerator,
   adjectives,
@@ -15,106 +15,21 @@ const Gcommonprovider = (props) => {
 
   const [user, setuser] = useState({
     name: "Rahul Darekar",
-    email: "rahuldarekar369782@gmail.com",
+    email: "ssatale@bigiota.ai",
     a_profile: "",
   });
 
+  const [error, seterror] = useState(false);
+  const [loading, setloading] = useState(true);
   const [filemeta, setfilemeta] = useState([]);
-  //   [
-  //   {
-  //     id: "fedgerg34ertgefg34t3",
-  //     type: "file",
-  //     slug: "Actual slug of file",
-  //     name: "",
-  //     filename: uniqueNamesGenerator(config),
-  //     Lastedit: "now",
-  //   },
-  //   {
-  //     id: "fedgerg34ertgefg34t4",
-  //     type: "group",
-  //     groupname: uniqueNamesGenerator(config),
-  //     Lastedit: "3h",
-  //     childs: [
-  //       {
-  //         id: "fedgerg34ertgefg34th",
-  //         filename: uniqueNamesGenerator(config),
-  //         Lastedit: "22h",
-  //       },
-  //       {
-  //         id: "fedgerg34ertgefg34ta",
-  //         filename: uniqueNamesGenerator(config),
-  //         Lastedit: "22h",
-  //       },
-  //       {
-  //         id: "fedgerg34ertgefg34tk",
-  //         filename: uniqueNamesGenerator(config),
-  //         Lastedit: "22h",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     id: "fedgerg34ertgefg34t5",
-  //     type: "file",
-  //     filename: uniqueNamesGenerator(config),
-  //     Lastedit: "3min",
-  //   },
-  //   {
-  //     id: "fedgerg34ertgefg34t5",
-  //     type: "file",
-  //     filename: uniqueNamesGenerator(config),
-  //     Lastedit: "3min",
-  //   },
-  //   {
-  //     id: "fedgerg34ertgefg34t5",
-  //     type: "file",
-  //     filename: uniqueNamesGenerator(config),
-  //     Lastedit: "3min",
-  //   },
-  //   {
-  //     id: "fedgerg34ertgefg34t5",
-  //     type: "file",
-  //     filename: uniqueNamesGenerator(config),
-  //     Lastedit: "3min",
-  //   },
-  //   {
-  //     id: "fedgerg34ertgefg34t5",
-  //     type: "file",
-  //     filename: uniqueNamesGenerator(config),
-  //     Lastedit: "3min",
-  //   },
 
-  //   {
-  //     id: "fedgerg34ertgefg34t5",
-  //     type: "file",
-  //     filename: uniqueNamesGenerator(config),
-  //     Lastedit: "3min",
-  //   },
-  //   {
-  //     id: "fedgerg34ertgefg34t5",
-  //     type: "file",
-  //     filename: uniqueNamesGenerator(config),
-  //     Lastedit: "3min",
-  //   },
-  //   {
-  //     id: "fedgerg34ertgefg34t5",
-  //     type: "file",
-  //     filename: uniqueNamesGenerator(config),
-  //     Lastedit: "3min",
-  //   },
-  // ]
-
-  const [currdoc, setcurrdoc] = useState({
-    id: "fedgerg34ertgefg34t3",
-    type: "file",
-    slug: "https://www.cl.cam.ac.uk/teaching/1011/OpSystems/os1a-slides.pdf",
-    name: "",
-    filename: "index.m3u8",
-    Lastedit: "3 days ago",
-  });
+  const [currdoc, setcurrdoc] = useState(null);
 
   // Alert
   const [alertstatus, setalertstatus] = useState(false);
-  const [alertmsg, setalertmsg] = useState("Chat your way through long documents");
+  const [alertmsg, setalertmsg] = useState(
+    "Chat your way through long documents"
+  );
   const [alerttype, setalerttype] = useState("l");
 
   function limit_string(text, maxLength) {
@@ -133,6 +48,35 @@ const Gcommonprovider = (props) => {
     // Return the original string
     return truncatedText;
   }
+
+  // Function for calling user files from server
+
+  // Simulating fetching user file metadata
+  const fetchUserFiles = async () => {
+    try {
+      // Simulate API call for user file metadata
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/DocumentHistory?emailid=${user.email}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch user files");
+      }
+      const files = await response.json();
+      setfilemeta(files.documents);
+      if (files.documents.length > 0) {
+        setcurrdoc(files.documents[0]);
+      }
+    } catch (err) {
+      seterror(err.message);
+    } finally {
+      setloading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserFiles();
+  }, []);
+
   return (
     <Gcommoncontext.Provider
       value={{
@@ -140,7 +84,13 @@ const Gcommonprovider = (props) => {
         setcurrdoc,
         user,
         filemeta,
+        error,
+        loading,
         setfilemeta,
+        limit_string,
+        alertstatus,
+        alertmsg,
+        alerttype,
       }}
     >
       {props.children}

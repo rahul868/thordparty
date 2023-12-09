@@ -1,0 +1,38 @@
+
+.middle_sub_wrapper_messages {
+    height: 100%;
+}
+.loadingcallui {
+  height: 100%;
+}
+
+.loadingcallui .loadingc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.loading_container {
+  text-align: center;
+  font-size: 13px;
+}
+
+.loading_spinner {
+  border: 4px solid #3498db;
+  border-radius: 50%;
+  border-top: 4px solid transparent;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

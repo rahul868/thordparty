@@ -1,14 +1,17 @@
 /**
  * @type {import('next').NextConfig}
  */
+const dotenv = require("dotenv");
+// Load environment variables from .env file
+dotenv.config();
 const nextConfig = {
-  output: 'export',
+  output: "export",
   cssModules: {
     enable: false,
     config: {
-      generateScopedName: '[local]',
+      generateScopedName: "[local]",
     },
   },
 };
- 
+
 module.exports = nextConfig;

@@ -16,9 +16,6 @@ function Landingrhs() {
           </div>
         </div>
         <div className={styles.landing_upload_area}>
-          <div className={styles.adv_para}>
-            Upload your files (click or drag) to start a chat!
-          </div>
           <div className={styles.main_upload_area}>{<Rnewchat />}</div>
         </div>
       </div>

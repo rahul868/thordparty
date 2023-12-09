@@ -6,12 +6,8 @@ export default function Button({
   cstyles,
   className,
 }) {
-  const callthis = () => {
-    document.querySelectorAll("[data-g-navbar-flyer]").forEach((ele) => {
-      ele.classList.remove("popup_container_active");
-    });
-    document.querySelector("#overlay").classList.remove("active_overlay");
-    callback();
+  const callthis = (e) => {
+    callback(e);
   };
   return (
     <div className={styles.btn_wrapper}>
@@ -20,7 +16,7 @@ export default function Button({
           background: !disable ? "dodgerblue" : "",
           color: !disable ? "white" : "",
         }}
-        onClick={callthis}
+        onClick={(e) => callthis(e)}
         disabled={disable}
       >
         {title}

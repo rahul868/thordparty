@@ -1,56 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Read PDF in JavaScript</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Upload</title>
+  </head>
+  <body>
+    <input type="file" id="file-input" />
 
-<input type="file" id="pdfInput" accept=".pdf" />
+    <script>
+      document
+        .getElementById("file-input")
+        .addEventListener("change", async (event) => {
+          const file = event.target.files[0];
 
-<script>
-document.getElementById('pdfInput').addEventListener('change', function (event) {
-    const file = event.target.files[0];
+          const response = await fetch(
+            `http://43.205.191.93:8000/presigned-url-for-upload?bucket_name=documentia&email_id=ssatale@bigiota.ai&file_name_with_extension=${file.name}`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
 
-    if (file) {
-        const reader = new FileReader();
+          const data = await response.json();
+          const presignedUrl = data.presigned_url_for_upload;
+          console.log(presignedUrl);
+          const uploadResponse = await fetch("https://documentia.s3.amazonaws.com/ssatale%40bigiota.ai/a2.pdf?AWSAccessKeyId=AKIAVLZAONZM75KO2JV4&Signature=6sDGm75hfMxowXVKWuJ12PJTokg%3D&Expires=1702063353", {
+            method: "PUT",
+            body: file,
+            headers: {
+              "Content-Type":"application/pdf",
+            },
+          });
 
-        reader.onload = function (e) {
-            const pdfData = new Uint8Array(e.target.result);
-            console.log(pdfData)
-            // Parse PDF data
-            const pdfObjects = parsePDF(pdfData);
-
-            // Do something with the parsed data
-            console.log(pdfObjects);
-        };
-
-        reader.readAsArrayBuffer(file);
-    }
-});
-
-function parsePDF(pdfData) {
-    // This is a highly simplified example and doesn't cover the entire PDF specification
-    const objects = [];
-    const data = pdfData.toString();
-    const objectMatches = data.match(/(\d+)\s+(\d+)\s+obj([\s\S]*?)endobj/g);
-
-    if (objectMatches) {
-        for (const match of objectMatches) {
-            const objectId = match.match(/(\d+)\s+(\d+)\s+obj/)[1];
-            const objectContent = match.match(/obj([\s\S]*?)endobj/)[1].trim();
-
-            objects.push({
-                id: objectId,
-                content: objectContent
-            });
-        }
-    }
-
-    return objects;
-}
-</script>
-
-</body>
+          console.log("File uploaded successfully:", uploadResponse);
+        });
+    </script>
+  </body>
 </html>

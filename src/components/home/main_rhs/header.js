@@ -1,5 +1,5 @@
 import styles from "@/styles/home/rhs/header.module.css";
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import Popup from "../reusable/popup";
 import Rnewchat from "@/components/newchat/newchatwidget";
 import Reset from "../reusable/reset";
@@ -7,7 +7,6 @@ import { Gcommoncontext } from "@/context/common_global";
 import { Rhscontext } from "@/context/provider";
 import Setting from "../setting";
 export default function Rheader() {
-  const [isOverlay, setIsOverlay] = useState(false);
   const { currdoc, limit_string } = useContext(Gcommoncontext);
   const { save_chats_local } = useContext(Rhscontext);
   return (
@@ -31,8 +30,11 @@ export default function Rheader() {
             </svg>
           </div>
           <div style={{ paddingLeft: 10 }}>
-            <h4>{limit_string(currdoc.filename, 24)}</h4>
-            <span>(Last edited {currdoc.Lastedit})</span>
+            <h4>{limit_string(currdoc.name, 24)}</h4>
+            <span>
+              Last edited {new Date(parseInt(currdoc.lastedit)).toDateString()}
+              
+            </span>
           </div>
         </div>
 
@@ -40,7 +42,7 @@ export default function Rheader() {
           id="_g_header_navbar_wrapper"
           g_nav_header_tab
           className={styles.g_header_navbar_wrapper}
-          onClick={() => save_chats_local(currdoc.filename)}
+          onClick={() => save_chats_local(currdoc.name)}
         >
           <div className={styles.dropdown_block}>
             <span>
@@ -147,18 +149,19 @@ export default function Rheader() {
               <span>
                 <svg
                   fill="rgba(55, 53, 47, 0.85)"
-                  className="settingsIntegration"
+                  className="help"
                   display="block"
-                  viewBox="0 0 20 20"
+                  viewBox="0 0 16 16"
                   style={{
-                    width: 18,
-                    height: 18,
+                    width: 14,
+                    height: 14,
                     WebkitFlexShrink: "0",
                     MsFlexShrink: "0",
                     flexShrink: "0",
+                    marginRight: 6,
                   }}
                 >
-                  <path d="M4.633 9.42h3.154c1.093 0 1.632-.532 1.632-1.656V4.655C9.42 3.532 8.88 3 7.787 3H4.633C3.532 3 3 3.532 3 4.655v3.109c0 1.124.532 1.655 1.633 1.655zm7.58 0h3.162C16.468 9.42 17 8.887 17 7.763V4.655C17 3.532 16.468 3 15.374 3h-3.16c-1.094 0-1.633.532-1.633 1.655v3.109c0 1.124.539 1.655 1.633 1.655zm-7.58-1.251c-.262 0-.382-.135-.382-.405V4.648c0-.27.12-.405.382-.405h3.146c.262 0 .39.135.39.405v3.116c0 .27-.128.405-.39.405H4.633zm7.588 0c-.262 0-.39-.135-.39-.405V4.648c0-.27.128-.405.39-.405h3.146c.262 0 .39.135.39.405v3.116c0 .27-.128.405-.39.405h-3.146zM4.633 17h3.154c1.093 0 1.632-.532 1.632-1.655v-3.109c0-1.124-.539-1.655-1.632-1.655H4.633C3.532 10.58 3 11.112 3 12.236v3.109C3 16.468 3.532 17 4.633 17zm7.58 0h3.162C16.468 17 17 16.468 17 15.345v-3.109c0-1.124-.532-1.655-1.626-1.655h-3.16c-1.094 0-1.633.531-1.633 1.655v3.109c0 1.123.539 1.655 1.633 1.655zm-7.58-1.25c-.262 0-.382-.128-.382-.398v-3.116c0-.277.12-.405.382-.405h3.146c.262 0 .39.128.39.405v3.116c0 .27-.128.397-.39.397H4.633zm7.588 0c-.262 0-.39-.128-.39-.398v-3.116c0-.277.128-.405.39-.405h3.146c.262 0 .39.128.39.405v3.116c0 .27-.128.397-.39.397h-3.146z"></path>
+                  <path d="M8 15.126c3.862 0 7.062-3.192 7.062-7.062 0-3.862-3.2-7.061-7.069-7.061-3.862 0-7.055 3.2-7.055 7.061 0 3.87 3.2 7.062 7.062 7.062zm0-1.388a5.654 5.654 0 01-5.667-5.674 5.642 5.642 0 015.66-5.667 5.664 5.664 0 015.68 5.667A5.66 5.66 0 018 13.738zm-.157-4.313c.376 0 .615-.212.636-.492V8.85c.02-.356.266-.595.71-.882.67-.445 1.108-.834 1.108-1.627 0-1.142-1.026-1.791-2.235-1.791-1.17 0-1.97.533-2.181 1.176a1.051 1.051 0 00-.062.355c0 .328.26.533.534.533a.637.637 0 00.553-.287l.11-.137c.225-.376.553-.574.963-.574.554 0 .93.328.93.793 0 .43-.287.643-.868 1.046-.485.335-.84.69-.84 1.313v.075c0 .383.232.58.642.58zm-.007 2.098c.437 0 .8-.32.8-.752 0-.43-.363-.745-.8-.745-.444 0-.8.322-.8.745 0 .431.362.752.8.752z"></path>
                 </svg>
               </span>
 

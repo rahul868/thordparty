@@ -5,10 +5,15 @@ import { useContext } from "react";
 import { Gcommoncontext } from "@/context/common_global";
 import Folder from "../reusable/folder";
 export default function Lmiddle() {
-  const { filemeta } = useContext(Gcommoncontext);
+  const { filemeta, error, loading } = useContext(Gcommoncontext);
 
-  console.log(filemeta);
+  if (error) {
+    return <div>{error}</div>;
+  }
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   if (filemeta?.length > 0) {
     return (
       <div className={styles.rhs_middle_content}>

@@ -1,11 +1,10 @@
 .msg_for_ai {
-  width: 90%;
+  width: 100%;
   display: flex;
   background: #f8f8f8;
   border-radius: 10px;
   margin: 12px 0px;
   margin-left: auto;
-
 }
 
 .msg_for_ai .msg_sub_for_ai {

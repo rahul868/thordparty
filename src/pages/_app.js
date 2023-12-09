@@ -75,6 +75,7 @@ export default function App({ Component, pageProps }) {
         ele.classList.remove("option_flyer_wrapper_active");
       });
     });
+    // });
   });
   return (
     <Gcommonprovider>

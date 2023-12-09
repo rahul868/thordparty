@@ -11,7 +11,6 @@ export default function Lheader() {
 
   const handlefileuploading = (e) => {
     const file = e.target.files[0];
-    console.log(file);
     let obj = {
       type: "file",
       id: "gf34vferfer3t4t43t34",
@@ -20,6 +19,12 @@ export default function Lheader() {
     };
 
     setfilemeta([obj, ...filemeta]);
+  };
+
+  const logout_function = () => {
+    // clear cookies here
+    // All tokens also and navigate to login page.
+    return (window.location.href = "https://www.documentia.ai/signin");
   };
 
   return (
@@ -62,7 +67,7 @@ export default function Lheader() {
                 {
                   name: "Logout",
                   callback: () => {
-                    console.log("Helo callback");
+                    logout_function();
                   },
                   svg: (
                     <svg
