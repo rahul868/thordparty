@@ -165,3 +165,11 @@
 .sentwrapper_active {
   background-color: dodgerblue;
 }
+
+/* Mobile set View */
+
+@media only screen and (max-width: 650px) {
+  .chatinput_wrapper {
+    bottom: 60px;
+  }
+}

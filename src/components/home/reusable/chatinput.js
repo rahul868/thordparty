@@ -216,7 +216,7 @@ export default function Rchatinput() {
 
   useEffect(() => {
     document.querySelector("[data-chat-input]").autofocus = true;
-  },[currdoc]);
+  }, [currdoc]);
 
   function applysentquery(sent) {
     // API call

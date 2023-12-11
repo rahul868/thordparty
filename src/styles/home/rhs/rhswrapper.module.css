@@ -8,8 +8,8 @@
   height: calc(100% - var(--common-header-size));
 }
 
-#chat_section,
-#document_viewer {
+.chat_section,
+.document_viewer {
   flex: 1 1;
   border-right: 1px solid #eee;
   /* margin: 0px 5px; */
@@ -17,7 +17,7 @@
   height: 100%;
 }
 
-#document_viewer .doc_viewercontainer {
+.document_viewer .doc_viewercontainer {
   overflow-y: auto;
   /* padding: 0px 10px; */
   overflow-y: auto;
@@ -27,4 +27,7 @@
 /*  Mobile View set  */
 
 @media only screen and (max-width: 650px) {
+  .rhs_content_wrapper .main_rhs_content {
+    display: block;
+  }
 }

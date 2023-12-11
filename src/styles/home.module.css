@@ -22,7 +22,8 @@
   border-right: 1px solid #eee;
   opacity: 1;
   transform: translateX(0%);
-  transition: width 0.2s ease-in-out, min-width 0.2s ease-in-out, transform 0.4s ease-in-out;
+  transition: width 0.2s ease-in-out, min-width 0.2s ease-in-out,
+    transform 0.4s ease-in-out;
 }
 
 .main_rhs_container {
@@ -34,7 +35,7 @@
 
 /* meadia query for hide left bar */
 @media only screen and (max-width: 800px) {
-  #left_section {
+  .left_section {
     display: none;
   }
 }

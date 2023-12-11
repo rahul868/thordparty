@@ -10,12 +10,12 @@ export default function Rhswrapper() {
       <Rheader />
       <Controller />
       <div className={styles.main_rhs_content}>
-        <section id={styles.chat_section}>
+        <section className={styles.chat_section} id="chat_wrapper">
           {/* CHAT SECTION */}
           <Rchat />
         </section>
 
-        <section id={styles.document_viewer}>
+        <section className={styles.document_viewer} id="doc_wrapper">
           {/* DOCUMENT SECTION */}
           <div className={styles.doc_viewercontainer}>
             <Rdocviewer />

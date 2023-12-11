@@ -44,7 +44,11 @@ export default function Home() {
       {/* <Gcommonprovider> */}
       <div className={styles.app_container}>
         {/* LHS SECTION */}
-        <div data-sec-lhswrapper id="lhs_wrapper" className={styles.left_section}>
+        <div
+          data-sec-lhswrapper
+          id="lhs_wrapper"
+          className={styles.left_section}
+        >
           {/* SECTION 1. HEADER 2. CONTENT 3.FOOTER */}
           <Lhsprovider>
             <Lhswrapper />

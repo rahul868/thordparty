@@ -1,7 +1,11 @@
 :root {
   --common-header-size: 45px;
+  --common-line-switching: 45px;
   --overlay-global-index: 100;
   --popup-global-index: 105;
+
+  /* Color global variables */
+  --line-animation-color: dodgerblue;
 }
 
 * {
@@ -22,7 +26,7 @@ body {
 }
 
 *::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
   /* background-color: #F5F5F5; */
 }
 
