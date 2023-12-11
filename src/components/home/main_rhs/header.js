@@ -73,8 +73,13 @@ export default function Rheader() {
       <div className={styles.rhs_header_content}>
         <div className={styles.document_intro}>
           <div
+<<<<<<< HEAD
             className={styles.document_intro_svg}
             onClick={isMenu ? ShowLeftSlider : ""}
+=======
+            data-lhs-reopen
+            className={`${styles.document_intro_svg} ${styles.lhsreopensvg}`}
+>>>>>>> main
           >
             {isMenu ? (
               <svg
@@ -122,7 +127,7 @@ export default function Rheader() {
         <div
           id="_g_header_navbar_wrapper"
           g_nav_header_tab
-          className={styles.g_header_navbar_wrapper}
+        className={styles.g_header_navbar_wrapper}
         >
           <div
             onClick={() => save_chats_local(currdoc.name)}
@@ -223,7 +228,7 @@ export default function Rheader() {
                 Settings
               </span>
             </div>
-            <Popup custom_styles_width={{ minWidth: 150 }}>
+            <Popup title={"Chat Experience"} custom_styles_width={{ minWidth: 150 }}>
               <Setting />
             </Popup>
           </div>
@@ -284,7 +289,7 @@ export default function Rheader() {
                 Feedback
               </span>
             </div>
-            <Popup custom_styles_width={{ minWidth: 150 }}>
+            <Popup title={"Feedback for us?"}  custom_styles_width={{ minWidth: 150 }}>
               <Feedback />
             </Popup>
           </div>
@@ -320,7 +325,7 @@ export default function Rheader() {
                 New chat
               </span>
             </div>
-            <Popup custom_styles_width={{ header: 500 }}>
+            <Popup title={"Upload Files"} custom_styles_width={{ header: 500 }}>
               <Rnewchat />
             </Popup>
           </div>

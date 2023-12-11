@@ -1,9 +1,11 @@
-import { React, useState, createContext, useRef } from "react";
+import { React, useState, createContext, useContext } from "react";
+import { Gcommoncontext } from "./common_global";
 const Lhscontext = createContext();
-
 const Lhsprovider = (props) => {
-  const [file, setfile] = useState([]);
-  
+  //Global context
+  const { user, setcurrdoc, setfilemeta } = useContext(Gcommoncontext);
+  const [filelhs, setfilelhs] = useState([]);
+
   // group creation for storing chat API status and data
   const [gasuccess, setgasuccess] = useState(false);
   const [galoading, setgaloading] = useState(false);
@@ -12,7 +14,7 @@ const Lhsprovider = (props) => {
   // Function for LHS bar document uploading.
   // Flow from lhscontext -> globalcontext
 
-  const setSeperateFile = async (files) => {
+  const setSeperateFileLhs = async (files) => {
     setgaloading(true);
     try {
       // Simulate API call for user file metadata
@@ -52,12 +54,12 @@ const Lhsprovider = (props) => {
   return (
     <Lhscontext.Provider
       value={{
-        setSeperateFile,
+        setSeperateFileLhs,
         gaerror,
         galoading,
         gasuccess,
-        setfile,
-        file,
+        setfilelhs,
+        filelhs,
       }}
     >
       {props.children}

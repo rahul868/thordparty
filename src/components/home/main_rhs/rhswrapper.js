@@ -3,12 +3,17 @@ import Rheader from "./header";
 import Rchat from "./chat";
 import Rdocviewer from "./docviewer";
 import Controller from "./controller";
+import Alert from "../reusable/alert";
+import { Rhscontext } from "@/context/provider";
+import { useContext } from "react";
 
 export default function Rhswrapper() {
+  const { gastatus, gamsg, gatype } = useContext(Rhscontext);
   return (
     <div className={styles.rhs_content_wrapper}>
       <Rheader />
       <Controller />
+      <Alert alertstatus={gastatus} alerttype={gatype} alertmsg={gamsg} />
       <div className={styles.main_rhs_content}>
         <section className={styles.chat_section} id="chat_wrapper">
           {/* CHAT SECTION */}

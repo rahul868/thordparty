@@ -64,7 +64,10 @@
 
 .rhs_header_content .document_intro .lhsreopensvg {
   opacity: 0;
+  visibility: hidden;
   transform: translateX(-100%);
+  cursor: pointer;
+  transition: opacity 0.2s, trandform 0.2s;
 }
 
 .rhs_header_content .document_intro .back:hover {

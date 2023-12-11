@@ -5,7 +5,7 @@ export default function Popuplist({ list }) {
             <div className={styles.plist_subwrapper}>
                 <ul>
                     {list.map((item) => {
-                        return <li onClick={() => item.callback(item.name)}><span>{item.svg}</span><span>{item.name}</span></li>
+                        return <li onClick={() => item.callback(item)}><span>{item.svg}</span><span>{item.name}</span></li>
                     })}
                 </ul>
             </div>

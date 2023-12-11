@@ -11,7 +11,6 @@ export default function Feedback() {
   return (
     <div className={styles.feedbackwrap}>
       <div className={styles.feedbackinput}>
-        <h4>Have feedback?</h4>
         <textarea
           placeholder="Type your feedback here..."
           autoFocus

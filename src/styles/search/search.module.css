@@ -1,0 +1,37 @@
+.searchwrapper {
+  padding: 12px;
+  height: 100%;
+}
+.searchwrapper .searchsubwrapper {
+    height: 100%;
+}
+.searchwrapper .searchsubwrapper .searchwrapper_content {
+  display: flex;
+  align-items: center;
+  border: 1px solid #eee;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 2px 5px;
+}
+
+.searchwrapper .searchsubwrapper .searchwrapper_content .docsearch_input {
+  outline: none;
+  border: none;
+  background-color: inherit;
+  padding: 7px 2px 7px 5px;
+  font-size: 13px;
+  width: 100%;
+}
+
+.searchwrapper .searchsubwrapper .result_wrapper {
+  margin: 10px 0px 10px 0px;
+  font-size: 14px;
+  height: 100%;
+}
+.searchwrapper .searchsubwrapper .result_wrapper .results {
+  height: 100%;
+  overflow-y: scroll;
+}
+.searchwrapper .searchsubwrapper .result_wrapper .result_title {
+  margin: 0px 0px 10px 0px;
+}

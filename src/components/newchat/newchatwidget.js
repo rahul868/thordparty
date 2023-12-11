@@ -11,8 +11,6 @@ function Rnewchat() {
   const Gcontext = useContext(Gcommoncontext);
   const Rcontext = useContext(Rhscontext);
 
-  const { filemeta, setfilemeta, setcurrdoc } = Gcontext;
-
   const {
     files,
     setfiles,
@@ -30,6 +28,13 @@ function Rnewchat() {
   useEffect(() => {
     dragfunc(files);
   }, [files]);
+
+  const closedocpopup = () => {
+    document.querySelectorAll("[data-g-navbar-flyer]").forEach((ele) => {
+      ele.classList.remove("popup_container_active");
+    });
+    document.querySelector("#overlay").classList.remove("active_overlay");
+  };
 
   const handleFileChange = (e) => {
     if (files.length > 0) {
@@ -79,7 +84,7 @@ function Rnewchat() {
       // creation: date,
     };
 
-    let result = await setUserGroup(group_create);
+    await setUserGroup(group_create);
 
     // clear all rhs temp files
     setfiles([]);
@@ -102,11 +107,12 @@ function Rnewchat() {
         creation: date,
       });
     }
-
-    let result = await setSeperateFiles(newSavedchatadded);
+    closedocpopup();
+    await setSeperateFiles(newSavedchatadded);
     // clear all
     setfiles([]);
     setGrpname("");
+    setisGroup(false);
   }
 
   if (gaerror) {
@@ -248,7 +254,6 @@ function Rnewchat() {
               ) : (
                 <>
                   <div className={styles.upload_widget_title}>
-                    <h3>Upload Files</h3>
                     <span>
                       Add your document here. You can add upto 5 files.
                     </span>

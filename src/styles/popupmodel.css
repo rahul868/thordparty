@@ -41,7 +41,6 @@
 }
 
 .popup_dialog {
-  /* padding: 5px; */
   background: white;
   border-radius: 5px;
   backdrop-filter: none;
@@ -59,6 +58,7 @@
   max-width: calc(100vw - 24px);
   height: 100%;
   max-height: 90vh;
+  /* overflow-y: hidden; */
 }
 
 /* Gloabl css for folders nested childs visibility */
@@ -86,4 +86,10 @@
   width: 0;
   min-width: 0;
   opacity: 0;
+}
+
+.lhsreopensvg_active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateX(0%) !important;
 }

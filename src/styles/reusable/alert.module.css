@@ -1,11 +1,15 @@
 .alert_strip_container {
   background-color: #f1f1f1;
-  border: 1px solid #eee;
   height: 0px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  right: 0;
+  z-index: calc(var(--overlay-global-index) - 10);
 }
 
 @keyframes strip_animations {
@@ -28,6 +32,7 @@
   font-size: 13px;
   opacity: 0.9;
   color: white;
+  font-weight: 600;
   animation: display_strip_content 400ms ease-in-out forwards;
   animation-delay: 0.8s;
 }

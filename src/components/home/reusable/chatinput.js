@@ -219,6 +219,7 @@ export default function Rchatinput() {
   }, [currdoc]);
 
   function applysentquery(sent) {
+    console.log("dsds", sent);
     // API call
     let obj = {
       isChatUI: false,
