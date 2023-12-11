@@ -34,7 +34,7 @@
 
 /* meadia query for hide left bar */
 @media only screen and (max-width: 800px) {
-  #left_section {
+  .left_section {
     display: none;
   }
 }

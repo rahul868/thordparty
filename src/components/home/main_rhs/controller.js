@@ -3,25 +3,17 @@ import styles from "../../../styles/home/rhs/controller.module.css";
 
 export default function Controller() {
   function handleshowviwer() {
-    let chatelement = document.getElementsByClassName(
-      styles.wrapping_actual_chat_container
-    )[0];
-    let viewrelement = document.getElementsByClassName(
-      styles.viwer_for_detail
-    )[0];
+    let docelement = document.getElementById("doc_wrapper");
+    let chatelement = document.getElementById("chat_wrapper");
+    docelement.style.display = "block";
     chatelement.style.display = "none";
-    viewrelement.style.display = "block";
   }
 
   function handleshowchat() {
-    let chatelement = document.getElementsByClassName(
-      styles.wrapping_actual_chat_container
-    )[0];
-    let viewrelement = document.getElementsByClassName(
-      styles.viwer_for_detail
-    )[0];
+    let docelement = document.getElementById("doc_wrapper");
+    let chatelement = document.getElementById("chat_wrapper");
+    docelement.style.display = "none";
     chatelement.style.display = "block";
-    viewrelement.style.display = "none";
   }
 
   function EnableHover() {
@@ -43,6 +35,11 @@ export default function Controller() {
         }, 500);
       });
     });
+
+    const chatElement = document.querySelector(`.${styles.same}:first-child`);
+    if (chatElement) {
+      chatElement.classList.add(styles.active_chat_or_view);
+    }
   }
 
   useEffect(() => {

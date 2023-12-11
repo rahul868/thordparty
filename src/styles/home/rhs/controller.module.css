@@ -1,11 +1,13 @@
 /* Styles for the control section for chats and viewers */
 .control_section_for_chats_viewers {
   width: 100%;
-  max-height: 50px;
+  max-height: var(--common-line-switching);
   align-items: center;
   justify-content: center;
   display: none;
   height: 100%;
+  box-sizing: border-box;
+  position: relative;
 }
 
 /* Styles for the sub-wrapper within the control section */
@@ -22,39 +24,34 @@
 .control_section_for_chats_viewers .control_section_for_sub_wrapper .same {
   width: 50%;
   height: 100%;
-  font-size: 15px;
+  font-size: 13px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-style: italic;
-  color: rgba(0, 0, 0, 0.6);
+  color: #37352f;
 }
 
-/* Styles for the active chat or view */
-.active_chat_or_view {
-  border-bottom: 2px solid rgb(100, 66, 49);
-  color: rgb(100, 66, 49) !important;
+.active_chat_or_view::after {
+  content: "";
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 2px; /* Adjust the thickness of the border as needed */
+  background-color: var(--line-animation-color);
+  position: absolute;
+  width: 50%;
+  bottom: 0px;
 }
+/* Styles for the active chat or view */
 
 /* Media query for screens with a max-width of 700px */
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 650px) {
   .control_section_for_chats_viewers {
     display: flex;
   }
 
-  /* Styles for the wrapping actual chat container */
-  .wrapping_actual_chat_container {
-    width: 100% !important;
-  }
-
   /* Styles for the sub-chat container within the actual chat container */
-  .wrapping_actual_chat_container .wrapping_sub_chat_container {
-    /* Styles for the chatting AI container */
-    .chatting_ai_container {
-      /* Add your styles for the chatting AI container within the sub-chat container */
-    }
-  }
 
   /* Styles for the viewer for detail */
   .viwer_for_detail {
