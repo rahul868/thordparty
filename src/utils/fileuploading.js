@@ -12,7 +12,7 @@ const upload_doc = async (file) => {
 
   try {
     const params = {
-      Bucket: "documentia",
+      Bucket: "documentia",               
       Key: key,
       Body: file,
       ContentType: file.type,

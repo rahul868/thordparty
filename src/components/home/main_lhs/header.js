@@ -5,25 +5,33 @@ import { Gcommoncontext } from "@/context/common_global";
 import Popup from "../reusable/popup";
 import Popuplist from "../reusable/popuplist";
 import Namemodel from "../reusable/namemodel";
+import uuid from "react-uuid";
 export default function Lheader() {
   const { setfilemeta, filemeta } = useContext(Gcommoncontext);
   const { user } = useContext(Gcommoncontext);
 
   const handlefileuploading = (e) => {
+    e.preventDefault();
+    let date = Date.now();
+    let newdoc = [];
     const file = e.target.files[0];
-    let obj = {
+    let fileobj = {
+      id: uuid(),
       type: "file",
-      id: "gf34vferfer3t4t43t34",
-      filename: file.name,
-      Lastedit: file.lastModified,
+      slug: "https://drive.uqu.edu.sa/_/mskhayat/files/MySubjects/2017SS%20Operating%20Systems/Abraham%20Silberschatz-Operating%20System%20Concepts%20(9th,2012_12).pdf",
+      name: "scrum.pdf",
+      name: file.name,
+      lastedit: date,
+      creation: date,
     };
-
-    setfilemeta([obj, ...filemeta]);
+    newdoc.push(fileobj);
   };
 
   const logout_function = () => {
     // clear cookies here
     // All tokens also and navigate to login page.
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     return (window.location.href = "https://www.documentia.ai/signin");
   };
 
@@ -204,7 +212,7 @@ export default function Lheader() {
         <label htmlFor="add_doc" className={styles.new_content}>
           <span>
             <svg
-              fill="rgba(55, 53, 47, 0.45)"
+              fill="dodgerblue"
               className="file"
               display="block"
               viewBox="0 0 16 16"

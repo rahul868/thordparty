@@ -10,12 +10,15 @@ export default function Rdocviewer() {
     // iframe.addEventListener("load", () => {
     //   setloading(false);
     // });
-
     // // Handle iframe load error
     // iframe.addEventListener("error", (event) => {
     //   console.log("error tra")
     //   seterror(event);
     // });
+
+    var iframe = document.getElementsByTagName("iframe")[0];
+    iframe.style.background = "white";
+    iframe.contentWindow.document.body.style.backgroundColor = "white";
   });
   const { currdoc } = useContext(Gcommoncontext);
   if (error) {
@@ -45,7 +48,8 @@ export default function Rdocviewer() {
     <>
       <div id="doc_container" style={{ height: "100%" }}>
         <iframe
-          id="docview_iframe"
+          allowTransparency
+          style={{ backgroundColor: "#666" }}
           src={currdoc.slug}
           width="100%"
           height="100%"

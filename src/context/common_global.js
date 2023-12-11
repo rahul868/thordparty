@@ -69,7 +69,9 @@ const Gcommonprovider = (props) => {
     } catch (err) {
       seterror(err.message);
     } finally {
-      setloading(false);
+      setTimeout(() => {
+        setloading(false);
+      }, 5000);
     }
   };
 

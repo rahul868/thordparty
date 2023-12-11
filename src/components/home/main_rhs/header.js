@@ -33,7 +33,6 @@ export default function Rheader() {
             <h4>{limit_string(currdoc.name, 24)}</h4>
             <span>
               Last edited {new Date(parseInt(currdoc.lastedit)).toDateString()}
-              
             </span>
           </div>
         </div>

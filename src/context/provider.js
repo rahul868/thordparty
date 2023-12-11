@@ -318,11 +318,11 @@ const Rhsprovider = (props) => {
       await upload_doc(file);
     });
   };
+
   const setSeperateFiles = async (files) => {
     setgaloading(true);
     try {
-      // const is_uploaded = await cloud_upload();
-      // return;
+      
       // Simulate API call for user file metadata
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/process_documents?emailid=${user.email}`,

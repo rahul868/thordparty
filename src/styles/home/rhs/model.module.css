@@ -23,15 +23,16 @@
   border-radius: 4px;
   margin-top: 10px;
   min-width: 200px;
-  width: 280px;
+  width: 100%;
   max-width: 100%;
   overflow: hidden;
 }
 
 .msg_for_ai .msg_sub_for_ai .source_r .modelmsg_source {
   font-size: 13px;
-  color: #666;
-  padding-left: 10px;
+    color: #666;
+    padding-left: 10px;
+    width: inherit;
 }
 .msg_for_ai .msg_sub_for_ai .box_wrapper_msg {
   display: flex;

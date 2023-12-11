@@ -245,7 +245,7 @@ export default function Rchatinput() {
                 {chat_opts.map((item) => {
                   return (
                     <div
-                      onClick={() => applysentquery(item.name)}
+                      onClick={ () => applysentquery(item.name)}
                       className={styles.opt_tab_item}
                     >
                       <div>{item.svg}</div>
@@ -286,26 +286,70 @@ export default function Rchatinput() {
           {query == "" ? (
             <div
               style={{
-                color: "#666",
-                fontWeight: 600,
-                fontSize: 13,
+                background: "#f1f1f1",
                 cursor: "not-allowed",
                 userSelect: "none",
+                width: 30,
+                height: 30,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: 5,
               }}
             >
-              <span>Send</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                style={{
+                  width: 20,
+                  height: 20,
+                  WebkitFlexShrink: "0",
+                  MsFlexShrink: "0",
+                  flexShrink: "0",
+                  fill: "white",
+                }}
+              >
+                <path
+                  fill="#666"
+                  d="M9.71 18.293a1 1 0 001.415 0l4.887-4.892a2 2 0 000-2.828l-4.89-4.89a1 1 0 00-1.415 1.414l4.186 4.185a1 1 0 010 1.415L9.71 16.879a1 1 0 000 1.414z"
+                ></path>
+              </svg>
             </div>
           ) : (
             <div
               onClick={(e) => sendbtnquery(e)}
               style={{
-                color: "dodgerblue",
-                fontWeight: 600,
-                fontSize: 13,
+                background: "dodgerblue",
+                borderRadius: 5,
                 cursor: "pointer",
+                width: 30,
+                height: 30,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: 5,
               }}
             >
-              <span>Send</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="white"
+                viewBox="0 0 24 24"
+                style={{
+                  width: 20,
+                  height: 20,
+                  WebkitFlexShrink: "0",
+                  MsFlexShrink: "0",
+                  flexShrink: "0",
+                  fill: "white",
+                  transition:"200ms"
+                }}
+              >
+                <path
+                  fill="#white"
+                  d="M9.71 18.293a1 1 0 001.415 0l4.887-4.892a2 2 0 000-2.828l-4.89-4.89a1 1 0 00-1.415 1.414l4.186 4.185a1 1 0 010 1.415L9.71 16.879a1 1 0 000 1.414z"
+                ></path>
+              </svg>
             </div>
           )}
         </div>
