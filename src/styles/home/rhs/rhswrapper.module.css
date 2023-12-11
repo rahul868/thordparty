@@ -23,3 +23,8 @@
   overflow-y: auto;
   height: calc(100% - 5px);
 }
+
+/*  Mobile View set  */
+
+@media only screen and (max-width: 650px) {
+}

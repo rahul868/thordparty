@@ -29,13 +29,9 @@
 
 /* Mobile view CSS */
 
-@media (max-width: 767px) {
-  /* .container {
-      flex-direction: column;
-    }
-  
-    .left-bar {
-      width: 100%;
-      min-width: auto;
-    } */
+/* meadia query for hide left bar */
+@media only screen and (max-width: 800px) {
+  #left_section {
+    display: none;
+  }
 }

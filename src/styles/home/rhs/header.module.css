@@ -22,6 +22,7 @@
   align-items: center;
   flex-basis: 230px;
   overflow: hidden;
+  min-width: 200px;
 }
 
 .rhs_header_content .document_intro .document_intro_svg {
@@ -184,4 +185,22 @@
   width: var(--global-nav-width);
   max-width: var(--global-nav-width);
   padding: 38px 20px 50px 20px;
+}
+
+.includes_options_to_show {
+  display: none;
+  align-items: center;
+  cursor: pointer;
+  padding-right: 10px;
+}
+
+@media only screen and (max-width: 800px) {
+  .rhs_header_content .g_header_navbar_wrapper,
+  .t_section {
+    display: none;
+  }
+
+  .includes_options_to_show {
+    display: flex;
+  }
 }
