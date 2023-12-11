@@ -1,7 +1,7 @@
 :root {
-  --common-header-size:45px;
-  --overlay-global-index:100;
-  --popup-global-index:105;
+  --common-header-size: 45px;
+  --overlay-global-index: 100;
+  --popup-global-index: 105;
 }
 
 * {
@@ -10,30 +10,26 @@
   margin: 0;
 }
 
-
 html,
 body {
   max-width: 100vw;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   overflow: hidden;
 }
 
-*::-webkit-scrollbar-track
-{
+*::-webkit-scrollbar-track {
   border-radius: 10px;
 }
 
-*::-webkit-scrollbar
-{
-	width: 4px;
-	/* background-color: #F5F5F5; */
+*::-webkit-scrollbar {
+  width: 4px;
+  /* background-color: #F5F5F5; */
 }
 
-*::-webkit-scrollbar-thumb
-{
-	border-radius: 5px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	/* background: #fff;  */
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  /* background: #fff;  */
 }
 a {
   color: inherit;

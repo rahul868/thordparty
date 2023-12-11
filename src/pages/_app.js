@@ -61,7 +61,7 @@ export default function App({ Component, pageProps }) {
       }
     });
 
-    document.addEventListener("mouseover", async (e) => {
+    document.addEventListener("mousedown", async (e) => {
       let nav_tab_element = "[data-g-chatsec]";
       let check_for_navtab_ele = e.target.matches(nav_tab_element);
       if (

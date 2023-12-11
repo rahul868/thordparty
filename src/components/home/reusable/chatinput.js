@@ -224,7 +224,7 @@ export default function Rchatinput() {
       isChatUI: false,
       re_type: "string",
       timeStamp: Date.now().toString(),
-      summary: query,
+      summary: query || sent.name,
       source: "string",
     };
     sendPrompt(obj);
@@ -245,19 +245,6 @@ export default function Rchatinput() {
             <div data-g-opt-flyer className={styles.option_flyer_wrapper}>
               <div className={styles.option_flyer_subwrapper}>
                 <Popuplist list={chat_opts} />
-                {/* <div className={styles.opt_wrapper}>
-                {chat_opts.map((item) => {
-                  return (
-                    <div
-                      onClick={ () => applysentquery(item.name)}
-                      className={styles.opt_tab_item}
-                    >
-                      <div>{item.svg}</div>
-                      <span>{item.name}</span>
-                    </div>
-                  );
-                })}
-              </div> */}
               </div>
             </div>
             <div data-g-chatsec className={styles.msg_input_profile}>
