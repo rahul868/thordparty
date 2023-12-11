@@ -9,12 +9,13 @@ import Alert from "@/components/home/reusable/alert";
 import { Gcommoncontext } from "@/context/common_global";
 import Landingrhs from "@/components/landing/landingrhs";
 import { useContext } from "react";
+import Indicator from "@/components/home/reusable/indicator";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const context = useContext(Gcommoncontext);
-  const { alertstatus, alertmsg, alerttype, loading } =
+  const { alertstatus, alertmsg, alerttype, loading, gindicatormsg } =
     useContext(Gcommoncontext);
   const { filemeta } = context;
 
@@ -43,7 +44,7 @@ export default function Home() {
       {/* <Gcommonprovider> */}
       <div className={styles.app_container}>
         {/* LHS SECTION */}
-        <div id={styles.left_section}>
+        <div data-sec-lhswrapper id="lhs_wrapper" className={styles.left_section}>
           {/* SECTION 1. HEADER 2. CONTENT 3.FOOTER */}
           <Lhsprovider>
             <Lhswrapper />
@@ -51,7 +52,7 @@ export default function Home() {
         </div>
 
         {/* RHS SECTION */}
-        <main className={styles.main_rhs_container}>
+        <main data-sec-rhswrapper className={styles.main_rhs_container}>
           <Rhsprovider>
             {/* <Landingrhs /> */}
             {filemeta.length !== 0 ? <Rhswrapper /> : <Landingrhs />}
@@ -60,6 +61,7 @@ export default function Home() {
       </div>
       {/* </Gcommonprovider> */}
 
+      <Indicator message={gindicatormsg} />
       <div className="overlay" g-overlay id="overlay"></div>
       {/* <Alert msg="Hello this is testing" /> */}
     </>

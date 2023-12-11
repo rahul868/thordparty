@@ -61,6 +61,11 @@
   cursor: pointer;
 }
 
+.rhs_header_content .document_intro .lhsreopensvg {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
 .rhs_header_content .document_intro .back:hover {
   background-color: #f1f1f1;
 }

@@ -32,6 +32,9 @@ const Gcommonprovider = (props) => {
   );
   const [alerttype, setalerttype] = useState("l");
 
+  // Indicator popup
+  const [gindicatormsg, setgindicatormsg] = useState("");
+
   function limit_string(text, maxLength) {
     // Split the text into words
 
@@ -71,7 +74,7 @@ const Gcommonprovider = (props) => {
     } finally {
       setTimeout(() => {
         setloading(false);
-      }, 5000);
+      }, 1000);
     }
   };
 
@@ -93,6 +96,8 @@ const Gcommonprovider = (props) => {
         alertstatus,
         alertmsg,
         alerttype,
+        gindicatormsg,
+        setgindicatormsg
       }}
     >
       {props.children}

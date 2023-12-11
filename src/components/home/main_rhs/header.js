@@ -6,6 +6,7 @@ import Reset from "../reusable/reset";
 import { Gcommoncontext } from "@/context/common_global";
 import { Rhscontext } from "@/context/provider";
 import Setting from "../setting";
+import Feedback from "../reusable/feedback";
 export default function Rheader() {
   const { currdoc, limit_string } = useContext(Gcommoncontext);
   const { save_chats_local } = useContext(Rhscontext);
@@ -13,6 +14,24 @@ export default function Rheader() {
     <header id="main_rhs_header" className={styles.rhs_header_wrapper}>
       <div className={styles.rhs_header_content}>
         <div className={styles.document_intro}>
+          <div
+            className={`${styles.document_intro_svg} ${styles.lhsreopensvg}`}
+          >
+            <svg
+              role="graphics-symbol"
+              viewBox="0 0 16 16"
+              class="page"
+              style={{
+                width: 18,
+                height: 18,
+                display: "block",
+                fill: "rgba(55, 53, 47, 0.45)",
+                flexShrink: 0,
+              }}
+            >
+              <path d="M4.35645 15.4678H11.6367C13.0996 15.4678 13.8584 14.6953 13.8584 13.2256V7.02539C13.8584 6.0752 13.7354 5.6377 13.1406 5.03613L9.55176 1.38574C8.97754 0.804688 8.50586 0.667969 7.65137 0.667969H4.35645C2.89355 0.667969 2.13477 1.44043 2.13477 2.91016V13.2256C2.13477 14.7021 2.89355 15.4678 4.35645 15.4678ZM4.46582 14.1279C3.80273 14.1279 3.47461 13.7793 3.47461 13.1436V2.99219C3.47461 2.36328 3.80273 2.00781 4.46582 2.00781H7.37793V5.75391C7.37793 6.73145 7.86328 7.20312 8.83398 7.20312H12.5186V13.1436C12.5186 13.7793 12.1836 14.1279 11.5205 14.1279H4.46582ZM8.95703 6.02734C8.67676 6.02734 8.56055 5.9043 8.56055 5.62402V2.19238L12.334 6.02734H8.95703ZM10.4336 9.00098H5.42969C5.16992 9.00098 4.98535 9.19238 4.98535 9.43164C4.98535 9.67773 5.16992 9.86914 5.42969 9.86914H10.4336C10.6797 9.86914 10.8643 9.67773 10.8643 9.43164C10.8643 9.19238 10.6797 9.00098 10.4336 9.00098ZM10.4336 11.2979H5.42969C5.16992 11.2979 4.98535 11.4893 4.98535 11.7354C4.98535 11.9746 5.16992 12.1592 5.42969 12.1592H10.4336C10.6797 12.1592 10.8643 11.9746 10.8643 11.7354C10.8643 11.4893 10.6797 11.2979 10.4336 11.2979Z"></path>
+            </svg>
+          </div>
           <div className={styles.document_intro_svg}>
             <svg
               role="graphics-symbol"
@@ -41,9 +60,11 @@ export default function Rheader() {
           id="_g_header_navbar_wrapper"
           g_nav_header_tab
           className={styles.g_header_navbar_wrapper}
-          onClick={() => save_chats_local(currdoc.name)}
         >
-          <div className={styles.dropdown_block}>
+          <div
+            onClick={() => save_chats_local(currdoc.name)}
+            className={styles.dropdown_block}
+          >
             <span>
               <svg
                 fill="rgba(55, 53, 47, 0.85)"
@@ -173,31 +194,36 @@ export default function Rheader() {
               </span>
             </div>
           </a>
-          <div className={styles.dropdown_block}>
-            <span>
-              <svg
-                fill="rgba(55, 53, 47, 0.85)"
-                className="settingsIntegration"
-                display="block"
-                viewBox="0 0 20 20"
-                style={{
-                  width: 18,
-                  height: 18,
-                  WebkitFlexShrink: "0",
-                  MsFlexShrink: "0",
-                  flexShrink: "0",
-                }}
+          <div data-g-popup-container>
+            <div data-g-popup-tab className={styles.dropdown_block}>
+              <span>
+                <svg
+                  fill="rgba(55, 53, 47, 0.85)"
+                  className="settingsIntegration"
+                  display="block"
+                  viewBox="0 0 20 20"
+                  style={{
+                    width: 18,
+                    height: 18,
+                    WebkitFlexShrink: "0",
+                    MsFlexShrink: "0",
+                    flexShrink: "0",
+                  }}
+                >
+                  <path d="M4.633 9.42h3.154c1.093 0 1.632-.532 1.632-1.656V4.655C9.42 3.532 8.88 3 7.787 3H4.633C3.532 3 3 3.532 3 4.655v3.109c0 1.124.532 1.655 1.633 1.655zm7.58 0h3.162C16.468 9.42 17 8.887 17 7.763V4.655C17 3.532 16.468 3 15.374 3h-3.16c-1.094 0-1.633.532-1.633 1.655v3.109c0 1.124.539 1.655 1.633 1.655zm-7.58-1.251c-.262 0-.382-.135-.382-.405V4.648c0-.27.12-.405.382-.405h3.146c.262 0 .39.135.39.405v3.116c0 .27-.128.405-.39.405H4.633zm7.588 0c-.262 0-.39-.135-.39-.405V4.648c0-.27.128-.405.39-.405h3.146c.262 0 .39.135.39.405v3.116c0 .27-.128.405-.39.405h-3.146zM4.633 17h3.154c1.093 0 1.632-.532 1.632-1.655v-3.109c0-1.124-.539-1.655-1.632-1.655H4.633C3.532 10.58 3 11.112 3 12.236v3.109C3 16.468 3.532 17 4.633 17zm7.58 0h3.162C16.468 17 17 16.468 17 15.345v-3.109c0-1.124-.532-1.655-1.626-1.655h-3.16c-1.094 0-1.633.531-1.633 1.655v3.109c0 1.123.539 1.655 1.633 1.655zm-7.58-1.25c-.262 0-.382-.128-.382-.398v-3.116c0-.277.12-.405.382-.405h3.146c.262 0 .39.128.39.405v3.116c0 .27-.128.397-.39.397H4.633zm7.588 0c-.262 0-.39-.128-.39-.398v-3.116c0-.277.128-.405.39-.405h3.146c.262 0 .39.128.39.405v3.116c0 .27-.128.397-.39.397h-3.146z"></path>
+                </svg>
+              </span>
+              <span
+                id="news_nav_tab"
+                g_nav_header_tab
+                className={styles.dropdown_block_heading}
               >
-                <path d="M4.633 9.42h3.154c1.093 0 1.632-.532 1.632-1.656V4.655C9.42 3.532 8.88 3 7.787 3H4.633C3.532 3 3 3.532 3 4.655v3.109c0 1.124.532 1.655 1.633 1.655zm7.58 0h3.162C16.468 9.42 17 8.887 17 7.763V4.655C17 3.532 16.468 3 15.374 3h-3.16c-1.094 0-1.633.532-1.633 1.655v3.109c0 1.124.539 1.655 1.633 1.655zm-7.58-1.251c-.262 0-.382-.135-.382-.405V4.648c0-.27.12-.405.382-.405h3.146c.262 0 .39.135.39.405v3.116c0 .27-.128.405-.39.405H4.633zm7.588 0c-.262 0-.39-.135-.39-.405V4.648c0-.27.128-.405.39-.405h3.146c.262 0 .39.135.39.405v3.116c0 .27-.128.405-.39.405h-3.146zM4.633 17h3.154c1.093 0 1.632-.532 1.632-1.655v-3.109c0-1.124-.539-1.655-1.632-1.655H4.633C3.532 10.58 3 11.112 3 12.236v3.109C3 16.468 3.532 17 4.633 17zm7.58 0h3.162C16.468 17 17 16.468 17 15.345v-3.109c0-1.124-.532-1.655-1.626-1.655h-3.16c-1.094 0-1.633.531-1.633 1.655v3.109c0 1.123.539 1.655 1.633 1.655zm-7.58-1.25c-.262 0-.382-.128-.382-.398v-3.116c0-.277.12-.405.382-.405h3.146c.262 0 .39.128.39.405v3.116c0 .27-.128.397-.39.397H4.633zm7.588 0c-.262 0-.39-.128-.39-.398v-3.116c0-.277.128-.405.39-.405h3.146c.262 0 .39.128.39.405v3.116c0 .27-.128.397-.39.397h-3.146z"></path>
-              </svg>
-            </span>
-            <span
-              id="news_nav_tab"
-              g_nav_header_tab
-              className={styles.dropdown_block_heading}
-            >
-              Feedback
-            </span>
+                Feedback
+              </span>
+            </div>
+            <Popup custom_styles_width={{ minWidth: 150 }}>
+              <Feedback />
+            </Popup>
           </div>
         </div>
 

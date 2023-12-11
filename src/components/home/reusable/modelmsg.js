@@ -1,17 +1,17 @@
 import styles from "@/styles/home/rhs/model.module.css";
 import Namemodel from "./namemodel";
-
+import { Gcommoncontext } from "@/context/common_global";
+import { useContext } from "react";
 // import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 // import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 // import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 function Rmodelmsg({ msg }) {
+  const { setgindicatormsg } = useContext(Gcommoncontext);
   function copylink(msg) {
     // Copy the text inside the text field
+    setgindicatormsg("Answer is copied");
     navigator.clipboard.writeText(msg);
-
-    // Alert the copied text
-    alert("Copied the text: " + msg);
   }
 
   return (

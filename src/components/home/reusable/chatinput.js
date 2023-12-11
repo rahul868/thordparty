@@ -214,6 +214,10 @@ export default function Rchatinput() {
     setquery("");
   }
 
+  useEffect(() => {
+    document.querySelector("[data-chat-input]").autofocus = true;
+  },[currdoc]);
+
   function applysentquery(sent) {
     // API call
     let obj = {
@@ -275,7 +279,9 @@ export default function Rchatinput() {
             </div>
             <input
               placeholder="Type you question here..."
+              data-chat-input
               id={styles.message_input}
+              autoFocus
               value={query}
               type="text"
               onChange={(e) => setquery(e.target.value)}
@@ -342,7 +348,7 @@ export default function Rchatinput() {
                   MsFlexShrink: "0",
                   flexShrink: "0",
                   fill: "white",
-                  transition:"200ms"
+                  transition: "200ms",
                 }}
               >
                 <path

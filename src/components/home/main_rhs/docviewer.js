@@ -16,9 +16,6 @@ export default function Rdocviewer() {
     //   seterror(event);
     // });
 
-    var iframe = document.getElementsByTagName("iframe")[0];
-    iframe.style.background = "white";
-    iframe.contentWindow.document.body.style.backgroundColor = "white";
   });
   const { currdoc } = useContext(Gcommoncontext);
   if (error) {

@@ -74,3 +74,16 @@
   transition: max-height 260ms cubic-bezier(0.075, 0.82, 0.165, 1),
     opacity 320ms, visibility 300ms;
 }
+
+/* Indicator global styles */
+.ind_visible {
+  opacity: 1;
+}
+
+/* LHS wrapper which need global css (avaoiding modular class of next) */
+[data-sec-lhswrapper].lhs_collapse {
+  transform: translateX(-100%);
+  width: 0;
+  min-width: 0;
+  opacity: 0;
+}

@@ -4,10 +4,28 @@
 .lhs_header_content .header_intro_user {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  padding: 5px 0px;
+}
+.header_intro_user .collapsableblock{
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+.header_intro_user .collapsableblock:hover {
+    background-color:rgba(0, 0, 0, 0.04);
+}
+.lhs_header_content .header_intro_user .first_sec {
+  display: flex;
+  align-items: center;
   margin-bottom: 5px;
   padding: 5px 10px;
 }
-
 .lhs_header_content .header_intro_user .header_user_cont {
   padding-left: 10px;
 }
@@ -41,7 +59,7 @@
   margin-bottom: 1px;
 }
 
-.lhs_header_content .header_ots_content .header_ots:hover {
+.header_ots:hover {
   background-color: #f1f1f1;
   cursor: pointer;
   border-radius: 5px;
@@ -71,7 +89,7 @@
 .lhs_header_content .header_ots_content .new_content span {
   font-size: 13px;
   font-weight: 600;
-  opacity: .9;
+  opacity: 0.9;
   color: dodgerblue;
 }
 

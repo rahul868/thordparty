@@ -2,11 +2,11 @@
 
 .app_container {
   display: flex;
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0px auto;
   height: 100vh;
 }
-#left_section {
+.left_section {
   flex-grow: 0;
   flex-shrink: 0;
   position: relative;
@@ -20,6 +20,9 @@
   font-weight: 500;
   background-color: rgb(251, 251, 250);
   border-right: 1px solid #eee;
+  opacity: 1;
+  transform: translateX(0%);
+  transition: width 0.2s ease-in-out, min-width 0.2s ease-in-out, transform 0.4s ease-in-out;
 }
 
 .main_rhs_container {

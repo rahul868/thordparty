@@ -11,6 +11,10 @@ import { upload_doc } from "@/utils/fileuploading";
 
 const Rhscontext = createContext();
 const Rhsprovider = (props) => {
+  //Global context
+  const { user, currdoc, setcurrdoc, setfilemeta, setgindicatormsg } =
+    useContext(Gcommoncontext);
+
   // Storage for actual file data uploaded which will remove after uploading.
   const [files, setfiles] = useState([]);
   const messagesContainerRef = useRef(null);
@@ -30,9 +34,6 @@ const Rhsprovider = (props) => {
     answers_length: "medium",
     content_source: "focused",
   });
-
-  //Global context
-  const { user, currdoc, setcurrdoc, setfilemeta } = useContext(Gcommoncontext);
 
   //   [
   //   {
@@ -322,7 +323,6 @@ const Rhsprovider = (props) => {
   const setSeperateFiles = async (files) => {
     setgaloading(true);
     try {
-      
       // Simulate API call for user file metadata
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/process_documents?emailid=${user.email}`,
@@ -371,6 +371,7 @@ const Rhsprovider = (props) => {
       `doc_${currfile}`,
       JSON.stringify(SavedMessages)
     );
+    setgindicatormsg("Chats saved.")
   };
 
   const del_chats_local = (currfile) => {

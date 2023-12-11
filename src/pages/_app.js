@@ -42,14 +42,22 @@ export default function App({ Component, pageProps }) {
         ele.classList.remove("popup_container_active");
       });
       document.querySelector("#overlay").classList.remove("active_overlay");
-    });
 
-    document.addEventListener("mousedown", (e) => {
-      let check_for_internal_ele = e.target.closest("[data-role-group]");
-      if (check_for_internal_ele) {
-        check_for_internal_ele.nextElementSibling.classList.toggle(
+      // Listening for overlay group heirarchy events for opening file structure under folder
+      let check_for_group = e.target.closest("[data-role-group]");
+      if (check_for_group) {
+        check_for_group.nextElementSibling.classList.toggle(
           "folder_childswrapper_ative"
         );
+      }
+
+      // Listening for is need to collapse LHS
+
+      let check_for_lhscollapseunit = e.target.closest("[data-lhs-collapse]");
+      if (check_for_lhscollapseunit) {
+        document
+          .querySelector("[data-sec-lhswrapper]")
+          .classList.add("lhs_collapse");
       }
     });
 

@@ -37,14 +37,68 @@ export default function Lheader() {
 
   return (
     <header className={styles.lhs_header_content}>
-      <div className={styles.header_intro_user}>
-        <Namemodel name={user.name} />
-        <div className={styles.header_user_cont}>
-          <span>Welcome, {user.name}</span>
-          <div id={styles.uid}>{user.email}</div>
-          {/* <span>Welcome in Documentapp</span> */}
+      <div>
+        <div className={`${styles.header_intro_user} ${styles.header_ots}`}>
+          <div data-g-popup-tab className={styles.first_sec}>
+            <Namemodel name={user.name} />
+            <div className={styles.header_user_cont}>
+              <span>Welcome, {user.name}</span>
+              <div id={styles.uid}>{user.email}</div>
+            </div>
+          </div>
+          <Popup
+            custom_styles_width={{ minWidth: 200, header: 400 }}
+            custom_styles={{ position: "absolute", top: 50, left: 280 }}
+          >
+            <Popuplist
+              list={[
+                {
+                  name: "Logout",
+                  callback: () => {
+                    logout_function();
+                  },
+                  svg: (
+                    <svg
+                      role="graphics-symbol"
+                      viewBox="0 0 20 20"
+                      class="settingsMembers"
+                      style={{
+                        width: 18,
+                        height: 18,
+                        display: "block",
+                        fill: "rgba(55, 53, 47, 0.85)",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <path d="M13.726 9.989c1.725 0 3.123-1.585 3.123-3.536 0-1.92-1.39-3.453-3.123-3.453-1.712 0-3.124 1.556-3.124 3.468.008 1.943 1.405 3.52 3.123 3.52zm-8.264.171c1.504 0 2.716-1.392 2.716-3.111 0-1.675-1.212-3.03-2.716-3.03-1.49 0-2.724 1.378-2.717 3.037 0 1.72 1.22 3.104 2.717 3.104zm8.264-1.474c-.985 0-1.819-.967-1.819-2.225 0-1.213.827-2.159 1.819-2.159.998 0 1.818.93 1.818 2.151 0 1.25-.827 2.233-1.819 2.233zm-8.264.186c-.806 0-1.49-.803-1.49-1.816 0-.967.677-1.756 1.49-1.756.827 0 1.497.774 1.497 1.749 0 1.02-.684 1.823-1.497 1.823zM1.54 17h5.54c-.392-.238-.656-.782-.606-1.273H1.476c-.136 0-.193-.067-.193-.193 0-1.705 1.911-3.327 4.172-3.327.798 0 1.597.208 2.21.566.242-.365.542-.678.934-.946-.906-.58-2.032-.893-3.144-.893C2.438 10.934 0 13.182 0 15.653 0 16.546.513 17 1.54 17zm7.743 0h8.885C19.4 17 20 16.59 20 15.712c0-2.046-2.453-4.77-6.274-4.77-3.822 0-6.275 2.724-6.275 4.77 0 .879.599 1.288 1.832 1.288zm-.228-1.303c-.164 0-.228-.059-.228-.193 0-1.139 1.761-3.26 4.899-3.26 3.137 0 4.898 2.121 4.898 3.26 0 .134-.064.194-.235.194H9.055z"></path>
+                    </svg>
+                  ),
+                },
+              ]}
+            />
+          </Popup>
+          <div data-lhs-collapse className={styles.collapsableblock}>
+            <span>
+              <svg
+                fill="rgba(55, 53, 47, 0.85)"
+                className="undo"
+                display="block"
+                viewBox="0 0 16 16"
+                style={{
+                  width: 16,
+                  height: 16,
+                  WebkitFlexShrink: "0",
+                  MsFlexShrink: "0",
+                  flexShrink: "0",
+                }}
+              >
+                <path d="M14.542 10.683c0-2.714-1.832-4.58-4.942-4.58H5.293l-1.586.068L4.91 5.152l1.764-1.715a.703.703 0 00.219-.52c0-.417-.294-.725-.739-.725a.82.82 0 00-.54.233L1.69 6.294a.761.761 0 000 1.107l3.924 3.87c.15.143.356.232.54.232.445 0 .739-.308.739-.732a.726.726 0 00-.22-.519L4.91 8.536 3.707 7.524l1.586.069h4.354c2.202 0 3.412 1.25 3.412 3.028 0 1.784-1.21 3.09-3.412 3.09H8.055a.735.735 0 00-.76.752c0 .41.315.745.76.745h1.64c3.056 0 4.847-1.798 4.847-4.525z"></path>
+              </svg>
+            </span>
+          </div>
         </div>
       </div>
+
       <div className={styles.header_ots_content}>
         <div>
           <div data-g-popup-tab className={styles.header_ots}>
