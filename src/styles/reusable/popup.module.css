@@ -32,7 +32,27 @@
   box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px;
   overflow: hidden;
 }
-
+.popup_header {
+  padding: 15px 12px 0px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.popup_header span {
+  font-size: 18px;
+  color: #3f3f3f;
+  font-weight: 600;
+}
+.popup_header .cancletrigger {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
 .popup_content {
   display: flex;
   flex-direction: column;

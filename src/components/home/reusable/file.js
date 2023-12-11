@@ -2,13 +2,15 @@ import styles from "@/styles/reusable/file.module.css";
 import { useContext } from "react";
 import { Gcommoncontext } from "@/context/common_global";
 
-
-export default function File({ file }) {
+export default function File({ file, callback }) {
   const { setcurrdoc, currdoc } = useContext(Gcommoncontext);
   function file_switching_process() {
     // Entire process of fetching data for file will go here.
     setcurrdoc(null);
     setcurrdoc(file);
+    if (callback) {
+      callback();
+    }
   }
   function limit_string(text, maxLength) {
     // Split the text into words

@@ -6,11 +6,14 @@ import Popup from "../reusable/popup";
 import Popuplist from "../reusable/popuplist";
 import Namemodel from "../reusable/namemodel";
 import uuid from "react-uuid";
+import Search from "@/components/search/search";
+import { Lhscontext } from "@/context/lhsprovider";
 export default function Lheader() {
-  const { setfilemeta, filemeta } = useContext(Gcommoncontext);
+  const { filemeta } = useContext(Gcommoncontext);
+  const { setSeperateFileLhs, setfilelhs } = useContext(Lhscontext);
   const { user } = useContext(Gcommoncontext);
 
-  const handlefileuploading = (e) => {
+  const handlefileuploading = async (e) => {
     e.preventDefault();
     let date = Date.now();
     let newdoc = [];
@@ -18,13 +21,18 @@ export default function Lheader() {
     let fileobj = {
       id: uuid(),
       type: "file",
-      slug: "https://drive.uqu.edu.sa/_/mskhayat/files/MySubjects/2017SS%20Operating%20Systems/Abraham%20Silberschatz-Operating%20System%20Concepts%20(9th,2012_12).pdf",
+      slug: "https://www.cs.utexas.edu/~rossbach/cs380p/papers/ulk3.pdf",
       name: "scrum.pdf",
-      name: file.name,
+      // name: file.name,
       lastedit: date,
       creation: date,
     };
+    console.log("dd", fileobj);
     newdoc.push(fileobj);
+
+    let result = await setSeperateFileLhs(newdoc);
+    // clear all
+    setfilelhs([]);
   };
 
   const logout_function = () => {
@@ -181,9 +189,11 @@ export default function Lheader() {
                 <span>Search docs</span>
               </div>
               <Popup
-                custom_styles_width={{ minWidth: 200, header: 400 }}
-                custom_styles={{ position: "absolute", top: 80, left: 250 }}
-              ></Popup>
+                title={"Search"}
+                custom_styles_width={{ minWidth: 310, height: 400 }}
+              >
+                <Search />
+              </Popup>
             </div>
 
             <div>

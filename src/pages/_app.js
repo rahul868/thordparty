@@ -52,16 +52,30 @@ export default function App({ Component, pageProps }) {
       }
 
       // Listening for is need to collapse LHS
-
       let check_for_lhscollapseunit = e.target.closest("[data-lhs-collapse]");
       if (check_for_lhscollapseunit) {
         document
           .querySelector("[data-sec-lhswrapper]")
           .classList.add("lhs_collapse");
+
+        document
+          .querySelector("[data-lhs-reopen]")
+          .classList.add("lhsreopensvg_active");
+      }
+
+      // Listening for is need to reopen LHS
+      let check_for_lhsreopenunit = e.target.closest("[data-lhs-reopen]");
+      if (check_for_lhsreopenunit) {
+        document
+          .querySelector("[data-sec-lhswrapper]")
+          .classList.remove("lhs_collapse");
+        document
+          .querySelector("[data-lhs-reopen]")
+          .classList.remove("lhsreopensvg_active");
       }
     });
 
-    document.addEventListener("mousedown", async (e) => {
+    document.addEventListener("mouseover", async (e) => {
       let nav_tab_element = "[data-g-chatsec]";
       let check_for_navtab_ele = e.target.matches(nav_tab_element);
       if (

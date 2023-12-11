@@ -35,16 +35,23 @@ export default function Home() {
           url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
         </style>
       </Head>
-      <Alert
+      {/* <Alert
         alertstatus={alertstatus}
         alerttype={alerttype}
         alertmsg={alertmsg}
-      />
+      /> */}
+      <Indicator message={gindicatormsg} />
+      <div className="overlay" g-overlay id="overlay"></div>
+      {/* <Alert msg="Hello this is testing" /> */}
       {/* Main home page template which can include  */}
       {/* <Gcommonprovider> */}
       <div className={styles.app_container}>
         {/* LHS SECTION */}
-        <div data-sec-lhswrapper id="lhs_wrapper" className={styles.left_section}>
+        <div
+          data-sec-lhswrapper
+          id="lhs_wrapper"
+          className={styles.left_section}
+        >
           {/* SECTION 1. HEADER 2. CONTENT 3.FOOTER */}
           <Lhsprovider>
             <Lhswrapper />
@@ -60,10 +67,6 @@ export default function Home() {
         </main>
       </div>
       {/* </Gcommonprovider> */}
-
-      <Indicator message={gindicatormsg} />
-      <div className="overlay" g-overlay id="overlay"></div>
-      {/* <Alert msg="Hello this is testing" /> */}
     </>
   );
 }

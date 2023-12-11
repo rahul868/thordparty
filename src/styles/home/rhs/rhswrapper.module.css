@@ -1,5 +1,6 @@
 .rhs_content_wrapper {
   height: 100%;
+  position: relative;
 }
 
 .rhs_content_wrapper .main_rhs_content {

@@ -25,9 +25,9 @@ const Rhsprovider = (props) => {
   const [error, seterror] = useState(null);
 
   // group creation for storing chat API status and data
-  const [gasuccess, setgasuccess] = useState(false);
-  const [galoading, setgaloading] = useState(false);
-  const [gaerror, setgaerror] = useState(false);
+  const [gastatus, setgastatus] = useState(false);
+  const [gamsg, setgamsg] = useState("");
+  const [gatype, setgatype] = useState("l");
 
   const [chatsetting, setchatsetting] = useState({
     response_mode: "efficient",
@@ -321,7 +321,9 @@ const Rhsprovider = (props) => {
   };
 
   const setSeperateFiles = async (files) => {
-    setgaloading(true);
+    setgastatus(true);
+    setgatype("l");
+    setgamsg("Document is processing please wait...");
     try {
       // Simulate API call for user file metadata
       const response = await fetch(
@@ -335,26 +337,32 @@ const Rhsprovider = (props) => {
         }
       );
       if (!response.ok) {
-        console.log(response, "this happen");
         throw new Error("Failed to update group");
       }
       const result = await response.json();
       setfilemeta((prevFiles) => [...files, ...prevFiles]);
       setcurrdoc(files[0]);
-      setgasuccess(true);
+      setgatype("s");
+      setgamsg("Document processed successfully.");
       setTimeout(() => {
-        setgasuccess(false);
-        setgaerror(false);
+        setgastatus(false);
+        setgatype("l");
+        setgamsg("");
       }, 4000);
       return { success: true };
     } catch (err) {
-      setgaerror(err.message);
+      setgatype("e");
+      setgamsg("Something went wrong please try again.");
       setTimeout(() => {
-        setgaerror(false);
+        setgastatus(false);
+        setgatype("l");
+        setgamsg("");
       }, 4000);
       return { success: false };
     } finally {
-      setgaloading(false);
+      // setgastatus(false);
+      // setgatype("l");
+      // setgamsg("");
     }
   };
 
@@ -371,7 +379,7 @@ const Rhsprovider = (props) => {
       `doc_${currfile}`,
       JSON.stringify(SavedMessages)
     );
-    setgindicatormsg("Chats saved.")
+    setgindicatormsg("Chats saved.");
   };
 
   const del_chats_local = (currfile) => {
@@ -395,9 +403,9 @@ const Rhsprovider = (props) => {
         error,
         loading,
         setUserGroup,
-        galoading,
-        gaerror,
-        gasuccess,
+        gastatus,
+        gamsg,
+        gatype,
         setSeperateFiles,
       }}
     >

@@ -21,9 +21,6 @@ export default function Setting() {
   return (
     <div className={styles.chat_additional_setting}>
       <div className={styles.wrapping_setting}>
-        <div className={styles.heading_for_setting}>
-          <span>Chat Experience</span>
-        </div>
 
         <div className={styles.response_mode}>
           <span className={styles.checked}>Response Mode</span>
