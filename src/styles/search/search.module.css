@@ -28,6 +28,14 @@
   font-size: 14px;
   height: 100%;
 }
+
+.foundresult_wrapper {
+
+}
+.foundresult_wrapper .founded_grpname {
+    font-size: 12px;
+    
+}
 .searchwrapper .searchsubwrapper .result_wrapper .results {
   height: 100%;
   overflow-y: scroll;

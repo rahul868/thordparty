@@ -3,7 +3,8 @@ import { Gcommoncontext } from "./common_global";
 const Lhscontext = createContext();
 const Lhsprovider = (props) => {
   //Global context
-  const { user, setcurrdoc, setfilemeta } = useContext(Gcommoncontext);
+  const { user, setcurrdoc, setfilemeta, setpamsg, setpastatus, setpatype } =
+    useContext(Gcommoncontext);
   const [filelhs, setfilelhs] = useState([]);
 
   // group creation for storing chat API status and data
@@ -15,7 +16,8 @@ const Lhsprovider = (props) => {
   // Flow from lhscontext -> globalcontext
 
   const setSeperateFileLhs = async (files) => {
-    setgaloading(true);
+    setpastatus(true);
+    setpamsg("Document uploading in progress...");
     try {
       // Simulate API call for user file metadata
       const response = await fetch(
@@ -34,20 +36,19 @@ const Lhsprovider = (props) => {
       const result = await response.json();
       setfilemeta((prevFiles) => [...files, ...prevFiles]);
       setcurrdoc(files[0]);
-      setgasuccess(true);
-      setTimeout(() => {
-        setgasuccess(false);
-        setgaerror(false);
-      }, 4000);
+      setpatype("s");
+      setpamsg("Document uploaded successfully");
       return { success: true };
     } catch (err) {
-      setgaerror(err.message);
-      setTimeout(() => {
-        setgaerror(false);
-      }, 4000);
+      setpatype("e");
+      setpamsg("Something went wrong. Please try again.");
       return { success: false };
     } finally {
-      setgaloading(false);
+      setTimeout(() => {
+        setpastatus(false);
+        setpatype("e");
+        setpamsg("");
+      }, 4000);
     }
   };
 

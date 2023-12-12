@@ -276,7 +276,7 @@ export default function Lheader() {
         <label htmlFor="add_doc" className={styles.new_content}>
           <span>
             <svg
-              fill="dodgerblue"
+              fill="var(--app-color-code)"
               className="file"
               display="block"
               viewBox="0 0 16 16"

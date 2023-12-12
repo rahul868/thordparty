@@ -35,7 +35,7 @@
   user-select: none;
 }
 .sentiment_wrapper .sentiment_subwrapper .sent_item:hover {
-    background-color: dodgerblue;
+    background-color: var(--app-color-code);
 }
 .sentiment_wrapper .sentiment_subwrapper .sent_item span:hover {
   color: white;

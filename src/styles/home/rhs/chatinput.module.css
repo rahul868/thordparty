@@ -84,7 +84,7 @@
 }
 
 .chatinput_wrapper .option_flyer_subwrapper .opt_tab_item div svg {
-  background-color: dodgerblue;
+  background-color: var(--app-color-code);
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -137,7 +137,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: dodgerblue;
+  background-color: var(--app-color-code);
   border-radius: 50%;
 }
 
@@ -163,7 +163,7 @@
 }
 
 .sentwrapper_active {
-  background-color: dodgerblue;
+  background-color: var(--app-color-code);
 }
 
 /* Mobile set View */

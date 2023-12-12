@@ -1,4 +1,6 @@
+import { Gcommoncontext } from "@/context/common_global";
 import styles from "@/styles/reusable/popup.module.css";
+import { useContext } from "react";
 
 function Popup({
   children,
@@ -8,6 +10,15 @@ function Popup({
   title,
   callback,
 }) {
+  const { popup_closer } = useContext(Gcommoncontext);
+
+  const popup_cutom_fun = () => {
+    if (callback) {
+      callback();
+    }
+    // Close model
+    popup_closer();
+  };
   return (
     <>
       <div
@@ -20,7 +31,10 @@ function Popup({
           {title ? (
             <div className={styles.popup_header}>
               <span>{title}</span>
-              <div onClick={() => callback ? callback() : null} className={styles.cancletrigger}>
+              <div
+                onClick={() => popup_cutom_fun()}
+                className={styles.cancletrigger}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="rgba(55, 53, 47, 0.85)"

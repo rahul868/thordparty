@@ -1,31 +1,56 @@
 .alert_strip_container {
   background-color: #f1f1f1;
-  height: 0px;
-  width: 100%;
-  display: flex;
+  height: auto;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
-  position: absolute;
-  width: 100%;
-  left: 0;
-  right: 0;
+  align-items: center; */
+  position: fixed;
+  width: 28%;
+  right: 3%;
+  bottom: 5%;
+  border-radius: 5px;
+  padding: 5px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms;
   z-index: calc(var(--overlay-global-index) - 10);
 }
 
-@keyframes strip_animations {
-  from {
-    height: 0px;
-  }
-
-  to {
-    height: 40px;
-  }
+.alert_strip_container .paalert_container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
 }
 
+.alert_strip_container .paalert_container .content_block {
+  margin-left: 10px;
+  line-height: 1.5;
+  width: 250px;
+}
+.alert_strip_container .paalert_container .pa_icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.alert_strip_container .paalert_container .alert_con1 {
+  max-width: 200px;
+  overflow: hidden;
+}
+.alert_strip_container .paalert_container .alert_con2 {
+   font-size: 12px;
+   color: white;
+}
+
+
 .strip_active_animation {
-  height: 40px;
-  animation: strip_animations 800ms ease-in-out;
-  animation-delay: 0s;
+  opacity: 1;
+  pointer-events: all;
 }
 
 .alert_strip_container span {

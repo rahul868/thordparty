@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import File from "../home/reusable/file";
 export default function Search() {
   const [searchtoken, setsearchtoken] = useState("");
-  const { filemeta } = useContext(Gcommoncontext);
+  const { filemeta, popup_closer } = useContext(Gcommoncontext);
   useEffect(() => {
     return () => {
       setsearchtoken("");
@@ -12,15 +12,34 @@ export default function Search() {
   }, []);
 
   function closesearch() {
-    document.querySelectorAll("[data-g-navbar-flyer]").forEach((ele) => {
-      ele.classList.remove("popup_container_active");
-    });
-    document.querySelector("#overlay").classList.remove("active_overlay");
+    setsearchtoken("");
+    popup_closer();
   }
 
   function sortrecentdocs(arr) {
     const sortedDescending = arr.sort((a, b) => b.lastedit - a.lastedit);
     return sortedDescending;
+  }
+  function searchflex() {
+    let found_files = [];
+    let found_group = [];
+    filemeta.forEach((ele) => {
+      if (ele.type == "file") {
+        if (ele.name.toLowerCase().includes(searchtoken.toLowerCase())) {
+          found_files.push(ele);
+        }
+      }
+
+      if (ele.type == "group") {
+        console.log(ele);
+        ele.childs.forEach((sele) => {
+          if (sele.name.toLowerCase().includes(searchtoken.toLowerCase())) {
+            found_group.push({ ...sele, gname: ele.groupname });
+          }
+        });
+      }
+    });
+    return [...found_files, ...found_group];
   }
   return (
     <div className={styles.searchwrapper}>
@@ -73,15 +92,19 @@ export default function Search() {
         )}
         {searchtoken ? (
           <div className={styles.result_wrapper}>
-            <div className={styles.result_title}>Found docs</div>
             <div className={styles.results}>
-              {filemeta
-                .filter((file) =>
-                  file.name.toLowerCase().includes(searchtoken.toLowerCase())
-                )
-                .map((file, index) => (
+              <div className={styles.result_title}>Found Files</div>
+
+              {searchflex().map((file, index) => (
+                <div className={styles.foundresult_wrapper}>
                   <File callback={closesearch} file={file} key={index} />
-                ))}
+                  {file.gname ? (
+                    <span className={styles.founded_grpname}>From group {file.gname}</span>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         ) : (

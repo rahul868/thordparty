@@ -25,12 +25,11 @@ const Gcommonprovider = (props) => {
 
   const [currdoc, setcurrdoc] = useState(null);
 
-  // Alert
-  const [alertstatus, setalertstatus] = useState(false);
-  const [alertmsg, setalertmsg] = useState(
-    "Chat your way through long documents"
-  );
-  const [alerttype, setalerttype] = useState("l");
+  // Progress Alert
+  const [pastatus, setpastatus] = useState(false);
+  const [pamsg, setpamsg] = useState("");
+  const [pasecmsg, setpasecmsg] = useState("");
+  const [patype, setpatype] = useState("l");
 
   // Indicator popup
   const [gindicatormsg, setgindicatormsg] = useState("");
@@ -82,6 +81,13 @@ const Gcommonprovider = (props) => {
     fetchUserFiles();
   }, []);
 
+  const popup_closer = () => {
+    document.querySelectorAll("[data-g-navbar-flyer]").forEach((ele) => {
+      ele.classList.remove("popup_container_active");
+    });
+    document.querySelector("#overlay").classList.remove("active_overlay");
+  };
+
   return (
     <Gcommoncontext.Provider
       value={{
@@ -93,11 +99,17 @@ const Gcommonprovider = (props) => {
         loading,
         setfilemeta,
         limit_string,
-        alertstatus,
-        alertmsg,
-        alerttype,
+        pastatus,
+        pamsg,
+        patype,
+        pasecmsg,
+        setpasecmsg,
+        setpamsg,
+        setpastatus,
+        setpatype,
         gindicatormsg,
-        setgindicatormsg
+        setgindicatormsg,
+        popup_closer,
       }}
     >
       {props.children}
