@@ -8,10 +8,15 @@ import Namemodel from "../reusable/namemodel";
 import uuid from "react-uuid";
 import Search from "@/components/search/search";
 import { Lhscontext } from "@/context/lhsprovider";
+import Gpopup from "../reusable/gpopup";
+import Gpopupheader from "../reusable/gpopupheader";
 export default function Lheader() {
   const { filemeta } = useContext(Gcommoncontext);
   const { setSeperateFileLhs, setfilelhs } = useContext(Lhscontext);
   const { user } = useContext(Gcommoncontext);
+
+  // Popup states
+  const [issearch, setissearch] = useState(false);
 
   const handlefileuploading = async (e) => {
     e.preventDefault();
@@ -42,6 +47,16 @@ export default function Lheader() {
     document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     return (window.location.href = "https://www.documentia.ai/signin");
   };
+
+  function handleClose(action) {
+    switch (action) {
+      case "search":
+        setissearch(false);
+        break;
+      default:
+      // Handle default case if necessary
+    }
+  }
 
   return (
     <header className={styles.lhs_header_content}>
@@ -163,37 +178,32 @@ export default function Lheader() {
 
         {filemeta?.length > 0 && (
           <>
-            <div>
-              <div className={styles.header_ots}>
-                <div>
-                  <svg
-                    fill="rgba(55, 53, 47, 0.45)"
-                    className="sidebarSearch"
-                    display="block"
-                    viewBox="0 0 20 20"
-                    style={{
-                      width: 20,
-                      height: "100%",
-                      WebkitFlexShrink: "0",
-                      MsFlexShrink: "0",
-                      flexShrink: "0",
-                    }}
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M3.246 8.82c0-.765.144-1.483.43-2.153A5.673 5.673 0 014.88 4.89a5.457 5.457 0 013.93-1.634c.77 0 1.49.143 2.16.43a5.523 5.523 0 011.778 1.204c.51.51.91 1.103 1.196 1.777.292.67.438 1.388.438 2.153 0 .602-.094 1.174-.28 1.716a5.496 5.496 0 01-.76 1.484l3.118 3.13a.842.842 0 01.212.322c.05.123.075.253.075.39 0 .19-.043.364-.13.519a.983.983 0 01-.875.499c-.137 0-.269-.025-.396-.075a.927.927 0 01-.335-.22l-3.138-3.137a5.801 5.801 0 01-1.435.69 5.33 5.33 0 01-1.627.247 5.457 5.457 0 01-2.16-.43 5.6 5.6 0 01-1.771-1.197c-.51-.51-.912-1.1-1.203-1.77a5.475 5.475 0 01-.43-2.168zm1.456 0c0 .57.105 1.103.315 1.6.214.497.51.934.888 1.312.379.374.816.668 1.313.882a3.98 3.98 0 001.593.321c.57 0 1.102-.107 1.6-.32a4.154 4.154 0 002.194-2.195c.214-.497.32-1.03.32-1.6a3.98 3.98 0 00-.32-1.592 4.177 4.177 0 00-.89-1.313 4.006 4.006 0 00-1.305-.882 3.997 3.997 0 00-1.6-.321 3.98 3.98 0 00-1.592.321c-.497.21-.934.504-1.313.882a4.178 4.178 0 00-.888 1.313 4.054 4.054 0 00-.315 1.592z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                </div>
-                <span>Search docs</span>
+            <div
+              onClick={() => setissearch(true)}
+              className={styles.header_ots}
+            >
+              <div>
+                <svg
+                  fill="rgba(55, 53, 47, 0.45)"
+                  className="sidebarSearch"
+                  display="block"
+                  viewBox="0 0 20 20"
+                  style={{
+                    width: 20,
+                    height: "100%",
+                    WebkitFlexShrink: "0",
+                    MsFlexShrink: "0",
+                    flexShrink: "0",
+                  }}
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M3.246 8.82c0-.765.144-1.483.43-2.153A5.673 5.673 0 014.88 4.89a5.457 5.457 0 013.93-1.634c.77 0 1.49.143 2.16.43a5.523 5.523 0 011.778 1.204c.51.51.91 1.103 1.196 1.777.292.67.438 1.388.438 2.153 0 .602-.094 1.174-.28 1.716a5.496 5.496 0 01-.76 1.484l3.118 3.13a.842.842 0 01.212.322c.05.123.075.253.075.39 0 .19-.043.364-.13.519a.983.983 0 01-.875.499c-.137 0-.269-.025-.396-.075a.927.927 0 01-.335-.22l-3.138-3.137a5.801 5.801 0 01-1.435.69 5.33 5.33 0 01-1.627.247 5.457 5.457 0 01-2.16-.43 5.6 5.6 0 01-1.771-1.197c-.51-.51-.912-1.1-1.203-1.77a5.475 5.475 0 01-.43-2.168zm1.456 0c0 .57.105 1.103.315 1.6.214.497.51.934.888 1.312.379.374.816.668 1.313.882a3.98 3.98 0 001.593.321c.57 0 1.102-.107 1.6-.32a4.154 4.154 0 002.194-2.195c.214-.497.32-1.03.32-1.6a3.98 3.98 0 00-.32-1.592 4.177 4.177 0 00-.89-1.313 4.006 4.006 0 00-1.305-.882 3.997 3.997 0 00-1.6-.321 3.98 3.98 0 00-1.592.321c-.497.21-.934.504-1.313.882a4.178 4.178 0 00-.888 1.313 4.054 4.054 0 00-.315 1.592z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
               </div>
-              {/* <Popup
-                title={"Search"}
-                custom_styles_width={{ minWidth: 310, height: 400 }}
-              >
-                <Search />
-              </Popup> */}
+              <span>Search docs</span>
             </div>
 
             <div>
@@ -217,59 +227,6 @@ export default function Lheader() {
                 </span>
                 <span>Sort by</span>
               </div>
-              {/* <Popup
-                custom_styles_width={{ minWidth: 200, header: 400 }}
-                custom_styles={{ position: "absolute", top: 145, left: 250 }}
-              >
-                <Popuplist
-                  list={[
-                    {
-                      name: "By creation date",
-                      callback: () => {
-                        console.log("Helo callback");
-                      },
-                      svg: (
-                        <svg
-                          role="graphics-symbol"
-                          viewBox="0 0 20 20"
-                          class="settingsMembers"
-                          style={{
-                            width: 18,
-                            height: 18,
-                            display: "block",
-                            fill: "rgba(55, 53, 47, 0.85)",
-                            flexShrink: 0,
-                          }}
-                        >
-                          <path d="M13.726 9.989c1.725 0 3.123-1.585 3.123-3.536 0-1.92-1.39-3.453-3.123-3.453-1.712 0-3.124 1.556-3.124 3.468.008 1.943 1.405 3.52 3.123 3.52zm-8.264.171c1.504 0 2.716-1.392 2.716-3.111 0-1.675-1.212-3.03-2.716-3.03-1.49 0-2.724 1.378-2.717 3.037 0 1.72 1.22 3.104 2.717 3.104zm8.264-1.474c-.985 0-1.819-.967-1.819-2.225 0-1.213.827-2.159 1.819-2.159.998 0 1.818.93 1.818 2.151 0 1.25-.827 2.233-1.819 2.233zm-8.264.186c-.806 0-1.49-.803-1.49-1.816 0-.967.677-1.756 1.49-1.756.827 0 1.497.774 1.497 1.749 0 1.02-.684 1.823-1.497 1.823zM1.54 17h5.54c-.392-.238-.656-.782-.606-1.273H1.476c-.136 0-.193-.067-.193-.193 0-1.705 1.911-3.327 4.172-3.327.798 0 1.597.208 2.21.566.242-.365.542-.678.934-.946-.906-.58-2.032-.893-3.144-.893C2.438 10.934 0 13.182 0 15.653 0 16.546.513 17 1.54 17zm7.743 0h8.885C19.4 17 20 16.59 20 15.712c0-2.046-2.453-4.77-6.274-4.77-3.822 0-6.275 2.724-6.275 4.77 0 .879.599 1.288 1.832 1.288zm-.228-1.303c-.164 0-.228-.059-.228-.193 0-1.139 1.761-3.26 4.899-3.26 3.137 0 4.898 2.121 4.898 3.26 0 .134-.064.194-.235.194H9.055z"></path>
-                        </svg>
-                      ),
-                    },
-                    {
-                      name: "By update date",
-                      callback: () => {
-                        console.log("Helo callback");
-                      },
-                      svg: (
-                        <svg
-                          role="graphics-symbol"
-                          viewBox="0 0 20 20"
-                          class="settingsMembers"
-                          style={{
-                            width: 18,
-                            height: 18,
-                            display: "block",
-                            fill: "rgba(55, 53, 47, 0.85)",
-                            flexShrink: 0,
-                          }}
-                        >
-                          <path d="M13.726 9.989c1.725 0 3.123-1.585 3.123-3.536 0-1.92-1.39-3.453-3.123-3.453-1.712 0-3.124 1.556-3.124 3.468.008 1.943 1.405 3.52 3.123 3.52zm-8.264.171c1.504 0 2.716-1.392 2.716-3.111 0-1.675-1.212-3.03-2.716-3.03-1.49 0-2.724 1.378-2.717 3.037 0 1.72 1.22 3.104 2.717 3.104zm8.264-1.474c-.985 0-1.819-.967-1.819-2.225 0-1.213.827-2.159 1.819-2.159.998 0 1.818.93 1.818 2.151 0 1.25-.827 2.233-1.819 2.233zm-8.264.186c-.806 0-1.49-.803-1.49-1.816 0-.967.677-1.756 1.49-1.756.827 0 1.497.774 1.497 1.749 0 1.02-.684 1.823-1.497 1.823zM1.54 17h5.54c-.392-.238-.656-.782-.606-1.273H1.476c-.136 0-.193-.067-.193-.193 0-1.705 1.911-3.327 4.172-3.327.798 0 1.597.208 2.21.566.242-.365.542-.678.934-.946-.906-.58-2.032-.893-3.144-.893C2.438 10.934 0 13.182 0 15.653 0 16.546.513 17 1.54 17zm7.743 0h8.885C19.4 17 20 16.59 20 15.712c0-2.046-2.453-4.77-6.274-4.77-3.822 0-6.275 2.724-6.275 4.77 0 .879.599 1.288 1.832 1.288zm-.228-1.303c-.164 0-.228-.059-.228-.193 0-1.139 1.761-3.26 4.899-3.26 3.137 0 4.898 2.121 4.898 3.26 0 .134-.064.194-.235.194H9.055z"></path>
-                        </svg>
-                      ),
-                    },
-                  ]}
-                />
-              </Popup> */}
             </div>
           </>
         )}
@@ -302,12 +259,22 @@ export default function Lheader() {
         </label>
       </div>
 
-      {/* <input
-                type="file"
-                id="separatefile"
-                style={{ display: "none" }}
-                onChange={handleinputchange}
-            /> */}
+      {/* All LHS wrapper popup  */}
+
+      {/* Search popup */}
+      <Gpopup
+        id="doc-newchat"
+        isOpen={issearch}
+        onClose={() => handleClose("search")}
+      >
+        <>
+          <Gpopupheader
+            content={"Search Docs"}
+            close={() => handleClose("newchat")}
+          />
+          <Search close={() => handleClose("search")} />
+        </>
+      </Gpopup>
     </header>
   );
 }

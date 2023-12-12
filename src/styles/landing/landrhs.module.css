@@ -3,6 +3,9 @@
   height: 100%;
   border-radius: 20px;
   padding: 15px 40px;
+  max-width: 950px;
+  max-height: 480px;
+  height: 480px;
 }
 
 .landing_for_rhs_main .landing_rhs_sub_wrapper {
@@ -27,7 +30,6 @@
 .landing_heading_part .welcome_root .heading_para {
   color: #666;
   font-size: 20px;
-
 }
 
 .landing_upload_area {

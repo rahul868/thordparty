@@ -11,6 +11,7 @@ import Landingrhs from "@/components/landing/landingrhs";
 import { useContext } from "react";
 import Indicator from "@/components/home/reusable/indicator";
 import Splash from "@/components/home/reusable/splashscreen";
+import Gpopup from "@/components/home/reusable/gpopup";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -48,31 +49,34 @@ export default function Home() {
         alertmsg={alertmsg}
       /> */}
       <Indicator message={gindicatormsg} />
-      <div className="overlay" g-overlay id="overlay"></div>
       {/* <Alert msg="Hello this is testing" /> */}
       {/* Main home page template which can include  */}
       {/* <Gcommonprovider> */}
       <div className={styles.app_container}>
         {/* LHS SECTION */}
-        {filemeta.length > 0 ? (
-          <div
-            data-sec-lhswrapper
-            id="lhs_wrapper"
-            className={styles.left_section}
-          >
-            {/* SECTION 1. HEADER 2. CONTENT 3.FOOTER */}
-            <Lhsprovider>
-              <Lhswrapper />
-            </Lhsprovider>
-          </div>
-        ) : (
-          <></>
-        )}
+        <div
+          data-sec-lhswrapper
+          id="lhs_wrapper"
+          className={styles.left_section}
+        >
+          {/* SECTION 1. HEADER 2. CONTENT 3.FOOTER */}
+          <Lhsprovider>
+            <Lhswrapper />
+          </Lhsprovider>
+        </div>
+
         {/* RHS SECTION */}
         <main data-sec-rhswrapper className={styles.main_rhs_container}>
           <Rhsprovider>
-            {/* <Landingrhs /> */}
-            {filemeta.length !== 0 ? <Rhswrapper /> : <Landingrhs />}
+            <Rhswrapper />
+            <Gpopup
+              id="doc-landingwidget"
+              isOpen={filemeta.length <= 0 ? true : false}
+              onClose={() => null}
+            >
+              <Landingrhs />
+            </Gpopup>
+            {/* {filemeta.length !== 0 ? <Rhswrapper /> : <Landingrhs />} */}
           </Rhsprovider>
         </main>
       </div>

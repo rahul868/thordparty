@@ -8,7 +8,7 @@ import Button from "../home/reusable/button";
 import uuid from "react-uuid";
 
 function Rnewchat() {
-  const { popup_closer, limit_string } = useContext(Gcommoncontext);
+  const { limit_string } = useContext(Gcommoncontext);
   const Rcontext = useContext(Rhscontext);
 
   const { files, setfiles, setUserGroup, setSeperateFiles } = Rcontext;
@@ -68,7 +68,6 @@ function Rnewchat() {
 
   async function addGroupfile(e) {
     e.preventDefault();
-    popup_closer();
 
     let date = Date.now();
     let newSavedchatadded = [];
@@ -102,7 +101,6 @@ function Rnewchat() {
 
   async function addSingelfile(e) {
     e.preventDefault();
-    popup_closer();
     let date = Date.now();
     let newSavedchatadded = [];
     for (let i = 0; i < files.length; i++) {
@@ -251,18 +249,16 @@ function Rnewchat() {
                 </>
               ) : (
                 <>
-                  <div className={styles.upload_widget_title}>
-                    <span>
-                      Add your document here. You can add upto 5 files.
-                    </span>
-                  </div>
+                  <div className={styles.upload_widget_title}></div>
                   <div className={styles.icon_upload}>
                     <img src="/assets/svg/upload.svg" />
                     <span>
-                      Drag & drop it here <br /> or{" "}
+                      Drag & drop it here  or{" "}  <br /> 
                       <span style={{ color: "brown", fontWeight: "bold" }}>
                         browse files
                       </span>
+                      <br />
+                     
                     </span>
                   </div>
                 </>

@@ -1,22 +1,11 @@
 import { useState, createContext, useEffect } from "react";
-import {
-  uniqueNamesGenerator,
-  adjectives,
-  colors,
-  animals,
-} from "unique-names-generator";
 
 const Gcommoncontext = createContext();
 const Gcommonprovider = (props) => {
-  const config = {
-    dictionaries: [adjectives, colors, animals],
-    separator: " ",
-  };
-
   const [user, setuser] = useState({
-    name:"Rahul Darekar",
-    email:"ssatale@bigiota.ai"
-    // email:"rd@gmail.com"
+    name: "Rahul Darekar",
+    // email:"ssatale@bigiota.ai"
+    email: "rd@gmail.com",
   });
 
   const [error, seterror] = useState(false);
@@ -82,12 +71,6 @@ const Gcommonprovider = (props) => {
     fetchUserFiles();
   }, []);
 
-  const popup_closer = () => {
-    document.querySelectorAll("[data-g-navbar-flyer]").forEach((ele) => {
-      ele.classList.remove("popup_container_active");
-    });
-    document.querySelector("#overlay").classList.remove("active_overlay");
-  };
 
   return (
     <Gcommoncontext.Provider
@@ -110,7 +93,6 @@ const Gcommonprovider = (props) => {
         setpatype,
         gindicatormsg,
         setgindicatormsg,
-        popup_closer,
       }}
     >
       {props.children}
