@@ -4,10 +4,13 @@ import Rmodelmsg from "./modelmsg";
 import Rusermsg from "./usermsg";
 import { useContext } from "react";
 import { Rhscontext } from "@/context/provider";
+import Rmsgloader from "./rmsgloader";
+import Loader from "./loader";
+
 export default function Rmessages() {
   const context = useContext(Rhscontext);
   const messagesContainerRef = useRef(null);
-  const { SavedMessages, error, loading } = context;
+  const { SavedMessages, error, loading, isresponding } = context;
 
   useEffect(() => {
     const container = messagesContainerRef.current;
@@ -50,6 +53,7 @@ export default function Rmessages() {
             </div>
           );
         })}
+        {isresponding && <Rmsgloader loader={Loader} />}
       </div>
     </>
   );

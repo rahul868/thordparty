@@ -1,6 +1,7 @@
 :root {
   /* Application main color */
   --app-color-code: #4267b2;
+  --animation-color: dodgerblue;
   --common-header-size: 45px;
   --common-line-switching: 45px;
   --overlay-global-index: 100;

@@ -1,0 +1,76 @@
+.loader {
+  width: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: inherit;
+}
+
+.sub_loader {
+  display: flex;
+  justify-content: space-evenly;
+  width: 38px;
+  height: 100%;
+}
+
+.circle_loader {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+  vertical-align: middle;
+}
+
+.circle_loader:nth-child(1) {
+  background-color: var(--animation-color) !important;
+  transform: translate(-5px);
+  opacity: 0;
+  animation: animateLoader1 0.5s linear infinite;
+}
+
+.circle_loader:nth-child(2) {
+  background-color: var(--animation-color) !important;
+  animation: animateLoader-middle 0.5s linear infinite;
+}
+
+.circle_loader:nth-child(3) {
+  background-color: var(--animation-color) !important;
+  animation: animateLoader-middle 0.5s linear infinite;
+}
+
+.circle_loader:nth-child(4) {
+  background-color: var(--animation-color) !important;
+  animation: animateLoader2 0.5s linear infinite;
+}
+
+@keyframes animateLoader1 {
+  to {
+    -webkit-transform: translate(5px);
+    transform: translate(5px);
+    opacity: 1;
+  }
+}
+
+@keyframes animateLoader2 {
+  to {
+    -webkit-transform: translate(10px);
+    transform: translate(10px);
+    opacity: 0;
+  }
+}
+
+@keyframes animateLoader-middle {
+  to {
+    -webkit-transform: translate(5px);
+    transform: translate(5px);
+    opacity: 1;
+  }
+}
+
+@keyframes animateloader-middle {
+  to {
+    -webkit-transform: translate(5px);
+    transform: translate(5px);
+    opacity: 1;
+  }
+}

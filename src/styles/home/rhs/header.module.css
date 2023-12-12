@@ -228,6 +228,12 @@
   gap: 0.6rem;
 }
 
+.show_left {
+  display: block !important;
+  position: fixed;
+  z-index: 10;
+}
+
 @media only screen and (max-width: 800px) {
   .rhs_header_content .g_header_navbar_wrapper,
   .t_section {

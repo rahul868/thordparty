@@ -33,12 +33,37 @@ export default function Rheader() {
 
   const ShowLeftSlider = () => {
     let showleft = document.getElementById("lhs_wrapper");
-    showleft.style.display = "block";
+    showleft.classList.add(styles.show_left);
   };
+
+  useEffect(() => {
+    document.addEventListener("click", handleOutside);
+
+    let showelement = document.getElementById("lhs_wrapper");
+    let options_element = document.getElementById("file_menu");
+
+    function handleOutside(e) {
+      console.log(options_element);
+      if (
+        !showelement.contains(e.target) &&
+        !options_element?.contains(e.target)
+      ) {
+        showelement.classList.remove(styles.show_left);
+      }
+    }
+
+    return () => {
+      document.removeEventListener("click", handleOutside);
+    };
+  }, []);
 
   function handleshowdrop() {
     let dropelement = document.getElementById("headers_options");
-    dropelement.style.display = "block";
+    if (dropelement.style.display == "block") {
+      dropelement.style.display = "none";
+    } else {
+      dropelement.style.display = "block";
+    }
   }
 
   useEffect(() => {
@@ -74,7 +99,8 @@ export default function Rheader() {
         <div className={styles.document_intro}>
           <div
             data-lhs-reopen
-            className={`${styles.document_intro_svg} ${styles.lhsreopensvg}`}
+            id="file_menu"
+            className={`${styles.document_intro_svg} ${styles.lhsrepoen}`}
             onClick={isMenu ? ShowLeftSlider : ""}
           >
             {isMenu ? (
@@ -86,9 +112,8 @@ export default function Rheader() {
                 class="bi bi-list"
                 viewBox="0 0 16 16"
                 style={{
-                  verticalAlign: "middle",
-                  flexShrink: 0,
                   cursor: "pointer",
+                  verticalAlign: "middle",
                 }}
               >
                 <path
@@ -123,7 +148,7 @@ export default function Rheader() {
         <div
           id="_g_header_navbar_wrapper"
           g_nav_header_tab
-        className={styles.g_header_navbar_wrapper}
+          className={styles.g_header_navbar_wrapper}
         >
           <div
             onClick={() => save_chats_local(currdoc.name)}
@@ -224,7 +249,10 @@ export default function Rheader() {
                 Settings
               </span>
             </div>
-            <Popup title={"Chat Experience"} custom_styles_width={{ minWidth: 150 }}>
+            <Popup
+              title={"Chat Experience"}
+              custom_styles_width={{ minWidth: 150 }}
+            >
               <Setting />
             </Popup>
           </div>
@@ -285,7 +313,10 @@ export default function Rheader() {
                 Feedback
               </span>
             </div>
-            <Popup title={"Feedback for us?"}  custom_styles_width={{ minWidth: 150 }}>
+            <Popup
+              title={"Feedback for us?"}
+              custom_styles_width={{ minWidth: 150 }}
+            >
               <Feedback />
             </Popup>
           </div>
@@ -321,7 +352,10 @@ export default function Rheader() {
                 New chat
               </span>
             </div>
-            <Popup title={"Upload Files"} custom_styles_width={{ header: 500,minWidth:350 }}>
+            <Popup
+              title={"Upload Files"}
+              custom_styles_width={{ header: 500, minWidth: 350 }}
+            >
               <Rnewchat />
             </Popup>
           </div>

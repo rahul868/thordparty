@@ -22,14 +22,29 @@ function Rnewchat() {
   }, [files]);
 
   const handleFileChange = (e) => {
-    if (files.length > 0) {
+    const maxFiles = 5;
+
+    // Check if the total number of files doesn't exceed the limit
+    if (files.length < maxFiles) {
       let newAddedFiles = Array.from(files);
-      for (let i = 0; i < e.target.files.length; i++) {
+
+      // Calculate the remaining slots for files
+      const remainingSlots = maxFiles - newAddedFiles.length;
+
+      // Add files up to the remaining available slots
+      for (
+        let i = 0;
+        i < Math.min(e.target.files.length, remainingSlots);
+        i++
+      ) {
         newAddedFiles.push(e.target.files[i]);
       }
+
+      // Update the state with the new files
       setfiles(newAddedFiles);
     } else {
-      setfiles(Array.from(e.target.files));
+      // Display an error or some indication that the limit is reached
+      console.log("You can only select up to 5 files.");
     }
   };
 
@@ -117,7 +132,10 @@ function Rnewchat() {
               <h3>Upload Files</h3>
               <span>Add your document here. You can add upto 5 files.</span>
             </div> */}
-            <label id="drop-area" htmlFor="fileElem">
+            <label
+              id="drop-area"
+              htmlFor={files.length !== 5 ? "fileElem" : ""}
+            >
               {/* {files.length <= 0 && ( */}
               <input
                 type="file"

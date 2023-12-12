@@ -74,7 +74,6 @@ export default function Setting() {
   return (
     <div className={styles.chat_additional_setting}>
       <div className={styles.wrapping_setting}>
-       
         <div className={styles.custom_dropdown} ref={dropdownRef}>
           <span>
             <svg
