@@ -3,18 +3,14 @@ import { useContext } from "react";
 import { Rhscontext } from "@/context/provider";
 import Button from "./button";
 
-function Reset({ currfile }) {
+function Reset({ close }) {
   const context = useContext(Rhscontext);
 
-  const { setSavedMessages, del_chats_local } = context;
+  const { setSavedMessages } = context;
 
   function handledmove() {
     setSavedMessages([]);
-    document.querySelectorAll("[data-g-navbar-flyer]").forEach((ele) => {
-      ele.classList.remove("popup_container_active");
-    });
-    document.querySelector("#overlay").classList.remove("active_overlay");
-    del_chats_local(currfile);
+    close();
   }
 
   return (

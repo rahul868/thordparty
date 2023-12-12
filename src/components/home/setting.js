@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import styles from "@/styles/setting.module.css";
 
-export default function Setting() {
+export default function Setting({ close }) {
   const [responseMode, setResponseMode] = useState("efficient");
   const [answersLength, setAnswersLength] = useState("medium");
   const [contentSource, setContentSource] = useState("focused");

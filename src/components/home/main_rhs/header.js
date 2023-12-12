@@ -8,11 +8,19 @@ import { Rhscontext } from "@/context/provider";
 import Popuplist from "../reusable/popuplist";
 import Setting from "../setting";
 import Feedback from "../reusable/feedback";
+import Gpopup from "../reusable/gpopup";
+import Gpopupheader from "../reusable/gpopupheader";
+
 export default function Rheader() {
   const { currdoc, limit_string } = useContext(Gcommoncontext);
   const { save_chats_local } = useContext(Rhscontext);
 
   const [isMenu, setisMenu] = useState(false);
+
+  const [isnewchat, setisnewchat] = useState(false);
+  const [isreset, setisreset] = useState(false);
+  const [issetting, setissetting] = useState(false);
+  const [isfeedback, setisfeedback] = useState(false);
 
   useEffect(() => {
     function handleResize() {
@@ -92,6 +100,26 @@ export default function Rheader() {
       document.removeEventListener("click", handleoutside);
     };
   }, []);
+
+  function handleClose(action) {
+    switch (action) {
+      case "newchat":
+        setisnewchat(false);
+        break;
+      case "reset":
+        setisreset(false);
+        break;
+      case "setting":
+        setissetting(false);
+        break;
+      case "feedback":
+        setisfeedback(false);
+        break;
+      // Add more cases if needed
+      default:
+      // Handle default case if necessary
+    }
+  }
 
   return (
     <header id="main_rhs_header" className={styles.rhs_header_wrapper}>
@@ -179,8 +207,11 @@ export default function Rheader() {
               Save
             </span>
           </div>
-          <div data-g-popup-container>
-            <div data-g-popup-tab className={styles.dropdown_block}>
+          <div>
+            <div
+              className={styles.dropdown_block}
+              onClick={() => setisreset(true)}
+            >
               <span>
                 <svg
                   fill="rgba(55, 53, 47, 0.85)"
@@ -206,19 +237,10 @@ export default function Rheader() {
                 Reset
               </span>
             </div>
-            <Popup
-              custom_styles={{ top: 150 }}
-              custom_styles_width={{ minWidth: 250, height: "auto" }}
-            >
-              <Reset currfile={currdoc.filename} />
-            </Popup>
           </div>
 
-          <div data-g-popup-container>
-            <div
-              data-g-popup-tab
-              className={`${styles.dropdown_block} ${styles.tabbreaker}`}
-            >
+          <div>
+            <div className={`${styles.dropdown_block} ${styles.tabbreaker}`}>
               <span>
                 <svg
                   fill="rgba(55, 53, 47, 0.85)"
@@ -249,12 +271,6 @@ export default function Rheader() {
                 Settings
               </span>
             </div>
-            <Popup
-              title={"Chat Experience"}
-              custom_styles_width={{ minWidth: 150 }}
-            >
-              <Setting />
-            </Popup>
           </div>
           <a target="_blank" href="https://www.documentia.ai/about">
             <div className={styles.dropdown_block}>
@@ -286,8 +302,8 @@ export default function Rheader() {
               </span>
             </div>
           </a>
-          <div data-g-popup-container>
-            <div data-g-popup-tab className={styles.dropdown_block}>
+          <div>
+            <div className={styles.dropdown_block}>
               <span>
                 <svg
                   fill="rgba(55, 53, 47, 0.85)"
@@ -313,51 +329,37 @@ export default function Rheader() {
                 Feedback
               </span>
             </div>
-            <Popup
-              title={"Feedback for us?"}
-              custom_styles_width={{ minWidth: 150 }}
-            >
-              <Feedback />
-            </Popup>
           </div>
         </div>
 
         {/* Third section */}
 
         <div className={styles.t_section}>
-          <div data-g-popup-container>
-            <div
-              data-g-popup-tab
-              className={`${styles.spaecialtab} ${styles.dropdown_block}`}
-            >
-              <span>
-                <svg
-                  fill="white"
-                  className="file"
-                  display="block"
-                  viewBox="0 0 16 16"
-                  style={{
-                    width: 18,
-                    height: 18,
-                    WebkitFlexShrink: "0",
-                    MsFlexShrink: "0",
-                    flexShrink: "0",
-                    marginRight: 5,
-                  }}
-                >
-                  <path d="M4.356 15.468h7.28c1.464 0 2.222-.773 2.222-2.242v-6.2c0-.95-.123-1.388-.717-1.99l-3.59-3.65C8.979.805 8.507.668 7.652.668H4.356c-1.462 0-2.221.772-2.221 2.242v10.316c0 1.476.759 2.242 2.221 2.242zm.11-1.34c-.663 0-.991-.349-.991-.984V2.992c0-.629.328-.984.99-.984h2.913v3.746c0 .977.485 1.45 1.456 1.45h3.685v5.94c0 .635-.335.984-.998.984H4.466zm4.491-8.1c-.28 0-.396-.124-.396-.404V2.192l3.773 3.835H8.957zm-.362 6.699v-2.1L8.54 9.563l.526.553.527.533a.531.531 0 00.396.185c.308 0 .54-.219.54-.526a.49.49 0 00-.191-.404L8.45 8.167c-.157-.144-.287-.205-.458-.205-.164 0-.294.061-.451.205L5.655 9.903a.49.49 0 00-.191.404c0 .307.225.526.54.526a.543.543 0 00.396-.185l.527-.533.526-.553-.055 1.066v2.099c0 .328.274.574.595.574.328 0 .602-.246.602-.574z"></path>
-                </svg>
-              </span>
-              <span id="news_nav_tab" className={styles.dropdown_block_heading}>
-                New chat
-              </span>
-            </div>
-            <Popup
-              title={"Upload Files"}
-              custom_styles_width={{ header: 500, minWidth: 350 }}
-            >
-              <Rnewchat />
-            </Popup>
+          <div
+            className={`${styles.spaecialtab} ${styles.dropdown_block}`}
+            onClick={() => setisnewchat(true)}
+          >
+            <span>
+              <svg
+                fill="white"
+                className="file"
+                display="block"
+                viewBox="0 0 16 16"
+                style={{
+                  width: 18,
+                  height: 18,
+                  WebkitFlexShrink: "0",
+                  MsFlexShrink: "0",
+                  flexShrink: "0",
+                  marginRight: 5,
+                }}
+              >
+                <path d="M4.356 15.468h7.28c1.464 0 2.222-.773 2.222-2.242v-6.2c0-.95-.123-1.388-.717-1.99l-3.59-3.65C8.979.805 8.507.668 7.652.668H4.356c-1.462 0-2.221.772-2.221 2.242v10.316c0 1.476.759 2.242 2.221 2.242zm.11-1.34c-.663 0-.991-.349-.991-.984V2.992c0-.629.328-.984.99-.984h2.913v3.746c0 .977.485 1.45 1.456 1.45h3.685v5.94c0 .635-.335.984-.998.984H4.466zm4.491-8.1c-.28 0-.396-.124-.396-.404V2.192l3.773 3.835H8.957zm-.362 6.699v-2.1L8.54 9.563l.526.553.527.533a.531.531 0 00.396.185c.308 0 .54-.219.54-.526a.49.49 0 00-.191-.404L8.45 8.167c-.157-.144-.287-.205-.458-.205-.164 0-.294.061-.451.205L5.655 9.903a.49.49 0 00-.191.404c0 .307.225.526.54.526a.543.543 0 00.396-.185l.527-.533.526-.553-.055 1.066v2.099c0 .328.274.574.595.574.328 0 .602-.246.602-.574z"></path>
+              </svg>
+            </span>
+            <span id="news_nav_tab" className={styles.dropdown_block_heading}>
+              New chat
+            </span>
           </div>
         </div>
 
@@ -413,8 +415,11 @@ export default function Rheader() {
                     Save
                   </span>
                 </div>
-                <div data-g-popup-container>
-                  <div data-g-popup-tab className={styles.dropdown_block}>
+                <div>
+                  <div
+                    className={styles.dropdown_block}
+                    onClick={() => setisreset(true)}
+                  >
                     <span>
                       <svg
                         fill="rgba(55, 53, 47, 0.85)"
@@ -440,17 +445,10 @@ export default function Rheader() {
                       Reset
                     </span>
                   </div>
-                  <Popup
-                    custom_styles={{ top: 150 }}
-                    custom_styles_width={{ minWidth: 250, height: "auto" }}
-                  >
-                    <Reset currfile={currdoc.filename} />
-                  </Popup>
                 </div>
 
-                <div data-g-popup-container>
+                <div>
                   <div
-                    data-g-popup-tab
                     className={`${styles.dropdown_block} ${styles.tabbreaker}`}
                   >
                     <span>
@@ -486,9 +484,6 @@ export default function Rheader() {
                       Settings
                     </span>
                   </div>
-                  <Popup custom_styles_width={{ minWidth: 150 }}>
-                    <Setting />
-                  </Popup>
                 </div>
                 <a target="_blank" href="https://www.documentia.ai/about">
                   <div className={styles.dropdown_block}>
@@ -547,51 +542,77 @@ export default function Rheader() {
                       Feedback
                     </span>
                   </div>
-                  <Popup custom_styles_width={{ minWidth: 150 }}>
-                    <Feedback />
-                  </Popup>
                 </div>
               </div>
               <div className={styles.t_section} style={{ display: "block" }}>
-                <div data-g-popup-container>
-                  <div
-                    data-g-popup-tab
-                    className={`${styles.spaecialtab} ${styles.dropdown_block}`}
-                  >
-                    <span>
-                      <svg
-                        fill="white"
-                        className="file"
-                        display="block"
-                        viewBox="0 0 16 16"
-                        style={{
-                          width: 18,
-                          height: 18,
-                          WebkitFlexShrink: "0",
-                          MsFlexShrink: "0",
-                          flexShrink: "0",
-                          marginRight: 5,
-                        }}
-                      >
-                        <path d="M4.356 15.468h7.28c1.464 0 2.222-.773 2.222-2.242v-6.2c0-.95-.123-1.388-.717-1.99l-3.59-3.65C8.979.805 8.507.668 7.652.668H4.356c-1.462 0-2.221.772-2.221 2.242v10.316c0 1.476.759 2.242 2.221 2.242zm.11-1.34c-.663 0-.991-.349-.991-.984V2.992c0-.629.328-.984.99-.984h2.913v3.746c0 .977.485 1.45 1.456 1.45h3.685v5.94c0 .635-.335.984-.998.984H4.466zm4.491-8.1c-.28 0-.396-.124-.396-.404V2.192l3.773 3.835H8.957zm-.362 6.699v-2.1L8.54 9.563l.526.553.527.533a.531.531 0 00.396.185c.308 0 .54-.219.54-.526a.49.49 0 00-.191-.404L8.45 8.167c-.157-.144-.287-.205-.458-.205-.164 0-.294.061-.451.205L5.655 9.903a.49.49 0 00-.191.404c0 .307.225.526.54.526a.543.543 0 00.396-.185l.527-.533.526-.553-.055 1.066v2.099c0 .328.274.574.595.574.328 0 .602-.246.602-.574z"></path>
-                      </svg>
-                    </span>
-                    <span
-                      id="news_nav_tab"
-                      className={styles.dropdown_block_heading}
+                <div
+                  className={`${styles.spaecialtab} ${styles.dropdown_block}`}
+                  onClick={() => setisnewchat(true)}
+                >
+                  <span>
+                    <svg
+                      fill="white"
+                      className="file"
+                      display="block"
+                      viewBox="0 0 16 16"
+                      style={{
+                        width: 18,
+                        height: 18,
+                        WebkitFlexShrink: "0",
+                        MsFlexShrink: "0",
+                        flexShrink: "0",
+                        marginRight: 5,
+                      }}
                     >
-                      New chat
-                    </span>
-                  </div>
-                  <Popup custom_styles_width={{ header: 500 }}>
-                    <Rnewchat />
-                  </Popup>
+                      <path d="M4.356 15.468h7.28c1.464 0 2.222-.773 2.222-2.242v-6.2c0-.95-.123-1.388-.717-1.99l-3.59-3.65C8.979.805 8.507.668 7.652.668H4.356c-1.462 0-2.221.772-2.221 2.242v10.316c0 1.476.759 2.242 2.221 2.242zm.11-1.34c-.663 0-.991-.349-.991-.984V2.992c0-.629.328-.984.99-.984h2.913v3.746c0 .977.485 1.45 1.456 1.45h3.685v5.94c0 .635-.335.984-.998.984H4.466zm4.491-8.1c-.28 0-.396-.124-.396-.404V2.192l3.773 3.835H8.957zm-.362 6.699v-2.1L8.54 9.563l.526.553.527.533a.531.531 0 00.396.185c.308 0 .54-.219.54-.526a.49.49 0 00-.191-.404L8.45 8.167c-.157-.144-.287-.205-.458-.205-.164 0-.294.061-.451.205L5.655 9.903a.49.49 0 00-.191.404c0 .307.225.526.54.526a.543.543 0 00.396-.185l.527-.533.526-.553-.055 1.066v2.099c0 .328.274.574.595.574.328 0 .602-.246.602-.574z"></path>
+                    </svg>
+                  </span>
+                  <span
+                    id="news_nav_tab"
+                    className={styles.dropdown_block_heading}
+                  >
+                    New chat
+                  </span>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <Gpopup
+        id="doc-newchat"
+        isOpen={isnewchat}
+        onClose={() => handleClose("newchat")}
+      >
+        <>
+          <Gpopupheader
+            content={"Upload Files"}
+            close={() => handleClose("newchat")}
+          />
+          <Rnewchat close={() => handleClose("newchat")} />
+        </>
+      </Gpopup>
+      <Gpopup
+        id="doc-reset"
+        isOpen={isreset}
+        onClose={() => handleClose("reset")}
+      >
+        <Reset close={() => handleClose("reset")} />
+      </Gpopup>
+      <Gpopup
+        id="doc-setting"
+        isOpen={issetting}
+        onClose={() => handleClose("setting")}
+      >
+        <Setting close={() => handleClose("setting")} />
+      </Gpopup>
+      <Gpopup
+        id="doc-feedback"
+        isOpen={isfeedback}
+        onClose={() => handleClose("feedback")}
+      >
+        <Feedback close={() => handleClose("feedback")} />
+      </Gpopup>
     </header>
   );
 }

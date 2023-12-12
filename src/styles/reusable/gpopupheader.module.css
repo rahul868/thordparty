@@ -1,0 +1,19 @@
+.popup_heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px 15px 11px;
+}
+
+.content_heading {
+  font-size: 17px;
+  font-weight: bolder;
+}
+
+.closepart {
+  padding: 8px;
+  display: flex;
+  background: #f1f1f1;
+  border-radius: 10px;
+  cursor: pointer;
+}

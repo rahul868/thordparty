@@ -207,7 +207,7 @@
   position: absolute;
   top: 30px;
   right: 0px;
-  z-index: 1000;
+  z-index: calc(var(--overlay-global-index) - 5);
   background: white;
   min-width: 160px;
   padding: 6px;

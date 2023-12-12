@@ -54,7 +54,7 @@ export default function Lheader() {
               <div id={styles.uid}>{user.email}</div>
             </div>
           </div>
-          <Popup
+          {/* <Popup
             custom_styles_width={{ minWidth: 200, header: 400 }}
             custom_styles={{ position: "absolute", top: 50, left: 280 }}
           >
@@ -84,7 +84,7 @@ export default function Lheader() {
                 },
               ]}
             />
-          </Popup>
+          </Popup> */}
           <div data-lhs-collapse className={styles.collapsableblock}>
             <span>
               <svg
@@ -109,7 +109,7 @@ export default function Lheader() {
 
       <div className={styles.header_ots_content}>
         <div>
-          <div data-g-popup-tab className={styles.header_ots}>
+          <div className={styles.header_ots}>
             <div>
               <svg
                 role="graphics-symbol"
@@ -128,7 +128,7 @@ export default function Lheader() {
             </div>
             <span>Profile options</span>
           </div>
-          <Popup
+          {/* <Popup
             custom_styles_width={{ minWidth: 200, header: 400 }}
             custom_styles={{ position: "absolute", top: 80, left: 250 }}
           >
@@ -158,13 +158,13 @@ export default function Lheader() {
                 },
               ]}
             />
-          </Popup>
+          </Popup> */}
         </div>
 
         {filemeta?.length > 0 && (
           <>
             <div>
-              <div data-g-popup-tab className={styles.header_ots}>
+              <div className={styles.header_ots}>
                 <div>
                   <svg
                     fill="rgba(55, 53, 47, 0.45)"
@@ -188,16 +188,16 @@ export default function Lheader() {
                 </div>
                 <span>Search docs</span>
               </div>
-              <Popup
+              {/* <Popup
                 title={"Search"}
                 custom_styles_width={{ minWidth: 310, height: 400 }}
               >
                 <Search />
-              </Popup>
+              </Popup> */}
             </div>
 
             <div>
-              <div data-g-popup-tab className={styles.header_ots}>
+              <div className={styles.header_ots}>
                 <span>
                   <svg
                     className="settingsIntegration"
@@ -217,7 +217,7 @@ export default function Lheader() {
                 </span>
                 <span>Sort by</span>
               </div>
-              <Popup
+              {/* <Popup
                 custom_styles_width={{ minWidth: 200, header: 400 }}
                 custom_styles={{ position: "absolute", top: 145, left: 250 }}
               >
@@ -269,7 +269,7 @@ export default function Lheader() {
                     },
                   ]}
                 />
-              </Popup>
+              </Popup> */}
             </div>
           </>
         )}

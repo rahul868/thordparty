@@ -1,12 +1,13 @@
 import styles from "@/styles/reusable/feedback.module.css";
 import { useState } from "react";
 import Button from "./button";
-export default function Feedback() {
+export default function Feedback({ close }) {
   const [finput, setfinput] = useState("");
 
   const handle_finput = () => {
     console.log("clicked");
     // API call for submiting feedback.
+    close();
   };
   return (
     <div className={styles.feedbackwrap}>
