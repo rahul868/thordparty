@@ -17,7 +17,6 @@ function Reset({ close }) {
     <>
       <div className={styles.reste_container}>
         <div className={styles.sub_reset_container}>
-          <div className={styles.reset_headline}>Reset Conversation</div>
           <div className={styles.text_line}>
             <p>
               Are you sure you want to reset the conversation

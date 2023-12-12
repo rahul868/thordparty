@@ -1,8 +1,8 @@
 .plist_wrapper {
-  background: white;
   width: 100%;
   user-select: none;
   padding: 5px;
+  min-width: 150px;
 }
 
 .plist_wrapper .plist_subwrapper {
@@ -13,22 +13,22 @@
 }
 
 .plist_wrapper .plist_subwrapper ul li {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    font-size: 13px;
-    min-height: 27px;
-    padding: 7px 10px;
-    margin-top: 1px;
-    margin-bottom: 1px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-size: 13px;
+  min-height: 27px;
+  padding: 7px 10px;
+  margin-top: 1px;
+  margin-bottom: 1px;
 }
 
 .plist_wrapper .plist_subwrapper ul li:hover {
-    background-color: #f1f1f1;
-    cursor: pointer;
-    border-radius: 5px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .plist_wrapper .plist_subwrapper ul li span {
-    padding-left: 10px;
+  padding-left: 10px;
 }

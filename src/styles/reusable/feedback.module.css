@@ -9,7 +9,7 @@
   border-radius: 5px;
 }
 .feedbackwrap .feedbackinput h4 {
-    padding: 5px 0px 13px 3px;
+  padding: 5px 0px 13px 3px;
 }
 .feedbackwrap .feedbackinput textarea {
   border: none;
@@ -22,4 +22,5 @@
   font-family: inherit;
   padding: 8px;
   resize: none; /* Disable textarea resizing */
+  font-size: 13px;
 }

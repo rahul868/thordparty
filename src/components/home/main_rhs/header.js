@@ -240,7 +240,10 @@ export default function Rheader() {
           </div>
 
           <div>
-            <div className={`${styles.dropdown_block} ${styles.tabbreaker}`}>
+            <div
+              className={`${styles.dropdown_block} ${styles.tabbreaker}`}
+              onClick={() => setissetting(true)}
+            >
               <span>
                 <svg
                   fill="rgba(55, 53, 47, 0.85)"
@@ -303,7 +306,10 @@ export default function Rheader() {
             </div>
           </a>
           <div>
-            <div className={styles.dropdown_block}>
+            <div
+              className={styles.dropdown_block}
+              onClick={() => setisfeedback(true)}
+            >
               <span>
                 <svg
                   fill="rgba(55, 53, 47, 0.85)"
@@ -450,6 +456,7 @@ export default function Rheader() {
                 <div>
                   <div
                     className={`${styles.dropdown_block} ${styles.tabbreaker}`}
+                    onClick={() => setissetting(true)}
                   >
                     <span>
                       <svg
@@ -515,8 +522,11 @@ export default function Rheader() {
                     </span>
                   </div>
                 </a>
-                <div data-g-popup-container>
-                  <div data-g-popup-tab className={styles.dropdown_block}>
+                <div>
+                  <div
+                    className={styles.dropdown_block}
+                    onClick={() => setisfeedback(true)}
+                  >
                     <span>
                       <svg
                         fill="rgba(55, 53, 47, 0.85)"
@@ -597,6 +607,11 @@ export default function Rheader() {
         isOpen={isreset}
         onClose={() => handleClose("reset")}
       >
+        <Gpopupheader
+          content={"Reset Conversation"}
+          close={() => handleClose("reset")}
+          t_style={{ color: "brown" }}
+        />
         <Reset close={() => handleClose("reset")} />
       </Gpopup>
       <Gpopup
@@ -604,6 +619,10 @@ export default function Rheader() {
         isOpen={issetting}
         onClose={() => handleClose("setting")}
       >
+        <Gpopupheader
+          content={"Chat Experince"}
+          close={() => handleClose("setting")}
+        />
         <Setting close={() => handleClose("setting")} />
       </Gpopup>
       <Gpopup
@@ -611,6 +630,10 @@ export default function Rheader() {
         isOpen={isfeedback}
         onClose={() => handleClose("feedback")}
       >
+        <Gpopupheader
+          content={"Feedback"}
+          close={() => handleClose("feedback")}
+        />
         <Feedback close={() => handleClose("feedback")} />
       </Gpopup>
     </header>

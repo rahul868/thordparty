@@ -14,8 +14,8 @@ const Gcommonprovider = (props) => {
   };
 
   const [user, setuser] = useState({
-    name:"Rahul Darekar",
-    email:"ssatale@bigiota.ai"
+    name: "Rahul Darekar",
+    email: "ssatale@bigiota.ai",
     // email:"rd@gmail.com"
   });
 
@@ -26,7 +26,7 @@ const Gcommonprovider = (props) => {
   const [currdoc, setcurrdoc] = useState(null);
 
   // Progress Alert
-  const [pastatus, setpastatus] = useState(true);
+  const [pastatus, setpastatus] = useState(false);
   const [pamsg, setpamsg] = useState("Uploading in progress...");
   const [pasecmsg, setpasecmsg] = useState("0 / 0 Uploaded successfully.");
   const [patype, setpatype] = useState("e");

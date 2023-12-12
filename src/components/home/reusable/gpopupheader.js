@@ -1,11 +1,13 @@
 import React from "react";
 import styles from "../../../styles/reusable/gpopupheader.module.css";
 
-export default function Gpopupheader({ content, close }) {
+export default function Gpopupheader({ content, close, c_style, t_style }) {
   return (
     <>
       <div className={styles.popup_heading}>
-        <span className={styles.content_heading}>{content}</span>
+        <span style={t_style} className={styles.content_heading}>
+          {content}
+        </span>
         <div onClick={() => close()} className={styles.closepart}>
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -1,10 +1,12 @@
 // Gpopup.js
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styles from "../../../styles/gpopup.module.css";
 import Gpopupheader from "./gpopupheader";
 
 const Gpopup = ({ id, isOpen, onClose, targetElement, children, name }) => {
+  const [position, setPosition] = useState({ top: 0, left: 0 });
+
   const handleOverlayClick = (e) => {
     const isOverlay = e.target.getAttribute("data-popup-overlay") === `${id}`;
     if (isOverlay) {
@@ -12,19 +14,25 @@ const Gpopup = ({ id, isOpen, onClose, targetElement, children, name }) => {
     }
   };
 
-  const calculatePosition = () => {
-    if (!targetElement) {
-      return { top: 0, left: 0 };
+  useEffect(() => {
+    const calculatePosition = () => {
+      if (!targetElement) {
+        return { top: 0, left: 0 };
+      }
+
+      const targetRect = targetElement.getBoundingClientRect();
+      const top = targetRect.bottom + window.scrollY;
+      const left = targetRect.left + window.scrollX;
+
+      console.log(top, left);
+
+      return { top, left };
+    };
+
+    if (isOpen) {
+      setPosition(calculatePosition());
     }
-
-    const targetRect = targetElement.getBoundingClientRect();
-    const top = targetRect.bottom + window.scrollY;
-    const left = targetRect.left + window.scrollX;
-
-    return { top, left };
-  };
-
-  const position = calculatePosition();
+  }, [isOpen, targetElement]);
 
   if (!isOpen) {
     return null;
@@ -35,10 +43,20 @@ const Gpopup = ({ id, isOpen, onClose, targetElement, children, name }) => {
       <div
         data-popup-overlay={`${id}`}
         className={styles.popup_overlay}
-        style={{ top: position.top, left: position.left }}
         onClick={handleOverlayClick}
       >
-        <div className={styles.popup_content}>{children}</div>
+        <div
+          style={
+            targetElement && {
+              position: "fixed",
+              top: position.top + 5,
+              left: position.left + 80,
+            }
+          }
+          className={styles.popup_content}
+        >
+          {children}
+        </div>
       </div>
     </>
   );
