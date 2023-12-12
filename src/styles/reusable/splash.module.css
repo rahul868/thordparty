@@ -1,0 +1,12 @@
+.splashwrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.splashwrapper .splassubhwrapper img {
+  width: 433px;
+  height: 109px;
+}

@@ -14,9 +14,9 @@ const Gcommonprovider = (props) => {
   };
 
   const [user, setuser] = useState({
-    name: "Rahul Darekar",
-    email: "ssatale@bigiota.ai",
-    a_profile: "",
+    name:"Rahul Darekar",
+    email:"ssatale@bigiota.ai"
+    // email:"rd1@gmail.com"
   });
 
   const [error, seterror] = useState(false);
@@ -26,10 +26,10 @@ const Gcommonprovider = (props) => {
   const [currdoc, setcurrdoc] = useState(null);
 
   // Progress Alert
-  const [pastatus, setpastatus] = useState(false);
-  const [pamsg, setpamsg] = useState("");
-  const [pasecmsg, setpasecmsg] = useState("");
-  const [patype, setpatype] = useState("l");
+  const [pastatus, setpastatus] = useState(true);
+  const [pamsg, setpamsg] = useState("Uploading in progress...");
+  const [pasecmsg, setpasecmsg] = useState("0 / 0 Uploaded successfully.");
+  const [patype, setpatype] = useState("e");
 
   // Indicator popup
   const [gindicatormsg, setgindicatormsg] = useState("");
@@ -73,11 +73,12 @@ const Gcommonprovider = (props) => {
     } finally {
       setTimeout(() => {
         setloading(false);
-      }, 1000);
+      }, 3000);
     }
   };
 
   useEffect(() => {
+    // Get userinfo from coockies.
     fetchUserFiles();
   }, []);
 

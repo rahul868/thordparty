@@ -31,21 +31,28 @@
 .icon_upload {
   display: flex;
   width: 100%;
-  padding: 60px 20px;
+  /* padding: 60px 20px; */
+  padding: 10px;
   border-radius: 10px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f1f1f1;
+  border: .5px dashed #e2e2e2;
+  border-width: 2px;
   gap: 0.7rem;
 }
-
+.icon_upload img {
+  width: 250px;
+}
 .icon_upload span {
   font-size: 14px;
+  text-align: center;
+  letter-spacing: 1px;
 }
 .icon_upload .warning {
-  font-size: 13px;
+  font-size: 14px;
   color: #666;
+
 }
 .icon_upload .icon {
   width: 50px;

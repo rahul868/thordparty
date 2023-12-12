@@ -33,8 +33,8 @@
 
 }
 .foundresult_wrapper .founded_grpname {
-    font-size: 12px;
-    
+   font-size: 12px;
+padding: 2px 33px;
 }
 .searchwrapper .searchsubwrapper .result_wrapper .results {
   height: 100%;

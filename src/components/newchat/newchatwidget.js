@@ -239,26 +239,12 @@ function Rnewchat() {
                     </span>
                   </div>
                   <div className={styles.icon_upload}>
-                    <div className={styles.icon}>
-                      <svg
-                        fill="white"
-                        className="pageEmpty"
-                        display="block"
-                        viewBox="0 0 16 16"
-                        style={{
-                          width: 18,
-                          height: 18,
-                          WebkitFlexShrink: "0",
-                          MsFlexShrink: "0",
-                          flexShrink: "0",
-                        }}
-                      >
-                        <path d="M4.356 15.468h7.28c1.464 0 2.222-.773 2.222-2.242v-6.2c0-.95-.123-1.388-.717-1.99l-3.59-3.65C8.979.805 8.507.668 7.652.668H4.356c-1.462 0-2.221.772-2.221 2.242v10.316c0 1.476.759 2.242 2.221 2.242zm.11-1.34c-.663 0-.991-.349-.991-.984V2.992c0-.629.328-.984.99-.984h2.913v3.746c0 .977.485 1.45 1.456 1.45h3.685v5.94c0 .635-.335.984-.998.984H4.466zm4.491-8.1c-.28 0-.396-.124-.396-.404V2.192l3.773 3.835H8.957z"></path>
-                      </svg>
-                    </div>
-                    <span>Choose files or drag & drop it here.</span>
-                    <span className={styles.warning}>
-                      Max 100Mb file is allowed.
+                    <img src="/assets/svg/upload.svg" />
+                    <span>
+                      Drag & drop it here <br /> or{" "}
+                      <span style={{ color: "brown", fontWeight: "bold" }}>
+                        browse files
+                      </span>
                     </span>
                   </div>
                 </>

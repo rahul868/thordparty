@@ -5,9 +5,13 @@ import { useEffect } from "react";
 import { Gcommonprovider } from "@/context/common_global";
 
 export default function App({ Component, pageProps }) {
+ 
+
   useEffect(() => {
     // window.addEventListener("DOMContentLoaded", () => {
     // listen mousedown event.
+
+    // Call the function to check cookies and navigate
     document.addEventListener("mousedown", (e) => {
       let nav_tab_element = "[data-g-popup-tab]";
       let check_for_internal_ele = e.target.closest("[data-g-popup-tab]");

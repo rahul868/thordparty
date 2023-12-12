@@ -24,15 +24,12 @@
 
 .alert_strip_container .paalert_container .content_block {
   margin-left: 10px;
-  line-height: 1.5;
   width: 250px;
 }
 .alert_strip_container .paalert_container .pa_icon {
-  width: 30px;
-  height: 30px;
-  border-radius: 50px;
+  width: 38px;
+  height: 38px;
   background-color: rgba(255, 255, 255, 0.5);
-  border: 1px solid white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,10 +40,10 @@
   overflow: hidden;
 }
 .alert_strip_container .paalert_container .alert_con2 {
-   font-size: 12px;
-   color: white;
+  font-size: 12px;
+  color: white;
+  padding-top: 3px;
 }
-
 
 .strip_active_animation {
   opacity: 1;
@@ -60,4 +57,39 @@
   font-weight: 600;
   animation: display_strip_content 400ms ease-in-out forwards;
   animation-delay: 0.8s;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.infinite_round_animation {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #ccc;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 2s linear infinite;
+}
+.static_success_circle {
+  border: 3px solid #ccc;
+  width: 38px;
+  height: 38px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.paalert_container .infinite_round_animation svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

@@ -83,6 +83,7 @@ const Rhsprovider = (props) => {
       }
       const files = await response.json();
       setfilemeta((prevFiles) => [groupobj, ...prevFiles]);
+      setcurrdoc(groupobj["childs"][0]);
       setpatype("s");
       setpamsg("Document processed successfully.");
       setpasecmsg(
