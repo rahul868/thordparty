@@ -8,7 +8,7 @@ import uuid from "react-uuid";
 import Search from "@/components/search/search";
 import { Lhscontext } from "@/context/lhsprovider";
 import Gpopup from "../reusable/gpopup";
-
+import Gpopupheader from "../reusable/gpopupheader";
 export default function Lheader() {
   const { filemeta } = useContext(Gcommoncontext);
   const { setSeperateFileLhs, setfilelhs } = useContext(Lhscontext);
@@ -19,6 +19,8 @@ export default function Lheader() {
 
   const targetElementRef = useRef();
   const profile_optElementRef = useRef();
+  // Popup states
+  const [issearch, setissearch] = useState(false);
 
   const handlefileuploading = async (e) => {
     e.preventDefault();
@@ -59,6 +61,9 @@ export default function Lheader() {
         setissortby(false);
         break;
       // Add more cases if needed
+      case "search":
+        setissearch(false);
+        break;
       default:
       // Handle default case if necessary
     }
@@ -124,7 +129,10 @@ export default function Lheader() {
           {filemeta?.length > 0 && (
             <>
               <div>
-                <div className={styles.header_ots}>
+                <div
+                  className={styles.header_ots}
+                  onClick={() => setissearch(true)}
+                >
                   <div>
                     <svg
                       fill="rgba(55, 53, 47, 0.45)"
@@ -331,6 +339,19 @@ export default function Lheader() {
             },
           ]}
         />
+      </Gpopup>
+      <Gpopup
+        id="doc-newchat"
+        isOpen={issearch}
+        onClose={() => handleClose("search")}
+      >
+        <>
+          <Gpopupheader
+            content={"Search Docs"}
+            close={() => handleClose("newchat")}
+          />
+          <Search close={() => handleClose("search")} />
+        </>
       </Gpopup>
     </>
   );

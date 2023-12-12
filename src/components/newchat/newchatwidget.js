@@ -250,18 +250,15 @@ function Rnewchat({ close }) {
                 </>
               ) : (
                 <>
-                  <div className={styles.upload_widget_title}>
-                    <span>
-                      Add your document here. You can add upto 5 files.
-                    </span>
-                  </div>
+                  <div className={styles.upload_widget_title}></div>
                   <div className={styles.icon_upload}>
                     <img src="/assets/svg/upload.svg" />
                     <span>
-                      Drag & drop it here <br /> or{" "}
+                      Drag & drop it here or <br />
                       <span style={{ color: "brown", fontWeight: "bold" }}>
                         browse files
                       </span>
+                      <br />
                     </span>
                   </div>
                 </>

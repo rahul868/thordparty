@@ -12,8 +12,10 @@ const Indicator = () => {
 
   if (gindicatormsg) {
     return (
-      <div className={`${styles.indicator_popup}`}>
-        <p>{gindicatormsg}</p>
+      <div className={styles.indicatorwrp}>
+        <div className={`${styles.indicator_popup}`}>
+          <p>{gindicatormsg}</p>
+        </div>
       </div>
     );
   }

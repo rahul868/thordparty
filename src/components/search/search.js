@@ -2,9 +2,9 @@ import styles from "@/styles/search/search.module.css";
 import { Gcommoncontext } from "@/context/common_global";
 import { useContext, useEffect, useState } from "react";
 import File from "../home/reusable/file";
-export default function Search() {
+export default function Search({close}) {
   const [searchtoken, setsearchtoken] = useState("");
-  const { filemeta, popup_closer } = useContext(Gcommoncontext);
+  const { filemeta } = useContext(Gcommoncontext);
   useEffect(() => {
     return () => {
       setsearchtoken("");
@@ -13,7 +13,7 @@ export default function Search() {
 
   function closesearch() {
     setsearchtoken("");
-    popup_closer();
+    close();
   }
 
   function sortrecentdocs(arr) {

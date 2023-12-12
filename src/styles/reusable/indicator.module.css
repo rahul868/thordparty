@@ -1,10 +1,12 @@
 /* IndicatorPopup.css */
-
+.indicatorwrp {
+  display: flex;
+  justify-content: center;
+}
 .indicator_popup {
   position: fixed;
   top: 25px;
-  right: 50%;
-  transform: translate(50%, 50%);
+  /* transform: translate(50%, 50%); */
   display: block;
   background-color: #28a745;
   color: #fff;
@@ -12,24 +14,16 @@
   border-radius: 5px;
   opacity: 1;
   min-width: 200px;
-  animation: indicator-an 500ms ease-out;
+  max-width: 250px;
+  animation: indicator-an 300ms ease-out;
   z-index: 1111;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 @keyframes indicator-an {
-  0% {
-    right: -100%;
-  }
-  100% {
-    right: 0;
-  }
-}
-
-@keyframes indicator-an {
   from {
     opacity: 0;
-    transform: translateY(-10%);
+    transform: translateY(-20%);
   }
   to {
     opacity: 1;

@@ -10,7 +10,7 @@ function Landingrhs() {
       <div className={styles.landing_rhs_sub_wrapper}>
         <div className={styles.landing_heading_part}>
           <div className={styles.welcome_root}>
-            <span className={styles.wel_desgine}>Welcome {user.name} in Documentia</span>
+            <span className={styles.wel_desgine}>Welcome you in Documentia!</span>
           </div>
           <div className={styles.heading_para}>
             Find and compare information across all your content.

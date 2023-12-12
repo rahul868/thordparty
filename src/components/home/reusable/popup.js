@@ -10,14 +10,11 @@ function Popup({
   title,
   callback,
 }) {
-  const { popup_closer } = useContext(Gcommoncontext);
 
   const popup_cutom_fun = () => {
     if (callback) {
       callback();
     }
-    // Close model
-    popup_closer();
   };
   return (
     <>
