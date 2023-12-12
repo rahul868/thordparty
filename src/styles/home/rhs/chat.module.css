@@ -13,7 +13,7 @@
 @media only screen and (max-width: 650px) {
   .rhs_chat_content .middle_wrapper_messages {
     max-height: calc(
-      100% - calc(var(--common-header-size) + var(--common-header-size) + 15px)
+      100% - calc(var(--common-header-size) + var(--common-header-size) + 10px)
     );
   }
 

@@ -16,7 +16,7 @@ const Gcommonprovider = (props) => {
   const [user, setuser] = useState({
     name:"Rahul Darekar",
     email:"ssatale@bigiota.ai"
-    // email:"rd1@gmail.com"
+    // email:"rd@gmail.com"
   });
 
   const [error, seterror] = useState(false);
