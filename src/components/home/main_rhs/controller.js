@@ -1,19 +1,68 @@
 import React, { useEffect } from "react";
 import styles from "../../../styles/home/rhs/controller.module.css";
+import control from "../../../styles/reusable/popup.module.css";
 
 export default function Controller() {
+  // function handleshowviwer() {
+  //   let docelement = document.getElementById("doc_wrapper");
+  //   let chatelement = document.getElementById("chat_wrapper");
+  //   docelement.style.display = "block";
+  //   chatelement.style.display = "none";
+  //   // docelement.classList.add(control.doc_show);
+  //   // chatelement.classList.remove(control.chat_show);
+  // }
+
+  // function handleshowchat() {
+  //   let docelement = document.getElementById("doc_wrapper");
+  //   let chatelement = document.getElementById("chat_wrapper");
+  //   docelement.style.display = "none";
+  //   chatelement.style.display = "block";
+  //   // docelement.classList.remove(control.doc_show);
+  //   // chatelement.classList.add(control.chat_show);
+  // }
+
   function handleshowviwer() {
     let docelement = document.getElementById("doc_wrapper");
     let chatelement = document.getElementById("chat_wrapper");
-    docelement.style.display = "block";
-    chatelement.style.display = "none";
+
+    function updateStyles() {
+      if (window.innerWidth <= 650) {
+        docelement.style.display = "block";
+        chatelement.style.display = "none";
+      } else {
+        docelement.style.display = "block";
+        chatelement.style.display = "block";
+      }
+    }
+
+    // Initial styles
+    updateStyles();
+
+    // Event listener for window resize
+    window.addEventListener("resize", updateStyles);
   }
 
   function handleshowchat() {
     let docelement = document.getElementById("doc_wrapper");
     let chatelement = document.getElementById("chat_wrapper");
-    docelement.style.display = "none";
-    chatelement.style.display = "block";
+
+    function updateStyles() {
+      if (window.innerWidth <= 650) {
+        docelement.style.display = "none";
+        chatelement.style.display = "block";
+      } else {
+        // Handle styles for inner width less than 650px
+        // You can modify this part based on your requirements
+        docelement.style.display = "block";
+        chatelement.style.display = "block";
+      }
+    }
+
+    // Initial styles
+    updateStyles();
+
+    // Event listener for window resize
+    window.addEventListener("resize", updateStyles);
   }
 
   function EnableHover() {

@@ -26,6 +26,7 @@ const Rhsprovider = (props) => {
 
   // Storage for actual file data uploaded which will remove after uploading.
   const [files, setfiles] = useState([]);
+  const [isresponding, setisresponding] = useState(false);
   const messagesContainerRef = useRef(null);
 
   // Chats state for storing chat API status and data
@@ -190,6 +191,8 @@ const Rhsprovider = (props) => {
         loading,
         setUserGroup,
         setSeperateFiles,
+        isresponding,
+        setisresponding,
       }}
     >
       {props.children}
