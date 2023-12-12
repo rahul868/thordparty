@@ -66,7 +66,7 @@ export default function Home() {
           </Rhsprovider>
         </main>
       </div>
-      {/* </Gcommonprovider> */}
+      <Alert />
     </>
   );
 }

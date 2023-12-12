@@ -90,7 +90,7 @@
   font-size: 13px;
   font-weight: 600;
   opacity: 0.9;
-  color: dodgerblue;
+  color: var(--app-color-code);
 }
 
 #app_logo {

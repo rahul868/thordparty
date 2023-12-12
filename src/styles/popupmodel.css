@@ -20,7 +20,7 @@
 
 .popup_container {
   position: fixed;
-  top: 100px;
+  top: 70px;
   left: 50%;
   opacity: 0;
   scale: 0.5;

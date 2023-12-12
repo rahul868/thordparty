@@ -13,7 +13,7 @@ export default function Button({
     <div className={styles.btn_wrapper}>
       <button
         style={{
-          background: !disable ? "dodgerblue" : "",
+          background: !disable ? "var(--app-color-code)" : "",
           color: !disable ? "white" : "",
         }}
         onClick={(e) => callthis(e)}

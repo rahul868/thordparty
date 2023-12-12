@@ -1,11 +1,13 @@
 :root {
+  /* Application main color */
+  --app-color-code: #4267b2;
   --common-header-size: 45px;
   --common-line-switching: 45px;
   --overlay-global-index: 100;
   --popup-global-index: 105;
 
   /* Color global variables */
-  --line-animation-color: dodgerblue;
+  --line-animation-color: var(--app-color-code);
 }
 
 * {

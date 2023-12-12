@@ -12,8 +12,17 @@ import { upload_doc } from "@/utils/fileuploading";
 const Rhscontext = createContext();
 const Rhsprovider = (props) => {
   //Global context
-  const { user, currdoc, setcurrdoc, setfilemeta, setgindicatormsg } =
-    useContext(Gcommoncontext);
+  const {
+    user,
+    currdoc,
+    setcurrdoc,
+    setfilemeta,
+    setgindicatormsg,
+    setpamsg,
+    setpastatus,
+    setpatype,
+    setpasecmsg,
+  } = useContext(Gcommoncontext);
 
   // Storage for actual file data uploaded which will remove after uploading.
   const [files, setfiles] = useState([]);
@@ -23,11 +32,6 @@ const Rhsprovider = (props) => {
   const [SavedMessages, setSavedMessages] = useState([]);
   const [loading, setloading] = useState(true);
   const [error, seterror] = useState(null);
-
-  // group creation for storing chat API status and data
-  const [gastatus, setgastatus] = useState(false);
-  const [gamsg, setgamsg] = useState("");
-  const [gatype, setgatype] = useState("l");
 
   const [chatsetting, setchatsetting] = useState({
     response_mode: "efficient",
@@ -58,7 +62,10 @@ const Rhsprovider = (props) => {
 
   // Function for sending created group to backend for persistent purpose.
   const setUserGroup = async (groupobj) => {
-    setgaloading(true);
+    setpastatus(true);
+    setpatype("l");
+    setpamsg("Document is processing please wait...");
+    setpasecmsg(`0 / ${groupobj.childs.length} Uploaded successfully.`);
     try {
       // Simulate API call for user file metadata
       const response = await fetch(
@@ -76,20 +83,24 @@ const Rhsprovider = (props) => {
       }
       const files = await response.json();
       setfilemeta((prevFiles) => [groupobj, ...prevFiles]);
-      setgasuccess(true);
-      setTimeout(() => {
-        setgasuccess(false);
-        setgaerror(false);
-      }, 4000);
+      setpatype("s");
+      setpamsg("Document processed successfully.");
+      setpasecmsg(
+        `${groupobj.childs.length} / ${groupobj.childs.length} Uploaded successfully.`
+      );
       return { success: true };
     } catch (err) {
-      setgaerror(err.message);
-      setTimeout(() => {
-        setgaerror(false);
-      }, 4000);
+      setpatype("e");
+      setpamsg("Something went wrong please try again.");
+      setpasecmsg(`0 / ${groupobj.childs.length} Uploaded successfully.`);
       return { success: false };
     } finally {
-      setgaloading(false);
+      setTimeout(() => {
+        setpastatus(false);
+        setpatype("l");
+        setpamsg("");
+        setpasecmsg("");
+      }, 4000);
     }
   };
 
@@ -100,9 +111,10 @@ const Rhsprovider = (props) => {
   };
 
   const setSeperateFiles = async (files) => {
-    setgastatus(true);
-    setgatype("l");
-    setgamsg("Document is processing please wait...");
+    setpastatus(true);
+    setpatype("l");
+    setpamsg("Document is processing please wait...");
+    setpasecmsg(`0 / ${files.length} Uploaded successfully.`);
     try {
       // Simulate API call for user file metadata
       const response = await fetch(
@@ -118,30 +130,25 @@ const Rhsprovider = (props) => {
       if (!response.ok) {
         throw new Error("Failed to update group");
       }
-      const result = await response.json();
+      await response.json();
       setfilemeta((prevFiles) => [...files, ...prevFiles]);
       setcurrdoc(files[0]);
-      setgatype("s");
-      setgamsg("Document processed successfully.");
-      setTimeout(() => {
-        setgastatus(false);
-        setgatype("l");
-        setgamsg("");
-      }, 4000);
+      setpatype("s");
+      setpamsg("Document processed successfully.");
+      setpasecmsg(`${files.length} / ${files.length} Uploaded successfully.`);
       return { success: true };
     } catch (err) {
-      setgatype("e");
-      setgamsg("Something went wrong please try again.");
-      setTimeout(() => {
-        setgastatus(false);
-        setgatype("l");
-        setgamsg("");
-      }, 4000);
+      setpatype("e");
+      setpamsg("Something went wrong please try again.");
+      setpasecmsg(`0 / ${files.length} Uploaded successfully.`);
       return { success: false };
     } finally {
-      // setgastatus(false);
-      // setgatype("l");
-      // setgamsg("");
+      setTimeout(() => {
+        setpastatus(false);
+        setpatype("l");
+        setpamsg("");
+        setpasecmsg("");
+      }, 4000);
     }
   };
 
@@ -182,9 +189,6 @@ const Rhsprovider = (props) => {
         error,
         loading,
         setUserGroup,
-        gastatus,
-        gamsg,
-        gatype,
         setSeperateFiles,
       }}
     >

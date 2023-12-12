@@ -321,7 +321,7 @@ export default function Rheader() {
                 New chat
               </span>
             </div>
-            <Popup title={"Upload Files"} custom_styles_width={{ header: 500 }}>
+            <Popup title={"Upload Files"} custom_styles_width={{ header: 500,minWidth:350 }}>
               <Rnewchat />
             </Popup>
           </div>

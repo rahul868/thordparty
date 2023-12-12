@@ -37,7 +37,7 @@
   align-items: center;
   cursor: pointer;
   border-radius: 5px;
-  background: dodgerblue;
+  background: var(--app-color-code);
 }
 .spaecialtab:hover {
   opacity: 0.8;

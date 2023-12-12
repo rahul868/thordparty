@@ -8,18 +8,10 @@ import Button from "../home/reusable/button";
 import uuid from "react-uuid";
 
 function Rnewchat() {
-  const Gcontext = useContext(Gcommoncontext);
+  const { popup_closer, limit_string } = useContext(Gcommoncontext);
   const Rcontext = useContext(Rhscontext);
 
-  const {
-    files,
-    setfiles,
-    setUserGroup,
-    setSeperateFiles,
-    gaerror,
-    galoading,
-    gasuccess,
-  } = Rcontext;
+  const { files, setfiles, setUserGroup, setSeperateFiles } = Rcontext;
 
   const { dragfunc } = useDragandDrop();
   const [grpname, setGrpname] = useState("");
@@ -28,13 +20,6 @@ function Rnewchat() {
   useEffect(() => {
     dragfunc(files);
   }, [files]);
-
-  const closedocpopup = () => {
-    document.querySelectorAll("[data-g-navbar-flyer]").forEach((ele) => {
-      ele.classList.remove("popup_container_active");
-    });
-    document.querySelector("#overlay").classList.remove("active_overlay");
-  };
 
   const handleFileChange = (e) => {
     if (files.length > 0) {
@@ -53,6 +38,12 @@ function Rnewchat() {
     e.stopPropagation();
     const newarr = [...files];
     newarr.splice(i, 1);
+    if (newarr.length <= 0) {
+      setfiles([]);
+      setGrpname("");
+      setisGroup(false);
+      return;
+    }
     setfiles(newarr);
   }
 
@@ -62,6 +53,8 @@ function Rnewchat() {
 
   async function addGroupfile(e) {
     e.preventDefault();
+    popup_closer();
+
     let date = Date.now();
     let newSavedchatadded = [];
     for (let i = 0; i < files.length; i++) {
@@ -94,6 +87,7 @@ function Rnewchat() {
 
   async function addSingelfile(e) {
     e.preventDefault();
+    popup_closer();
     let date = Date.now();
     let newSavedchatadded = [];
     for (let i = 0; i < files.length; i++) {
@@ -107,7 +101,6 @@ function Rnewchat() {
         creation: date,
       });
     }
-    closedocpopup();
     await setSeperateFiles(newSavedchatadded);
     // clear all
     setfiles([]);
@@ -115,35 +108,6 @@ function Rnewchat() {
     setisGroup(false);
   }
 
-  if (gaerror) {
-    return (
-      <div style={{ padding: 20, fontSize: 13 }}>
-        Something is going wrong. Please try again.
-      </div>
-    );
-  }
-  if (galoading) {
-    return (
-      <div style={{ padding: 20, fontSize: 13 }}>
-        Processing and creating group chat for you. Please wait...
-      </div>
-    );
-  }
-
-  if (gasuccess) {
-    return (
-      <div
-        style={{
-          padding: 20,
-          fontSize: 13,
-          color: "white",
-          background: "green",
-        }}
-      >
-        Documents processed successfully.
-      </div>
-    );
-  }
   return (
     <>
       <div className={styles.right_create_chat}>
@@ -170,7 +134,7 @@ function Rnewchat() {
                     <div className={styles.uplaod_sub_indicator}>
                       <div className={styles.from_files_show_all}>
                         <div className={styles.check}>
-                          <h3>{files.length} Documents Selected</h3>
+                          <label>{files.length} Documents Selected</label>
                           <span>Click anywhere in widget to select more</span>
                         </div>
                         {files?.map((item, index) => (
@@ -192,26 +156,42 @@ function Rnewchat() {
                                   <path d="M4.35645 15.4678H11.6367C13.0996 15.4678 13.8584 14.6953 13.8584 13.2256V7.02539C13.8584 6.0752 13.7354 5.6377 13.1406 5.03613L9.55176 1.38574C8.97754 0.804688 8.50586 0.667969 7.65137 0.667969H4.35645C2.89355 0.667969 2.13477 1.44043 2.13477 2.91016V13.2256C2.13477 14.7021 2.89355 15.4678 4.35645 15.4678ZM4.46582 14.1279C3.80273 14.1279 3.47461 13.7793 3.47461 13.1436V2.99219C3.47461 2.36328 3.80273 2.00781 4.46582 2.00781H7.37793V5.75391C7.37793 6.73145 7.86328 7.20312 8.83398 7.20312H12.5186V13.1436C12.5186 13.7793 12.1836 14.1279 11.5205 14.1279H4.46582ZM4.95703 6.02734C4.67676 6.02734 4.56055 5.9043 4.56055 5.62402V2.19238L8.334 6.02734H4.95703ZM10.4336 9.00098H5.42969C5.16992 9.00098 4.98535 9.19238 4.98535 9.43164C4.98535 9.67773 5.16992 9.86914 5.42969 9.86914H10.4336C10.6797 9.86914 10.8643 9.67773 10.8643 9.43164C10.8643 9.19238 10.6797 9.00098 10.4336 9.00098ZM10.4336 11.2979H5.42969C5.16992 11.2979 4.98535 11.4893 4.98535 11.7354C4.98535 11.9746 5.16992 12.1592 5.42969 12.1592H10.4336C10.6797 12.1592 10.8643 11.9746 10.8643 11.7354C10.8643 11.4893 10.6797 11.2979 10.4336 11.2979Z"></path>
                                 </svg>
                               </div>
-                              <span>{item.name}</span>
+                              <span>{limit_string(item.name, 22)}</span>
                             </div>
                             <span
                               className={styles.close_file}
                               onClick={(e) => removeDoc(e, index)}
                             >
-                              &times;
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="rgba(55, 53, 47, 0.85)"
+                                style={{
+                                  width: 16,
+                                  height: 16,
+                                  WebkitFlexShrink: "0",
+                                  MsFlexShrink: "0",
+                                  flexShrink: "0",
+                                }}
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  fill="#0F0F0F"
+                                  d="M6.995 7.006a1 1 0 000 1.415l3.585 3.585-3.585 3.585a1 1 0 101.414 1.414l3.585-3.585 3.585 3.585a1 1 0 001.415-1.414l-3.586-3.585 3.586-3.585a1 1 0 00-1.415-1.415l-3.585 3.585L8.41 7.006a1 1 0 00-1.414 0z"
+                                ></path>
+                              </svg>
                             </span>
                           </div>
                         ))}
                       </div>
                       <div className={styles.two_btns_uploading}>
-                        <div>
+                        <div className={styles.two_btns}>
                           <div className={styles.conditon_upload}>
                             <input
                               type="checkbox"
                               value={grpname}
                               onChange={simple}
                             />
-                            <span>upload all docs as a Group Chat</span>
+                            <span>Upload all docs as a Group Chat</span>
                           </div>
                           <br />
                           {isGroup ? (

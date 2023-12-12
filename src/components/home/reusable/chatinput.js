@@ -314,7 +314,7 @@ export default function Rchatinput() {
             <div
               onClick={(e) => sendbtnquery(e)}
               style={{
-                background: "dodgerblue",
+                background: "var(--app-color-code)",
                 borderRadius: 5,
                 cursor: "pointer",
                 width: 30,
