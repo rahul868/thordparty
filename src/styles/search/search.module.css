@@ -1,6 +1,6 @@
 .searchwrapper {
-  padding: 12px;
-  max-height: 400px;
+  padding: 5px 12px 0px 12px;
+  max-height: var(--searchpopup-component);
   min-width: 310px;
   max-width: 400px;
 }
@@ -32,16 +32,16 @@
   height: 100%;
 }
 
-.foundresult_wrapper {
-}
 .foundresult_wrapper .founded_grpname {
   font-size: 12px;
   padding: 2px 33px;
 }
 .searchwrapper .searchsubwrapper .result_wrapper .results {
-  height: calc(100% - 80px);
+  height: calc(var(--searchpopup-component) - 95px);
   overflow-y: auto;
 }
 .searchwrapper .searchsubwrapper .result_wrapper .result_title {
-  margin: 0px 0px 10px 0px;
+  margin: 10px 0px 10px 0px;
+  font-size: 13px;
+  font-weight: 500;
 }

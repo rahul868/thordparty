@@ -13,8 +13,8 @@ export default function Gpopupheader({ content, close, c_style, t_style }) {
             xmlns="http://www.w3.org/2000/svg"
             fill="rgba(55, 53, 47, 0.85)"
             style={{
-              width: 16,
-              height: 16,
+              width: 18,
+              height: 18,
               WebkitFlexShrink: "0",
               MsFlexShrink: "0",
               flexShrink: "0",

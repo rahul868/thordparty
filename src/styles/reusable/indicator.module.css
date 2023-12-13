@@ -16,7 +16,7 @@
   min-width: 200px;
   max-width: 250px;
   animation: indicator-an 300ms ease-out;
-  z-index: 1111;
+  z-index: calc(var(--overlay-global-index) + 10);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -33,6 +33,7 @@
 
 .indicator_popup p {
   font-size: 13px;
-  font-weight: bold;
+  font-weight: 500;
+  letter-spacing: 1px;
   text-align: center;
 }

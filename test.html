@@ -27,15 +27,15 @@
           const data = await response.json();
           const presignedUrl = data.presigned_url_for_upload;
           console.log(presignedUrl);
-          const uploadResponse = await fetch("https://documentia.s3.amazonaws.com/ssatale%40bigiota.ai/a2.pdf?AWSAccessKeyId=AKIAVLZAONZM75KO2JV4&Signature=6sDGm75hfMxowXVKWuJ12PJTokg%3D&Expires=1702063353", {
+          const uploadResponse = await fetch(presignedUrl, {
             method: "PUT",
             body: file,
             headers: {
-              "Content-Type":"application/pdf",
+              "Content-Type": "application/pdf",
             },
           });
-
-          console.log("File uploaded successfully:", uploadResponse);
+          let r = await uploadResponse.json();
+          console.log("File uploaded successfully:", r);
         });
     </script>
   </body>

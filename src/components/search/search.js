@@ -2,7 +2,7 @@ import styles from "@/styles/search/search.module.css";
 import { Gcommoncontext } from "@/context/common_global";
 import { useContext, useEffect, useState } from "react";
 import File from "../home/reusable/file";
-export default function Search({close}) {
+export default function Search({ close }) {
   const [searchtoken, setsearchtoken] = useState("");
   const { filemeta } = useContext(Gcommoncontext);
   useEffect(() => {
@@ -74,6 +74,7 @@ export default function Search({close}) {
             className={styles.docsearch_input}
           />
         </div>
+
         {!searchtoken ? (
           <div className={styles.result_wrapper}>
             <div className={styles.result_title}>Recently access docs</div>
@@ -99,7 +100,9 @@ export default function Search({close}) {
                 <div className={styles.foundresult_wrapper}>
                   <File callback={closesearch} file={file} key={index} />
                   {file.gname ? (
-                    <span className={styles.founded_grpname}>From group {file.gname}</span>
+                    <span className={styles.founded_grpname}>
+                      From group {file.gname}
+                    </span>
                   ) : (
                     <></>
                   )}

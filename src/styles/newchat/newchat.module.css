@@ -42,12 +42,13 @@
   gap: 0.7rem;
 }
 .icon_upload img {
-  width: 250px;
+  width: 100%;
 }
 .icon_upload span {
   font-size: 14px;
   text-align: center;
   letter-spacing: 1px;
+  line-height: 1.6;
 }
 .icon_upload .warning {
   font-size: 14px;

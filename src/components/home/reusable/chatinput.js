@@ -6,7 +6,7 @@ import Popuplist from "./popuplist";
 import { Gcommoncontext } from "@/context/common_global";
 export default function Rchatinput() {
   const [query, setquery] = useState("");
-  const { setSavedMessages, isresponding, setisresponding } =
+  const { setSavedMessages, isresponding, setisresponding, chatsetting } =
     useContext(Rhscontext);
 
   const { currdoc, user } = useContext(Gcommoncontext);
@@ -172,7 +172,13 @@ export default function Rchatinput() {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/chat?email=${user.email}&prompt=${
           promptobj.summary
-        }&fileid=${currdoc.id}&filename=${currdoc.name}&chat_type=${"QnA"}`
+        }&fileid=${currdoc.id}&filename=${
+          currdoc.name
+        }&chat_type=${"QnA"}&responsemode=${
+          chatsetting.response_mode
+        }&answerlength=${chatsetting.answers_length}&contentsource=${
+          chatsetting.content_source
+        }`
       );
       if (!response.ok) {
         throw new Error("Failed to update group");

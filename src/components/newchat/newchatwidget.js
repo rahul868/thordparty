@@ -7,9 +7,8 @@ import { Gcommoncontext } from "@/context/common_global";
 import Button from "../home/reusable/button";
 import uuid from "react-uuid";
 
-function Rnewchat({ close }) {
-  const { popup_closer, limit_string, setgindicatormsg } =
-    useContext(Gcommoncontext);
+function Rnewchat() {
+  const { limit_string } = useContext(Gcommoncontext);
   const Rcontext = useContext(Rhscontext);
 
   const { files, setfiles, setUserGroup, setSeperateFiles } = Rcontext;
@@ -23,28 +22,30 @@ function Rnewchat({ close }) {
   }, [files]);
 
   const handleFileChange = (e) => {
-    const maxFiles = 4;
+    const maxFiles = 5;
 
     // Check if the total number of files doesn't exceed the limit
-    if (e.target.files.length > maxFiles) {
-      setgindicatormsg({
-        msg: "You can only select up to 5 files.",
-        type: "error",
-      });
-      return;
+    if (files.length < maxFiles) {
+      let newAddedFiles = Array.from(files);
+
+      // Calculate the remaining slots for files
+      const remainingSlots = maxFiles - newAddedFiles.length;
+
+      // Add files up to the remaining available slots
+      for (
+        let i = 0;
+        i < Math.min(e.target.files.length, remainingSlots);
+        i++
+      ) {
+        newAddedFiles.push(e.target.files[i]);
+      }
+
+      // Update the state with the new files
+      setfiles(newAddedFiles);
+    } else {
+      // Display an error or some indication that the limit is reached
+      console.log("You can only select up to 5 files.");
     }
-    let newAddedFiles = Array.from(files);
-
-    // Calculate the remaining slots for files
-    const remainingSlots = maxFiles - newAddedFiles.length;
-
-    // Add files up to the remaining available slots
-    for (let i = 0; i < Math.min(e.target.files.length, remainingSlots); i++) {
-      newAddedFiles.push(e.target.files[i]);
-    }
-
-    // Update the state with the new files
-    setfiles(newAddedFiles);
   };
 
   function removeDoc(e, i) {
@@ -67,7 +68,6 @@ function Rnewchat({ close }) {
 
   async function addGroupfile(e) {
     e.preventDefault();
-    close();
 
     let date = Date.now();
     let newSavedchatadded = [];
@@ -101,7 +101,6 @@ function Rnewchat({ close }) {
 
   async function addSingelfile(e) {
     e.preventDefault();
-    close();
     let date = Date.now();
     let newSavedchatadded = [];
     for (let i = 0; i < files.length; i++) {

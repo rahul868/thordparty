@@ -7,6 +7,8 @@
   --overlay-global-index: 100;
   --popup-global-index: 105;
 
+  /* Height variables */
+  --searchpopup-component: 400px;
   /* Color global variables */
   --line-animation-color: var(--app-color-code);
 }
@@ -20,11 +22,16 @@
 
 html,
 body {
+  box-sizing: border-box;
   max-width: 100vw;
   font-family: "Inter", sans-serif;
   overflow: hidden;
 }
-
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 *::-webkit-scrollbar-track {
   border-radius: 10px;
 }

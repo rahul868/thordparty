@@ -29,3 +29,8 @@
   visibility: visible !important;
   transform: translateX(0%) !important;
 }
+
+.popup_overlay_active {
+  opacity: 1 !important;
+  pointer-events: auto; /* Enable pointer events when visible */
+}

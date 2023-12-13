@@ -25,18 +25,29 @@
 .landing_heading_part .welcome_root .wel_desgine {
   font-size: 45px;
   font-weight: bold;
+
+}
+
+.landing_heading_part .welcome_root .wel_desgine2 {
+  font-size: 35px;
+  margin: 14px 0px;
+  font-weight: bold;
+  color: #666;
+  opacity: .9;
 }
 
 .landing_heading_part .welcome_root .heading_para {
   color: #666;
   font-size: 20px;
+  opacity: .8;
 }
 
 .landing_upload_area {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  max-width: 500px;
+  width: 400x;
+  max-width: 450px;
 }
 
 .landing_upload_area .adv_para {

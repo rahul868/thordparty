@@ -2,9 +2,8 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styles from "../../../styles/gpopup.module.css";
-import Gpopupheader from "./gpopupheader";
 
-const Gpopup = ({ id, isOpen, onClose, targetElement, children, name }) => {
+const Gpopup = ({ id, isOpen, onClose, targetElement, children, c_ostyle }) => {
   const [position, setPosition] = useState({ top: 0, left: 0 });
 
   const handleOverlayClick = (e) => {
@@ -23,9 +22,6 @@ const Gpopup = ({ id, isOpen, onClose, targetElement, children, name }) => {
       const targetRect = targetElement.getBoundingClientRect();
       const top = targetRect.bottom + window.scrollY;
       const left = targetRect.left + window.scrollX;
-
-      console.log(top, left);
-
       return { top, left };
     };
 
@@ -41,8 +37,11 @@ const Gpopup = ({ id, isOpen, onClose, targetElement, children, name }) => {
   return (
     <>
       <div
+        style={c_ostyle}
         data-popup-overlay={`${id}`}
-        className={styles.popup_overlay}
+        className={`${styles.popup_overlay} ${
+          isOpen ? "popup_overlay_active" : ""
+        }`}
         onClick={handleOverlayClick}
       >
         <div

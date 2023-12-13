@@ -10,6 +10,7 @@ import Setting from "../setting";
 import Feedback from "../reusable/feedback";
 import Gpopup from "../reusable/gpopup";
 import Gpopupheader from "../reusable/gpopupheader";
+import Indicator from "../reusable/indicator";
 
 export default function Rheader() {
   const { currdoc, limit_string } = useContext(Gcommoncontext);
@@ -18,6 +19,7 @@ export default function Rheader() {
   const [isMenu, setisMenu] = useState(false);
 
   const [isnewchat, setisnewchat] = useState(false);
+  const [issave, setissave] = useState(false);
   const [isreset, setisreset] = useState(false);
   const [issetting, setissetting] = useState(false);
   const [isfeedback, setisfeedback] = useState(false);
@@ -72,6 +74,14 @@ export default function Rheader() {
     } else {
       dropelement.style.display = "block";
     }
+  }
+
+  function save_call() {
+    setissave(true);
+    save_chats_local(currdoc.name);
+    setTimeout(() => {
+      setissave(false);
+    }, 5000);
   }
 
   useEffect(() => {
@@ -178,10 +188,7 @@ export default function Rheader() {
           g_nav_header_tab
           className={styles.g_header_navbar_wrapper}
         >
-          <div
-            onClick={() => save_chats_local(currdoc.name)}
-            className={styles.dropdown_block}
-          >
+          <div onClick={() => save_call()} className={styles.dropdown_block}>
             <span>
               <svg
                 fill="rgba(55, 53, 47, 0.85)"
@@ -206,6 +213,11 @@ export default function Rheader() {
             >
               Save
             </span>
+            <Indicator
+              isOpen={issave}
+              type={"s"}
+              msg={"Chats saved successfully."}
+            />
           </div>
           <div>
             <div
@@ -620,7 +632,7 @@ export default function Rheader() {
         onClose={() => handleClose("setting")}
       >
         <Gpopupheader
-          content={"Chat Experince"}
+          content={"Chat Experience"}
           close={() => handleClose("setting")}
         />
         <Setting close={() => handleClose("setting")} />

@@ -80,8 +80,8 @@
 }
 .rhs_header_content .document_intro span {
   font-size: 12px;
-  font-weight: 500;
-  color: rgb(107, 107, 107);
+  font-weight: 400;
+  color: #666;
 }
 .rhs_header_content h2 {
   font-size: 15px;

@@ -4,7 +4,7 @@ const Gcommoncontext = createContext();
 const Gcommonprovider = (props) => {
   const [user, setuser] = useState({
     name: "Rahul Darekar",
-    email: "ssatale@bigiota.ai",
+    email:"ssatale@bigiota.ai"
     // email: "rd@gmail.com",
   });
 
@@ -16,12 +16,12 @@ const Gcommonprovider = (props) => {
 
   // Progress Alert
   const [pastatus, setpastatus] = useState(false);
-  const [pamsg, setpamsg] = useState("Uploading in progress...");
+  const [pamsg, setpamsg] = useState("");
   const [pasecmsg, setpasecmsg] = useState("0 / 0 Uploaded successfully.");
   const [patype, setpatype] = useState("e");
 
   // Indicator popup
-  const [gindicatormsg, setgindicatormsg] = useState("");
+  const [gindicatormsg, setgindicatormsg] = useState(null);
 
   function limit_string(text, maxLength) {
     // Split the text into words
@@ -96,7 +96,7 @@ const Gcommonprovider = (props) => {
     >
       {props.children}
     </Gcommoncontext.Provider>
-  );
+  );  
 };
 
 export { Gcommoncontext, Gcommonprovider };

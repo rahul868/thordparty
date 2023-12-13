@@ -53,7 +53,11 @@ export default function Rmessages() {
             </div>
           );
         })}
-        {isresponding && <Rmsgloader loader={Loader} />}
+        {isresponding && (
+          <Rmsgloader>
+            <Loader c_styles={{ background: "#444" }} />
+          </Rmsgloader>
+        )}
       </div>
     </>
   );

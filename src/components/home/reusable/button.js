@@ -1,10 +1,13 @@
 import styles from "@/styles/reusable/btn.module.css";
+import Loader from "./loader";
+
 export default function Button({
   disable,
   callback,
   title,
   cstyles,
   className,
+  loading,
 }) {
   const callthis = (e) => {
     callback(e);
@@ -17,9 +20,9 @@ export default function Button({
           color: !disable ? "white" : "",
         }}
         onClick={(e) => callthis(e)}
-        disabled={disable}
+        disabled={disable || loading}
       >
-        {title}
+        {loading ? <Loader c_styles={{ background: "white" }} /> : title}
       </button>
     </div>
   );

@@ -1,17 +1,16 @@
 import styles from "@/styles/home/rhs/model.module.css";
-import Namemodel from "./namemodel";
-import { Gcommoncontext } from "@/context/common_global";
-import { useContext } from "react";
-// import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
-// import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
-// import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { useState } from "react";
+import Indicator from "./indicator";
 
 function Rmodelmsg({ msg }) {
-  const { setgindicatormsg } = useContext(Gcommoncontext);
+  const [iscopy, setiscopy] = useState(false);
   function copylink(msg) {
     // Copy the text inside the text field
-    setgindicatormsg("Answer is copied");
     navigator.clipboard.writeText(msg);
+    setiscopy(true);
+    setTimeout(() => {
+      setiscopy(false);
+    }, 5000);
   }
 
   return (
@@ -62,6 +61,11 @@ function Rmodelmsg({ msg }) {
               >
                 <path d="M2.839 12.152H4v1.033c0 1.456.759 2.214 2.242 2.214h6.918c1.477 0 2.242-.758 2.242-2.214V6.212c0-1.456-.765-2.215-2.242-2.215H12V2.965c0-1.456-.766-2.215-2.242-2.215H2.839C1.362.75.597 1.502.597 2.965V9.93c0 1.463.765 2.221 2.242 2.221zm.082-1.34c-.636 0-.984-.328-.984-.99v-6.74c0-.664.348-.999.984-.999h6.76c.63 0 .985.335.985.998v.916H6.243c-1.483 0-2.242.759-2.242 2.215v4.6h-1.08zm3.397 3.248c-.635 0-.977-.329-.977-.992v-6.74c0-.663.342-.991.977-.991h6.761c.629 0 .984.328.984.991v6.74c0 .663-.355.992-.984.992H6.32z"></path>
               </svg>
+              <Indicator
+                isOpen={iscopy}
+                type={"s"}
+                msg={"Message copied to clipboard."}
+              />
             </span>
           </div>
 

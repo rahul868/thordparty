@@ -61,6 +61,33 @@ const Rhsprovider = (props) => {
     }
   };
 
+  // Function for updating lastaccesstime of individual doc
+  const updateLastAcces = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/document_update`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json", // content type based on your API requirements
+          },
+          body: JSON.stringify({
+            email_id: user.email,
+            fileid: currdoc.id,
+            lastedittimestamp: Date.now().toString(),
+          }),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to update lastaccess time for doc.");
+      }
+      const chats_data = await response.json();
+    } catch (err) {
+      console.log("while updating lastaccess time of doc", err.message);
+      // seterror(err.message);
+    }
+  };
+
   // Function for sending created group to backend for persistent purpose.
   const setUserGroup = async (groupobj) => {
     setpastatus(true);
@@ -155,10 +182,14 @@ const Rhsprovider = (props) => {
   };
 
   useEffect(() => {
-    if (currdoc) {
-      setloading(true);
-      fetchFileChats();
-    }
+    const fetchData = async () => {
+      if (currdoc) {
+        await fetchFileChats();
+        updateLastAcces();
+      }
+    };
+
+    fetchData();
   }, [currdoc]);
 
   const save_chats_local = (currfile) => {
@@ -194,6 +225,7 @@ const Rhsprovider = (props) => {
         setSeperateFiles,
         isresponding,
         setisresponding,
+        chatsetting,
       }}
     >
       {props.children}

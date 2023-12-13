@@ -12,6 +12,7 @@ import { useContext } from "react";
 import Indicator from "@/components/home/reusable/indicator";
 import Splash from "@/components/home/reusable/splashscreen";
 import Gpopup from "@/components/home/reusable/gpopup";
+import FileUpload from "@/components/home/reusable/fileuploading";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -48,7 +49,7 @@ export default function Home() {
         alerttype={alerttype}
         alertmsg={alertmsg}
       /> */}
-      <Indicator message={gindicatormsg} />
+      {/* <Indicator message={gindicatormsg} /> */}
       {/* <Alert msg="Hello this is testing" /> */}
       {/* Main home page template which can include  */}
       {/* <Gcommonprovider> */}
@@ -68,15 +69,20 @@ export default function Home() {
         {/* RHS SECTION */}
         <main data-sec-rhswrapper className={styles.main_rhs_container}>
           <Rhsprovider>
-            <Rhswrapper />
-            <Gpopup
-              id="doc-landingwidget"
-              isOpen={filemeta.length <= 0 ? true : false}
-              onClose={() => null}
-            >
-              <Landingrhs />
-            </Gpopup>
-            {/* {filemeta.length !== 0 ? <Rhswrapper /> : <Landingrhs />} */}
+            {/* <Rhswrapper /> */}
+            {/* {filemeta.length <= 0 ? (
+              <Gpopup
+                id="doc-landingwidget"
+                c_ostyle={{ backdropFilter: "blur(2px)" }}
+                isOpen={filemeta.length <= 0 ? true : false}
+                onClose={() => null}
+              >
+                <Landingrhs />
+              </Gpopup>
+            ) : (
+              <></>
+            )} */}
+            <FileUpload />
           </Rhsprovider>
         </main>
       </div>
