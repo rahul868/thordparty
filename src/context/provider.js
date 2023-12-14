@@ -7,7 +7,6 @@ import {
   useEffect,
 } from "react";
 import { Gcommoncontext } from "./common_global";
-import { upload_doc } from "@/utils/fileuploading";
 
 const Rhscontext = createContext();
 const Rhsprovider = (props) => {
@@ -270,7 +269,9 @@ const Rhsprovider = (props) => {
 
   const save_tofiles = () => {
     let fileName = `${currdoc.name.split(".")[0]}_chats.txt`;
-    const blob = new Blob([JSON.stringify(SavedMessages)], { type: "text/plain" });
+    const blob = new Blob([JSON.stringify(SavedMessages)], {
+      type: "text/plain",
+    });
     const a = document.createElement("a");
     const url = URL.createObjectURL(blob);
 
