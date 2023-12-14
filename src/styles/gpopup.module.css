@@ -50,6 +50,25 @@
     transform: scale(0.8) translateY(-8%);
   }
 }
+/* @keyframes bottom-up {
+  from {
+    opacity: 0.5;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+} */
+
+/* Closing Animation */
+.popup_content.close_animation {
+  transform: translateY(100%);
+}
+
+.popup_content.close_animation_active {
+  transform: translateY(0%);
+}
 
 /* Mobile view set up popup */
 @media only screen and (max-width: 550px) {
@@ -64,5 +83,6 @@
     border-bottom-left-radius: unset;
     border-bottom-right-radius: unset;
     animation: unset;
+    transition: 0.5s all;
   }
 }
