@@ -34,12 +34,11 @@ const Rhsprovider = (props) => {
   const [loading, setloading] = useState(true);
   const [error, seterror] = useState(null);
 
-  const [chatsetting, setchatsetting] = useState({
-    response_mode: "efficient",
-    answers_length: "medium",
-    content_source: "focused",
-    text_size: "normal",
-  });
+  const [settinglang, setsettinglang] = useState("Auto-detect");
+  const [settingmode, setsettingmode] = useState("efficient");
+  const [settinglength, setsettinglength] = useState("medium");
+  const [settingsource, setsettingsource] = useState("focused");
+  const [settingsize, setsettingsize] = useState("normal");
 
   // Function for fetching chat hostory of individual doc
 
@@ -225,7 +224,16 @@ const Rhsprovider = (props) => {
         setSeperateFiles,
         isresponding,
         setisresponding,
-        chatsetting,
+        settinglang,
+        setsettinglang,
+        settingmode,
+        setsettingmode,
+        settinglength,
+        setsettinglength,
+        settingsource,
+        setsettingsource,
+        settingsize,
+        setsettingsize,
       }}
     >
       {props.children}

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -37,6 +37,69 @@
           let r = await uploadResponse.json();
           console.log("File uploaded successfully:", r);
         });
+    </script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Responsive Dropdown</title>
+    <style>
+      /* Styles for the dropdown container */
+      .dropdown-container {
+        position: fixed;
+        bottom: 0; /* Start at the bottom */
+        left: 0;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out, transform 0.3s ease-out;
+        background-color: #fff; /* Adjust as needed */
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Adjust as needed */
+      }
+
+      /* Styles for the dropdown content */
+      .dropdown-content {
+        padding: 10px;
+        /* Additional styles for your dropdown content */
+      }
+
+      /* Styles for the dropdown trigger button */
+      .dropdown-trigger {
+        /* Add styles for your dropdown trigger button */
+        cursor: pointer;
+      }
+
+      /* Add this class to the dropdown-container when active */
+      .dropdown-active {
+        max-height: 200px; /* Adjust as needed based on content */
+        transform: translateY(-100%); /* Move the dropdown up */
+      }
+    </style>
+  </head>
+  <body>
+    <button class="dropdown-trigger" onclick="toggleDropdown()">
+      Open Dropdown
+    </button>
+
+    <div class="dropdown-container" id="myDropdown">
+      <div class="dropdown-content">
+        <!-- Add your dropdown content here -->
+        <p>Item 1</p>
+        <p>Item 2</p>
+        <p>Item 3</p>
+      </div>
+    </div>
+
+    <script>
+      function toggleDropdown() {
+        const dropdown = document.getElementById("myDropdown");
+        dropdown.classList.toggle("dropdown-active");
+      }
     </script>
   </body>
 </html>

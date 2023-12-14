@@ -1,3 +1,5 @@
+/* gpopup.module.css */
+
 .popup_overlay {
   position: fixed;
   top: 0;
@@ -8,9 +10,8 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
-  z-index: var(--overlay-global-index); /* Place overlay above other elements */
-  opacity: 0;
-  transition: opacity 300ms;
+  z-index: var(--overlay-global-index);
+  opacity: 1;
 }
 
 .popup_content {
@@ -19,4 +20,49 @@
   border: 1px solid white;
   box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px,
     rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px;
+  animation: popup 0.3s ease-in-out;
+}
+
+.active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+@keyframes popup {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(-8%);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0%);
+  }
+}
+
+@keyframes popup-close {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0%);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8) translateY(-8%);
+  }
+}
+
+/* Mobile view set up popup */
+@media only screen and (max-width: 550px) {
+  .popup_overlay {
+    align-items: end;
+  }
+
+  .popup_content {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    border-bottom-left-radius: unset;
+    border-bottom-right-radius: unset;
+    animation: unset;
+  }
 }

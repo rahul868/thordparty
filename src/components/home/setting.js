@@ -1,7 +1,30 @@
 import { useState, useRef, useEffect } from "react";
 import styles from "@/styles/setting.module.css";
+import { useContext } from "react";
+import { Rhscontext } from "@/context/provider";
 
 export default function Setting({ close }) {
+  const context = useContext(Rhscontext);
+
+  const {
+    settinglang,
+    setsettinglang,
+    settingmode,
+    setsettingmode,
+    settinglength,
+    setsettinglength,
+    settingsource,
+    setsettingsource,
+    settingsize,
+    setsettingsize,
+  } = context;
+
+  console.log("settinglang:", settinglang);
+  console.log("settingmode:", settingmode);
+  console.log("settinglength:", settinglength);
+  console.log("settingsource:", settingsource);
+  console.log("settingsize:", settingsize);
+
   const [responseMode, setResponseMode] = useState("efficient");
   const [answersLength, setAnswersLength] = useState("medium");
   const [contentSource, setContentSource] = useState("focused");
@@ -11,20 +34,44 @@ export default function Setting({ close }) {
   const [selectedValue, setSelectedValue] = useState("Auto-detect");
   const dropdownRef = useRef(null);
 
-  const handleResponseModeChange = (mode) => {
-    setResponseMode(mode);
-  };
+  // const handleResponseModeChange = (mode) => {
+  //   setResponseMode(mode);
+  // };
 
-  const handleAnswersLengthChange = (mode) => {
-    setAnswersLength(mode);
-  };
+  // const handleAnswersLengthChange = (mode) => {
+  //   setAnswersLength(mode);
+  // };
 
-  const handleContentSourceChange = (mode) => {
-    setContentSource(mode);
-  };
+  // const handleContentSourceChange = (mode) => {
+  //   setContentSource(mode);
+  // };
 
-  const handleTextLength = (mode) => {
-    setTextLength(mode);
+  // const handleTextLength = (mode) => {
+  //   setTextLength(mode);
+  // };
+
+  console.log();
+
+  const handleSettingChange = (settingKey, settingValue) => {
+    switch (settingKey) {
+      case "lang":
+        setsettinglang(settingValue);
+        break;
+      case "response_mode":
+        setsettingmode(settingValue);
+        break;
+      case "answers_length":
+        setsettinglength(settingValue);
+        break;
+      case "content_source":
+        setsettingsource(settingValue);
+        break;
+      case "text_size":
+        setsettingsize(settingValue);
+        break;
+      default:
+        break;
+    }
   };
 
   const handleOptionClick = (value) => {
@@ -109,7 +156,10 @@ export default function Setting({ close }) {
               {dropdownOptions.map((option) => (
                 <div
                   key={option.value}
-                  onClick={() => handleOptionClick(option.value)}
+                  onClick={() => {
+                    handleOptionClick(option.value),
+                      handleSettingChange("lang", option.value);
+                  }}
                 >
                   {option.label}
                 </div>
@@ -139,19 +189,19 @@ export default function Setting({ close }) {
           <div className={styles.two_selection_response}>
             <span
               className={
-                responseMode === "efficient" ? styles.active_response : ""
+                settingmode === "efficient" ? styles.active_response : ""
               }
-              onClick={() => handleResponseModeChange("efficient")}
+              onClick={() => handleSettingChange("response_mode", "efficient")}
             >
               Efficient
             </span>
             <span
               className={
-                responseMode === "advanced"
+                settingmode === "advanced"
                   ? `${styles.active_response} ${styles.advanced}`
                   : ""
               }
-              onClick={() => handleResponseModeChange("advanced")}
+              onClick={() => handleSettingChange("response_mode", "advanced")}
             >
               <p>PRO</p>&nbsp;&nbsp;Advanced
             </span>
@@ -184,29 +234,29 @@ export default function Setting({ close }) {
           <div className={styles.three_answers_length_options}>
             <span
               className={
-                answersLength === "short" ? styles.active_response : ""
+                settinglength === "short" ? styles.active_response : ""
               }
-              onClick={() => handleAnswersLengthChange("short")}
+              onClick={() => handleSettingChange("answers_length", "short")}
             >
               Short
             </span>
             <span
               className={
-                answersLength === "medium"
+                settinglength === "medium"
                   ? `${styles.active_response} ${styles.medium}`
                   : ""
               }
-              onClick={() => handleAnswersLengthChange("medium")}
+              onClick={() => handleSettingChange("answers_length", "medium")}
             >
               Medium
             </span>
             <span
               className={
-                answersLength === "long"
+                settinglength === "long"
                   ? `${styles.active_response} ${styles.long}`
                   : ""
               }
-              onClick={() => handleAnswersLengthChange("long")}
+              onClick={() => handleSettingChange("answers_length", "long")}
             >
               Long
             </span>
@@ -238,19 +288,19 @@ export default function Setting({ close }) {
           <div className={styles.two_content_source_options}>
             <span
               className={
-                contentSource === "focused" ? styles.active_response : ""
+                settingsource === "focused" ? styles.active_response : ""
               }
-              onClick={() => handleContentSourceChange("focused")}
+              onClick={() => handleSettingChange("content_source", "focused")}
             >
               Focused
             </span>
             <span
               className={
-                contentSource === "expanded"
+                settingsource === "expanded"
                   ? `${styles.active_response} ${styles.expanded}`
                   : ""
               }
-              onClick={() => handleContentSourceChange("expanded")}
+              onClick={() => handleSettingChange("content_source", "expanded")}
             >
               Expanded
             </span>
@@ -277,28 +327,28 @@ export default function Setting({ close }) {
           </span>
           <div className={styles.three_options_text_size}>
             <span
-              className={TextLength === "small" ? styles.active_response : ""}
-              onClick={() => handleTextLength("small")}
+              className={settingsize === "small" ? styles.active_response : ""}
+              onClick={() => handleSettingChange("text_size", "small")}
             >
               Small
             </span>
             <span
               className={
-                TextLength === "normal"
+                settingsize === "normal"
                   ? `${styles.active_response} ${styles.normal}`
                   : ""
               }
-              onClick={() => handleTextLength("normal")}
+              onClick={() => handleSettingChange("text_size", "normal")}
             >
               Normal
             </span>
             <span
               className={
-                TextLength === "Big"
+                settingsize === "Big"
                   ? `${styles.active_response} ${styles.Big}`
                   : ""
               }
-              onClick={() => handleTextLength("Big")}
+              onClick={() => handleSettingChange("text_size", "Big")}
             >
               Big
             </span>

@@ -69,7 +69,7 @@ export default function Home() {
         {/* RHS SECTION */}
         <main data-sec-rhswrapper className={styles.main_rhs_container}>
           <Rhsprovider>
-            {/* <Rhswrapper /> */}
+            <Rhswrapper />
             {/* {filemeta.length <= 0 ? (
               <Gpopup
                 id="doc-landingwidget"
@@ -82,7 +82,7 @@ export default function Home() {
             ) : (
               <></>
             )} */}
-            <FileUpload />
+            {/* <FileUpload /> */}
           </Rhsprovider>
         </main>
       </div>

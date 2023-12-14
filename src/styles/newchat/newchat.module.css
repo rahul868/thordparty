@@ -37,7 +37,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: .5px dashed #e2e2e2;
+  border: 0.5px dashed #e2e2e2;
   border-width: 2px;
   gap: 0.7rem;
 }
@@ -53,7 +53,6 @@
 .icon_upload .warning {
   font-size: 14px;
   color: #666;
-
 }
 .icon_upload .icon {
   width: 50px;
