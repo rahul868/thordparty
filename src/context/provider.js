@@ -108,7 +108,7 @@ const Rhsprovider = (props) => {
     // Check if the total number of files doesn't exceed the limit
     const selectedFiles = e.target.files;
     // Initialize progress array with objects for each file
-    setfiles(Array.from(selectedFiles));
+    setfiles([...files, ...Array.from(selectedFiles)]);
   };
 
   // Function for fetching chat hostory of individual doc
@@ -161,7 +161,7 @@ const Rhsprovider = (props) => {
   const setUserGroup = async (groupobj) => {
     setpastatus(true);
     setpatype("l");
-    setpamsg("Document is processing please wait...");
+    setpamsg("Your documents are processing...");
     setpasecmsg(`0 / ${groupobj.childs.length} Uploaded successfully.`);
     try {
       // Simulate API call for user file metadata
@@ -206,7 +206,7 @@ const Rhsprovider = (props) => {
     try {
       setpastatus(true);
       setpatype("l");
-      setpamsg("Document uploading is in progress please wait...");
+      setpamsg("Your documents are processing...");
       const uploadPromises = files.map(uploadFile);
       let uploadinfo = await Promise.all(uploadPromises);
       // Trigger the next function or API call after all successful uploads
@@ -302,7 +302,6 @@ const Rhsprovider = (props) => {
         startUpload,
         isresponding,
         setisresponding,
-        chatsetting,
         progress,
         setprogress,
         handleFileChange,
