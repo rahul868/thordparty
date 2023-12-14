@@ -268,19 +268,20 @@ const Rhsprovider = (props) => {
     fetchData();
   }, [currdoc]);
 
-  const save_chats_local = (currfile) => {
-    // First API call will go here.
-    window.localStorage.setItem(
-      `doc_${currfile}`,
-      JSON.stringify(SavedMessages)
-    );
-    setgindicatormsg("Chats saved.");
-  };
+  const save_tofiles = () => {
+    let fileName = `${currdoc.name.split(".")[0]}_chats.txt`;
+    const blob = new Blob([JSON.stringify(SavedMessages)], { type: "text/plain" });
+    const a = document.createElement("a");
+    const url = URL.createObjectURL(blob);
 
-  const del_chats_local = (currfile) => {
-    console.log(`doc_${currfile}`);
-    console.log(window.localStorage.getItem(`doc_${currfile}`));
-    window.localStorage.removeItem(`doc_${currfile}`);
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+
+    // Clean up
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
   };
 
   // const/ [SelectGroupChat, setSelectGroupChat] = useState();
@@ -293,8 +294,6 @@ const Rhsprovider = (props) => {
         messagesContainerRef,
         setfiles,
         files,
-        save_chats_local,
-        del_chats_local,
         error,
         loading,
         setUserGroup,
@@ -315,6 +314,7 @@ const Rhsprovider = (props) => {
         setsettingsource,
         settingsize,
         setsettingsize,
+        save_tofiles,
       }}
     >
       {props.children}

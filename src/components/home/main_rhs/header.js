@@ -12,7 +12,7 @@ import Indicator from "../reusable/indicator";
 
 export default function Rheader() {
   const { currdoc, limit_string } = useContext(Gcommoncontext);
-  const { save_chats_local } = useContext(Rhscontext);
+  const { save_tofiles } = useContext(Rhscontext);
 
   const [isMenu, setisMenu] = useState(false);
 
@@ -74,13 +74,6 @@ export default function Rheader() {
     }
   }
 
-  function save_call() {
-    setissave(true);
-    save_chats_local(currdoc.name);
-    setTimeout(() => {
-      setissave(false);
-    }, 5000);
-  }
 
   useEffect(() => {
     document.addEventListener("click", handleoutside);
@@ -129,6 +122,16 @@ export default function Rheader() {
     }
   }
 
+ 
+
+  const handleSave = () => {
+    save_tofiles()
+    setissave(true);
+    setTimeout(() => {
+      setissave(false);
+    }, 5000);
+  };
+
   return (
     <header id="main_rhs_header" className={styles.rhs_header_wrapper}>
       <div className={styles.rhs_header_content}>
@@ -174,7 +177,7 @@ export default function Rheader() {
               </svg>
             )}
           </div>
-          <div style={{ paddingLeft: 10,lineHeight:1.2 }}>
+          <div style={{ paddingLeft: 10, lineHeight: 1.2 }}>
             <h4>{limit_string(currdoc.name, 24)}</h4>
             <span>
               Last edited {new Date(parseInt(currdoc.lastedit)).toDateString()}
@@ -186,7 +189,7 @@ export default function Rheader() {
           g_nav_header_tab
           className={styles.g_header_navbar_wrapper}
         >
-          <div onClick={() => save_call()} className={styles.dropdown_block}>
+          <div onClick={() => handleSave()} className={styles.dropdown_block}>
             <span>
               <svg
                 fill="rgba(55, 53, 47, 0.85)"

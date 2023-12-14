@@ -72,7 +72,10 @@ export default function App({ Component, pageProps }) {
       <Head>
         <title>Documentia</title>
         <meta name="description" content="DOCUMENTIA AI MODEL INTERACTION" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+        />
         <link rel="icon" href="/assets/images/favicon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -80,7 +83,10 @@ export default function App({ Component, pageProps }) {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         /> */}
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&display=swap"
+          rel="stylesheet"
+        />
         <style>
           @import
           url('https://fonts.googleapis.com/css2?family=Inter&display=swap');

@@ -4,14 +4,26 @@ import Indicator from "./indicator";
 
 function Rmodelmsg({ msg }) {
   const [iscopy, setiscopy] = useState(false);
-  function copylink(msg) {
-    // Copy the text inside the text field
-    navigator.clipboard.writeText(msg);
-    setiscopy(true);
-    setTimeout(() => {
-      setiscopy(false);
-    }, 5000);
-  }
+  const copylink = (msg) => {
+    // Check if the clipboard API is supported
+    if (!navigator.clipboard) {
+      alert("Clipboard API not supported");
+      return;
+    }
+
+    // Attempt to write text to the clipboard
+    navigator.clipboard.writeText(msg).then(
+      () => {
+        setiscopy(true);
+        setTimeout(() => {
+          setiscopy(false);
+        }, 5000);
+      },
+      (err) => {
+        console.error("Error copying to clipboard:", err);
+      }
+    );
+  };
 
   return (
     <>
