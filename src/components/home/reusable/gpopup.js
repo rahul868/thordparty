@@ -5,6 +5,9 @@ import styles from "../../../styles/gpopup.module.css";
 
 const Gpopup = ({ id, isOpen, onClose, targetElement, children, c_ostyle }) => {
   const [position, setPosition] = useState({ top: 0, left: 0 });
+  const [ismobile, setismobile] = useState(false);
+
+  const [isActive, setisActive] = useState(false);
 
   const handleOverlayClick = (e) => {
     const isOverlay = e.target.getAttribute("data-popup-overlay") === `${id}`;
@@ -27,32 +30,51 @@ const Gpopup = ({ id, isOpen, onClose, targetElement, children, c_ostyle }) => {
 
     if (isOpen) {
       setPosition(calculatePosition());
+      setisActive(true);
     }
+
+    const handleResize = () => {
+      setismobile(window.innerWidth <= 550);
+    };
+
+    handleResize(); // Call it once to set the initial state
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, [isOpen, targetElement]);
 
   if (!isOpen) {
     return null;
   }
 
+  const overlayStyle = {
+    ...c_ostyle,
+    position: ismobile ? "" : "fixed", // Use absolute on mobile, fixed otherwise
+  };
+
+  const contentStyle = {
+    ...(targetElement && {
+      position: ismobile ? "" : "fixed", // Use absolute on mobile, fixed otherwise
+      top: position.top + 5,
+      left: position.left + 80,
+    }),
+  };
+
   return (
     <>
       <div
-        style={c_ostyle}
+        style={overlayStyle}
         data-popup-overlay={`${id}`}
-        className={`${styles.popup_overlay} ${
-          isOpen ? "popup_overlay_active" : ""
-        }`}
+        className={`${styles.popup_overlay} `}
         onClick={handleOverlayClick}
       >
         <div
-          style={
-            targetElement && {
-              position: "fixed",
-              top: position.top + 5,
-              left: position.left + 80,
-            }
-          }
-          className={styles.popup_content}
+          style={contentStyle}
+          id="popup-content"
+          className={`${styles.popup_content} ${isActive ? styles.active : ""}`}
         >
           {children}
         </div>

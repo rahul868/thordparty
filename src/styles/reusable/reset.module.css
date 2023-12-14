@@ -18,3 +18,9 @@
   line-height: 1.5;
   font-weight: 500;
 }
+
+@media only screen and (max-width: 550px) {
+  .reste_container {
+    max-width: 100%;
+  }
+}

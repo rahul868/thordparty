@@ -37,12 +37,11 @@ const Rhsprovider = (props) => {
   const [loading, setloading] = useState(true);
   const [error, seterror] = useState(null);
 
-  const [chatsetting, setchatsetting] = useState({
-    response_mode: "efficient",
-    answers_length: "medium",
-    content_source: "focused",
-    text_size: "normal",
-  });
+  const [settinglang, setsettinglang] = useState("Auto-detect");
+  const [settingmode, setsettingmode] = useState("efficient");
+  const [settinglength, setsettinglength] = useState("medium");
+  const [settingsource, setsettingsource] = useState("focused");
+  const [settingsize, setsettingsize] = useState("normal");
 
   // File uploading function which is responsible for uploading
   // single file asynchrounously
@@ -307,6 +306,16 @@ const Rhsprovider = (props) => {
         progress,
         setprogress,
         handleFileChange,
+        settinglang,
+        setsettinglang,
+        settingmode,
+        setsettingmode,
+        settinglength,
+        setsettinglength,
+        settingsource,
+        setsettingsource,
+        settingsize,
+        setsettingsize,
       }}
     >
       {props.children}

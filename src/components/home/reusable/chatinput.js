@@ -6,8 +6,15 @@ import Popuplist from "./popuplist";
 import { Gcommoncontext } from "@/context/common_global";
 export default function Rchatinput() {
   const [query, setquery] = useState("");
-  const { setSavedMessages, isresponding, setisresponding, chatsetting } =
-    useContext(Rhscontext);
+
+  const {
+    setSavedMessages,
+    isresponding,
+    setisresponding,
+    settingmode,
+    settinglength,
+    settingsource,
+  } = useContext(Rhscontext);
 
   const { currdoc, user } = useContext(Gcommoncontext);
   const chat_opts = [
@@ -174,11 +181,7 @@ export default function Rchatinput() {
           promptobj.summary
         }&fileid=${currdoc.id}&filename=${
           currdoc.name
-        }&chat_type=${"QnA"}&responsemode=${
-          chatsetting.response_mode
-        }&answerlength=${chatsetting.answers_length}&contentsource=${
-          chatsetting.content_source
-        }`
+        }&chat_type=${"QnA"}&responsemode=${settingmode}&answerlength=${settinglength}&contentsource=${settingsource}`
       );
       if (!response.ok) {
         throw new Error("Failed to update group");

@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <>
       {/* Main home page template which can include  */}
-      {/* <Gcommonprovider> */}
+
       <div className={styles.app_container}>
         {/* LHS SECTION */}
         <div
@@ -55,7 +55,7 @@ export default function Home() {
               </Gpopup>
             ) : (
               <></>
-            )}
+            )} 
           </Rhsprovider>
         </main>
       </div>

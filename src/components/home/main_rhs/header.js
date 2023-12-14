@@ -1,11 +1,9 @@
 import styles from "@/styles/home/rhs/header.module.css";
 import { useContext, useEffect, useState } from "react";
-import Popup from "../reusable/popup";
 import Rnewchat from "@/components/newchat/newchatwidget";
 import Reset from "../reusable/reset";
 import { Gcommoncontext } from "@/context/common_global";
 import { Rhscontext } from "@/context/provider";
-import Popuplist from "../reusable/popuplist";
 import Setting from "../setting";
 import Feedback from "../reusable/feedback";
 import Gpopup from "../reusable/gpopup";
@@ -139,7 +137,7 @@ export default function Rheader() {
             data-lhs-reopen
             id="file_menu"
             className={`${styles.document_intro_svg} ${styles.lhsrepoen}`}
-            onClick={isMenu ? ShowLeftSlider : ""}
+            onClick={isMenu ? ShowLeftSlider : undefined}
           >
             {isMenu ? (
               <svg
