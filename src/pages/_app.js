@@ -3,7 +3,7 @@ import "@/styles/popupmodel.css";
 import { Cagliostro } from "next/font/google";
 import { useEffect } from "react";
 import { Gcommonprovider } from "@/context/common_global";
-
+import Head from "next/head";
 export default function App({ Component, pageProps }) {
   useEffect(() => {
     // window.addEventListener("DOMContentLoaded", () => {
@@ -69,6 +69,23 @@ export default function App({ Component, pageProps }) {
   });
   return (
     <Gcommonprovider>
+      <Head>
+        <title>Documentia</title>
+        <meta name="description" content="DOCUMENTIA AI MODEL INTERACTION" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/assets/images/favicon.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        {/* <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        /> */}
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+        <style>
+          @import
+          url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+        </style>
+      </Head>
       <Component {...pageProps} />;
     </Gcommonprovider>
   );

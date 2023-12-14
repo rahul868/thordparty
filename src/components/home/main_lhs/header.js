@@ -36,7 +36,6 @@ export default function Lheader() {
       lastedit: date,
       creation: date,
     };
-    console.log("dd", fileobj);
     newdoc.push(fileobj);
 
     let result = await setSeperateFileLhs(newdoc);
@@ -52,6 +51,9 @@ export default function Lheader() {
     return (window.location.href = "https://www.documentia.ai/signin");
   };
 
+  function activate_upload_widget() {
+    document.querySelector("[data-newchat-widget]").click();
+  }
   function handleClose(action) {
     switch (action) {
       case "profile_opt":
@@ -87,7 +89,7 @@ export default function Lheader() {
           <div data-lhs-collapse className={styles.collapsableblock}>
             <span>
               <svg
-                fill="rgba(55, 53, 47, 0.85)"
+                fill="rgba(55, 53, 47, 0.45)"
                 className="undo"
                 display="block"
                 viewBox="0 0 16 16"
@@ -239,7 +241,11 @@ export default function Lheader() {
               </div>
             </>
           )}
-          <label htmlFor="add_doc" className={styles.new_content}>
+          <label
+            onClick={() => activate_upload_widget()}
+            htmlFor="add_doc"
+            className={styles.new_content}
+          >
             <span>
               <svg
                 fill="var(--app-color-code)"
@@ -260,6 +266,7 @@ export default function Lheader() {
             </span>
             <input
               style={{ display: "none" }}
+              disabled
               onChange={handlefileuploading}
               type="file"
               id="add_doc"

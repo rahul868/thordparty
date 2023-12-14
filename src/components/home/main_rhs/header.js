@@ -176,7 +176,7 @@ export default function Rheader() {
               </svg>
             )}
           </div>
-          <div style={{ paddingLeft: 10 }}>
+          <div style={{ paddingLeft: 10,lineHeight:1.2 }}>
             <h4>{limit_string(currdoc.name, 24)}</h4>
             <span>
               Last edited {new Date(parseInt(currdoc.lastedit)).toDateString()}
@@ -354,6 +354,7 @@ export default function Rheader() {
 
         <div className={styles.t_section}>
           <div
+            data-newchat-widget
             className={`${styles.spaecialtab} ${styles.dropdown_block}`}
             onClick={() => setisnewchat(true)}
           >

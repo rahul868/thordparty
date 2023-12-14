@@ -1,42 +1,64 @@
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>File Upload</title>
-  </head>
-  <body>
-    <input type="file" id="file-input" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiple File Uploads</title>
+</head>
+<body>
+  <input type="file" id="file-input" multiple>
+  <button id="upload-button">Upload Files</button>
+  <div id="progress-container"></div>
 
-    <script>
-      document
-        .getElementById("file-input")
-        .addEventListener("change", async (event) => {
-          const file = event.target.files[0];
+  <script>
+    document.getElementById('upload-button').addEventListener('click', () => {
+      const fileInput = document.getElementById('file-input');
+      const files = fileInput.files;
+      const progressContainer = document.getElementById('progress-container');
 
-          const response = await fetch(
-            `http://43.205.191.93:8000/presigned-url-for-upload?bucket_name=documentia&email_id=ssatale@bigiota.ai&file_name_with_extension=${file.name}`,
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
+      // Clear previous progress
+      progressContainer.innerHTML = '';
 
-          const data = await response.json();
-          const presignedUrl = data.presigned_url_for_upload;
-          console.log(presignedUrl);
-          const uploadResponse = await fetch(presignedUrl, {
-            method: "PUT",
-            body: file,
-            headers: {
-              "Content-Type": "application/pdf",
-            },
-          });
-          let r = await uploadResponse.json();
-          console.log("File uploaded successfully:", r);
-        });
-    </script>
-  </body>
+      // Iterate through each file
+      for (const file of files) {
+        uploadFile(file, progressContainer);
+      }
+    });
+
+    // Function to upload a single file
+    function uploadFile(file, progressContainer) {
+      const xhr = new XMLHttpRequest();
+      const formData = new FormData();
+      formData.append('file', file);
+
+      // Track progress
+      xhr.upload.addEventListener('progress', (event) => {
+        if (event.lengthComputable) {
+          const percentage = Math.round((event.loaded * 100) / event.total);
+          console.log(`${file.name}: ${percentage}%`);
+
+          // Update progress for the specific file
+          progressContainer.innerHTML += `${file.name}: ${percentage}%<br>`;
+        }
+      });
+
+      // Handle completion
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            console.log(`${file.name} uploaded successfully!`);
+          } else {
+            console.error(`Error uploading ${file.name}. Status: ${xhr.status}`);
+          }
+        }
+      };
+
+      // Open and send the request
+      xhr.open('POST', `http://43.205.191.93:8000/presigned-url-for-upload?bucket_name=documentia&email_id=ssatale@bigiota.ai&file_name_with_extension=${file.name}`, true);
+      xhr.send(formData);
+    }
+  </script>
+</body>
 </html>
+

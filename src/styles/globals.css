@@ -25,6 +25,7 @@ body {
   box-sizing: border-box;
   max-width: 100vw;
   font-family: "Inter", sans-serif;
+  /* font-family: 'Noto Sans', sans-serif; */
   overflow: hidden;
 }
 *,

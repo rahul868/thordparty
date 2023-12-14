@@ -7,11 +7,18 @@ import { Gcommoncontext } from "@/context/common_global";
 import Button from "../home/reusable/button";
 import uuid from "react-uuid";
 
-function Rnewchat() {
+function Rnewchat({ close }) {
   const { limit_string } = useContext(Gcommoncontext);
-  const Rcontext = useContext(Rhscontext);
-
-  const { files, setfiles, setUserGroup, setSeperateFiles } = Rcontext;
+  const {
+    files,
+    setfiles,
+    setUserGroup,
+    setSeperateFiles,
+    startUpload,
+    progress,
+    setprogress,
+    handleFileChange,
+  } = useContext(Rhscontext);
 
   const { dragfunc } = useDragandDrop();
   const [grpname, setGrpname] = useState("");
@@ -20,33 +27,6 @@ function Rnewchat() {
   useEffect(() => {
     dragfunc(files);
   }, [files]);
-
-  const handleFileChange = (e) => {
-    const maxFiles = 5;
-
-    // Check if the total number of files doesn't exceed the limit
-    if (files.length < maxFiles) {
-      let newAddedFiles = Array.from(files);
-
-      // Calculate the remaining slots for files
-      const remainingSlots = maxFiles - newAddedFiles.length;
-
-      // Add files up to the remaining available slots
-      for (
-        let i = 0;
-        i < Math.min(e.target.files.length, remainingSlots);
-        i++
-      ) {
-        newAddedFiles.push(e.target.files[i]);
-      }
-
-      // Update the state with the new files
-      setfiles(newAddedFiles);
-    } else {
-      // Display an error or some indication that the limit is reached
-      console.log("You can only select up to 5 files.");
-    }
-  };
 
   function removeDoc(e, i) {
     e.preventDefault();
@@ -101,21 +81,31 @@ function Rnewchat() {
 
   async function addSingelfile(e) {
     e.preventDefault();
+    close();
+    let result = await startUpload();
+    let { success, doc } = result;
+    if (!success || doc.length <= 0) {
+      return;
+    }
+
     let date = Date.now();
     let newSavedchatadded = [];
-    for (let i = 0; i < files.length; i++) {
-      newSavedchatadded.push({
-        id: uuid(),
-        type: "file",
-        slug: "https://drive.uqu.edu.sa/_/mskhayat/files/MySubjects/2017SS%20Operating%20Systems/Abraham%20Silberschatz-Operating%20System%20Concepts%20(9th,2012_12).pdf",
-        name: "resume.pdf",
-        // name: files[i].name,
-        lastedit: date,
-        creation: date,
-      });
+    for (let i = 0; i < result.doc.length; i++) {
+      if (doc[i].status == "success") {
+        newSavedchatadded.push({
+          id: uuid(),
+          type: "file",
+          slug: doc[i].slug,
+          name: doc[i].name,
+          lastedit: date,
+          creation: date,
+        });
+      }
     }
+    // Call API process for further process.
     await setSeperateFiles(newSavedchatadded);
     // clear all
+    setprogress([]);
     setfiles([]);
     setGrpname("");
     setisGroup(false);
@@ -139,7 +129,7 @@ function Rnewchat() {
                 type="file"
                 id="fileElem"
                 multiple
-                accept="image/*"
+                accept="pdf/*"
                 style={{ display: "none" }}
                 onChange={handleFileChange}
               />
@@ -253,11 +243,23 @@ function Rnewchat() {
                   <div className={styles.icon_upload}>
                     <img src="/assets/svg/upload.svg" />
                     <span>
-                      Drag & drop it here or <br />
-                      <span style={{ color: "brown", fontWeight: "bold" }}>
-                        browse files
-                      </span>
+                      <span style={{ fontWeight: 600 }}>Drag & drop </span> it
+                      here
+                      <br /> or
+                      <div
+                        style={{
+                          color: "brown",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Browse files
+                      </div>
                       <br />
+                      <span style={{ fontSize: 13, padding: 8, opacity: 0.6 }}>
+                        You can upload{" "}
+                        <span style={{ fontWeight: 600 }}>upto 5 files</span> at
+                        time.
+                      </span>
                     </span>
                   </div>
                 </>

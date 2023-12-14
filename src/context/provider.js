@@ -26,6 +26,9 @@ const Rhsprovider = (props) => {
 
   // Storage for actual file data uploaded which will remove after uploading.
   const [files, setfiles] = useState([]);
+  const [progress, setprogress] = useState([]);
+
+  // Messages hook for nevigating to bottom
   const [isresponding, setisresponding] = useState(false);
   const messagesContainerRef = useRef(null);
 
@@ -41,8 +44,75 @@ const Rhsprovider = (props) => {
     text_size: "normal",
   });
 
-  // Function for fetching chat hostory of individual doc
+  // File uploading function which is responsible for uploading
+  // single file asynchrounously
+  const uploadFile = async (file, index) => {
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      const formData = new FormData();
+      formData.append("file", file);
 
+      // Track progress
+      xhr.upload.addEventListener("progress", (event) => {
+        const percentage = event.lengthComputable
+          ? Math.round((event.loaded * 100) / event.total)
+          : null;
+
+        // Update progress in the state or handle it as needed
+        console.log(`${file.name} progress: ${percentage}%`);
+      });
+
+      // Handle completion
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+
+            console.log("update", progress);
+            const uploadInfo = {
+              name: file.name,
+              size: file.size,
+              status: "success",
+              slug: response.url,
+            };
+
+            setprogress((prevUploadInfos) => [...prevUploadInfos, uploadInfo]);
+
+            resolve(uploadInfo); // Resolve with upload information
+            // setprogress(updatedProgress)
+
+            console.log(`${file.name} uploaded successfully!`, progress);
+            // resolve(); // Resolve the promise for successful upload
+          } else {
+            // Log the error or take additional actions
+            console.error(
+              `Error uploading $  {file.name}. Status: ${xhr.status}`
+            );
+            reject(
+              new Error(`Error uploading ${file.name}. Status: ${xhr.status}`)
+            );
+          }
+        }
+      };
+
+      // Connection opening and sending request
+      xhr.open(
+        "POST",
+        `${process.env.NEXT_PUBLIC_API_URL}/upload_file?email_id=${user.email}`,
+        true
+      );
+      xhr.send(formData);
+    });
+  };
+
+  const handleFileChange = (e) => {
+    // Check if the total number of files doesn't exceed the limit
+    const selectedFiles = e.target.files;
+    // Initialize progress array with objects for each file
+    setfiles(Array.from(selectedFiles));
+  };
+
+  // Function for fetching chat hostory of individual doc
   const fetchFileChats = async () => {
     try {
       // Simulate API call for user file metadata
@@ -133,17 +203,23 @@ const Rhsprovider = (props) => {
     }
   };
 
-  const cloud_upload = async () => {
-    files.forEach(async (file) => {
-      await upload_doc(file);
-    });
+  const startUpload = async () => {
+    try {
+      setpastatus(true);
+      setpatype("l");
+      setpamsg("Document uploading is in progress please wait...");
+      const uploadPromises = files.map(uploadFile);
+      let uploadinfo = await Promise.all(uploadPromises);
+      // Trigger the next function or API call after all successful uploads
+      return { success: true, doc: uploadinfo };
+    } catch (error) {
+      return { success: false };
+    } finally {
+    }
   };
 
   const setSeperateFiles = async (files) => {
-    setpastatus(true);
-    setpatype("l");
-    setpamsg("Document is processing please wait...");
-    setpasecmsg(`0 / ${files.length} Uploaded successfully.`);
+    setpamsg("Final processing is in progress please wait...");
     try {
       // Simulate API call for user file metadata
       const response = await fetch(
@@ -184,6 +260,7 @@ const Rhsprovider = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       if (currdoc) {
+        setloading(true);
         await fetchFileChats();
         updateLastAcces();
       }
@@ -223,9 +300,13 @@ const Rhsprovider = (props) => {
         loading,
         setUserGroup,
         setSeperateFiles,
+        startUpload,
         isresponding,
         setisresponding,
         chatsetting,
+        progress,
+        setprogress,
+        handleFileChange,
       }}
     >
       {props.children}
