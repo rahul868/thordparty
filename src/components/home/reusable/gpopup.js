@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styles from "../../../styles/gpopup.module.css";
+import Gpopupheader from "./gpopupheader";
 
 const Gpopup = ({ id, isOpen, onClose, targetElement, children, c_ostyle }) => {
   const [position, setPosition] = useState({ top: 0, left: 0 });
@@ -9,10 +10,19 @@ const Gpopup = ({ id, isOpen, onClose, targetElement, children, c_ostyle }) => {
 
   const [isActive, setisActive] = useState(false);
 
+  const [isWeb, setisWeb] = useState(false);
+
   const handleOverlayClick = (e) => {
     const isOverlay = e.target.getAttribute("data-popup-overlay") === `${id}`;
     if (isOverlay) {
-      onClose();
+      {
+        !isWeb
+          ? (setisActive(false),
+            setTimeout(() => {
+              onClose();
+            }, 300))
+          : onClose();
+      }
     }
   };
 
@@ -28,13 +38,18 @@ const Gpopup = ({ id, isOpen, onClose, targetElement, children, c_ostyle }) => {
       return { top, left };
     };
 
-    if (isOpen) {
-      setPosition(calculatePosition());
+    if (isOpen || targetElement) {
       setisActive(true);
+      setPosition(calculatePosition());
+    }
+
+    if (targetElement && isOpen) {
+      setPosition(calculatePosition());
     }
 
     const handleResize = () => {
       setismobile(window.innerWidth <= 550);
+      setisWeb(window.innerWidth > 550);
     };
 
     handleResize(); // Call it once to set the initial state
@@ -74,7 +89,9 @@ const Gpopup = ({ id, isOpen, onClose, targetElement, children, c_ostyle }) => {
         <div
           style={contentStyle}
           id="popup-content"
-          className={`${styles.popup_content} ${isActive ? styles.active : ""}`}
+          className={`${styles.popup_content} ${
+            isActive ? styles.close_animation_active : styles.close_animation
+          }`}
         >
           {children}
         </div>

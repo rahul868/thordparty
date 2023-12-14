@@ -1,14 +1,21 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "../../../styles/reusable/gpopupheader.module.css";
 
 export default function Gpopupheader({ content, close, c_style, t_style }) {
+  function Closeheader() {
+    setTimeout(() => {
+      close();
+    }, 300);
+  }
+
   return (
     <>
       <div className={styles.popup_heading}>
         <span style={t_style} className={styles.content_heading}>
           {content}
         </span>
-        <div onClick={() => close()} className={styles.closepart}>
+        <div onClick={Closeheader} className={styles.closepart}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="rgba(55, 53, 47, 0.85)"
@@ -31,3 +38,7 @@ export default function Gpopupheader({ content, close, c_style, t_style }) {
     </>
   );
 }
+
+Gpopupheader.propTypes = {
+  changeactive: PropTypes.func.isRequired,
+};
