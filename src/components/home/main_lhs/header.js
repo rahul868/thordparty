@@ -86,7 +86,7 @@ export default function Lheader() {
           </div>
           <div data-lhs-collapse className={styles.collapsableblock}>
             <span>
-              <svg
+              {/* <svg
                 fill="rgba(55, 53, 47, 0.85)"
                 className="undo"
                 display="block"
@@ -100,6 +100,32 @@ export default function Lheader() {
                 }}
               >
                 <path d="M14.542 10.683c0-2.714-1.832-4.58-4.942-4.58H5.293l-1.586.068L4.91 5.152l1.764-1.715a.703.703 0 00.219-.52c0-.417-.294-.725-.739-.725a.82.82 0 00-.54.233L1.69 6.294a.761.761 0 000 1.107l3.924 3.87c.15.143.356.232.54.232.445 0 .739-.308.739-.732a.726.726 0 00-.22-.519L4.91 8.536 3.707 7.524l1.586.069h4.354c2.202 0 3.412 1.25 3.412 3.028 0 1.784-1.21 3.09-3.412 3.09H8.055a.735.735 0 00-.76.752c0 .41.315.745.76.745h1.64c3.056 0 4.847-1.798 4.847-4.525z"></path>
+              </svg> */}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="black"
+                className="undo"
+                display="block"
+                viewBox="0 0 16 16"
+                style={{
+                  width: 16,
+                  height: 16,
+                  WebkitFlexShrink: "0",
+                  MsFlexShrink: "0",
+                  flexShrink: "0",
+                  transform: "rotate(180deg)",
+                }}
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"
+                />
               </svg>
             </span>
           </div>

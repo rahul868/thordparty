@@ -11,7 +11,7 @@ const Gcommonprovider = (props) => {
   //   email: "ssatale@bigiota.ai",
   //   //email: "rd@gmail.com",
   // });
-  const [user, setuser] = useState("");
+  const [user, setuser] = useState(null);
 
   useEffect(() => {
     if (typeof document !== "undefined") {
@@ -85,7 +85,7 @@ const Gcommonprovider = (props) => {
 
   useEffect(() => {
     // Get userinfo from cookies.
-    if (user && user !== "") {
+    if (user && user !== null) {
       fetchUserFiles();
     }
   }, [user]);

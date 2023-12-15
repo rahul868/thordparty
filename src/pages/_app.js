@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }) {
     // Checking for user valid or unvalid with help token
     const cookies = parse(document.cookie);
 
-    if (!cookies.documentiatoken) {
+    if (!cookies.documentiatoken && !cookies.documentiauser) {
       window.location.href = "https://documentia.ai/signin";
     }
 
@@ -36,17 +36,23 @@ export default function App({ Component, pageProps }) {
         document
           .querySelector("[data-lhs-reopen]")
           .classList.add("lhsreopensvg_active");
+
+        document.querySelector("[data-hamburgure]").style.display = "block";
+        document.querySelector("[data-filepage]").style.display = "none";
       }
 
       // Listening for is need to reopen LHS
       let check_for_lhsreopenunit = e.target.closest("[data-lhs-reopen]");
       if (check_for_lhsreopenunit) {
+        console.log("open");
         document
           .querySelector("[data-sec-lhswrapper]")
           .classList.remove("lhs_collapse");
         document
           .querySelector("[data-lhs-reopen]")
           .classList.remove("lhsreopensvg_active");
+        document.querySelector("[data-hamburgure]").style.display = "none";
+        document.querySelector("[data-filepage]").style.display = "block";
       }
     });
 
