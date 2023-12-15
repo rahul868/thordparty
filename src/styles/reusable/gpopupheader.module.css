@@ -17,3 +17,11 @@
   border-radius: 10px;
   cursor: pointer;
 }
+
+.popup_content.close_animation {
+  transform: translateY(100%);
+}
+
+.popup_content.close_animation_active {
+  transform: translateY(0%);
+}

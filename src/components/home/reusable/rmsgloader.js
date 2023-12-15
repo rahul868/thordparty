@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "@/styles/home/rhs/model.module.css";
-import Namemodel from "./namemodel";
 
 export default function Rmsgloader({ children }) {
   return (
@@ -10,10 +9,7 @@ export default function Rmsgloader({ children }) {
           className={styles.box_wrapper_msg}
           style={{ alignItems: "center" }}
         >
-          <Namemodel
-            c_style={{ background: "#008080", borderRadius: "50%" }}
-            name={"Doc AI"}
-          />
+          <img src="/assets/images/favicon.png" alt="documential_model" />
           {children}
         </div>
       </div>

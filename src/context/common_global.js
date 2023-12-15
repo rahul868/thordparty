@@ -1,12 +1,28 @@
 import { useState, createContext, useEffect } from "react";
+import { parse } from "cookie";
 
 const Gcommoncontext = createContext();
+
+// const cookies = parse(document.cookie);
+
 const Gcommonprovider = (props) => {
-  const [user, setuser] = useState({
-    name: "Rahul Darekar",
-    email:"ssatale@bigiota.ai"
-    // email: "rd@gmail.com",
-  });
+  // const [user, setuser] = useState({
+  //   name: "Rahul Darekar",
+  //   email: "ssatale@bigiota.ai",
+  //   //email: "rd@gmail.com",
+  // });
+  const [user, setuser] = useState("");
+
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      // Check for user validity with the help of a token
+      const cookies = parse(document.cookie);
+
+      let newuserObj = JSON.parse(cookies.documentiauser);
+      setuser(newuserObj);
+    }
+    // Check if running on the client side where document is defined
+  }, []);
 
   const [error, seterror] = useState(false);
   const [loading, setloading] = useState(true);
@@ -20,6 +36,7 @@ const Gcommonprovider = (props) => {
   const [pasecmsg, setpasecmsg] = useState("0 / 0 Uploaded successfully.");
   const [patype, setpatype] = useState("e");
 
+  //popup
   // Indicator popup
   const [gindicatormsg, setgindicatormsg] = useState(null);
 
@@ -67,9 +84,11 @@ const Gcommonprovider = (props) => {
   };
 
   useEffect(() => {
-    // Get userinfo from coockies.
-    fetchUserFiles();
-  }, []);
+    // Get userinfo from cookies.
+    if (user && user !== "") {
+      fetchUserFiles();
+    }
+  }, [user]);
 
   return (
     <Gcommoncontext.Provider
@@ -77,6 +96,7 @@ const Gcommonprovider = (props) => {
         currdoc,
         setcurrdoc,
         user,
+        setuser,
         filemeta,
         error,
         loading,
@@ -96,7 +116,7 @@ const Gcommonprovider = (props) => {
     >
       {props.children}
     </Gcommoncontext.Provider>
-  );  
+  );
 };
 
 export { Gcommoncontext, Gcommonprovider };

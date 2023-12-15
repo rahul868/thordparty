@@ -1,13 +1,20 @@
 import "@/styles/globals.css";
 import "@/styles/popupmodel.css";
 import { Cagliostro } from "next/font/google";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { Gcommonprovider } from "@/context/common_global";
+import { parse } from "cookie";
 
 export default function App({ Component, pageProps }) {
+  // const { user, setuser } = context;
+
   useEffect(() => {
-    // window.addEventListener("DOMContentLoaded", () => {
-    // listen mousedown event.
+    // Checking for user valid or unvalid with help token
+    const cookies = parse(document.cookie);
+
+    if (!cookies.documentiatoken) {
+      window.location.href = "https://documentia.ai/signin";
+    }
 
     // Call the function to check cookies and navigate
     document.addEventListener("mousedown", (e) => {
