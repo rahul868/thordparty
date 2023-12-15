@@ -50,7 +50,7 @@
     transform: scale(0.8) translateY(-12%);
   }
 }
-/* @keyframes bottom-up {
+@keyframes bottom-up {
   from {
     opacity: 0.5;
     transform: translateY(100%);
@@ -59,15 +59,16 @@
     opacity: 1;
     transform: translateY(0%);
   }
-} */
+}
 
 /* Closing Animation */
-.popup_content.close_animation {
-  transform: translateY(100%);
-}
 
 .popup_content.close_animation_active {
   transform: translateY(0%);
+}
+
+.popup_content.close_animation {
+  transform: translateY(100%);
 }
 
 /* Mobile view set up popup */
@@ -82,7 +83,7 @@
     padding: 10px;
     border-bottom-left-radius: unset;
     border-bottom-right-radius: unset;
-    animation: unset;
+    animation: bottom-up 0.3s ease-in-out !important;
     transition: 0.5s all;
   }
 }

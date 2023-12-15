@@ -1,12 +1,34 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import PropTypes from "prop-types";
 import styles from "../../../styles/reusable/gpopupheader.module.css";
-
+import gpopup from "../../../styles/gpopup.module.css";
+import { Gcommoncontext } from "@/context/common_global";
 export default function Gpopupheader({ content, close, c_style, t_style }) {
+  const [windowWidth, setWindowWidth] = useState(false);
+
+  const context = useContext(Gcommoncontext);
+  const { isActive, setisActive } = context;
+
+  useEffect(() => {
+    // Update window width on resize
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth > 550);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  console.log(windowWidth);
+
   function Closeheader() {
-    setTimeout(() => {
-      close();
-    }, 300);
+    close();
   }
 
   return (

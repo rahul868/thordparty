@@ -1,8 +1,7 @@
 // Gpopup.js
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import styles from "../../../styles/gpopup.module.css";
-import Gpopupheader from "./gpopupheader";
 
 const Gpopup = ({ id, isOpen, onClose, targetElement, children, c_ostyle }) => {
   const [position, setPosition] = useState({ top: 0, left: 0 });
@@ -16,12 +15,7 @@ const Gpopup = ({ id, isOpen, onClose, targetElement, children, c_ostyle }) => {
     const isOverlay = e.target.getAttribute("data-popup-overlay") === `${id}`;
     if (isOverlay) {
       {
-        !isWeb
-          ? (setisActive(false),
-            setTimeout(() => {
-              onClose();
-            }, 300))
-          : onClose();
+        !isWeb ? onClose() : onClose();
       }
     }
   };
@@ -40,10 +34,6 @@ const Gpopup = ({ id, isOpen, onClose, targetElement, children, c_ostyle }) => {
 
     if (isOpen || targetElement) {
       setisActive(true);
-      setPosition(calculatePosition());
-    }
-
-    if (targetElement && isOpen) {
       setPosition(calculatePosition());
     }
 
@@ -89,9 +79,7 @@ const Gpopup = ({ id, isOpen, onClose, targetElement, children, c_ostyle }) => {
         <div
           style={contentStyle}
           id="popup-content"
-          className={`${styles.popup_content} ${
-            isActive ? styles.close_animation_active : styles.close_animation
-          }`}
+          className={`${styles.popup_content} `}
         >
           {children}
         </div>

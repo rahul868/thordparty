@@ -234,6 +234,14 @@
   z-index: 10;
 }
 
+.humburger {
+  display: none;
+}
+
+.page {
+  display: block;
+}
+
 @media only screen and (max-width: 800px) {
   .rhs_header_content .g_header_navbar_wrapper,
   .t_section {

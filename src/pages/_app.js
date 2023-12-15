@@ -1,13 +1,21 @@
 import "@/styles/globals.css";
 import "@/styles/popupmodel.css";
 import { Cagliostro } from "next/font/google";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { Gcommonprovider } from "@/context/common_global";
 import Head from "next/head";
+import { parse } from "cookie";
+
 export default function App({ Component, pageProps }) {
+  // const { user, setuser } = context;
+
   useEffect(() => {
-    // window.addEventListener("DOMContentLoaded", () => {
-    // listen mousedown event.
+    // Checking for user valid or unvalid with help token
+    // const cookies = parse(document.cookie);
+
+    // if (!cookies.documentiatoken && !cookies.documentiauser) {
+    //   window.location.href = "https://documentia.ai/signin";
+    // }
 
     // Call the function to check cookies and navigate
     document.addEventListener("mousedown", (e) => {
@@ -29,17 +37,23 @@ export default function App({ Component, pageProps }) {
         document
           .querySelector("[data-lhs-reopen]")
           .classList.add("lhsreopensvg_active");
+
+        document.querySelector("[data-hamburgure]").style.display = "block";
+        document.querySelector("[data-filepage]").style.display = "none";
       }
 
       // Listening for is need to reopen LHS
       let check_for_lhsreopenunit = e.target.closest("[data-lhs-reopen]");
       if (check_for_lhsreopenunit) {
+        console.log("open");
         document
           .querySelector("[data-sec-lhswrapper]")
           .classList.remove("lhs_collapse");
         document
           .querySelector("[data-lhs-reopen]")
           .classList.remove("lhsreopensvg_active");
+        document.querySelector("[data-hamburgure]").style.display = "none";
+        document.querySelector("[data-filepage]").style.display = "block";
       }
 
       // Shorcuts keys for application
