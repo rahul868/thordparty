@@ -19,7 +19,7 @@ const Gcommonprovider = (props) => {
       const cookies = parse(document.cookie);
 
       let newuserObj = JSON.parse(cookies.documentiauser);
-      setuser(newuserObj);
+      // setuser(newuserObj);
     }
     // Check if running on the client side where document is defined
   }, []);
