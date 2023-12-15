@@ -28,6 +28,10 @@ function Rnewchat({ close }) {
     dragfunc(files);
   }, [files]);
 
+  // function handleFileChangePrev(e) {
+  //   handleFileChange(Array.from(e.target.files));
+  // }
+
   function removeDoc(e, i) {
     e.preventDefault();
     e.stopPropagation();
@@ -48,32 +52,38 @@ function Rnewchat({ close }) {
 
   async function addGroupfile(e) {
     e.preventDefault();
-
+    close();
+    let result = await startUpload();
+    let { success, doc } = result;
+    if (!success || doc.length <= 0) {
+      return;
+    }
     let date = Date.now();
     let newSavedchatadded = [];
-    for (let i = 0; i < files.length; i++) {
+    for (let i = 0; i < result.doc.length; i++) {
       newSavedchatadded.push({
         type: "file",
         id: uuid(),
-        slug: "https://drive.uqu.edu.sa/_/mskhayat/files/MySubjects/2017SS%20Operating%20Systems/Abraham%20Silberschatz-Operating%20System%20Concepts%20(9th,2012_12).pdf",
+        slug: doc[i].slug,
+        name: doc[i].name,
         creation: date,
         lastedit: date,
-        name: "health.pdf",
-        // name:files[i].name,
       });
     }
+
+    // Gnerating schema for group creation by user.
     let group_create = {
       id: uuid(),
       groupname: grpname,
       type: "group",
       childs: [...newSavedchatadded],
-      // lastedit: date,
-      // creation: date,
     };
 
+    // Upading users Document history with new group
     await setUserGroup(group_create);
 
     // clear all rhs temp files
+    setprogress([]);
     setfiles([]);
     setGrpname("");
     setisGroup(false);

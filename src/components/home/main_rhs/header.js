@@ -74,7 +74,6 @@ export default function Rheader() {
     }
   }
 
-
   useEffect(() => {
     document.addEventListener("click", handleoutside);
 
@@ -122,10 +121,8 @@ export default function Rheader() {
     }
   }
 
- 
-
   const handleSave = () => {
-    save_tofiles()
+    save_tofiles();
     setissave(true);
     setTimeout(() => {
       setissave(false);
@@ -214,11 +211,6 @@ export default function Rheader() {
             >
               Save
             </span>
-            <Indicator
-              isOpen={issave}
-              type={"s"}
-              msg={"Chats saved successfully."}
-            />
           </div>
           <div>
             <div
@@ -606,6 +598,7 @@ export default function Rheader() {
       <Gpopup
         id="doc-newchat"
         isOpen={isnewchat}
+        c_ostyle={{ backdropFilter: "blur(4px)" }}
         onClose={() => handleClose("newchat")}
       >
         <>

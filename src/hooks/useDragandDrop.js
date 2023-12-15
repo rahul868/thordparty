@@ -43,6 +43,8 @@ function useDragandDrop() {
     function handleDrop(e) {
       var dt = e.dataTransfer;
       var dragfiles = dt.files;
+
+      // Now you can handle the dropped files using your handleFileChange function
       handlefiledsaved(dragfiles);
     }
 

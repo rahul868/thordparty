@@ -16,15 +16,20 @@ const Rhsprovider = (props) => {
     currdoc,
     setcurrdoc,
     setfilemeta,
-    setgindicatormsg,
+    setisfirstupload,
     setpamsg,
     setpastatus,
     setpatype,
     setpasecmsg,
+    setiopen,
+    setimsg,
+    setitype,
   } = useContext(Gcommoncontext);
 
   // Storage for actual file data uploaded which will remove after uploading.
   const [files, setfiles] = useState([]);
+  const [fileexceded, setfileexceded] = useState(false);
+
   const [progress, setprogress] = useState([]);
 
   // Messages hook for nevigating to bottom
@@ -65,8 +70,6 @@ const Rhsprovider = (props) => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
           if (xhr.status === 200) {
             const response = JSON.parse(xhr.responseText);
-
-            console.log("update", progress);
             const uploadInfo = {
               name: file.name,
               size: file.size,
@@ -107,8 +110,27 @@ const Rhsprovider = (props) => {
     // Check if the total number of files doesn't exceed the limit
     const selectedFiles = e.target.files;
     // Initialize progress array with objects for each file
+    if (files.length + e.target.files.length > 5) {
+      setitype("l");
+      setimsg("Maximum 5 files are allowed at one time.");
+      setiopen(true);
+      return;
+    }
     setfiles([...files, ...Array.from(selectedFiles)]);
   };
+
+  // const handleFileChange = (file_arr) => {
+  //   // Check if the total number of files doesn't exceed the limit
+
+  //   if (files.length + file_arr.length > 5) {
+  //     console.log(files.length, file_arr.length);
+  //     setitype("l");
+  //     setimsg("Maximum 5 files are allowed at one time.");
+  //     setiopen(true);
+  //     return;
+  //   }
+  //   setfiles([...files, ...file_arr]);
+  // };
 
   // Function for fetching chat hostory of individual doc
   const fetchFileChats = async () => {
@@ -140,7 +162,7 @@ const Rhsprovider = (props) => {
             "Content-Type": "application/json", // content type based on your API requirements
           },
           body: JSON.stringify({
-            email_id: user.email,
+            emailid: user.email,
             fileid: currdoc.id,
             lastedittimestamp: Date.now().toString(),
           }),
@@ -158,9 +180,7 @@ const Rhsprovider = (props) => {
 
   // Function for sending created group to backend for persistent purpose.
   const setUserGroup = async (groupobj) => {
-    setpastatus(true);
-    setpatype("l");
-    setpamsg("Your documents are processing...");
+    setpamsg("Final processing is in progress please wait...");
     setpasecmsg(`0 / ${groupobj.childs.length} Uploaded successfully.`);
     try {
       // Simulate API call for user file metadata
@@ -211,6 +231,9 @@ const Rhsprovider = (props) => {
       // Trigger the next function or API call after all successful uploads
       return { success: true, doc: uploadinfo };
     } catch (error) {
+      setpatype("e");
+      setpastatus(false);
+      setpamsg("Something went wrong while uploading docs.");
       return { success: false };
     } finally {
     }
@@ -316,6 +339,7 @@ const Rhsprovider = (props) => {
         settingsize,
         setsettingsize,
         save_tofiles,
+        fileexceded,
       }}
     >
       {props.children}

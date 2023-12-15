@@ -4,13 +4,18 @@ const Gcommoncontext = createContext();
 const Gcommonprovider = (props) => {
   const [user, setuser] = useState({
     name: "Rahul Darekar",
-    email:"ssatale@bigiota.ai"
-    // email: "rd@gmail.com",
+    // email:"ssatale@bigiota.ai"
+    email: "rahul273@gmail.com",
   });
 
   const [error, seterror] = useState(false);
   const [loading, setloading] = useState(true);
   const [filemeta, setfilemeta] = useState([]);
+
+  // Indicator states
+  const [iopen, setiopen] = useState(false);
+  const [itype, setitype] = useState("l");
+  const [imsg, setimsg] = useState("");
 
   const [currdoc, setcurrdoc] = useState(null);
 
@@ -19,6 +24,8 @@ const Gcommonprovider = (props) => {
   const [pamsg, setpamsg] = useState("");
   const [pasecmsg, setpasecmsg] = useState("0 / 0 Uploaded successfully.");
   const [patype, setpatype] = useState("e");
+  // For first time uploading states
+  const [isfirstupload, setisfirstupload] = useState(false);
 
   // Indicator popup
   const [gindicatormsg, setgindicatormsg] = useState(null);
@@ -62,7 +69,7 @@ const Gcommonprovider = (props) => {
     } finally {
       setTimeout(() => {
         setloading(false);
-      }, 3000);
+      }, 1000);
     }
   };
 
@@ -81,6 +88,12 @@ const Gcommonprovider = (props) => {
         error,
         loading,
         setfilemeta,
+        setiopen,
+        setimsg,
+        setitype,
+        iopen,
+        imsg,
+        itype,  
         limit_string,
         pastatus,
         pamsg,
@@ -92,11 +105,13 @@ const Gcommonprovider = (props) => {
         setpatype,
         gindicatormsg,
         setgindicatormsg,
+        isfirstupload,
+        setisfirstupload,
       }}
     >
       {props.children}
     </Gcommoncontext.Provider>
-  );  
+  );
 };
 
 export { Gcommoncontext, Gcommonprovider };

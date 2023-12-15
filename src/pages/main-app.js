@@ -10,16 +10,15 @@ import Landingrhs from "@/components/landing/landingrhs";
 import { useContext } from "react";
 import Splash from "@/components/home/reusable/splashscreen";
 import Gpopup from "@/components/home/reusable/gpopup";
-
-const inter = Inter({ subsets: ["latin"] });
+import Indicator from "@/components/home/reusable/indicator";
 
 export default function Home() {
   const context = useContext(Gcommoncontext);
-  const { alertstatus, alertmsg, alerttype, loading, gindicatormsg } =
-    useContext(Gcommoncontext);
+  const { loading } = useContext(Gcommoncontext);
   const { filemeta } = context;
 
   if (loading) {
+    // Load splash screen
     return <Splash />;
   }
 
@@ -43,7 +42,6 @@ export default function Home() {
         {/* RHS SECTION */}
         <main data-sec-rhswrapper className={styles.main_rhs_container}>
           <Rhsprovider>
-            <Rhswrapper />
             {filemeta.length <= 0 ? (
               <Gpopup
                 id="doc-landingwidget"
@@ -55,11 +53,13 @@ export default function Home() {
               </Gpopup>
             ) : (
               <></>
-            )} 
+            )}
+            <Rhswrapper />
           </Rhsprovider>
         </main>
       </div>
       <Alert />
+      <Indicator />
     </>
   );
 }

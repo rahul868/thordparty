@@ -1,0 +1,74 @@
+.upload_indicator {
+  flex: 1;
+  position: relative;
+}
+
+.upload_indicator .uplaod_sub_indicator {
+}
+
+.upload_indicator .uplaod_sub_indicator .from_files_show_all {
+}
+.from_files_show_all .check {
+    padding-bottom: 12px;
+}
+.from_files_show_all .check h2 {
+  font-weight: 600;
+  font-size: 22px;
+  opacity: 0.8;
+  letter-spacing: 1.3px;
+}
+
+.from_files_show_all .check span {
+  color: #666;
+  font-size: 14px;
+}
+
+.inputs_file {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 45px;
+  cursor: pointer;
+  padding-right: 10px;
+}
+
+.name_or_icon {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.name_or_icon span {
+  font-size: 14px;
+  opacity: 0.9;
+  padding-left: 10px;
+}
+.name_or_icon span:hover {
+    color: var(--app-color-code);
+}
+.name_or_icon .svgwrapper {
+    background-color: #f1f1f1;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.two_btns_uploading {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.two_btns .conditon_upload {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.two_btns .conditon_upload span {
+    font-size: 13px;
+    color: #666;
+    padding-left: 10px;
+}

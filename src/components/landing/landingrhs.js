@@ -1,34 +1,30 @@
 import React, { useContext } from "react";
 import styles from "../../styles/landing/landrhs.module.css";
-import Rnewchat from "../newchat/newchatwidget";
+import Lfileindicator from "./lfileindicator";
+import Lintro from "./lintro";
+import Luploaderwidget from "./luploaderwidget";
 import { Gcommoncontext } from "@/context/common_global";
-
+import Alert from "../home/reusable/alert";
+import Gpopup from "../home/reusable/gpopup";
 function Landingrhs() {
-  const { user } = useContext(Gcommoncontext);
+  const { pastatus, pamsg, pasecmsg, patype, isfirstupload } =
+    useContext(Gcommoncontext);
+
+  if (pastatus) {
+    // Uploading in progress animation or UI
+    return (
+      <div>
+        <Gpopup isOpen={pastatus} onClose={() => null}></Gpopup>
+      </div>
+    );
+  }
+
   return (
-    <div className={styles.landing_for_rhs_main}>
-      <div className={styles.landing_rhs_sub_wrapper}>
-        <div className={styles.landing_heading_part}>
-          <div className={styles.welcome_root}>
-            <span className={styles.wel_desgine}>
-              Welcome you in Documentia!
-            </span>
-            <div className={styles.wel_desgine2}>
-              Let's start your journey of finding and comparing information
-              across all your content.
-            </div>
-          </div>
-          <div className={styles.heading_para}>
-            You need to <span style={{fontWeight:"bolder"}}>upload atleast one document</span> to explore documentia. You
-            can upload your documents in{" "}
-            <span style={{ fontWeight: "600", color: "var(--app-color-code)" }}>
-              Right widget.
-            </span>
-          </div>
-        </div>
-        <div className={styles.landing_upload_area}>
-          <div className={styles.main_upload_area}>{<Rnewchat />}</div>
-        </div>
+    <div className={styles.landingwrapper}>
+      <div className={styles.landingsubwrapper}>
+        <Lintro />
+        <Luploaderwidget />
+        <Lfileindicator />
       </div>
     </div>
   );

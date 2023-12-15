@@ -13,7 +13,7 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity 200ms;
-  z-index: calc(var(--overlay-global-index) - 10);
+  z-index: calc(var(--overlay-global-index) + 50);
 }
 
 .alert_strip_container .paalert_container {

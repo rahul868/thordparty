@@ -41,6 +41,8 @@ export default function App({ Component, pageProps }) {
           .querySelector("[data-lhs-reopen]")
           .classList.remove("lhsreopensvg_active");
       }
+
+      // Shorcuts keys for application
     });
 
     document.addEventListener("mouseover", async (e) => {
@@ -65,6 +67,23 @@ export default function App({ Component, pageProps }) {
         ele.classList.remove("option_flyer_wrapper_active");
       });
     });
+
+    let n_key = false;
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "n") {
+        n_key = true;
+      }
+      // Check if the 'd' key is pressed and 'n' was pressed before
+      if (event.key === "d" && n_key) {
+        // Open document uploading widget
+        document.querySelector("[data-newchat-widget]").click();
+        // Prevent the default browser behavior (e.g., prevent typing in an input field)
+        event.preventDefault();
+        // Reset the flag after processing the combination
+        n_key = false;
+      }
+    });
+
     // });
   });
   return (

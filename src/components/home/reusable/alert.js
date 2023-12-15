@@ -2,13 +2,17 @@ import { Gcommoncontext } from "@/context/common_global";
 import styles from "@/styles/reusable/alert.module.css";
 import { useContext } from "react";
 export default function Alert() {
-  const { pastatus, pamsg, pasecmsg, patype } = useContext(Gcommoncontext);
+  const { pastatus, pamsg, pasecmsg, patype, isfirstupload } =
+    useContext(Gcommoncontext);
   const sector = {
     l: "#006AFF",
     e: "#721c24",
     s: "#155724",
     n: "#f1f1f1",
   };
+  // if (isfirstupload) {
+  //   return <></>;
+  // }
   return (
     <div
       style={{ background: pastatus ? sector[patype] : null }}

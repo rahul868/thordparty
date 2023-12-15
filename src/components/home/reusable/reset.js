@@ -3,15 +3,14 @@ import { useContext, useState } from "react";
 import { Rhscontext } from "@/context/provider";
 import Button from "./button";
 import Indicator from "./indicator";
+import { Gcommoncontext } from "@/context/common_global";
 
 function Reset({ close }) {
   const { setSavedMessages } = useContext(Rhscontext);
-
+  const { user, currdoc, setiopen, setimsg, setitype } =
+    useContext(Gcommoncontext);
   // Reset states
   const [loading, setLoading] = useState(false);
-  const [isResetStatus, setIsResetStatus] = useState(false);
-  const [isResetType, setIsResetType] = useState("s");
-  const [isResetMsg, setIsResetMsg] = useState("");
 
   const handlereset = async () => {
     // API call for submiting Reseting chaSomething went wrong while reseting chats.ts.
@@ -25,7 +24,7 @@ function Reset({ close }) {
             "Content-Type": "application/json", // content type based on your API requirements
           },
           body: JSON.stringify({
-            email: user.email,
+            emailid: user.email,
             fileid: currdoc.id,
           }),
         }
@@ -34,22 +33,18 @@ function Reset({ close }) {
         throw new Error("Failed to update lastaccess time for doc.");
       }
       const reset = await response.json();
-      setIsResetType("s");
-      setIsResetMsg("Chats reseted successfully.");
-      setIsResetStatus(true);
+      setitype("s");
+      setimsg("Chats reseted successfully.");
+      setiopen(true);
       close();
       setSavedMessages([]);
     } catch (err) {
-      setIsResetType("e");
-      setIsResetMsg("Something went wrong while reseting chats.");
-      setIsResetStatus(true);
+      console.log(err);
+      setitype("e");
+      setimsg("Something went wrong while reseting chats.");
+      setiopen(true);
     } finally {
       setLoading(false);
-      setTimeout(() => {
-        setIsResetMsg("");
-        setIsResetStatus(false);
-        setIsResetType("");
-      }, 5000);
     }
   };
 
@@ -71,7 +66,6 @@ function Reset({ close }) {
           />
         </div>
       </div>
-      <Indicator isOpen={isResetStatus} msg={isResetMsg} type={isResetType} />
     </div>
   );
 }

@@ -1,18 +1,15 @@
 import styles from "@/styles/reusable/feedback.module.css";
 import { useContext, useState } from "react";
 import Button from "./button";
-import Indicator from "./indicator";
 import { Gcommoncontext } from "@/context/common_global";
 export default function Feedback({ close }) {
   // Global context imports
-  const { currdoc, user } = useContext(Gcommoncontext);
+  const { user, currdoc, setiopen, setimsg, setitype } =
+    useContext(Gcommoncontext);
 
   // Feedback states
   const [finput, setfinput] = useState("");
   const [loading, setLoading] = useState(false);
-  const [isFeedbackStatus, setIsFeedbackStatus] = useState(false);
-  const [isFeedbackType, setIsFeedbackType] = useState("s");
-  const [isFeedbackMsg, setIsFeedbackMsg] = useState("");
 
   const handle_feedback_finput = async () => {
     // API call for submiting feedback.
@@ -26,33 +23,28 @@ export default function Feedback({ close }) {
             "Content-Type": "application/json", // content type based on your API requirements
           },
           body: JSON.stringify({
-            email_id: user.email,
+            emailid: user.email,
             fileid: currdoc.id,
-            lastedittimestamp: Date.now().toString(),
+            feedback: finput,
           }),
         }
       );
       if (!response.ok) {
-        throw new Error("Failed to update lastaccess time for doc.");
+        throw new Error("Failed to update feedback for doc.");
       }
       const feedback = await response.json();
-      close();
       setfinput("");
-      setIsFeedbackType("s");
-      setIsFeedbackMsg("Feedback submited succesfully.");
-      setIsFeedbackStatus(true);
+      setitype("s");
+      setimsg("Feedback submitted successfully.");
+      setiopen(true);
+      close();
     } catch (err) {
       setfinput("");
-      setIsFeedbackType("e");
-      setIsFeedbackMsg("Something went wrong while updating feedback.");
-      setIsFeedbackStatus(true);
+      setitype("e");
+      setimsg("Something went wrong while updating feedback.");
+      setiopen(true);
     } finally {
       setLoading(false);
-      setTimeout(() => {
-        setIsFeedbackMsg("");
-        setIsFeedbackStatus(false);
-        setIsFeedbackType("");
-      }, 5000);
     }
   };
   return (
@@ -73,11 +65,6 @@ export default function Feedback({ close }) {
           title="Submit"
         />
       </div>
-      <Indicator
-        isOpen={isFeedbackStatus}
-        msg={isFeedbackMsg}
-        type={isFeedbackType}
-      />
     </div>
   );
 }

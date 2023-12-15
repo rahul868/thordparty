@@ -11,7 +11,7 @@ export default function Rhswrapper() {
   if (filemeta.length <= 0) {
     return (
       <div>
-        <div>No content founf</div>
+      
       </div>
     );
   }
