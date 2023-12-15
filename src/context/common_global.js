@@ -17,8 +17,9 @@ const Gcommonprovider = (props) => {
     if (typeof document !== "undefined") {
       // Check for user validity with the help of a token
       const cookies = parse(document.cookie);
-
-      let newuserObj = JSON.parse(cookies.documentiauser);
+      if (cookies.documentiauser) {
+        let newuserObj = JSON.parse(cookies.documentiauser);
+      }
       // setuser(newuserObj);
     }
     // Check if running on the client side where document is defined
