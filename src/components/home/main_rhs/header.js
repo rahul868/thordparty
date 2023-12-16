@@ -9,6 +9,7 @@ import Feedback from "../reusable/feedback";
 import Gpopup from "../reusable/gpopup";
 import Gpopupheader from "../reusable/gpopupheader";
 import Indicator from "../reusable/indicator";
+import { CloudWatchLogs } from "aws-sdk";
 
 export default function Rheader() {
   const { currdoc, limit_string } = useContext(Gcommoncontext);
@@ -67,6 +68,7 @@ export default function Rheader() {
 
   function handleshowdrop() {
     let dropelement = document.getElementById("headers_options");
+    document.getElementById('headers_options').classList.remove(styles.drop_close_animation)
     if (dropelement.style.display == "block") {
       dropelement.style.display = "none";
     } else {
@@ -88,9 +90,8 @@ export default function Rheader() {
         !showelement.contains(e.target) &&
         !connectButton?.contains(e.target)
       ) {
-        // showelement.classList.remove("active_slide");
-        // document.getElementById("right_full_back").style.display = "none";
         showelement.style.display = "none";
+        document.getElementById('headers_options').classList.add(styles.drop_close_animation)
       }
 
       e.stopPropagation();

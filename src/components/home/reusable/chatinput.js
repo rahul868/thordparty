@@ -243,11 +243,6 @@ export default function Rchatinput() {
   return (
     <div data-g-nav-container className={styles.chatinput_wrapper}>
       {isresponding ? (
-        // <div className={styles.server_response_container}>
-        //   <div className={styles.server_response_content}>
-        //     Server is responding...
-        //   </div>
-        // </div>
         <div className={styles.chatinput_subwrapper}>
           <div className={styles.msg_firstsec}>
             <div data-g-opt-flyer className={styles.option_flyer_wrapper}>
@@ -462,5 +457,5 @@ export default function Rchatinput() {
         </div>
       )}
     </div>
-  );
+  )
 }

@@ -1,5 +1,5 @@
 .chatinput_wrapper {
-  width: 100%;
+  width: 100%;  
   position: absolute;
   bottom: 10px;
   left: 0;
@@ -171,5 +171,18 @@
 @media only screen and (max-width: 650px) {
   .chatinput_wrapper {
     bottom: 52px;
+  }
+}
+
+
+@media only screen and (max-width: 550px) {
+  .chatinput_wrapper {
+    width: 100%;  
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    background-color: white;
+    height: var(--common-header-size);
   }
 }

@@ -253,3 +253,12 @@
 .dropdown_content div:hover {
   background-color: #f2f2f2;
 }
+
+@media only screen and (max-height: 570px) {
+  .chat_additional_setting {
+    max-height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+}

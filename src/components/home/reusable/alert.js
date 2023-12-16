@@ -10,9 +10,7 @@ export default function Alert() {
     s: "#155724",
     n: "#f1f1f1",
   };
-  // if (isfirstupload) {
-  //   return <></>;
-  // }
+ 
   return (
     <div
       style={{ background: pastatus ? sector[patype] : null }}
