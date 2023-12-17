@@ -1,0 +1,7 @@
+.nav_flyer_active {
+  max-height: calc(100vh - 20vh);
+  visibility: visible;
+  opacity: 1;
+  transition: max-height 260ms cubic-bezier(0.075, 0.82, 0.165, 1),
+    opacity 320ms, visibility 300ms;
+}

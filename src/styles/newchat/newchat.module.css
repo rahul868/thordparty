@@ -342,3 +342,9 @@
     width: 100%;
   }
 }
+
+@media only screen and (max-height: 568px) {
+  .icon_upload img {
+    width: 50%;
+  }
+}

@@ -19,12 +19,41 @@ export default function App({ Component, pageProps }) {
 
     // Call the function to check cookies and navigate
     document.addEventListener("mousedown", (e) => {
-      // Listening for overlay group heirarchy events for opening file structure under folder
-      let check_for_group = e.target.closest("[data-role-group]");
-      if (check_for_group) {
-        check_for_group.nextElementSibling.classList.toggle(
-          "folder_childswrapper_ative"
-        );
+      // checking for flyer
+      e.preventDefault();
+      let nav_tab_element = "[data-g_nav_header_tab]";
+      let check_for_navtab_ele = e.target.closest(nav_tab_element);
+      if (
+        !check_for_navtab_ele &&
+        e.target.closest("[g-nav-container]") != null
+      ) {
+        console.log("insied trhis");
+        // Means Inside g-nav-container but not on nav_tab_element
+        return;
+      }
+
+      if (check_for_navtab_ele) {
+        let flyer = document.querySelector("[data-g-navbar-flyer]");
+        console.log("fly", flyer);
+        // document.querySelectorAll("[g-navbar-flyer]").forEach((ele) => {
+        //   ele.classList.remove("nav_flyer_active");
+        // });
+        if (flyer) {
+          flyer.classList.add("nav_flyer_active");
+        }
+        // Means If on nav_tab_element
+
+        //document.querySelector("[activate-navbar-flyer=true]").classList.add("nav_flyer_active")
+        return;
+      }
+
+      let is_flyer_close_trigger = e.target.closest(
+        "[data-inner-content-flyer]"
+      );
+      if (is_flyer_close_trigger) {
+        document
+          .querySelector("[data-g-navbar-flyer]")
+          .classList.remove("nav_flyer_active");
       }
 
       // Listening for is need to collapse LHS
@@ -98,7 +127,7 @@ export default function App({ Component, pageProps }) {
       }
     });
 
-    // });
+    // flyer component js
   });
   return (
     <Gcommonprovider>

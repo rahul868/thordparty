@@ -34,3 +34,12 @@
   opacity: 1 !important;
   pointer-events: auto; /* Enable pointer events when visible */
 }
+
+.nav_flyer_active {
+  max-height: 100vh !important;
+  height: 100vh !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transition: max-height 260ms cubic-bezier(0.075, 0.82, 0.165, 1),
+    opacity 320ms, visibility 300ms !important;
+}

@@ -212,9 +212,67 @@
   min-width: 160px;
   padding: 6px;
   border: 1px solid #f1f1f1;
-  display: none;
+  /* display: none; */
   animation: popup 0.2s ease-in;
   transition: 0.5s all ease-in-out;
+}
+
+.show_header_drop_options .show_sub_header_drop {
+  height: 100%;
+  padding: 40px 40px;
+}
+
+.show_header_drop_options .show_sub_header_drop .g_header_navbar_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.show_header_drop_options .show_sub_header_drop .spaecialtab {
+  height: 40px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  background-color: unset;
+}
+
+.show_header_drop_options .show_sub_header_drop .spaecialtab span {
+  color: white;
+  font-size: 24px;
+  font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial,
+    sans-serif;
+}
+
+.show_header_drop_options
+  .g_header_navbar_wrapper
+  .dropdown_block
+  .dropdown_block_heading {
+  cursor: pointer;
+  /* height: inherit; */
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  color: white;
+  margin: 0 5px;
+  background: no-repeat;
+  text-decoration: none;
+  white-space: nowrap;
+
+  font-size: 24px;
+  line-height: 1.1428571429;
+  font-weight: 600;
+  letter-spacing: 0.007em;
+  font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial,
+    sans-serif;
+}
+
+.show_header_drop_options
+  .g_header_navbar_wrapper
+  .dropdown_block
+  .dropdown_block_heading:hover {
+  opacity: 0.8;
 }
 
 .includes_options_to_show .drop_close_animation {

@@ -5,14 +5,21 @@
   margin-bottom: 5px;
   padding: 5px 0px;
 }
-.header_intro_user .collapsableblock {
+.collapsableblock {
   width: 30px;
   height: 30px;
-  border-radius: 3px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 10px;
+  position: absolute;
+  top: 50%;
+  left: 95%;
+  z-index: 10;
+  cursor: pointer;
+  background-color: white;
+  box-shadow: 1px 3px 7px 7px #f1f1f1;
 }
 .header_intro_user .collapsableblock:hover {
   background-color: rgba(0, 0, 0, 0.04);
