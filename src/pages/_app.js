@@ -71,6 +71,16 @@ export default function App({ Component, pageProps }) {
         document.querySelector("[data-filepage]").style.display = "none";
       }
 
+      // Folder open event
+
+       // Listening for overlay group heirarchy events for opening file structure under folder
+       let check_for_group = e.target.closest("[data-role-group]");
+       if (check_for_group) {
+         check_for_group.nextElementSibling.classList.toggle(
+           "folder_childswrapper_ative"
+         );
+       }
+
       // Listening for is need to reopen LHS
       let check_for_lhsreopenunit = e.target.closest("[data-lhs-reopen]");
       if (check_for_lhsreopenunit) {
