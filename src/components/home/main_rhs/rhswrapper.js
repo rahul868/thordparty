@@ -2,7 +2,6 @@ import styles from "@/styles/home/rhs/rhswrapper.module.css";
 import Rheader from "./header";
 import Rchat from "./chat";
 import Rdocviewer from "./docviewer";
-import Controller from "./controller";
 import { useContext } from "react";
 import { Gcommoncontext } from "@/context/common_global";
 

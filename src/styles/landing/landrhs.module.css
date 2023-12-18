@@ -6,11 +6,10 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  padding: 20px 30px 20px 30px;
-
 }
 
 .landingsubwrapper {
+  padding: 20px 30px 20px 30px;
   display: flex;
   justify-content: space-between;
   width: 100%;

@@ -18,6 +18,10 @@ export default function App({ Component, pageProps }) {
     document.addEventListener("mousedown", (e) => {
       // checking for flyer
       e.preventDefault();
+      e.stopPropagation();
+
+      console.log("testing clicks");
+
       let nav_tab_element = "[data-g_nav_header_tab]";
       let check_for_navtab_ele = e.target.closest(nav_tab_element);
       if (
@@ -53,45 +57,56 @@ export default function App({ Component, pageProps }) {
           .classList.remove("nav_flyer_active");
       }
 
-      // Listening for is need to collapse LHS
+      // Listening for the need to collapse LHS
       let check_for_lhscollapseunit = e.target.closest("[data-lhs-collapse]");
       if (check_for_lhscollapseunit) {
-        document
-          .querySelector("[data-sec-lhswrapper]")
-          .classList.add("lhs_collapse");
+        const lhswrapper = document.querySelector("[data-sec-lhswrapper]");
+        lhswrapper.classList.add("lhs_collapse");
+        lhswrapper.classList.toggle("lhs_mob_active", false);
+        document.querySelector("[data-lhs-reopen]").style.display = "block";
 
-        document
-          .querySelector("[data-lhs-reopen]")
-          .classList.add("lhsreopensvg_active");
+        const closeHideElement = document.querySelector("[data-close-hide]");
+        if (closeHideElement) {
+          closeHideElement.style.display = "none";
+        }
 
-        document.querySelector("[data-hamburgure]").style.display = "block";
-        document.querySelector("[data-filepage]").style.display = "none";
-        // document.querySelector("[data-close-hide]").style.display = "none";
+        return;
+      }
+
+      // Listening for the need to reopen LHS
+      let check_for_lhsreopenunit = e.target.closest("[data-lhs-reopen]");
+      if (check_for_lhsreopenunit) {
+        const lhswrapper = document.querySelector("[data-sec-lhswrapper]");
+        lhswrapper.classList.remove("lhs_collapse");
+        document.querySelector("[data-lhs-reopen]").style.display = "none";
+
+        const closeHideElement = document.querySelector("[data-close-hide]");
+        if (closeHideElement) {
+          closeHideElement.style.display = "block";
+        }
+
+        return;
+      }
+
+      // Listening for the need to reopen LHS
+      let check_for_mob_lhsreopenunit = e.target.closest(
+        "[data-mob-lhs-reopen]"
+      );
+      if (check_for_mob_lhsreopenunit) {
+        console.log("cliked mobile", check_for_mob_lhsreopenunit);
+        const lhswrapper = document.querySelector("[data-sec-lhswrapper]");
+        lhswrapper.classList.toggle("lhs_mob_active");
+        return;
       }
 
       // Folder open event
 
-       // Listening for overlay group heirarchy events for opening file structure under folder
-       let check_for_group = e.target.closest("[data-role-group]");
-       if (check_for_group) {
-         check_for_group.nextElementSibling.classList.toggle(
-           "folder_childswrapper_ative"
-         );
-       }
-
-      // Listening for is need to reopen LHS
-      let check_for_lhsreopenunit = e.target.closest("[data-lhs-reopen]");
-      if (check_for_lhsreopenunit) {
-        console.log("open");
-        document
-          .querySelector("[data-sec-lhswrapper]")
-          .classList.remove("lhs_collapse");
-        document
-          .querySelector("[data-lhs-reopen]")
-          .classList.remove("lhsreopensvg_active");
-        document.querySelector("[data-hamburgure]").style.display = "none";
-        document.querySelector("[data-filepage]").style.display = "block";
-        // document.querySelector("[data-close-hide]").style.display = "flex";
+      // Listening for overlay group heirarchy events for opening file structure under folder
+      let check_for_group = e.target.closest("[data-role-group]");
+      if (check_for_group) {
+        check_for_group.nextElementSibling.classList.toggle(
+          "folder_childswrapper_ative"
+        );
       }
 
       // Shorcuts keys for application

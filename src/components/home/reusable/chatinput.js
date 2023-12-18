@@ -457,5 +457,5 @@ export default function Rchatinput() {
         </div>
       )}
     </div>
-  )
+  );
 }

@@ -31,7 +31,7 @@ export default function Home() {
         <div
           data-sec-lhswrapper
           id="lhs_wrapper"
-          className={styles.left_section}
+          className={`${styles.left_section} ${styles.left_section_mob}`}
         >
           {/* SECTION 1. HEADER 2. CONTENT 3.FOOTER */}
           <Lhsprovider>
