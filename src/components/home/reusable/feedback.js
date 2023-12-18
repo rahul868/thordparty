@@ -55,15 +55,19 @@ export default function Feedback({ close }) {
             placeholder="Type your feedback here..."
             autoFocus
             value={finput}
-            onChange={(e) => setfinput(e.target.value)}
+            onChange={(e) => {
+              setfinput(e.target.value);
+            }}
           />
         </div>
-        <Button
-          disable={finput ? false : true}
-          callback={handle_feedback_finput}
-          loading={loading}
-          title="Submit"
-        />
+        {finput.length > 0 && (
+          <Button
+            disable={false}
+            callback={handle_feedback_finput}
+            loading={loading}
+            title="Submit"
+          />
+        )}
       </div>
     </div>
   );
