@@ -4,24 +4,29 @@ import { useContext, useState } from "react";
 
 function Rmodelmsg({ msg }) {
   const { setiopen, setimsg, setitype } = useContext(Gcommoncontext);
-  const copylink = (msg) => {
-    // Check if the clipboard API is supported
-    if (!navigator.clipboard) {
-      alert("Clipboard API not supported");
-      return;
-    }
 
-    // Attempt to write text to the clipboard
-    navigator.clipboard.writeText(msg).then(
-      () => {
-        setimsg("Answer is copied to clipboard.");
-        setitype("s");
-        setiopen(true);
-      },
-      (err) => {
-        console.error("Error copying to clipboard:", err);
-      }
-    );
+  const copylink = (msg) => {
+    // Create a temporary textarea element
+    let textarea = document.createElement("textarea");
+
+    // Set the value of the textarea to the text you want to copy
+    textarea.value = msg;
+
+    // Append the textarea element to the document
+    document.body.appendChild(textarea);
+
+    // Select the text in the textarea
+    textarea.select();
+
+    // Execute the copy command
+    document.execCommand("copy");
+
+    // Remove the temporary textarea element
+    document.body.removeChild(textarea);
+
+    setimsg("Answer is copied to clipboard.");
+    setitype("s");
+    setiopen(true);
   };
 
   return (

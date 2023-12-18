@@ -201,6 +201,7 @@
   cursor: pointer;
   padding-right: 10px;
   position: relative;
+  user-select: none;
 }
 
 .includes_options_to_show .show_header_drop_options {
@@ -238,7 +239,7 @@
 }
 
 .show_header_drop_options .show_sub_header_drop .spaecialtab span {
-  color: white;
+  color: black;
   font-size: 24px;
   font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial,
     sans-serif;
@@ -254,13 +255,13 @@
   justify-content: center;
   align-items: center;
   list-style: none;
-  color: white;
+  color: black;
   margin: 0 5px;
   background: no-repeat;
   text-decoration: none;
   white-space: nowrap;
 
-  font-size: 24px;
+  font-size: 22px;
   line-height: 1.1428571429;
   font-weight: 600;
   letter-spacing: 0.007em;
@@ -310,9 +311,11 @@
 }
 
 .show_left {
-  display: block !important;
-  position: fixed;
+  visibility: visible;
+  opacity: 1;
   z-index: 10;
+  transform: translateX(0%) !important;
+  transition: transform 300ms;
 }
 
 .humburger {

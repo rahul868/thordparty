@@ -9,16 +9,13 @@ import { Gcommoncontext } from "@/context/common_global";
 export default function Rhswrapper() {
   const { filemeta } = useContext(Gcommoncontext);
   if (filemeta.length <= 0) {
-    return (
-      <div>
-      
-      </div>
-    );
+    return <div></div>;
   }
   return (
     <div className={styles.rhs_content_wrapper}>
       <Rheader />
       <Controller />
+
       <div className={styles.main_rhs_content}>
         <section className={styles.chat_section} id="chat_wrapper">
           {/* CHAT SECTION */}

@@ -25,6 +25,23 @@
   height: calc(100% - 5px);
 }
 
+.collapsableblock {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  position: absolute;
+  top: 50%;
+  left: -1%;
+  z-index: 10;
+  cursor: pointer;
+  background-color: white;
+  box-shadow: 1px 3px 7px 7px #f1f1f1;
+}
+
 /*  Mobile View set  */
 
 @media only screen and (max-width: 650px) {

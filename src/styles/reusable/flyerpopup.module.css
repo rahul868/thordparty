@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   right: 0;
-  background-color: #161617;
+  background-color: #f1f1f1;
   max-height: 0px;
   width: 100vw;
   opacity: 0;
@@ -30,7 +30,7 @@
 }
 
 .close_flyer {
-  color: white;
+  color: black;
   font-size: 30px;
   text-align: end;
   cursor: pointer;

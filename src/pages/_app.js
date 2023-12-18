@@ -1,14 +1,11 @@
 import "@/styles/globals.css";
 import "@/styles/popupmodel.css";
-import { Cagliostro } from "next/font/google";
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import { Gcommonprovider } from "@/context/common_global";
 import Head from "next/head";
 import { parse } from "cookie";
 
 export default function App({ Component, pageProps }) {
-  // const { user, setuser } = context;
-
   useEffect(() => {
     // Checking for user valid or unvalid with help token
     // const cookies = parse(document.cookie);
@@ -69,6 +66,7 @@ export default function App({ Component, pageProps }) {
 
         document.querySelector("[data-hamburgure]").style.display = "block";
         document.querySelector("[data-filepage]").style.display = "none";
+        // document.querySelector("[data-close-hide]").style.display = "none";
       }
 
       // Listening for is need to reopen LHS
@@ -83,6 +81,7 @@ export default function App({ Component, pageProps }) {
           .classList.remove("lhsreopensvg_active");
         document.querySelector("[data-hamburgure]").style.display = "none";
         document.querySelector("[data-filepage]").style.display = "block";
+        // document.querySelector("[data-close-hide]").style.display = "flex";
       }
 
       // Shorcuts keys for application
