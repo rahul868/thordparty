@@ -69,6 +69,16 @@ export default function App({ Component, pageProps }) {
         // document.querySelector("[data-close-hide]").style.display = "none";
       }
 
+      // Folder open event
+
+       // Listening for overlay group heirarchy events for opening file structure under folder
+       let check_for_group = e.target.closest("[data-role-group]");
+       if (check_for_group) {
+         check_for_group.nextElementSibling.classList.toggle(
+           "folder_childswrapper_ative"
+         );
+       }
+
       // Listening for is need to reopen LHS
       let check_for_lhsreopenunit = e.target.closest("[data-lhs-reopen]");
       if (check_for_lhsreopenunit) {
@@ -135,7 +145,7 @@ export default function App({ Component, pageProps }) {
         <meta name="description" content="DOCUMENTIA AI MODEL INTERACTION" />
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
         />
         <link rel="icon" href="/assets/images/favicon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -153,7 +163,7 @@ export default function App({ Component, pageProps }) {
           url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
         </style>
       </Head>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </Gcommonprovider>
   );
 }

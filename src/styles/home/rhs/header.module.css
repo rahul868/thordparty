@@ -327,6 +327,17 @@
 }
 
 @media only screen and (max-width: 800px) {
+  .rhs_header_wrapper {
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    background: #fff;
+  }
   .rhs_header_content .g_header_navbar_wrapper,
   .t_section {
     display: none;
