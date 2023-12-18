@@ -37,4 +37,9 @@
   .left_section {
     display: none;
   }
+  .main_rhs_container {
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
+  }
 }

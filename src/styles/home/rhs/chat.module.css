@@ -1,22 +1,46 @@
 .rhs_chat_content {
-  height: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  flex-grow: 1;
 }
 .rhs_chat_content .middle_wrapper_messages {
   overflow-y: auto;
-  max-height: calc(100% - calc(var(--common-header-size) + 15px));
   padding: 0px 10px;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Mobile set View */
 
 @media only screen and (max-width: 650px) {
-  .rhs_chat_content .middle_wrapper_messages {
-    max-height: calc(
-      100% - calc(var(--common-header-size) + var(--common-header-size) + 10px)
-    );
+  .rhs_chat_content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: hidden;
+    position: relative;
   }
-
+  .rhs_chat_content .middle_wrapper_messages {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: hidden;
+    /* max-height: calc(
+      100% - calc(var(--common-header-size) + var(--common-header-size) + 10px)
+    ); */
+  }
+  .rhs_chat_content .middle_wrapper_messages {
+    overflow-y: auto;
+    max-height: unset;
+    padding: 0px 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
   .chatinput_wrapper {
     bottom: 0px !important;
   }

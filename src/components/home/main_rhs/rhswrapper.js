@@ -18,14 +18,14 @@ export default function Rhswrapper() {
   return (
     <div className={styles.rhs_content_wrapper}>
       <Rheader />
-      <Controller />
+      {/* <Controller /> */}
       <div className={styles.main_rhs_content}>
-        <section className={styles.chat_section} id="chat_wrapper">
+        <section className={`${styles.chat_section} ${styles.chat_sectionspec}`} id="chat_wrapper">
           {/* CHAT SECTION */}
           <Rchat />
         </section>
 
-        <section className={styles.document_viewer} id="doc_wrapper">
+        <section className={`${styles.document_viewer} ${styles.document_viewerspec}`} id="doc_wrapper">
           {/* DOCUMENT SECTION */}
           <div className={styles.doc_viewercontainer}>
             <Rdocviewer />
