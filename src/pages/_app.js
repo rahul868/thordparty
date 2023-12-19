@@ -61,7 +61,9 @@ export default function App({ Component, pageProps }) {
       let check_for_lhscollapseunit = e.target.closest("[data-lhs-collapse]");
       if (check_for_lhscollapseunit) {
         const lhswrapper = document.querySelector("[data-sec-lhswrapper]");
-        lhswrapper.classList.add("lhs_collapse");
+        if (window.innerWidth > 800) {
+          lhswrapper.classList.add("lhs_collapse");
+        }
         lhswrapper.classList.toggle("lhs_mob_active", false);
         document.querySelector("[data-lhs-reopen]").style.display = "block";
 
@@ -93,7 +95,6 @@ export default function App({ Component, pageProps }) {
         "[data-mob-lhs-reopen]"
       );
       if (check_for_mob_lhsreopenunit) {
-        console.log("cliked mobile", check_for_mob_lhsreopenunit);
         const lhswrapper = document.querySelector("[data-sec-lhswrapper]");
         lhswrapper.classList.toggle("lhs_mob_active");
         return;
@@ -173,6 +174,7 @@ export default function App({ Component, pageProps }) {
           href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
+
         <style>
           @import
           url('https://fonts.googleapis.com/css2?family=Inter&display=swap');

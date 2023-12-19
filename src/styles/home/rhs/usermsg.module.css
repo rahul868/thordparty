@@ -29,7 +29,7 @@
 }
 
 .msg_for_ai .msg_sub_for_ai .box_wrapper_msg .summary_content {
-  font-size: 13px;
+  /* font-size: 13px; */
   color: #666;
   line-height: 1.4;
 }

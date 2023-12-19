@@ -59,8 +59,9 @@ function Rmodelmsg({ msg }) {
               )}
             </div>
             <span
+              className={styles.copysvg_model}
               onClick={() => copylink(msg.summary)}
-              style={{ paddingRight: "20px" }}
+              // style={{ paddingRight: "20px" }
             >
               <svg
                 fill="rgba(55, 53, 47, 0.85)"

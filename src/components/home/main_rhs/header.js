@@ -124,9 +124,9 @@ export default function Rheader() {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
+              width="18"
+              height="18"
+              fill="#666"
               viewBox="0 0 16 16"
               style={{
                 cursor: "pointer",
@@ -176,8 +176,8 @@ export default function Rheader() {
             </svg>
           </div>
           <div style={{ paddingLeft: 10, lineHeight: 1.2 }}>
-            <h4>{limit_string(currdoc.name, 20)}</h4>
-            <span>
+            <div id={styles.doc_name}>{limit_string(currdoc.name, 24)}</div>
+            <span id={styles.doc_eidt_hi}>
               Last edited {new Date(parseInt(currdoc.lastedit)).toDateString()}
             </span>
           </div>

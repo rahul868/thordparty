@@ -26,8 +26,8 @@
 
 [data-sec-lhswrapper].lhs_mob_active {
   transform: translateX(0%);
-  width: 300px;
-  min-width: 270px;
+  /* width: 300px;
+  min-width: 270px; */
   opacity: 1;
 }
 

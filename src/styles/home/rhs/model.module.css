@@ -13,6 +13,7 @@
   gap: 1.3rem;
   padding: 11px;
   align-items: flex-end;
+  position: relative;
 }
 
 .msg_for_ai .msg_sub_for_ai .source_r {
@@ -39,7 +40,11 @@
   align-items: start;
   gap: 1rem;
 }
-
+.msg_for_ai .msg_sub_for_ai .box_wrapper_msg .copysvg_model {
+  /* position: absolute;
+  right: 5px;
+  top: 15px; */
+}
 .msg_for_ai .msg_sub_for_ai .box_wrapper_msg img {
   height: 30px;
   width: 30px;
@@ -47,7 +52,7 @@
 }
 
 .msg_for_ai .msg_sub_for_ai .box_wrapper_msg .summary_content,.msg_htmlwrapper {
-  font-size: 13px;
+  /* font-size: 13px; */
   color: #666;
   line-height: 1.4;
 }
