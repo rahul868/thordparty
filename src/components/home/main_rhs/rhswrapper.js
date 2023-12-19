@@ -4,6 +4,7 @@ import Rchat from "./chat";
 import Rdocviewer from "./docviewer";
 import { useContext } from "react";
 import { Gcommoncontext } from "@/context/common_global";
+import Controller from "./controller";
 
 export default function Rhswrapper() {
   const { filemeta } = useContext(Gcommoncontext);
@@ -13,7 +14,7 @@ export default function Rhswrapper() {
   return (
     <div className={styles.rhs_content_wrapper}>
       <Rheader />
-      {/* <Controller /> */}
+      <Controller />
       <div className={styles.main_rhs_content}>
         <section
           className={`${styles.chat_section} ${styles.chat_sectionspec}`}

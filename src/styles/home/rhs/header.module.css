@@ -1,7 +1,6 @@
 .rhs_header_wrapper {
   border-bottom: 1px solid #eee;
   width: 100%;
-  /* background-color: red; */
   height: var(--common-header-size);
   display: flex;
   align-items: center;
@@ -202,7 +201,6 @@
   display: none;
   align-items: center;
   cursor: pointer;
-  padding-right: 10px;
   position: relative;
   user-select: none;
 }
@@ -346,6 +344,10 @@
     width: 100%;
     background: #fff;
   }
+  .rhs_header_content .document_intro {
+    overflow: hidden;
+    min-width: 170px;
+  }
   .rhs_header_content .g_header_navbar_wrapper,
   .t_section {
     display: none;
@@ -363,7 +365,11 @@
   }
   #doc_name {
     font-size: 16px;
+    opacity: 1;
     font-weight: 600;
+    max-width: 270px;
+    min-width: 250px;
+    overflow: hidden;
   }
   #doc_eidt_hi {
     font-size: 13px;

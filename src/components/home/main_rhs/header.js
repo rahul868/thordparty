@@ -375,7 +375,8 @@ export default function Rheader() {
             </span>
           </div>
         </div>
-
+        
+        {/* Flyer trigger  */}
         <div g-nav-container className={styles.includes_options_to_show}>
           <div className="include">
             <span data-g_nav_header_tab>
@@ -383,7 +384,7 @@ export default function Rheader() {
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
                 height="20"
-                fill="currentColor"
+                fill="#666"
                 class="bi bi-three-dots"
                 viewBox="0 0 16 16"
               >

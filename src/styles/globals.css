@@ -6,11 +6,10 @@
   --common-line-switching: 45px;
   --overlay-global-index: 100;
   --popup-global-index: 105;
-
+  --common-mobile-font: 15px;
   /* Height variables */
   --searchpopup-component: 400px;
   /* Color global variables */
-  --line-animation-color: var(--app-color-code);
 }
 
 * {
@@ -54,8 +53,9 @@ a {
 @media only screen and (max-width: 800px) {
   body {
     box-sizing: border-box;
-    max-width: 100vw;
+    max-width: 100%;
     font-family: "Inter", sans-serif;
     font-size: 15px;
+    overflow: hidden;
   }
 }

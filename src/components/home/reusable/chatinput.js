@@ -269,7 +269,6 @@ export default function Rchatinput() {
               placeholder="Type you question here..."
               data-chat-input
               id={styles.message_input}
-              autoFocus
               value={query}
               type="text"
               readOnly

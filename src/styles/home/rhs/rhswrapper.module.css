@@ -49,13 +49,7 @@
 /*  Mobile View set  */
 
 @media only screen and (max-width: 650px) {
-  .rhs_content_wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-  }
+  
   .chat_sectionspec {
     /* display: flex;
     flex-direction: column;

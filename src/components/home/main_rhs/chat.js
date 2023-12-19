@@ -12,7 +12,6 @@ export default function Rchat() {
       <div className={styles.middle_wrapper_messages}>
         <Rmessages />
       </div>
-      {/* <Rsentiment /> */}
       <Rchatinput />
     </div>
   );

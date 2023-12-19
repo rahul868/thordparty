@@ -1,7 +1,8 @@
 .chatinput_wrapper {
   width: 100%;
   height: var(--common-header-size);
-  margin: 5px 10px 10px 10px;
+  width: 95%;
+  margin: 10px auto;
 }
 
 .chatinput_wrapper .server_response_container {
@@ -103,7 +104,6 @@
 }
 
 .chatinput_wrapper .chatinput_subwrapper {
-  width: 95%;
   position: relative;
   height: inherit;
   padding: 0px 10px;
@@ -121,6 +121,7 @@
   display: flex;
   align-items: center;
   width: inherit;
+  flex: 1;
 }
 
 .chatinput_wrapper .chatinput_subwrapper .msg_firstsec .msg_input_profile {
@@ -162,16 +163,15 @@
 
 /* Mobile set View */
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 800px) {
   .chatinput_wrapper {
-    bottom: 52px;
-  }
-}
-
-@media only screen and (max-width: 550px) {
-  .chatinput_wrapper {
-    width: 100%;
     background-color: white;
-    height: var(--common-header-size);
+    height: calc(var(--common-header-size) + 5px);
+    width: 95%;
+    margin: 5px auto;
+  }
+
+  .chatinput_wrapper .chatinput_subwrapper .msg_firstsec #message_input {
+    font-size: 15px;
   }
 }

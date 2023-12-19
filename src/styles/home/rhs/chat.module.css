@@ -28,9 +28,6 @@
     flex-direction: column;
     flex-grow: 1;
     overflow: hidden;
-    /* max-height: calc(
-      100% - calc(var(--common-header-size) + var(--common-header-size) + 10px)
-    ); */
   }
   .rhs_chat_content .middle_wrapper_messages {
     overflow-y: auto;

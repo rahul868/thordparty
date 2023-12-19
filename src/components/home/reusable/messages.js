@@ -40,25 +40,23 @@ export default function Rmessages() {
   }
 
   return (
-    <>
-      <div ref={messagesContainerRef} className="middle_sub_wrapper_messages">
-        {SavedMessages.map((msg, ind) => {
-          return msg.isChatUI ? (
-            <div>
-              <Rmodelmsg msg={msg} key={ind} />
-            </div>
-          ) : (
-            <div>
-              <Rusermsg msg={msg} key={ind} />
-            </div>
-          );
-        })}
-        {isresponding && (
-          <Rmsgloader>
-            <Loader c_styles={{ background: "#444" }} />
-          </Rmsgloader>
-        )}
-      </div>
-    </>
+    <div ref={messagesContainerRef}>
+      {SavedMessages.map((msg, ind) => {
+        return msg.isChatUI ? (
+          <div>
+            <Rmodelmsg msg={msg} key={ind} />
+          </div>
+        ) : (
+          <div>
+            <Rusermsg msg={msg} key={ind} />
+          </div>
+        );
+      })}
+      {isresponding && (
+        <Rmsgloader>
+          <Loader c_styles={{ background: "#444" }} />
+        </Rmsgloader>
+      )}
+    </div>
   );
 }
