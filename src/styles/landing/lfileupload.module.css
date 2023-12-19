@@ -9,7 +9,7 @@
 .upload_indicator .uplaod_sub_indicator .from_files_show_all {
 }
 .from_files_show_all .check {
-    padding-bottom: 12px;
+  padding-bottom: 12px;
 }
 .from_files_show_all .check h2 {
   font-weight: 600;
@@ -45,16 +45,16 @@
   padding-left: 10px;
 }
 .name_or_icon span:hover {
-    color: var(--app-color-code);
+  color: var(--app-color-code);
 }
 .name_or_icon .svgwrapper {
-    background-color: #f1f1f1;
-    width: 32px;
-    height: 32px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background-color: #f1f1f1;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .two_btns_uploading {
   position: absolute;
@@ -63,12 +63,24 @@
 }
 
 .two_btns .conditon_upload {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 .two_btns .conditon_upload span {
-    font-size: 13px;
-    color: #666;
-    padding-left: 10px;
+  font-size: 13px;
+  color: #666;
+  padding-left: 10px;
+}
+
+@media only screen and (max-width: 550px) {
+  .two_btns_uploading {
+    bottom: unset;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  #roup_input {
+    width: 100%;
+  }
 }

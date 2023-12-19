@@ -1,6 +1,6 @@
 .lviewer_wrapper {
   /* width: 100%; */
-  max-width: 430px;
+  max-width: 500px;
   flex: 1;
 }
 
@@ -10,15 +10,15 @@
   align-items: center;
 }
 .lviewer_subwrapper .drop_zone {
-    border: 2px dashed #f3f3f3;
-    padding: 20px 40px;
-    border-radius: 10px;
-    opacity: .9;
-    cursor: pointer;
+  border: 2px dashed #f3f3f3;
+  padding: 20px 40px;
+  border-radius: 10px;
+  opacity: 0.9;
+  cursor: pointer;
 }
 
 .lviewer_subwrapper .drop_zone:hover {
-    opacity: .5;
+  opacity: 0.5;
 }
 .lviewer_subwrapper .upload_widget_title {
 }
@@ -28,5 +28,4 @@
 }
 
 .lviewer_subwrapper .icon_upload img {
-
 }

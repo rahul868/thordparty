@@ -15,3 +15,44 @@
   width: 100%;
   gap: 2rem;
 }
+
+@media only screen and (max-width: 800px) {
+  .landingwrapper {
+    height: 100%;
+    max-height: 100%;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background-color: white;
+    overflow-y: scroll;
+  }
+  .landingsubwrapper {
+    flex-direction: column;
+    padding: 0px;
+    align-items: center;
+    margin-top: 50px;
+  }
+}
+
+@media only screen and (max-width: 552px) {
+  .landingwrapper {
+    min-width: 300px !important;
+  }
+
+  .landingsubwrapper {
+    flex-direction: column;
+    padding: 20px;
+    align-items: unsafe;
+    min-width: 250px;
+    margin-top: 0px;
+  }
+
+  .landing_heading_part .welcome_root .wel_desgine {
+    font-size: 35px;
+  }
+}

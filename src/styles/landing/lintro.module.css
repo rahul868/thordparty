@@ -1,10 +1,10 @@
 .landing_for_rhs_main {
-  height: inherit;
+  height: auto;
   max-width: 500px;
 }
 
 .landing_for_rhs_main .landing_rhs_sub_wrapper {
-    max-width: 630px;
+  max-width: 630px;
 }
 
 .landing_heading_part {
@@ -48,4 +48,26 @@
 
 .landing_upload_area .main_upload_area {
   min-width: 350px;
+}
+
+@media only screen and (max-width: 550px) {
+  .landing_heading_part .welcome_root .wel_desgine {
+    font-size: 30px;
+  }
+
+  .landing_heading_part .welcome_root .wel_desgine2 {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .landing_heading_part .welcome_root .wel_desgine {
+    font-size: 22px;
+  }
+  .landing_heading_part .welcome_root .wel_desgine2 {
+    font-size: 12px;
+  }
+  .heading_para {
+    font-size: 11px;
+  }
 }

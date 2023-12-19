@@ -2,9 +2,8 @@ import { useState } from "react";
 import Button from "../home/reusable/button";
 
 export default function Groupname({ close, inputchange, onlyclose }) {
-
   return (
-    <div style={{ width: 300, padding: "18px 12px" }}>
+    <div style={{ width: 300, padding: "18px 12px" }} className="group_input">
       <input
         style={{
           padding: 10,
