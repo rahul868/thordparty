@@ -39,28 +39,6 @@ export default function Rheader() {
     };
   }, []);
 
-  useEffect(() => {
-    document.addEventListener("click", handleOutside);
-
-    let showelement = document.getElementById("lhs_wrapper");
-    let options_element = document.getElementById("mob_file");
-
-    function handleOutside(e) {
-      if (
-        !showelement.contains(e.target) &&
-        !options_element?.contains(e.target)
-      ) {
-        document
-          .querySelector("[data-sec-lhswrapper]")
-          .classList.remove("lhs_mob_active");
-      }
-    }
-
-    return () => {
-      document.removeEventListener("click", handleOutside);
-    };
-  }, []);
-
   function handleClose(action) {
     switch (action) {
       case "newchat":
@@ -375,7 +353,7 @@ export default function Rheader() {
             </span>
           </div>
         </div>
-        
+
         {/* Flyer trigger  */}
         <div g-nav-container className={styles.includes_options_to_show}>
           <div className="include">

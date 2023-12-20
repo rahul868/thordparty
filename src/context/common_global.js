@@ -8,22 +8,22 @@ const Gcommoncontext = createContext();
 const Gcommonprovider = (props) => {
   const [user, setuser] = useState({
     name: "Rahul Darekar",
-    email: "ssatale@bigiota.ai",
-    // email: "rd@gmail.com",
+    // email: "ssatale@bigiota.ai",
+    email: "ru1@gmail.com",
   });
   // const [user, setuser] = useState(null);
 
-  useEffect(() => {
-    if (typeof document !== "undefined") {
-      // Check for user validity with the help of a token
-      const cookies = parse(document.cookie);
-      if (cookies.documentiauser) {
-        let newuserObj = JSON.parse(cookies.documentiauser);
-      }
-      // setuser(newuserObj);
-    }
-    // Check if running on the client side where document is defined
-  }, []);
+  // useEffect(() => {
+  //   if (typeof document !== "undefined") {
+  //     // Check for user validity with the help of a token
+  //     const cookies = parse(document.cookie);
+  //     if (cookies.documentiauser) {
+  //       let newuserObj = JSON.parse(cookies.documentiauser);
+  //       setuser(newuserObj);
+  //     }
+  //   }
+  //   // Check if running on the client side where document is defined
+  // }, []);
 
   const [error, seterror] = useState(false);
   const [loading, setloading] = useState(true);
@@ -94,6 +94,7 @@ const Gcommonprovider = (props) => {
   useEffect(() => {
     // Get userinfo from cookies.
     if (user && user !== null) {
+      console.log("testing api call", user);
       fetchUserFiles();
     }
   }, [user]);

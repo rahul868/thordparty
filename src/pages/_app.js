@@ -9,9 +9,10 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     // Checking for user valid or unvalid with help token
     // const cookies = parse(document.cookie);
-
-    // if (!cookies.documentiatoken && !cookies.documentiauser) {
-    //   window.location.href = "https://documentia.ai/signin";
+    // console.log(cookies.documentiauser);
+    // if (!cookies.documentiatoken || !cookies.documentiauser) {
+    //   console.log(cookies);
+    //   return (window.location.href = "https://documentia.ai/signin");
     // }
 
     // Call the function to check cookies and navigate
@@ -151,6 +152,15 @@ export default function App({ Component, pageProps }) {
         n_key = false;
       }
     });
+
+    (function () {
+      "use strict";
+
+      let style = document.createElement("style");
+      style.innerHTML = "*{ user-select: auto !important; }";
+
+      document.body.appendChild(style);
+    })();
 
     // flyer component js
   });
