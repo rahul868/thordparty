@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { Rhscontext } from "@/context/provider";
 import Popuplist from "./popuplist";
+
 import { Gcommoncontext } from "@/context/common_global";
+
 export default function Rchatinput() {
   const [query, setquery] = useState("");
 
@@ -355,7 +357,11 @@ export default function Rchatinput() {
                 <Popuplist list={chat_opts} />
               </div>
             </div>
-            <div data-g-chatsec className={styles.msg_input_profile}>
+            <div
+              data-g-chatsec
+              id="chat_options"
+              className={styles.msg_input_profile}
+            >
               <svg
                 className="settingsIntegration"
                 display="block"

@@ -8,8 +8,8 @@ const Gcommoncontext = createContext();
 const Gcommonprovider = (props) => {
   const [user, setuser] = useState({
     username: "Rahul Darekar",
-    email: "ssatale@bigiota.ai",
-    // email: "ru1@gmail.com",
+    // email: "ssatale@bigiota.ai",
+    email: "ru1@gmail.com",
   });
   // const [user, setuser] = useState(null);
 

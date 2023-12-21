@@ -19,9 +19,9 @@
 .rhs_header_content .document_intro {
   display: flex;
   align-items: center;
-  flex-basis: 230px;
   overflow: hidden;
   min-width: 200px;
+  max-width: 300px;
 }
 .rhs_header_content .document_intro .mobham {
   display: none;
@@ -235,7 +235,7 @@
 .show_header_drop_options .show_sub_header_drop .g_header_navbar_wrapper {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2.5rem;
 }
 
 .show_header_drop_options .show_sub_header_drop .spaecialtab {
@@ -299,17 +299,6 @@
   }
 }
 
-/* @keyframes popup-close {
-  from {
-    opacity: 1;
-    transform: scale(1) translateY(0%);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0.8) translateY(-12%);
-  }
-} */
-
 .includes_options_to_show .show_header_drop_options .show_sub_header_drop {
   width: 100%;
   height: 100%;
@@ -337,6 +326,13 @@
 #doc_name {
   font-size: 15px;
   font-weight: 600;
+}
+
+.close_flyer {
+  color: black;
+  font-size: 30px;
+
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 800px) {

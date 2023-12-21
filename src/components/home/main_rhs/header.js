@@ -16,6 +16,8 @@ export default function Rheader() {
 
   const [isMenu, setisMenu] = useState(false);
 
+  const [isCloseshow, setisCloseshow] = useState(false);
+
   const [isnewchat, setisnewchat] = useState(false);
   const [issave, setissave] = useState(false);
   const [isreset, setisreset] = useState(false);
@@ -89,6 +91,10 @@ export default function Rheader() {
       setissave(false);
     }, 5000);
   };
+
+  function Changeview() {
+    setisCloseshow(true);
+  }
 
   return (
     <header id="main_rhs_header" className={styles.rhs_header_wrapper}>
@@ -357,18 +363,33 @@ export default function Rheader() {
         {/* Flyer trigger  */}
         <div g-nav-container className={styles.includes_options_to_show}>
           <div className="include">
-            <span data-g_nav_header_tab>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="#666"
-                class="bi bi-three-dots"
-                viewBox="0 0 16 16"
+            {isCloseshow ? (
+              <span
+                data-g_nav_header_tab
+                className={styles.close_flyer}
+                onClick={() => {
+                  setisCloseshow(false);
+                  document
+                    .querySelector("[data-g-navbar-flyer]")
+                    .classList.remove("nav_flyer_active");
+                }}
               >
-                <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
-              </svg>
-            </span>
+                &times;
+              </span>
+            ) : (
+              <span data-g_nav_header_tab onClick={Changeview}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="#666"
+                  class="bi bi-three-dots"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
+                </svg>
+              </span>
+            )}
           </div>
         </div>
       </div>

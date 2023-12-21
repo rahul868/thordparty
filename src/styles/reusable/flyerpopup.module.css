@@ -1,6 +1,6 @@
 .nav_flyers_inner_wrapper {
   position: fixed;
-  top: 0;
+  top: calc(var(--common-header-size) + 13px);
   left: 0;
   right: 0;
   background-color: #f1f1f1;

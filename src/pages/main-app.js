@@ -28,29 +28,48 @@ export default function Home() {
 
       <div className={styles.app_container}>
         {/* LHS SECTION */}
-        <div
-          data-sec-lhswrapper
-          id="lhs_wrapper"
-          className={`${styles.left_section} ${styles.left_section_mob}`}
-        >
-          {/* SECTION 1. HEADER 2. CONTENT 3.FOOTER */}
-          <Lhsprovider>
-            <Lhswrapper />
-          </Lhsprovider>
-        </div>
+        {filemeta.length > 0 ? (
+          <div
+            data-sec-lhswrapper
+            id="lhs_wrapper"
+            className={`${styles.left_section} ${styles.left_section_mob}`}
+          >
+            {/* SECTION 1. HEADER 2. CONTENT 3.FOOTER */}
+            <Lhsprovider>
+              <Lhswrapper />
+            </Lhsprovider>
+          </div>
+        ) : (
+          <></>
+        )}
 
         {/* RHS SECTION */}
         <main data-sec-rhswrapper className={styles.main_rhs_container}>
           <Rhsprovider>
             {filemeta.length <= 0 ? (
-              <Gpopup
-                id="doc-landingwidget"
-                c_ostyle={{ backdropFilter: "blur(2px)" }}
-                isOpen={filemeta.length <= 0 ? true : false}
-                onClose={() => null}
-              >
-                <Landingrhs />
-              </Gpopup>
+              <>
+                <div
+                  className="set_img_newchat"
+                  style={{
+                    position: "fixed",
+                    width: "100%",
+                    left: "0",
+                  }}
+                >
+                  <img
+                    style={{ width: "100%" }}
+                    src="https://qsf.fs.quoracdn.net/-4-ans_frontend_assets.images.home_page_bg_desktop.png-26-4770753d59b970e1.png"
+                  />
+                </div>
+                <Gpopup
+                  id="doc-landingwidget"
+                  c_ostyle={{ backdropFilter: "blur(2px)" }}
+                  isOpen={filemeta.length <= 0 ? true : false}
+                  onClose={() => null}
+                >
+                  <Landingrhs />
+                </Gpopup>
+              </>
             ) : (
               <></>
             )}

@@ -19,13 +19,15 @@ function Landingrhs() {
   }
 
   return (
-    <div className={styles.landingwrapper}>
-      <div className={styles.landingsubwrapper}>
-        <Lintro />
-        <Luploaderwidget />
-        <Lfileindicator />
+    <>
+      <div className={styles.landingwrapper}>
+        <div className={styles.landingsubwrapper}>
+          <Lintro />
+          <Luploaderwidget />
+          <Lfileindicator />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
