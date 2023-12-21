@@ -9,19 +9,16 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     // Checking for user valid or unvalid with help token
     // const cookies = parse(document.cookie);
-    // console.log(cookies.documentiauser);
-    // if (!cookies.documentiatoken || !cookies.documentiauser) {
-    //   console.log(cookies);
-    //   return (window.location.href = "https://documentia.ai/signin");
+
+    // if (!cookies.documentiatoken && !cookies.documentiauser) {
+    //   window.location.href = "https://documentia.ai/signin";
     // }
 
     // Call the function to check cookies and navigate
     document.addEventListener("mousedown", (e) => {
-      // checking for flyer
-      e.preventDefault();
-      e.stopPropagation();
+      // // checking for flyer
 
-      console.log("testing clicks");
+      // e.stopPropagation();
 
       let nav_tab_element = "[data-g_nav_header_tab]";
       let check_for_navtab_ele = e.target.closest(nav_tab_element);
@@ -29,23 +26,18 @@ export default function App({ Component, pageProps }) {
         !check_for_navtab_ele &&
         e.target.closest("[g-nav-container]") != null
       ) {
-        console.log("insied trhis");
         // Means Inside g-nav-container but not on nav_tab_element
         return;
       }
 
       if (check_for_navtab_ele) {
         let flyer = document.querySelector("[data-g-navbar-flyer]");
-        console.log("fly", flyer);
-        // document.querySelectorAll("[g-navbar-flyer]").forEach((ele) => {
-        //   ele.classList.remove("nav_flyer_active");
-        // });
+
         if (flyer) {
           flyer.classList.add("nav_flyer_active");
         }
         // Means If on nav_tab_element
 
-        //document.querySelector("[activate-navbar-flyer=true]").classList.add("nav_flyer_active")
         return;
       }
 
@@ -102,13 +94,13 @@ export default function App({ Component, pageProps }) {
       }
 
       // Folder open event
-
       // Listening for overlay group heirarchy events for opening file structure under folder
       let check_for_group = e.target.closest("[data-role-group]");
       if (check_for_group) {
         check_for_group.nextElementSibling.classList.toggle(
           "folder_childswrapper_ative"
         );
+        return;
       }
 
       // Shorcuts keys for application
@@ -153,15 +145,6 @@ export default function App({ Component, pageProps }) {
       }
     });
 
-    (function () {
-      "use strict";
-
-      let style = document.createElement("style");
-      style.innerHTML = "*{ user-select: auto !important; }";
-
-      document.body.appendChild(style);
-    })();
-
     // flyer component js
   });
   return (
@@ -187,7 +170,7 @@ export default function App({ Component, pageProps }) {
 
         <style>
           @import
-          url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+          url('https://fonts.googleapapp_containeris.com/css2?family=Inter&display=swap');
         </style>
       </Head>
       <Component {...pageProps} />

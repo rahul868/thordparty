@@ -7,9 +7,9 @@ const Gcommoncontext = createContext();
 
 const Gcommonprovider = (props) => {
   const [user, setuser] = useState({
-    name: "Rahul Darekar",
-    // email: "ssatale@bigiota.ai",
-    email: "ru1@gmail.com",
+    username: "Rahul Darekar",
+    email: "ssatale@bigiota.ai",
+    // email: "ru1@gmail.com",
   });
   // const [user, setuser] = useState(null);
 
@@ -44,7 +44,6 @@ const Gcommonprovider = (props) => {
   // For first time uploading states
   const [isfirstupload, setisfirstupload] = useState(false);
 
-  //popup
   // Indicator popup
   const [gindicatormsg, setgindicatormsg] = useState(null);
 
@@ -94,7 +93,6 @@ const Gcommonprovider = (props) => {
   useEffect(() => {
     // Get userinfo from cookies.
     if (user && user !== null) {
-      console.log("testing api call", user);
       fetchUserFiles();
     }
   }, [user]);

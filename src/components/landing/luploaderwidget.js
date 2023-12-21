@@ -1,13 +1,9 @@
 import { Rhscontext } from "@/context/provider";
 import styles from "@/styles/landing/luploaderviewer.module.css";
 import { useContext } from "react";
-import Indicator from "../home/reusable/indicator";
 export default function Luploaderwidget() {
   const { handleFileChange } = useContext(Rhscontext);
 
-  // function handleFileChangePrev(e) {
-  //   handleFileChange(Array.from(e.target.files));
-  // }
   return (
     <div className={styles.lviewer_wrapper}>
       <div className={styles.lviewer_subwrapper}>

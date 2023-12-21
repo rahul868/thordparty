@@ -16,7 +16,6 @@ const Rhsprovider = (props) => {
     currdoc,
     setcurrdoc,
     setfilemeta,
-    setisfirstupload,
     setpamsg,
     setpastatus,
     setpatype,

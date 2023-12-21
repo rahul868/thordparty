@@ -4,7 +4,6 @@ import Lfileindicator from "./lfileindicator";
 import Lintro from "./lintro";
 import Luploaderwidget from "./luploaderwidget";
 import { Gcommoncontext } from "@/context/common_global";
-import Alert from "../home/reusable/alert";
 import Gpopup from "../home/reusable/gpopup";
 function Landingrhs() {
   const { pastatus, pamsg, pasecmsg, patype, isfirstupload } =

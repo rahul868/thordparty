@@ -15,7 +15,6 @@ function Rnewchat({ close }) {
     setUserGroup,
     setSeperateFiles,
     startUpload,
-    progress,
     setprogress,
     handleFileChange,
   } = useContext(Rhscontext);

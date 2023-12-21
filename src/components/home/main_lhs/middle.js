@@ -1,10 +1,8 @@
 import styles from "@/styles/home/lhs/middle.module.css";
 import File from "../reusable/file";
-import { files } from "@/data/file";
 import { useContext } from "react";
 import { Gcommoncontext } from "@/context/common_global";
 import Folder from "../reusable/folder";
-import { useRef, useEffect } from "react";
 
 export default function Lmiddle() {
   const { filemeta, error, loading } = useContext(Gcommoncontext);
