@@ -80,16 +80,16 @@ export default function Lheader() {
           onClick={() => setisprofileopt(true)}
         >
           <div data-g-popup-tab className={styles.first_sec}>
-            <Namemodel name={user.name} />
+            <Namemodel name={user.username} />
             <div className={styles.header_user_cont}>
-              <span>Welcome, {user.name}</span>
+              <span>Welcome, {user.username}</span>
               <div id={styles.uid}>{user.email}</div>
             </div>
           </div>
         </div>
 
         <div className={styles.header_ots_content}>
-          <div className={styles.header_ots}>
+          {/* <div className={styles.header_ots}>
             <div>
               <svg
                 role="graphics-symbol"
@@ -107,7 +107,7 @@ export default function Lheader() {
               </svg>
             </div>
             <span>Profile options</span>
-          </div>
+          </div> */}
 
           {filemeta?.length > 0 && (
             <>

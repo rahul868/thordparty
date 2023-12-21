@@ -7,7 +7,7 @@ const Gcommoncontext = createContext();
 
 const Gcommonprovider = (props) => {
   const [user, setuser] = useState({
-    name: "Rahul Darekar",
+    username: "Rahul Darekar",
     email: "ssatale@bigiota.ai",
     // email: "rd@gmail.com",
   });

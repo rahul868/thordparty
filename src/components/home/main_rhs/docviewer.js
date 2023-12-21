@@ -45,7 +45,7 @@ export default function Rdocviewer() {
     <>
       <div id="doc_container" style={{ height: "100%" }}>
         <iframe
-          allowTransparency
+          allowtransparency
           style={{ backgroundColor: "#666" }}
           src={currdoc.slug}
           width="100%"

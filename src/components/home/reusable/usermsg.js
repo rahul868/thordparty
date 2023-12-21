@@ -12,7 +12,7 @@ function Rusermsg({ msg }) {
             {user.a_profile ? (
               <img src={user.a_profile} alt="" />
             ) : (
-              <Namemodel name={user.name} />
+              <Namemodel name={user.username} />
             )}
             <div className={styles.summary_content}>{msg.summary}</div>
           </div>
