@@ -1,5 +1,10 @@
 .rhs_middle_content {
     user-select: none;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+    overflow: hidden;
 }
 
 .rhs_middle_content .middle_allchats {
@@ -41,9 +46,9 @@
 }
 
 .rhs_middle_content .documents_hie_container {
-    overflow: auto;
-    overflow-x: hidden;
-    height: calc(100vh - 300px);
+    overflow-y: auto;
+    height: 100%;
+    flex-grow: 1;
 }
 
 .filemeta_nonexist {

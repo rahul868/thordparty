@@ -1,3 +1,8 @@
+.lhs_header_content {
+  display: flex;
+  flex-direction: column;
+  /* overflow: hidden; */
+}
 .lhs_header_content .header_intro_user {
   display: flex;
   align-items: center;
@@ -42,7 +47,7 @@
   color: #37352f;
 }
 #uid {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   color: rgb(107, 107, 107);
 }
@@ -51,6 +56,9 @@
   font-size: 12px;
   font-weight: 500;
   color: #1d1d1f;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .lhs_header_content .header_ots_content .header_ots {
