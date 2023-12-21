@@ -52,6 +52,9 @@ export default function Lheader() {
   };
 
   function activate_upload_widget() {
+    document
+      .querySelector("[data-sec-lhswrapper]")
+      .classList.remove("lhs_mob_active");
     document.querySelector("[data-newchat-widget]").click();
   }
   function handleClose(action) {

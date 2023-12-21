@@ -16,14 +16,18 @@
   padding: 0;
   margin: 0;
   font-weight: 400;
+  user-select: text;
 }
 
+#__next,
 html,
 body {
   box-sizing: border-box;
   max-width: 100vw;
   font-size: 13px;
   font-family: "Inter", sans-serif;
+  user-select: text;
+  pointer-events: all;
 }
 *,
 *:before,
@@ -57,4 +61,11 @@ a {
     font-size: 15px;
     overflow: hidden;
   }
+}
+
+* {
+  -webkit-user-select: all; /* Chrome all / Safari all */
+  -moz-user-select: all; /* Firefox all */
+  -ms-user-select: all; /* IE 10+ */
+  user-select: all;
 }

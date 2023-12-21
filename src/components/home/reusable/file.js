@@ -12,8 +12,9 @@ export default function File({ file, callback }) {
     if (callback) {
       callback();
     }
-    let showleft = document.getElementById("lhs_wrapper");
-    showleft.classList.remove(close.show_left);
+    document
+      .querySelector("[data-sec-lhswrapper]")
+      .classList.remove("lhs_mob_active");
   }
   function limit_string(text, maxLength) {
     // Split the text into words
