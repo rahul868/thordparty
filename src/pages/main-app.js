@@ -63,7 +63,7 @@ export default function Home() {
                 </div>
                 <Gpopup
                   id="doc-landingwidget"
-                  c_ostyle={{ backdropFilter: "blur(2px)" }}
+                  c_ostyle={{ backdropFilter: "blur(8px)" }}
                   isOpen={filemeta.length <= 0 ? true : false}
                   onClose={() => null}
                 >

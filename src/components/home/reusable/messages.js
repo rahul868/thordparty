@@ -43,11 +43,11 @@ export default function Rmessages() {
     <div ref={messagesContainerRef}>
       {SavedMessages.map((msg, ind) => {
         return msg.isChatUI ? (
-          <div>
-            <Rmodelmsg msg={msg} key={ind} />
+          <div key={ind}>
+            <Rmodelmsg msg={msg} />
           </div>
         ) : (
-          <div>
+          <div key={ind}>
             <Rusermsg msg={msg} key={ind} />
           </div>
         );
