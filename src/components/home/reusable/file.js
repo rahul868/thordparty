@@ -37,6 +37,7 @@ export default function File({ file, callback }) {
     <div
       onClick={() => file_switching_process()}
       className={styles.file_wrapper}
+      title={file.name}
     >
       <div>
         <svg

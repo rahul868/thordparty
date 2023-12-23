@@ -65,6 +65,7 @@ export default function Rheader() {
     document
       .querySelector("[data-g-navbar-flyer]")
       .classList.remove("nav_flyer_active");
+    setisCloseshow(false);
     switch (mode) {
       case "newchat":
         setisnewchat(true);
@@ -450,7 +451,13 @@ export default function Rheader() {
               className={styles.g_header_navbar_wrapper}
             >
               <div
-                onClick={() => save_tofiles(currdoc.name)}
+                onClick={() => {
+                  save_tofiles(currdoc.name);
+                  document
+                    .querySelector("[data-g-navbar-flyer]")
+                    .classList.remove("nav_flyer_active");
+                  setisCloseshow(false);
+                }}
                 className={styles.dropdown_block}
               >
                 <span

@@ -15,7 +15,6 @@ export default function Rdocviewer() {
     //   console.log("error tra")
     //   seterror(event);
     // });
-
   });
   const { currdoc } = useContext(Gcommoncontext);
   if (error) {
@@ -50,7 +49,7 @@ export default function Rdocviewer() {
           src={currdoc.slug}
           width="100%"
           height="100%"
-          frameborder="0"
+          frameBorder="0"
         />
       </div>
     </>
