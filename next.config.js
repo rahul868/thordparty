@@ -5,12 +5,7 @@ const dotenv = require("dotenv");
 // Load environment variables from .env file
 dotenv.config();
 const nextConfig = {
-  // cssModules: {
-  //   enable: false,
-  //   config: {
-  //     generateScopedName: "[local]",
-  //   },
-  // },
+
 };
 
-module.exports = nextConfig;
+module.exports = nextConfig;  
