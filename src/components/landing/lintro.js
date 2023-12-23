@@ -11,7 +11,7 @@ export default function Lintro() {
           <div className={styles.landing_heading_part}>
             <div className={styles.welcome_root}>
               <span className={styles.wel_desgine}>
-                Welcome you in Documentia!
+                Welcome you in <span style={{color:"var(--app-color-code)",fontWeight:"700"}}>Documentia!</span>
               </span>
               <div className={styles.wel_desgine2}>
                 Let's start your journey of finding and comparing information

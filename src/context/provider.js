@@ -240,6 +240,7 @@ const Rhsprovider = (props) => {
 
   const setSeperateFiles = async (files) => {
     setpamsg("Final processing is in progress please wait...");
+    setpasecmsg(`0 / ${files.length} Uploaded successfully.`);
     try {
       // Simulate API call for user file metadata
       const response = await fetch(

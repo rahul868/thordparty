@@ -109,7 +109,6 @@ export default function App({ Component, pageProps }) {
     document.addEventListener("mouseover", async (e) => {
       let nav_tab_element = "[data-g-chatsec]";
       let check_for_navtab_ele = e.target.matches(nav_tab_element);
-      ``;
       // Check if the event target is the background element
 
       if (
@@ -163,19 +162,10 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/assets/images/favicon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        {/* <link
+        <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"
-        /> */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&display=swap"
-          rel="stylesheet"
         />
-
-        <style>
-          @import
-          url('https://fonts.googleapapp_containeris.com/css2?family=Inter&display=swap');
-        </style>
       </Head>
       <Component {...pageProps} />
     </Gcommonprovider>
