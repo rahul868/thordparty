@@ -132,19 +132,20 @@ export default function App({ Component, pageProps }) {
       });
     });
 
-    let n_key = false;
+    let alt_key = false;
+
     document.addEventListener("keydown", function (event) {
-      if (event.key === "n") {
-        n_key = true;
+      if (event.altKey) {
+        alt_key = true;
       }
       // Check if the 'd' key is pressed and 'n' was pressed before
-      if (event.key === "d" && n_key) {
+      if (event.key === "d" && alt_key) {
         // Open document uploading widget
         document.querySelector("[data-newchat-widget]").click();
         // Prevent the default browser behavior (e.g., prevent typing in an input field)
         event.preventDefault();
         // Reset the flag after processing the combination
-        n_key = false;
+        alt_key = false;
       }
     });
 

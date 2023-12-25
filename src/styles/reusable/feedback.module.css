@@ -1,6 +1,8 @@
 .feedbackwrap {
   padding: 10px;
   min-width: 350px;
+  width: 400px;
+  max-width: 450px;
 }
 
 .feedbackwrap .feedbackinput {

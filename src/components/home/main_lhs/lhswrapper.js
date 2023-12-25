@@ -7,6 +7,7 @@ export default function Lhswrapper() {
     <div id="lhs_section" className={styles.lhs_content_wrapper}>
       <Lheader />
       <Lmiddle />
+      <img src="assets/images/logo.png" />
     </div>
   );
 }

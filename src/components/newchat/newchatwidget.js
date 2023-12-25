@@ -224,7 +224,7 @@ function Rnewchat({ close }) {
                           {!isGroup ? (
                             <>
                               <Button
-                                title={"Create Chat"}
+                                title={"Start Chat"}
                                 callback={addSingelfile}
                               />
                             </>
@@ -234,7 +234,7 @@ function Rnewchat({ close }) {
                           {isGroup && grpname !== "" ? (
                             <>
                               <Button
-                                title={"Create Chat"}
+                                title={"Start Chat"}
                                 callback={addGroupfile}
                               />
                             </>
