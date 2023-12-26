@@ -250,7 +250,7 @@ function Rnewchat({ close }) {
                 <>
                   <div className={styles.upload_widget_title}></div>
                   <div className={styles.icon_upload}>
-                    <img src="/assets/svg/upload.svg" />
+                    <img src="assets/svg/upload.svg" />
                     <span>
                       <span style={{ fontWeight: 600 }}>Drag & drop </span> it
                       here

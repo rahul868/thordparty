@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import styles from "../styles/home.module.css";
+import styles from "@/styles/home.module.css";
 import Lhswrapper from "@/components/home/main_lhs/lhswrapper";
 import Rhswrapper from "@/components/home/main_rhs/rhswrapper";
 import { Rhsprovider } from "@/context/provider";

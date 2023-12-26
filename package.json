@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "pm2 start main.server.js",
+    "dev": "cross-env DOCUMENTIA_ENV=DEV next dev --port 3001",
+    "build": "cross-env DOCUMENTIA_ENV=PROD next build",
+    "start": "cross-env DOCUMENTIA_ENV=PROD next build && pm2 start main.server.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -13,6 +13,7 @@
     "axios": "^1.6.2",
     "cookie": "^0.6.0",
     "dotenv": "^16.3.1",
+    "express": "^4.18.2",
     "next": "^14.0.3",
     "react": "^18",
     "react-dom": "^18",
@@ -20,6 +21,7 @@
     "unique-names-generator": "^4.7.1"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "eslint": "^8",
     "eslint-config-next": "14.0.3"
   }

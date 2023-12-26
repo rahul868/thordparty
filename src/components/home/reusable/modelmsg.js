@@ -38,7 +38,7 @@ function Rmodelmsg({ msg }) {
               c_style={{ background: "#008080", borderRadius: "50%" }}
               name={"Doc AI"}
             /> */}
-            <img src="/assets/images/favicon.png" alt="documential_model" />
+            <img src="assets/images/favicon.png" alt="documential_model" />
             <div>
               {msg.re_type == "html" ? (
                 <div className={styles.msg_htmlwrapper}>

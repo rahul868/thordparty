@@ -5,7 +5,7 @@ export default function Splash() {
     <div className={styles.splashwrapper}>
       <div className={styles.splassubhwrapper}>
         <img
-          src="/assets/images/logo.png"
+          src="assets/images/logo.png"
           alt="documentia logo"
           id="documential_logo"
         />
