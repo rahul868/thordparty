@@ -259,7 +259,9 @@ export default function Rchatinput() {
       if (
         optionsContainer &&
         !optionsContainer.contains(event.target) &&
-        !event.target.closest("[data-g-nav-container]")
+        !(
+          event.target.closest && event.target.closest("[data-g-nav-container]")
+        )
       ) {
         optionsContainer.classList.remove("option_flyer_wrapper_active");
       }
