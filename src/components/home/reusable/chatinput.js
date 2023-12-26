@@ -240,7 +240,35 @@ export default function Rchatinput() {
     };
     sendPrompt(obj);
     setquery("");
+    sent &&
+      document
+        .getElementById("options")
+        .classList.remove("option_flyer_wrapper_active");
   }
+
+  function handleshoeflyer() {
+    let showelement = document.getElementById("options");
+    if (showelement) {
+      showelement.classList.add("option_flyer_wrapper_active");
+    }
+  }
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const optionsContainer = document.getElementById("options");
+      if (
+        optionsContainer &&
+        !optionsContainer.contains(event.target) &&
+        !event.target.closest("[data-g-nav-container]")
+      ) {
+        optionsContainer.classList.remove("option_flyer_wrapper_active");
+      }
+    };
+    document.addEventListener("mousemove", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousemove", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div data-g-nav-container className={styles.chatinput_wrapper}>
@@ -250,7 +278,11 @@ export default function Rchatinput() {
             <div data-g-opt-flyer className={styles.option_flyer_wrapper}>
               <div className={styles.option_flyer_subwrapper}></div>
             </div>
-            <div data-g-chatsec className={styles.msg_input_profile}>
+            <div
+              data-g-chatsec
+              style={{ pointerEvents: "none" }}
+              className={styles.msg_input_profile}
+            >
               <svg
                 className="settingsIntegration"
                 display="block"
@@ -352,7 +384,11 @@ export default function Rchatinput() {
       ) : (
         <div className={styles.chatinput_subwrapper}>
           <div className={styles.msg_firstsec}>
-            <div data-g-opt-flyer className={styles.option_flyer_wrapper}>
+            <div
+              data-g-opt-flyer
+              id="options"
+              className={styles.option_flyer_wrapper}
+            >
               <div className={styles.option_flyer_subwrapper}>
                 <Popuplist list={chat_opts} />
               </div>
@@ -361,23 +397,27 @@ export default function Rchatinput() {
               data-g-chatsec
               id="chat_options"
               className={styles.msg_input_profile}
+              onMouseOver={handleshoeflyer}
             >
-              <svg
-                className="settingsIntegration"
-                display="block"
-                viewBox="0 0 20 20"
-                style={{
-                  width: 20,
-                  height: 20,
-                  WebkitFlexShrink: "0",
-                  MsFlexShrink: "0",
-                  flexShrink: "0",
-                  fill: "white",
-                }}
-              >
-                <path d="M4.633 9.42h3.154c1.093 0 1.632-.532 1.632-1.656V4.655C9.42 3.532 8.88 3 7.787 3H4.633C3.532 3 3 3.532 3 4.655v3.109c0 1.124.532 1.655 1.633 1.655zm7.58 0h3.162C16.468 9.42 17 8.887 17 7.763V4.655C17 3.532 16.468 3 15.374 3h-3.16c-1.094 0-1.633.532-1.633 1.655v3.109c0 1.124.539 1.655 1.633 1.655zm-7.58-1.251c-.262 0-.382-.135-.382-.405V4.648c0-.27.12-.405.382-.405h3.146c.262 0 .39.135.39.405v3.116c0 .27-.128.405-.39.405H4.633zm7.588 0c-.262 0-.39-.135-.39-.405V4.648c0-.27.128-.405.39-.405h3.146c.262 0 .39.135.39.405v3.116c0 .27-.128.405-.39.405h-3.146zM4.633 17h3.154c1.093 0 1.632-.532 1.632-1.655v-3.109c0-1.124-.539-1.655-1.632-1.655H4.633C3.532 10.58 3 11.112 3 12.236v3.109C3 16.468 3.532 17 4.633 17zm7.58 0h3.162C16.468 17 17 16.468 17 15.345v-3.109c0-1.124-.532-1.655-1.626-1.655h-3.16c-1.094 0-1.633.531-1.633 1.655v3.109c0 1.123.539 1.655 1.633 1.655zm-7.58-1.25c-.262 0-.382-.128-.382-.398v-3.116c0-.277.12-.405.382-.405h3.146c.262 0 .39.128.39.405v3.116c0 .27-.128.397-.39.397H4.633zm7.588 0c-.262 0-.39-.128-.39-.398v-3.116c0-.277.128-.405.39-.405h3.146c.262 0 .39.128.39.405v3.116c0 .27-.128.397-.39.397h-3.146z"></path>
-              </svg>
+              <span>
+                <svg
+                  className="settingsIntegration"
+                  display="block"
+                  viewBox="0 0 20 20"
+                  style={{
+                    width: 20,
+                    height: 20,
+                    WebkitFlexShrink: "0",
+                    MsFlexShrink: "0",
+                    flexShrink: "0",
+                    fill: "white",
+                  }}
+                >
+                  <path d="M4.633 9.42h3.154c1.093 0 1.632-.532 1.632-1.656V4.655C9.42 3.532 8.88 3 7.787 3H4.633C3.532 3 3 3.532 3 4.655v3.109c0 1.124.532 1.655 1.633 1.655zm7.58 0h3.162C16.468 9.42 17 8.887 17 7.763V4.655C17 3.532 16.468 3 15.374 3h-3.16c-1.094 0-1.633.532-1.633 1.655v3.109c0 1.124.539 1.655 1.633 1.655zm-7.58-1.251c-.262 0-.382-.135-.382-.405V4.648c0-.27.12-.405.382-.405h3.146c.262 0 .39.135.39.405v3.116c0 .27-.128.405-.39.405H4.633zm7.588 0c-.262 0-.39-.135-.39-.405V4.648c0-.27.128-.405.39-.405h3.146c.262 0 .39.135.39.405v3.116c0 .27-.128.405-.39.405h-3.146zM4.633 17h3.154c1.093 0 1.632-.532 1.632-1.655v-3.109c0-1.124-.539-1.655-1.632-1.655H4.633C3.532 10.58 3 11.112 3 12.236v3.109C3 16.468 3.532 17 4.633 17zm7.58 0h3.162C16.468 17 17 16.468 17 15.345v-3.109c0-1.124-.532-1.655-1.626-1.655h-3.16c-1.094 0-1.633.531-1.633 1.655v3.109c0 1.123.539 1.655 1.633 1.655zm-7.58-1.25c-.262 0-.382-.128-.382-.398v-3.116c0-.277.12-.405.382-.405h3.146c.262 0 .39.128.39.405v3.116c0 .27-.128.397-.39.397H4.633zm7.588 0c-.262 0-.39-.128-.39-.398v-3.116c0-.277.128-.405.39-.405h3.146c.262 0 .39.128.39.405v3.116c0 .27-.128.397-.39.397h-3.146z"></path>
+                </svg>
+              </span>
             </div>
+            &nbsp;
             <input
               placeholder="Type you question here..."
               data-chat-input

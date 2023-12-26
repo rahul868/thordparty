@@ -106,31 +106,31 @@ export default function App({ Component, pageProps }) {
       // Shorcuts keys for application
     });
 
-    document.addEventListener("mouseover", async (e) => {
-      let nav_tab_element = "[data-g-chatsec]";
-      let check_for_navtab_ele = e.target.matches(nav_tab_element);
-      // Check if the event target is the background element
+    // document.addEventListener("mouseover", async (e) => {
+    //   let nav_tab_element = "[data-g-chatsec]";
+    //   let check_for_navtab_ele = e.target.matches(nav_tab_element);
+    //   // Check if the event target is the background element
 
-      if (
-        !check_for_navtab_ele &&
-        e.target.closest("[data-g-nav-container]") != null
-      ) {
-        // Means Inside g-nav-container but not on nav_tab_element
-        return;
-      }
+    //   if (
+    //     !check_for_navtab_ele &&
+    //     e.target.closest("[data-g-nav-container]") != null
+    //   ) {
+    //     // Means Inside g-nav-container but not on nav_tab_element
+    //     return;
+    //   }
 
-      if (check_for_navtab_ele) {
-        if (e.target.previousSibling) {
-          e.target.previousSibling.classList.add("option_flyer_wrapper_active");
-          return;
-        }
-      }
+    //   if (check_for_navtab_ele) {
+    //     if (e.target.previousSibling) {
+    //       e.target.previousSibling.classList.add("option_flyer_wrapper_active");
+    //       return;
+    //     }
+    //   }
 
-      // Means Outside g-nav-container or not on nav_tab_element or not on the background
-      document.querySelectorAll("[data-g-opt-flyer]").forEach((ele) => {
-        ele.classList.remove("option_flyer_wrapper_active");
-      });
-    });
+    //   // Means Outside g-nav-container or not on nav_tab_element or not on the background
+    //   document.querySelectorAll("[data-g-opt-flyer]").forEach((ele) => {
+    //     ele.classList.remove("option_flyer_wrapper_active");
+    //   });
+    // });
 
     let alt_key = false;
 
