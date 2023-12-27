@@ -496,7 +496,7 @@ export default function Rheader() {
                   </span>
                 </div>
               </div>
-              <a target="_blank" href="https://www.documentia.ai/about">
+              <a target="_blank" href="/">
                 <div className={styles.dropdown_block}>
                   <span
                     id="news_nav_tab"

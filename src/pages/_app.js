@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }) {
     // Checking for user valid or unvalid with help token
     const cookies = parse(document.cookie);
     if (!cookies.documentiatoken || !cookies.documentiauser) {
-      window.location.href = "/login";
+      window.location.href = "/signin";
     }
 
     // Call the function to check cookies and navigate
