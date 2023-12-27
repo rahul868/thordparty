@@ -47,8 +47,10 @@ export default function Lheader() {
   const logout_function = () => {
     // clear cookies here
     // All tokens also and navigate to login page.
-    document.cookie = "documentiatoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    document.cookie = "documentiauser=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie =
+      "documentiatoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie =
+      "documentiauser=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     return (window.location.href = "/signin");
   };
 
@@ -256,7 +258,7 @@ export default function Lheader() {
           list={[
             {
               name: "By Creation date ",
-              callback: "",
+              callback: () => null,
               svg: (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -273,7 +275,7 @@ export default function Lheader() {
             },
             {
               name: "By updated date",
-              callback: "",
+              callback: () => null,
               svg: (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

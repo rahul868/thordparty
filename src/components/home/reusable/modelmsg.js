@@ -1,6 +1,6 @@
 import { Gcommoncontext } from "@/context/common_global";
 import styles from "@/styles/home/rhs/model.module.css";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 function Rmodelmsg({ msg }) {
   const { setiopen, setimsg, setitype } = useContext(Gcommoncontext);
@@ -34,10 +34,7 @@ function Rmodelmsg({ msg }) {
       <div className={styles.msg_for_ai}>
         <div className={styles.msg_sub_for_ai}>
           <div className={styles.box_wrapper_msg}>
-            {/* <Namemodel
-              c_style={{ background: "#008080", borderRadius: "50%" }}
-              name={"Doc AI"}
-            /> */}
+           
             <img src="assets/images/favicon.png" alt="documential_model" />
             <div>
               {msg.re_type == "html" ? (

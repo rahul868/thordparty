@@ -1,16 +1,20 @@
-import { Inter } from "next/font/google";
+import { Gcommoncontext } from "@/context/common_global";
+import { useContext } from "react";
+import dynamic from "next/dynamic";
 import styles from "@/styles/home.module.css";
-import Lhswrapper from "@/components/home/main_lhs/lhswrapper";
-import Rhswrapper from "@/components/home/main_rhs/rhswrapper";
+const Lhswrapper = dynamic(() =>
+  import("@/components/home/main_lhs/lhswrapper")
+);
+const Rhswrapper = dynamic(() =>
+  import("@/components/home/main_rhs/rhswrapper")
+);
 import { Rhsprovider } from "@/context/provider";
 import { Lhsprovider } from "@/context/lhsprovider";
-import Alert from "@/components/home/reusable/alert";
-import { Gcommoncontext } from "@/context/common_global";
-import Landingrhs from "@/components/landing/landingrhs";
-import { useContext } from "react";
-import Splash from "@/components/home/reusable/splashscreen";
-import Gpopup from "@/components/home/reusable/gpopup";
-import Indicator from "@/components/home/reusable/indicator";
+const Alert = dynamic(() => import("@/components/home/reusable/alert"));
+const Splash = dynamic(() => import("@/components/home/reusable/splashscreen"));
+const Gpopup = dynamic(() => import("@/components/home/reusable/gpopup"));
+const Indicator = dynamic(() => import("@/components/home/reusable/indicator"));
+const Landingrhs = dynamic(() => import("@/components/landing/landingrhs"));
 
 export default function Home() {
   const context = useContext(Gcommoncontext);

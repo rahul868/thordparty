@@ -8,7 +8,7 @@ function useDragandDrop() {
   const dragfunc = () => {
     var dropArea = document.getElementById("drop-area");
 
-    if (dropArea === null) {
+    if (!dropArea) {
       return null;
     }
 
@@ -53,7 +53,6 @@ function useDragandDrop() {
         if (files.length > 0) {
           let newAddedFiles = Array.from(files);
           for (let i = 0; i < dragfiles.length; i++) {
-            console.log(dragfiles[i]);
             newAddedFiles.push(dragfiles[i]);
           }
           setfiles(newAddedFiles);
@@ -61,7 +60,7 @@ function useDragandDrop() {
           setfiles(Array.from(dragfiles));
         }
       } catch (error) {
-        console.log(error);
+        // While selecting files
       }
     }
   };

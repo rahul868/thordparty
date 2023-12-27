@@ -1,21 +1,9 @@
 import { Gcommoncontext } from "@/context/common_global";
 import styles from "@/styles/home/rhs/docviewer.module.css";
-import { useEffect, useContext, useState } from "react";
+import { useContext, useState } from "react";
 export default function Rdocviewer() {
   const [error, seterror] = useState(false);
   const [loading, setloading] = useState(false);
-  useEffect(() => {
-    // const iframe = document.querySelector("#docview_iframe");
-    // // Show loader while iframe is loading
-    // iframe.addEventListener("load", () => {
-    //   setloading(false);
-    // });
-    // // Handle iframe load error
-    // iframe.addEventListener("error", (event) => {
-    //   console.log("error tra")
-    //   seterror(event);
-    // });
-  });
   const { currdoc } = useContext(Gcommoncontext);
   if (error) {
     return (

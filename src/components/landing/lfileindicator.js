@@ -196,18 +196,6 @@ function Lfileindicator() {
                 <span>Upload all docs as a Group {grpname ? grpname : ""}</span>
               </label>
               <br />
-              {/* {isGroup ? (
-                <div className={styles.groupname_container}>
-                  <input
-                    type="text"
-                    placeholder="Type group name here..."
-                    id={styles.grpname_input}
-                    onChange={(e) => setGrpname(e.target.value)}
-                  />
-                </div>
-              ) : (
-                <></>
-              )} */}
               <div className={styles.landinguploading_trigger}>
                 {!isGroup ? <></> : <></>}
                 {isGroup && grpname !== "" ? (
@@ -219,7 +207,7 @@ function Lfileindicator() {
                   </>
                 ) : (
                   <>
-                    <Button title={"Create Chat"} callback={addSingelfile} />
+                    <Button title={"Start Chat"} callback={addSingelfile} />
                   </>
                 )}
               </div>

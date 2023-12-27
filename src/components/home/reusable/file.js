@@ -1,5 +1,4 @@
 import styles from "@/styles/reusable/file.module.css";
-import close from "@/styles/home/rhs/header.module.css";
 import { useContext } from "react";
 import { Gcommoncontext } from "@/context/common_global";
 

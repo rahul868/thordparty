@@ -79,15 +79,9 @@ const Rhsprovider = (props) => {
             setprogress((prevUploadInfos) => [...prevUploadInfos, uploadInfo]);
 
             resolve(uploadInfo); // Resolve with upload information
-            // setprogress(updatedProgress)
-
-            console.log(`${file.name} uploaded successfully!`, progress);
-            // resolve(); // Resolve the promise for successful upload
           } else {
             // Log the error or take additional actions
-            console.error(
-              `Error uploading $  {file.name}. Status: ${xhr.status}`
-            );
+
             reject(
               new Error(`Error uploading ${file.name}. Status: ${xhr.status}`)
             );
@@ -117,19 +111,6 @@ const Rhsprovider = (props) => {
     }
     setfiles([...files, ...Array.from(selectedFiles)]);
   };
-
-  // const handleFileChange = (file_arr) => {
-  //   // Check if the total number of files doesn't exceed the limit
-
-  //   if (files.length + file_arr.length > 5) {
-  //     console.log(files.length, file_arr.length);
-  //     setitype("l");
-  //     setimsg("Maximum 5 files are allowed at one time.");
-  //     setiopen(true);
-  //     return;
-  //   }
-  //   setfiles([...files, ...file_arr]);
-  // };
 
   // Function for fetching chat hostory of individual doc
   const fetchFileChats = async () => {
@@ -306,6 +287,9 @@ const Rhsprovider = (props) => {
     // Clean up
     document.body.removeChild(a);
     window.URL.revokeObjectURL(url);
+    setimsg(`Your chats are saved to ${fileName}`);
+    setitype("s");
+    setiopen(true);
   };
 
   // const/ [SelectGroupChat, setSelectGroupChat] = useState();

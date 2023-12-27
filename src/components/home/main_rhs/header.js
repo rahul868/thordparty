@@ -87,10 +87,6 @@ export default function Rheader() {
 
   const handleSave = () => {
     save_tofiles();
-    setissave(true);
-    setTimeout(() => {
-      setissave(false);
-    }, 5000);
   };
 
   function Changeview() {
