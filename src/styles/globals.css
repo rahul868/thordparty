@@ -8,8 +8,8 @@
   --popup-global-index: 105;
 
   /* model component width */
-  --model-small-width:350px;
-  --model-medium-width:450px;
+  --model-small-width: 350px;
+  --model-medium-width: 450px;
 
   /* Height variables */
   --searchpopup-component: 400px;
@@ -51,7 +51,6 @@ body {
 
 *::-webkit-scrollbar {
   width: 6px;
-  /* background-color: #F5F5F5; */
 }
 
 *::-webkit-scrollbar-thumb {

@@ -25,7 +25,6 @@
 }
 
 .document_viewer .doc_viewercontainer {
-  /* padding: 0px 10px; */
   height: calc(100% - 5px);
 }
 
@@ -40,7 +39,7 @@
   position: absolute;
   top: 50%;
   left: -1%;
-  z-index: 10;
+  z-index: calc(var(--overlay-global-index) - 20);
   cursor: pointer;
   background-color: white;
   box-shadow: 1px 3px 7px 7px #f1f1f1;
@@ -49,14 +48,6 @@
 /*  Mobile View set  */
 
 @media only screen and (max-width: 650px) {
-  
-  .chat_sectionspec {
-    /* display: flex;
-    flex-direction: column;
-    height: 100%;
-    flex-grow: 1;
-    overflow: hidden; */
-  }
   .document_viewer {
     display: none;
   }

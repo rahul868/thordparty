@@ -144,7 +144,6 @@
   justify-content: center;
   height: 100%;
   align-items: center;
-  /* border-right: 1px solid #4444; */
   cursor: pointer;
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
@@ -260,5 +259,4 @@
     overflow-y: scroll;
     overflow-x: hidden;
   }
-
 }

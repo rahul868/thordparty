@@ -1,5 +1,4 @@
 .lviewer_wrapper {
-  /* width: 100%; */
   max-width: 500px;
   flex: 1;
 }
@@ -20,12 +19,7 @@
 .lviewer_subwrapper .drop_zone:hover {
   opacity: 0.5;
 }
-.lviewer_subwrapper .upload_widget_title {
-}
 
 .lviewer_subwrapper .icon_upload {
   max-width: 100%;
-}
-
-.lviewer_subwrapper .icon_upload img {
 }

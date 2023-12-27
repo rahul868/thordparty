@@ -9,7 +9,7 @@
   opacity: 0;
   visibility: hidden;
   overflow: hidden;
-  z-index: 9999;
+  z-index: calc(var(--overlay-global-index) + 20);
   display: flex;
   justify-content: center;
   backdrop-filter: blur(18px) saturate(10%);
