@@ -1,5 +1,4 @@
 import { Gcommoncontext } from "@/context/common_global";
-import styles from "@/styles/home/rhs/docviewer.module.css";
 import { useContext, useState } from "react";
 export default function Rdocviewer() {
   const [error, seterror] = useState(false);
