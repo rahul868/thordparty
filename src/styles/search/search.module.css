@@ -1,9 +1,9 @@
 .searchwrapper {
   padding: 5px 12px 0px 12px;
   max-height: var(--searchpopup-component);
-  min-width: 310px;
-  width: 400px;
-  max-width: 450px;
+  min-width: var(--model-small-width);
+  width: calc(var(--model-medium-width) - 50px);
+  max-width: var(--model-medium-width);
 }
 .searchwrapper .searchsubwrapper {
   height: 100%;

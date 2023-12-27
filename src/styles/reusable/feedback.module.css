@@ -1,8 +1,8 @@
 .feedbackwrap {
   padding: 10px;
-  min-width: 350px;
-  width: 400px;
-  max-width: 450px;
+  min-width: var(--model-small-width);
+  width: calc(var(--model-medium-width) - 50px);
+  max-width: var(--model-medium-width);
 }
 
 .feedbackwrap .feedbackinput {

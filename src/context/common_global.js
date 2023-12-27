@@ -6,24 +6,24 @@ const Gcommoncontext = createContext();
 // const cookies = parse(document.cookie);
 
 const Gcommonprovider = (props) => {
-  // const [user, setuser] = useState({
-  //   username: "Rahul Darekar",
-  //   email: "ssatale@bigiota.ai",
-  //   // email: "ru1@gmail.com",
-  // });
-  const [user, setuser] = useState(null);
+  const [user, setuser] = useState({
+    username: "Rahul Darekar",
+    email: "ssatale@bigiota.ai",
+    // email: "ru1@gmail.com",
+  });
+  // const [user, setuser] = useState(null);
 
-  useEffect(() => {
-    if (typeof document !== "undefined") {
-      // Check for user validity with the help of a token
-      const cookies = parse(document.cookie);
-      if (cookies.documentiauser) {
-        let newuserObj = JSON.parse(cookies.documentiauser);
-        setuser(newuserObj);
-      }
-    }
-    // Check if running on the client side where document is defined
-  }, []);
+  // useEffect(() => {
+  //   if (typeof document !== "undefined") {
+  //     // Check for user validity with the help of a token
+  //     const cookies = parse(document.cookie);
+  //     if (cookies.documentiauser) {
+  //       let newuserObj = JSON.parse(cookies.documentiauser);
+  //       setuser(newuserObj);
+  //     }
+  //   }
+  //   // Check if running on the client side where document is defined
+  // }, []);
 
   const [error, seterror] = useState(false);
   const [loading, setloading] = useState(true);

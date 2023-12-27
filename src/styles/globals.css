@@ -6,9 +6,25 @@
   --common-line-switching: 45px;
   --overlay-global-index: 100;
   --popup-global-index: 105;
-  --common-mobile-font: 15px;
+
+  /* model component width */
+  --model-small-width:350px;
+  --model-medium-width:450px;
+
   /* Height variables */
   --searchpopup-component: 400px;
+
+  /* Fontsize variables */
+  --web-extralargefontsize: 22px;
+  --web-largefontsize: 18px;
+  --web-mediumfontsize: 14px;
+  --web-small-fontsize: 13px;
+
+  --mobile-extralargefontsize: 25px;
+  --mobile-largefontsize: 20px;
+  --mobile-mediumfontsize: 16px;
+  --mobile-small-fontsize: 15px;
+
   /* Color global variables */
 }
 
@@ -23,8 +39,6 @@ body {
   max-width: 100vw;
   font-size: 14px;
   font-family: "Inter", sans-serif;
-  /* font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial,
-    sans-serif; */
 }
 *,
 *:before,
@@ -54,9 +68,6 @@ a {
   body {
     box-sizing: border-box;
     max-width: 100%;
-    /* font-family: "Inter", sans-serif; */
-    font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial,
-      sans-serif;
     font-size: 16px;
     overflow: hidden;
   }
