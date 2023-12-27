@@ -64,18 +64,18 @@ export default function Folder({ group }) {
             ></path>
           </svg>
         </div>
-
         <span>{limit_string(group.groupname, 20)}</span>
-        &nbsp;<svg
+        &nbsp;
+        <svg
           xmlns="http://www.w3.org/2000/svg"
           width="13"
           height="13"
           style={{
-            verticalAlign:"middle"
+            verticalAlign: "middle",
           }}
           fill="rgba(55, 53, 47, 0.45)"
           stroke="rgba(55, 53, 47, 0.3)"
-          class="bi bi-caret-down-fill"
+          className="bi bi-caret-down-fill"
           viewBox="0 0 16 16"
         >
           <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
@@ -84,8 +84,8 @@ export default function Folder({ group }) {
 
       <div data-role-childs className={styles.folder_childswrapper}>
         <div className={styles.folder_childssubwrapper}>
-          {group.childs.map((file) => {
-            return <File file={file} />;
+          {group.childs.map((file, ind) => {
+            return <File key={ind} file={file} />;
           })}
         </div>
       </div>

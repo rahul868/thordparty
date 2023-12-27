@@ -211,11 +211,11 @@ export default function Lheader() {
             }}
           >
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"
             />
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"
             />
           </svg>
@@ -238,7 +238,7 @@ export default function Lheader() {
                   width="16"
                   height="16"
                   fill="rgba(55, 53, 47, 0.85)"
-                  class="bi bi-people-fill"
+                  className="bi bi-people-fill"
                   viewBox="0 0 16 16"
                 >
                   <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
@@ -265,7 +265,7 @@ export default function Lheader() {
                   width="16"
                   height="16"
                   fill="rgba(55, 53, 47, 0.85)"
-                  class="bi bi-calendar-check"
+                  className="bi bi-calendar-check"
                   viewBox="0 0 16 16"
                 >
                   <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
@@ -282,7 +282,7 @@ export default function Lheader() {
                   width="16"
                   height="16"
                   fill="rgba(55, 53, 47, 0.85)"
-                  class="bi bi-calendar-plus"
+                  className="bi bi-calendar-plus"
                   viewBox="0 0 16 16"
                 >
                   <path d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7" />
