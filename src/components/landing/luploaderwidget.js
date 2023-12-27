@@ -19,7 +19,7 @@ export default function Luploaderwidget() {
 
           <div className={styles.upload_widget_title}></div>
           <div className={styles.icon_upload}>
-            <img alt="upload_landing" src="/assets/svg/upload.svg" />
+            <img alt="upload_landing" src="assets/svg/upload.svg" />
           </div>
 
           <div style={{ textAlign: "center" }}>

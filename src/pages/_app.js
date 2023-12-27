@@ -8,11 +8,10 @@ import { parse } from "cookie";
 export default function App({ Component, pageProps }) {
   useEffect(() => {
     // Checking for user valid or unvalid with help token
-    // const cookies = parse(document.cookie);
-
-    // if (!cookies.documentiatoken && !cookies.documentiauser) {
-    //   window.location.href = "https://documentia.ai/signin";
-    // }
+    const cookies = parse(document.cookie);
+    if (!cookies.documentiatoken || !cookies.documentiauser) {
+      window.location.href = "/login";
+    }
 
     // Call the function to check cookies and navigate
     document.addEventListener("mousedown", (e) => {

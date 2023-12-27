@@ -47,9 +47,9 @@ export default function Lheader() {
   const logout_function = () => {
     // clear cookies here
     // All tokens also and navigate to login page.
-    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    return (window.location.href = "https://www.documentia.ai/signin");
+    document.cookie = "documentiatoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "documentiauser=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    return (window.location.href = "login");
   };
 
   function activate_upload_widget() {
