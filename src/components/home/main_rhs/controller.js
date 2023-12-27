@@ -48,9 +48,6 @@ export default function Controller() {
 
   function EnableHover() {
     let element = document.querySelectorAll(`.${styles.same}`);
-
-    console.log(element);
-
     element.forEach((item) => {
       item.addEventListener("click", function (e) {
         element.forEach((otherItem) => {

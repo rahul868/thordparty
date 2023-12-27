@@ -48,7 +48,7 @@
 .msg_for_ai .msg_sub_for_ai .bottom_options_like .user_define {
   display: flex;
   gap: 1.5rem;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .msg_for_ai .msg_sub_for_ai .bottom_options_like .user_define span {

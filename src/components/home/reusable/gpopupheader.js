@@ -60,7 +60,3 @@ export default function Gpopupheader({ content, close, c_style, t_style }) {
     </>
   );
 }
-
-Gpopupheader.propTypes = {
-  changeactive: PropTypes.func.isRequired,
-};

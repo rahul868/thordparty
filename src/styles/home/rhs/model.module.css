@@ -18,7 +18,7 @@
 
 .msg_for_ai .msg_sub_for_ai .source_r {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   background-color: #f8f8f8;
   padding: 5px 8px;
   border-radius: 4px;
@@ -31,27 +31,24 @@
 
 .msg_for_ai .msg_sub_for_ai .source_r .modelmsg_source {
   font-size: 13px;
-    color: #666;
-    padding-left: 10px;
-    width: inherit;
+  color: #666;
+  padding-left: 10px;
+  width: inherit;
 }
 .msg_for_ai .msg_sub_for_ai .box_wrapper_msg {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   gap: 1rem;
 }
-.msg_for_ai .msg_sub_for_ai .box_wrapper_msg .copysvg_model {
-  /* position: absolute;
-  right: 5px;
-  top: 15px; */
-}
+
 .msg_for_ai .msg_sub_for_ai .box_wrapper_msg img {
   height: 30px;
   width: 30px;
   border-radius: 50%;
 }
 
-.msg_for_ai .msg_sub_for_ai .box_wrapper_msg .summary_content,.msg_htmlwrapper {
+.msg_for_ai .msg_sub_for_ai .box_wrapper_msg .summary_content,
+.msg_htmlwrapper {
   /* font-size: 13px; */
   color: #666;
   line-height: 1.4;
@@ -71,7 +68,7 @@
 .msg_for_ai .msg_sub_for_ai .bottom_options_like .user_define {
   display: flex;
   gap: 1.5rem;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .msg_for_ai .msg_sub_for_ai .bottom_options_like .user_define span {

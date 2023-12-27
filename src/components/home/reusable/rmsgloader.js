@@ -9,7 +9,7 @@ export default function Rmsgloader({ children }) {
           className={styles.box_wrapper_msg}
           style={{ alignItems: "center" }}
         >
-          <img src="/assets/images/favicon.png" alt="documential_model" />
+          <img src="assets/images/favicon.png" alt="documential_model" />
           {children}
         </div>
       </div>

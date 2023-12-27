@@ -22,11 +22,11 @@ export default function Lmiddle() {
         </div>
         <div className={styles.documents_hie_container}>
           <div className={styles.documents_hie_subcontainer}>
-            {filemeta.map((item) => {
+            {filemeta.map((item, index) => {
               if (item.type == "file") {
-                return <File file={item} />;
+                return <File key={index} file={item} />;
               } else {
-                return <Folder group={item} />;
+                return <Folder key={index} group={item} />;
               }
             })}
           </div>

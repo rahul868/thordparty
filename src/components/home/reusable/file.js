@@ -43,7 +43,7 @@ export default function File({ file, callback }) {
         <svg
           role="graphics-symbol"
           viewBox="0 0 16 16"
-          class="page"
+          className="page"
           style={{
             width: 18,
             height: 18,

@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }) {
     // Checking for user valid or unvalid with help token
     const cookies = parse(document.cookie);
     if (!cookies.documentiatoken || !cookies.documentiauser) {
-      window.location.href = "/signin";
+      // window.location.href = "/signin";
     }
 
     // Call the function to check cookies and navigate
@@ -159,13 +159,7 @@ export default function App({ Component, pageProps }) {
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
-        <link rel="icon" href="/assets/images/favicon.png" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
+        <link rel="icon" href="assets/images/favicon.png" />
       </Head>
       <Component {...pageProps} />
     </Gcommonprovider>

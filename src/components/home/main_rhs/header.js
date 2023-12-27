@@ -119,7 +119,7 @@ export default function Rheader() {
               }}
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
               />
             </svg>
@@ -142,7 +142,7 @@ export default function Rheader() {
               }}
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
               />
             </svg>
@@ -169,7 +169,7 @@ export default function Rheader() {
         </div>
         <div
           id="_g_header_navbar_wrapper"
-          g_nav_header_tab
+          g_nav_header_tab="true"
           className={styles.g_header_navbar_wrapper}
         >
           <div onClick={() => handleSave()} className={styles.dropdown_block}>
@@ -192,7 +192,7 @@ export default function Rheader() {
             </span>
             <span
               id="news_nav_tab"
-              g_nav_header_tab
+              g_nav_header_tab="true"
               className={styles.dropdown_block_heading}
             >
               Save
@@ -222,7 +222,7 @@ export default function Rheader() {
               </span>
               <span
                 id="news_nav_tab"
-                g_nav_header_tab
+                g_nav_header_tab="true"
                 className={styles.dropdown_block_heading}
               >
                 Reset
@@ -289,7 +289,7 @@ export default function Rheader() {
 
               <span
                 id="news_nav_tab"
-                g_nav_header_tab
+                g_nav_header_tab="true"
                 className={styles.dropdown_block_heading}
               >
                 About us
@@ -320,7 +320,7 @@ export default function Rheader() {
               </span>
               <span
                 id="news_nav_tab"
-                g_nav_header_tab
+                g_nav_header_tab="true"
                 className={styles.dropdown_block_heading}
               >
                 Feedback
@@ -362,11 +362,11 @@ export default function Rheader() {
         </div>
 
         {/* Flyer trigger  */}
-        <div g-nav-container className={styles.includes_options_to_show}>
+        <div g-nav-container="true" className={styles.includes_options_to_show}>
           <div className="include">
             {isCloseshow ? (
               <span
-                data-g_nav_header_tab
+                data-g_nav_header_tab="true"
                 className={styles.close_flyer}
                 onClick={() => {
                   setisCloseshow(false);
@@ -378,13 +378,13 @@ export default function Rheader() {
                 &times;
               </span>
             ) : (
-              <span data-g_nav_header_tab onClick={Changeview}>
+              <span data-g_nav_header_tab="true" onClick={Changeview}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
                   height="20"
                   fill="#666"
-                  class="bi bi-three-dots"
+                  className="bi bi-three-dots"
                   viewBox="0 0 16 16"
                 >
                   <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
@@ -394,6 +394,105 @@ export default function Rheader() {
           </div>
         </div>
       </div>
+      {/*  actual flyer use for mobile view */}
+      <Flyer>
+        <div id="headers_options" className={styles.show_header_drop_options}>
+          <div className={styles.show_sub_header_drop}>
+            <div
+              id="_g_header_navbar_wrapper"
+              className={styles.g_header_navbar_wrapper}
+            >
+              <div
+                onClick={() => {
+                  save_tofiles(currdoc.name);
+                  document
+                    .querySelector("[data-g-navbar-flyer]")
+                    .classList.remove("nav_flyer_active");
+                  setisCloseshow(false);
+                }}
+                className={styles.dropdown_block}
+              >
+                <span
+                  id="news_nav_tab"
+                  g_nav_header_tab="true"
+                  className={styles.dropdown_block_heading}
+                >
+                  Save
+                </span>
+              </div>
+              <div>
+                <div
+                  className={styles.dropdown_block}
+                  onClick={() => handleflyerview("reset")}
+                >
+                  <span
+                    id="news_nav_tab"
+                    g_nav_header_tab="true"
+                    className={styles.dropdown_block_heading}
+                  >
+                    Reset
+                  </span>
+                </div>
+              </div>
+
+              <div>
+                <div
+                  className={`${styles.dropdown_block} ${styles.tabbreaker}`}
+                  onClick={() => handleflyerview("setting")}
+                >
+                  <span
+                    id="news_nav_tab"
+                    className={styles.dropdown_block_heading}
+                  >
+                    Settings
+                  </span>
+                </div>
+              </div>
+              <a target="_blank" href="/">
+                <div className={styles.dropdown_block}>
+                  <span
+                    id="news_nav_tab"
+                    g_nav_header_tab="true"
+                    className={styles.dropdown_block_heading}
+                  >
+                    About us
+                  </span>
+                </div>
+              </a>
+              <div>
+                <div
+                  className={styles.dropdown_block}
+                  onClick={() => handleflyerview("feedback")}
+                >
+                  <span
+                    id="news_nav_tab"
+                    g_nav_header_tab="true"
+                    className={styles.dropdown_block_heading}
+                  >
+                    Feedback
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              className={styles.t_section}
+              style={{ display: "block", marginTop: "40px" }}
+            >
+              <div
+                className={`${styles.spaecialtab} ${styles.dropdown_block}`}
+                onClick={() => handleflyerview("newchat")}
+              >
+                <span
+                  id="news_nav_tab"
+                  className={styles.dropdown_block_heading}
+                >
+                  New chat
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Flyer>
       <Gpopup
         id="doc-newchat"
         isOpen={isnewchat}
@@ -442,105 +541,6 @@ export default function Rheader() {
         />
         <Feedback close={() => handleClose("feedback")} />
       </Gpopup>
-
-      <Flyer>
-        <div id="headers_options" className={styles.show_header_drop_options}>
-          <div className={styles.show_sub_header_drop}>
-            <div
-              id="_g_header_navbar_wrapper"
-              className={styles.g_header_navbar_wrapper}
-            >
-              <div
-                onClick={() => {
-                  save_tofiles(currdoc.name);
-                  document
-                    .querySelector("[data-g-navbar-flyer]")
-                    .classList.remove("nav_flyer_active");
-                  setisCloseshow(false);
-                }}
-                className={styles.dropdown_block}
-              >
-                <span
-                  id="news_nav_tab"
-                  g_nav_header_tab
-                  className={styles.dropdown_block_heading}
-                >
-                  Save
-                </span>
-              </div>
-              <div>
-                <div
-                  className={styles.dropdown_block}
-                  onClick={() => handleflyerview("reset")}
-                >
-                  <span
-                    id="news_nav_tab"
-                    g_nav_header_tab
-                    className={styles.dropdown_block_heading}
-                  >
-                    Reset
-                  </span>
-                </div>
-              </div>
-
-              <div>
-                <div
-                  className={`${styles.dropdown_block} ${styles.tabbreaker}`}
-                  onClick={() => handleflyerview("setting")}
-                >
-                  <span
-                    id="news_nav_tab"
-                    className={styles.dropdown_block_heading}
-                  >
-                    Settings
-                  </span>
-                </div>
-              </div>
-              <a target="_blank" href="/">
-                <div className={styles.dropdown_block}>
-                  <span
-                    id="news_nav_tab"
-                    g_nav_header_tab
-                    className={styles.dropdown_block_heading}
-                  >
-                    About us
-                  </span>
-                </div>
-              </a>
-              <div>
-                <div
-                  className={styles.dropdown_block}
-                  onClick={() => handleflyerview("feedback")}
-                >
-                  <span
-                    id="news_nav_tab"
-                    g_nav_header_tab
-                    className={styles.dropdown_block_heading}
-                  >
-                    Feedback
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div
-              className={styles.t_section}
-              style={{ display: "block", marginTop: "40px" }}
-            >
-              <div
-                className={`${styles.spaecialtab} ${styles.dropdown_block}`}
-                onClick={() => handleflyerview("newchat")}
-              >
-                <span
-                  id="news_nav_tab"
-                  className={styles.dropdown_block_heading}
-                >
-                  New chat
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Flyer>
     </header>
   );
 }
