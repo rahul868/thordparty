@@ -55,8 +55,6 @@
     min-height: 45px;
   }
 
-  /* Styles for the sub-chat container within the actual chat container */
-
   /* Styles for the viewer for detail */
   .viwer_for_detail {
     display: none;

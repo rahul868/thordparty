@@ -48,7 +48,7 @@
   position: absolute;
   visibility: hidden;
   overflow: hidden;
-  z-index: 9999;
+  z-index: calc(var(--overlay-global-index) - 20);
   background-color: white;
   border: 1px solid #eee;
   display: flex;

@@ -6,7 +6,6 @@
 .indicator_popup {
   position: fixed;
   top: 25px;
-  /* transform: translate(50%, 50%); */
   display: block;
   background-color: #28a745;
   color: #fff;
@@ -34,6 +33,6 @@
 .indicator_popup p {
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: .9px;
+  letter-spacing: 0.9px;
   text-align: center;
 }

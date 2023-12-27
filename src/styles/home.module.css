@@ -49,9 +49,6 @@
     display: flex;
     max-width: 100%;
     overflow: hidden;
-    /* -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none; */
     flex-direction: column;
   }
   .left_section_mob {
