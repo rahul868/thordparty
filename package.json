@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env DOCUMENTIA_ENV=DEV next dev --port 3001",
-    "build": "cross-env DOCUMENTIA_ENV=PROD next build",
-    "start": "cross-env DOCUMENTIA_ENV=PROD next build && pm2 start main.server.js",
-    "lint": "next lint"
+    "start:dev-unix": "export DOCUMENTIA_ENV=DEV && echo Current environment for application is $DOCUMENTIA_ENV && next dev --port 3001",
+    "start:dev-windows": "set DOCUMENTIA_ENV=DEV && next dev --port 3001",
+    "start:prod-unix": "export DOCUMENTIA_ENV=PROD && echo Current environment for application is $DOCUMENTIA_ENV && next build && pm2 start main.server.js",
+    "start:prod-windows": "set DOCUMENTIA_ENV=PROD && next build && pm2 start main.server.js",
+    "build": "export DOCUMENTIA_ENV=DEV && next build"
   },
   "dependencies": {
     "aws-sdk": "^2.1515.0",
