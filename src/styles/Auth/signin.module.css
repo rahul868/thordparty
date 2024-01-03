@@ -1,0 +1,48 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  min-height: 100vh;
+  height: auto;
+  /* // padding: 3rem; */
+  justify-content: center;
+  align-items: center;
+}
+
+.auth_main {
+  min-height: 100vh;
+  height: auto;
+  width: 100%;
+  flex-wrap: wrap-reverse;
+  display: flex;
+}
+
+.signin_left {
+  display: flex;
+  width: 50%;
+}
+
+.signin_right {
+  display: flex;
+  min-height: 100vh;
+  width: 50%;
+  background: linear-gradient(
+    20deg,
+    rgba(115, 133, 251, 1) 0%,
+    rgba(80, 210, 248, 1) 43%,
+    rgba(190, 133, 246, 1) 100%
+  );
+  padding: 3rem;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 720px) {
+  .signin_left {
+    width: 100%;
+  }
+
+  .signin_right {
+    width: 100%;
+  }
+}
