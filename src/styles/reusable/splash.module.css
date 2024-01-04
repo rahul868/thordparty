@@ -11,6 +11,12 @@
   align-items: center;
 }
 
+.splashwrapper .splassubhwrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .splashwrapper .splassubhwrapper img {
   width: 433px;
   height: 109px;

@@ -7,9 +7,9 @@ let nextConfig = {};
 
 if (documentia_env === "DEV") {
   // Development
-  nextConfig = {
-    basePath: "/home",
-  };
+  // nextConfig = {
+  //   basePath: "/home",
+  // };
 } else {
   // Production
   nextConfig = {

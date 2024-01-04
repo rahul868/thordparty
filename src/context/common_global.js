@@ -15,7 +15,9 @@ const Gcommonprovider = (props) => {
 
   useEffect(() => {
     if (typeof document !== "undefined") {
-      // Check for user validity with the help of a token
+      /*
+      
+      */
       const cookies = parse(document.cookie);
       if (cookies.documentiauser) {
         let newuserObj = JSON.parse(cookies.documentiauser);
@@ -23,7 +25,7 @@ const Gcommonprovider = (props) => {
       }
     }
     // Check if running on the client side where document is defined
-  }, []);
+  },[]);
 
   const [error, seterror] = useState(false);
   const [loading, setloading] = useState(true);

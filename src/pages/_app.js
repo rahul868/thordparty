@@ -1,24 +1,19 @@
 import "@/styles/globals.css";
 import "@/styles/popupmodel.css";
 import { useEffect } from "react";
-import { Gcommonprovider } from "@/context/common_global";
 import Head from "next/head";
-import { parse } from "cookie";
+
+/*
+  App component include raw javascript which will used in application runtime event tracking 
+  for some parts of application.
+  ex. For Flyer opening , for LHS bar closing and opening etc.
+*/
 
 export default function App({ Component, pageProps }) {
   useEffect(() => {
-    // Checking for user valid or unvalid with help token
-    const cookies = parse(document.cookie);
-    if (!cookies.documentiatoken || !cookies.documentiauser) {
-      window.location.href = "/signin";
-    }
-
-    // Call the function to check cookies and navigate
+    // Because this useEffect will execute after all chindrens component useEffect execution.
+    // So that we will load this javascript after ENTIRE DOM loading and rendering.
     document.addEventListener("mousedown", (e) => {
-      // // checking for flyer
-
-      // e.stopPropagation();
-
       let nav_tab_element = "[data-g_nav_header_tab]";
       let check_for_navtab_ele = e.target.closest(nav_tab_element);
       if (
@@ -78,7 +73,6 @@ export default function App({ Component, pageProps }) {
         if (closeHideElement) {
           closeHideElement.style.display = "block";
         }
-
         return;
       }
 
@@ -101,57 +95,11 @@ export default function App({ Component, pageProps }) {
         );
         return;
       }
-
-      // Shorcuts keys for application
     });
+  }, []);
 
-    // document.addEventListener("mouseover", async (e) => {
-    //   let nav_tab_element = "[data-g-chatsec]";
-    //   let check_for_navtab_ele = e.target.matches(nav_tab_element);
-    //   // Check if the event target is the background element
-
-    //   if (
-    //     !check_for_navtab_ele &&
-    //     e.target.closest("[data-g-nav-container]") != null
-    //   ) {
-    //     // Means Inside g-nav-container but not on nav_tab_element
-    //     return;
-    //   }
-
-    //   if (check_for_navtab_ele) {
-    //     if (e.target.previousSibling) {
-    //       e.target.previousSibling.classList.add("option_flyer_wrapper_active");
-    //       return;
-    //     }
-    //   }
-
-    //   // Means Outside g-nav-container or not on nav_tab_element or not on the background
-    //   document.querySelectorAll("[data-g-opt-flyer]").forEach((ele) => {
-    //     ele.classList.remove("option_flyer_wrapper_active");
-    //   });
-    // });
-
-    let alt_key = false;
-
-    document.addEventListener("keydown", function (event) {
-      if (event.altKey) {
-        alt_key = true;
-      }
-      // Check if the 'd' key is pressed and 'n' was pressed before
-      if (event.key === "d" && alt_key) {
-        // Open document uploading widget
-        document.querySelector("[data-newchat-widget]").click();
-        // Prevent the default browser behavior (e.g., prevent typing in an input field)
-        event.preventDefault();
-        // Reset the flag after processing the combination
-        alt_key = false;
-      }
-    });
-
-    // flyer component js
-  });
   return (
-    <Gcommonprovider>
+    <>
       <Head>
         <title>Documentia</title>
         <meta name="description" content="DOCUMENTIA AI MODEL INTERACTION" />
@@ -162,6 +110,6 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="assets/images/favicon.png" />
       </Head>
       <Component {...pageProps} />
-    </Gcommonprovider>
+    </>
   );
 }

@@ -16,9 +16,10 @@ import {
   HStack,
   FormHelperText,
 } from "@chakra-ui/react";
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider } from "@chakra-ui/react";
 // import RegistrationForm from '_/components/layout/
 import styles from "@/styles/Auth/signin.module.css"; //CHANGE
+import { Appwrapper } from "@/layouts";
 const colors = {
   bigiota: {
     blue: "#7385fb",
@@ -27,7 +28,7 @@ const colors = {
 
 const poppins = Inter({ weight: "400", subsets: ["latin"] });
 
-export default function SignIn() {
+export default function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isvalidemail, setIsvalidemail] = useState(true);
@@ -82,9 +83,17 @@ export default function SignIn() {
           "Content-Type": "application/json",
         },
       });
+
+      // Check if the credentials are correct
+      if (response.status === 401) {
+        throw new Error("Wrong credentials. Please enter the correct ones.");
+      }
+
+      // Check if the login request was successful
       if (!response.ok) {
         throw new Error("Failed in login process.");
       }
+      
       const user = await response.json();
       if (user.email && user.access_token) {
         // Set cookies for application use
@@ -97,7 +106,7 @@ export default function SignIn() {
         }`;
         // Navigate to mainApp
         clearForm();
-        return (window.location.href = "/main-app");
+        return (window.location.href = "/");
       }
       alert("Invalid credentials. Please try again.");
     } catch (err) {
@@ -108,12 +117,17 @@ export default function SignIn() {
     }
   };
 
-  //   Check token is exist if not then login entry
+  // Check if the token exists in cookies
   useEffect(() => {
     const cookies = parse(document.cookie);
+
+    // If both documentiatoken and documentiauser exist, redirect to "/"
     if (cookies.documentiatoken && cookies.documentiauser) {
-      window.location.href = "/main-app";
+      window.location.href = "/";
     }
+    return () => {
+      // Any cleanup logic we can add here
+    };
   }, []);
 
   return (
@@ -226,3 +240,11 @@ export default function SignIn() {
     </ChakraProvider>
   );
 }
+
+// export default function Wrapper() {
+//     return (
+//       <Appwrapper is_main={true}>
+//         <Signin />
+//       </Appwrapper>
+//     );
+//   }
