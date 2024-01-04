@@ -9,6 +9,7 @@ import Search from "@/components/search/search";
 import { Lhscontext } from "@/context/lhsprovider";
 import Gpopup from "../reusable/gpopup";
 import Gpopupheader from "../reusable/gpopupheader";
+import Pricingplan from "../reusable/pricingplan";
 export default function Lheader() {
   const { filemeta } = useContext(Gcommoncontext);
   const { setSeperateFileLhs, setfilelhs } = useContext(Lhscontext);
@@ -16,6 +17,7 @@ export default function Lheader() {
 
   const [isprofileopt, setisprofileopt] = useState(false);
   const [issortby, setissortby] = useState(false);
+  const [ispricing, setispricing] = useState(false);
 
   const targetElementRef = useRef();
   const profile_optElementRef = useRef();
@@ -72,6 +74,8 @@ export default function Lheader() {
       case "search":
         setissearch(false);
         break;
+      case "pricing":
+        setispricing(false);
       default:
       // Handle default case if necessary
     }
@@ -151,6 +155,34 @@ export default function Lheader() {
                     </svg>
                   </span>
                   <span>Sort by</span>
+                </div>
+              </div>
+
+              <div>
+                <div
+                  className={styles.header_ots}
+                  onClick={() => setispricing(true)}
+                  ref={targetElementRef}
+                >
+                  <span>
+                    <svg
+                      viewBox="0 0 20 20"
+                      style={{
+                        width: 20,
+                        height: 20,
+                        WebkitFlexShrink: "0",
+                        MsFlexShrink: "0",
+                        flexShrink: "0",
+                        fill: "rgba(55, 53, 47, 0.45)",
+                      }}
+                      fill="inherit"
+                      className="settingsUpgrade"
+                      display="block"
+                    >
+                      <path d="M9.969 17.938c4.36 0 7.969-3.618 7.969-7.97C17.938 5.61 14.32 2 9.96 2 5.609 2 2 5.61 2 9.969c0 4.351 3.617 7.969 7.969 7.969zm0-1.329a6.609 6.609 0 01-6.633-6.64 6.602 6.602 0 016.625-6.64 6.627 6.627 0 016.648 6.64 6.61 6.61 0 01-6.64 6.64zm0-2.734a.562.562 0 00.586-.586V9.383l-.063-1.656.797.945.922.937a.52.52 0 00.414.172c.32 0 .57-.242.57-.562a.566.566 0 00-.164-.406L10.43 6.219c-.149-.149-.29-.227-.461-.227-.164 0-.297.07-.453.227l-2.61 2.593a.555.555 0 00-.148.407c0 .32.242.562.562.562a.572.572 0 00.414-.172l.93-.937.781-.938-.062 1.649v3.906c0 .344.25.586.586.586z"></path>
+                    </svg>
+                  </span>
+                  <span>Pricing</span>
                 </div>
               </div>
             </>
@@ -304,6 +336,19 @@ export default function Lheader() {
             close={() => handleClose("search")}
           />
           <Search close={() => handleClose("search")} />
+        </>
+      </Gpopup>
+      <Gpopup
+        id="doc-newchat"
+        isOpen={ispricing}
+        onClose={() => handleClose("pricing")}
+      >
+        <>
+          <Gpopupheader
+            content={"Select best plan for you"}
+            close={() => handleClose("pricing")}
+          />
+          <Pricingplan close={() => handleClose("pricing")} />
         </>
       </Gpopup>
     </>
