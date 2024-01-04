@@ -22,7 +22,7 @@ export default function Button({
         onClick={(e) => callthis(e)}
         disabled={disable || loading}
       >
-        {loading ? <Loader c_styles={{ background: "white" }} /> : title}
+        {loading ? <Loader c_styles={{ backgroundColor: "white" }} /> : title}
       </button>
     </div>
   );

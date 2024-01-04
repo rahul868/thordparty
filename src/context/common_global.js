@@ -66,7 +66,14 @@ const Gcommonprovider = (props) => {
     return truncatedText;
   }
 
-  // Function for calling user files from server
+  // common function for event menupleting
+  function manupleting_events(status) {
+    if (status) {
+      document.body.style.pointerEvents = "none";
+      return;
+    }
+    document.body.style.pointerEvents = "auto";
+  }
 
   // Simulating fetching user file metadata
   const fetchUserFiles = async () => {
@@ -129,6 +136,7 @@ const Gcommonprovider = (props) => {
         setgindicatormsg,
         isfirstupload,
         setisfirstupload,
+        manupleting_events,
       }}
     >
       {props.children}

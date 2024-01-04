@@ -1,0 +1,51 @@
+.pricing_plan_model {
+  display: flex;
+  width: auto;
+  padding: 10px;
+}
+.pricing_plan_model .wrapping_pricing_model {
+  display: flex;
+  gap: 1rem;
+}
+
+.pricing_plan_model .wrapping_pricing_model .plan_box_display_user {
+  padding: 10px;
+  /* border: 1px solid #f1f1f1; */
+  max-width: 300px;
+  min-width: 300px;
+}
+
+.plan_box_display_user .supwrappe_pan_box {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.plan_box_display_user .supwrappe_pan_box .heading_plan {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.heading_plan .title_for_plan {
+  font-size: var(--web-extralargefontsize);
+  font-weight: 700;
+  color: #424245;
+}
+
+.heading_plan .tenure_interval .amount {
+  font-size: var(--web-largefontsize);
+  font-weight: bold;
+}
+
+.info_features {
+  font-size: var(--web-semimediumfontsize);
+  font-weight: 500;
+}
+
+.features_for_plan .wrapping_features_plan {
+  display: flex;
+  gap: 0.3rem;
+  padding-bottom: 12px;
+  color: var(--app-light-color-code);
+}
