@@ -8,43 +8,39 @@ import { Gcommoncontext } from "@/context/common_global";
 export default function Pricingplan({ close }) {
   const { manupleting_events, setiopen, setimsg, setitype } =
     useContext(Gcommoncontext);
-
-  const [isloading, setisloading] = useState(false);
   const [selectedplan, setselectedplan] = useState("");
 
   const payment_process = async (plan) => {
     setselectedplan(plan);
-    console.log(selectedplan);
     try {
-      setisloading(true);
       manupleting_events(true);
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/user_feedback`,
+        `${process.env.NEXT_PUBLIC_API_URL}/create_checkout_session?productcode=${plan}`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json", // content type based on your API requirements
           },
           body: JSON.stringify({
-            emailid: user.email,
-            fileid: currdoc.id,
-            feedback: finput,
+            emailid: "user.email",
           }),
         }
       );
       if (!response.ok) {
-        throw new Error("Failed to update feedback for doc.");
+        throw new Error("Failed to process your payment journey.");
       }
-      await response.json();
-      //   close();
+      let payment_url = await response.json();
+      if (payment_url["checkout_session_url"]) {
+        return window.open(payment_url["checkout_session_url"], "_self");
+      }
+      throw new Error("Failed to process your payment journey.");
     } catch (err) {
       setitype("e");
       setimsg("Something went wrong in payment journey. pls try again");
       setiopen(true);
     } finally {
-      setisloading(false);
       manupleting_events(false);
-      setselectedplan(null);
+      setselectedplan("");
     }
   };
 

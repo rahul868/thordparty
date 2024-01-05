@@ -1,6 +1,6 @@
 export const pricing = [
   {
-    product_code: "P100",
+    product_code: "P",
     product_title: "Free plan",
     product_billing_desc: "It is completely free for you",
     tenure_interval: "Monthly",
@@ -14,7 +14,7 @@ export const pricing = [
     ],
   },
   {
-    product_code: "P101",
+    product_code: "S",
     product_title: "Business plan",
     tenure_interval: "Monthly",
     product_billing_desc: "Business plan billed will annually",
@@ -28,7 +28,7 @@ export const pricing = [
     ],
   },
   {
-    product_code: "P102",
+    product_code: "T",
     product_title: "Enterprise plan",
     tenure_interval: "Monthly",
     product_billing_desc: "Enterprise plan billed will annually",
