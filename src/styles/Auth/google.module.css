@@ -1,0 +1,27 @@
+.google_login_container {
+  border: 0.5px solid #cdcdf7;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  cursor: pointer;
+}
+
+.google_login_container .google_login_subcontainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.google_login_container .google_login_subcontainer img {
+  width: 22px;
+  height: 22px;
+}
+
+.google_login_container .google_login_subcontainer span {
+  padding-left: 10px;
+  font-size: 13px;
+  color: var(--app-light-color-text);
+}

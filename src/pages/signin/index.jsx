@@ -1,34 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "@/styles/Auth/signin.module.css";
 import { Input } from "@/components/home/reusable/input";
 import Button from "@/components/home/reusable/button";
 import Googlelogin from "@/components/home/reusable/googleloginbtn";
+import { parse } from "cookie";
 import useGooglelogin from "@/hooks/useGooglelogin";
+import { Appwrapper } from "@/layouts";
 
-function Signup() {
+function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [confirmPass, setConfirmPass] = useState("");
-  const [isPasswordMatch, setIsPasswordMatch] = useState(true);
   const [isvalidemail, setIsvalidemail] = useState(true);
   const [isvalidpassword, setIsvalidpassword] = useState(true);
-  const [isvalidusername, setIsvalidusername] = useState(true);
   const [isloading, setIsloading] = useState(false);
-  const [iserror, setIserror] = useState(false);
 
   // get google login functionality
   const { login } = useGooglelogin();
 
-  const colors = {
-    bigiota: {
-      blue: "#7385fb",
-    },
-  };
-
   const verifyEmail = () => {
     const emailRegex = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
+  };
+
+  // common function for event menupleting
+  function manupleting_events(status) {
+    if (status) {
+      document.body.style.pointerEvents = "none";
+      return;
+    }
+    document.body.style.pointerEvents = "auto";
+  }
+
+  // Function to clear the form-related state variables
+  const clearForm = () => {
+    setEmail("");
+    setPassword("");
+    setIsvalidemail(true);
+    setIsvalidpassword(true);
+    setIsloading(false);
   };
 
   const verifyPassword = () => {
@@ -37,20 +46,9 @@ function Signup() {
     return passwordRegex.test(password);
   };
 
-  const clearForm = () => {
-    setEmail("");
-    setPassword("");
-    setUsername("");
-    setConfirmPass("");
-    setIsPasswordMatch(true);
-    setIsvalidemail(true);
-    setIsvalidpassword(true);
-    setIsvalidusername(true);
-    setIsloading(false);
-    setIserror(false);
-  };
-  const registerUser = async () => {
+  const verifyUser = async () => {
     try {
+      manupleting_events(true);
       setIsloading(true);
       if (!verifyEmail()) {
         setIsvalidemail(false);
@@ -66,56 +64,77 @@ function Signup() {
         setIsvalidpassword(true);
       }
 
-      if (confirmPass !== password) {
-        setIsPasswordMatch(false);
-        return;
-      } else {
-        setIsPasswordMatch(true);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
+        method: "POST",
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      // Check if the credentials are correct
+      if (response.status === 401) {
+        throw new Error("Wrong credentials. Please enter the correct ones.");
       }
 
-      if (username == "") {
-        setIsvalidusername(false);
-        return;
-      } else {
-        setIsPasswordMatch(true);
-      }
-
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/register`,
-        {
-          method: "POST",
-          body: JSON.stringify({
-            username,
-            email,
-            password,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const user = await response.json();
+      // Check if the login request was successful
       if (!response.ok) {
-        throw Error(user.detail);
+        throw new Error("Failed in login process.");
       }
-      if (user.detail) {
-        alert("User is already registred.");
-        return;
-      }
-      if (user.email && user.message) {
-        alert("Registration is successful");
+
+      const user = await response.json();
+      if (user.email && user.access_token) {
+        // Set cookies for application use
+        // Setting cookies with a max-age of 1 day
+        document.cookie = `documentiatoken=${user.access_token}; max-age=${
+          60 * 60 * 24
+        }`;
+        document.cookie = `documentiauser=${JSON.stringify(user)}; max-age=${
+          60 * 60 * 24
+        }`;
+        // Navigate to mainApp
         clearForm();
-        setTimeout(() => {
-          return (window.location.href = "/signin");
-        }, 3000);
+        return (window.location.href = "/");
       }
+      alert("Invalid credentials. Please try again.");
     } catch (err) {
-      clearForm();
       alert(err);
+      clearForm();
     } finally {
       setIsloading(false);
+      manupleting_events(false);
     }
   };
+
+  // Check if the token exists in cookies
+  useEffect(() => {
+    const cookies = parse(document.cookie);
+
+    // If both documentiatoken and documentiauser exist, redirect to "/"
+    if (cookies.documentiatoken && cookies.documentiauser) {
+      window.location.href = "/";
+      return;
+    }
+
+    document.querySelectorAll("[data-common-input]").forEach((input) => {
+      console.log(input);
+      input.addEventListener("keypress", (e) => {
+        if (e.keyCode === 13) {
+          console.log("cliekrd");
+          let cur_btn = document.querySelector([
+            `data-btn-context=${input.getAttribute("btn_id")}`,
+          ]);
+          console.log(cur_btn);
+          if (cur_btn) {
+            cur_btn.click();
+          }
+        }
+      });
+    });
+  }, []);
 
   return (
     <div
@@ -128,23 +147,11 @@ function Signup() {
         <br />
         <div>
           <Input
-            placeholder="Username"
-            disable={false}
-            onchange={(e) => setUsername(e.target.value)}
-            type="text"
-            autoFocus="autofocus"
-            unique_id="username"
-          />
-          {!isvalidusername ? (
-            <div style={{ color: "red" }}>Please type username for you.</div>
-          ) : (
-            <></>
-          )}
-          <Input
             placeholder="Email"
-            disable={false}
+            disable={"false"}
             onchange={(e) => setEmail(e.target.value)}
             type="text"
+            value={email}
             autoFocus="autofocus"
             unique_id="login_email"
           />
@@ -154,41 +161,32 @@ function Signup() {
             <></>
           )}
           <Input
+            btn_id="login-context"
             placeholder="Password"
-            disable={false}
+            disable={"false"}
             onchange={(e) => setPassword(e.target.value)}
             type="password"
+            value={password}
             autoFocus={false}
             unique_id="login_password"
+            data-common-input
           />
           {!isvalidpassword ? (
             <div style={{ color: "red" }}>Please create strong password.</div>
           ) : (
             <></>
           )}
-          <Input
-            placeholder="Confirm Password"
-            disable={false}
-            onchange={(e) => setConfirmPass(e.target.value)}
-            type="password"
-            autoFocus={false}
-            unique_id="confirm_password"
-          />
-          {!isPasswordMatch ? (
-            <div style={{ color: "red" }}>
-              Password is not matching. Please try again.
-            </div>
-          ) : (
-            <></>
-          )}
           <div className={styles.login_meta_info}>
-            <span data="warning">Email is most important part of profile.</span>
+            <span data="warning">Signed out after 2 days inactivity</span>
+            <span data="forgot-password">Forgot Password?</span>
           </div>
           {/* Assuming setUserSession is defined elsewhere */}
           <Button
-            callback={registerUser}
+            callback={verifyUser}
+            btn_id={"login-context"}
+            unique_id="verification_btn"
             title="Continue"
-            isloading={isloading}
+            loading={isloading}
           />
           <div
             style={{
@@ -207,9 +205,9 @@ function Signup() {
             <div className={styles.awesome_divider} data-label="or"></div>
           </div>
           <div className={styles.login_join_opt}>
-            <span data="warning">Existing user ?</span>{" "}
+            <span data="warning">New here ?</span>{" "}
             <a
-              href="/signin"
+              href="/signup"
               style={{
                 paddingLeft: 8,
                 cursor: "pointer",
@@ -218,7 +216,7 @@ function Signup() {
               }}
               data="forgot-password"
             >
-              Signin
+              Signup
             </a>
           </div>
           <div className={styles.login_privacy_section}>
@@ -251,4 +249,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Signin;

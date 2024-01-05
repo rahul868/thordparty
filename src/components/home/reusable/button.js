@@ -8,6 +8,7 @@ export default function Button({
   cstyles,
   className,
   loading,
+  btn_id,
 }) {
   const callthis = (e) => {
     callback(e);
@@ -19,6 +20,7 @@ export default function Button({
           background: !disable ? "var(--app-color-code)" : "",
           color: !disable ? "white" : "",
         }}
+        btn_id={btn_id}
         onClick={(e) => callthis(e)}
         disabled={disable || loading}
       >

@@ -112,11 +112,17 @@
   border-radius: 5px;
 }
 
+/* .tabbreaker {
+    border-right: 1px solid #eee;
+} */
+
 .rhs_header_content
   .g_header_navbar_wrapper
   .dropdown_block
   .dropdown_block_heading {
   cursor: pointer;
+  /* height: inherit; */
+  /* display: flex; */
   justify-content: center;
   align-items: center;
   list-style: none;
@@ -129,6 +135,39 @@
   background: no-repeat;
   text-decoration: none;
   white-space: nowrap;
+}
+
+.nav_flyers_inner_wrapper {
+  position: absolute;
+  top: cal(var(--g-nav-height) - 10px);
+  left: 0;
+  right: 0;
+  background-color: #fbfbfa;
+  max-height: 0px;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  backdrop-filter: blur(18px) saturate(10%);
+  transition: max-height 200ms cubic-bezier(0.075, 0.82, 0.165, 1),
+    opacity 150ms, visibility 100ms;
+}
+
+.nav_flyer_active {
+  max-height: calc(100vh - 20vh);
+  visibility: visible;
+  opacity: 1;
+  transition: max-height 260ms cubic-bezier(0.075, 0.82, 0.165, 1),
+    opacity 320ms, visibility 300ms;
+}
+
+.nav_flyers_inner_wrapper .nav_flyer_inner_sub_wrapper {
+  width: var(--global-nav-width);
+  max-width: var(--global-nav-width);
+  padding: 38px 20px 50px 20px;
 }
 
 .include {
@@ -193,6 +232,8 @@
   .dropdown_block
   .dropdown_block_heading {
   cursor: pointer;
+  /* height: inherit; */
+  /* display: flex; */
   justify-content: center;
   align-items: center;
   list-style: none;
@@ -265,6 +306,9 @@
     align-items: center;
     padding: 0px 10px;
     height: calc(var(--common-header-size) + 13px);
+    /* position: absolute;
+    top: 0;
+    left: 0; */
     z-index: 1;
     width: 100%;
     background: #fff;

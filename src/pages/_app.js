@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import "@/styles/popupmodel.css";
 import { useEffect } from "react";
 import Head from "next/head";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 /*
   App component include raw javascript which will used in application runtime event tracking 
@@ -100,16 +101,18 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <Head>
-        <title>Documentia</title>
-        <meta name="description" content="DOCUMENTIA AI MODEL INTERACTION" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-        />
-        <link rel="icon" href="assets/images/favicon.png" />
-      </Head>
-      <Component {...pageProps} />
+      <GoogleOAuthProvider clientId="928923089849-hr5t4dedrv9b3iikk88joitjapvrldea.apps.googleusercontent.com">
+        <Head>
+          <title>Documentia</title>
+          <meta name="description" content="DOCUMENTIA AI MODEL INTERACTION" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          />
+          <link rel="icon" href="assets/images/favicon.png" />
+        </Head>
+        <Component {...pageProps} />
+      </GoogleOAuthProvider>
     </>
   );
 }
