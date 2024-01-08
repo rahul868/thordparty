@@ -118,9 +118,7 @@ function Signup() {
   };
 
   return (
-    <div
-      className={`${styles.login_main_container} ${styles.card_appearance_effect}`}
-    >
+    <div className={`${styles.login_main_container}`}>
       <div className={styles.login_content}>
         <div style={{ textAlign: "center" }}>
           <img width={250} src="assets/images/logo.png" alt="" />
@@ -182,7 +180,9 @@ function Signup() {
             <></>
           )}
           <div className={styles.login_meta_info}>
-            <span data="warning">Email is most important part of profile.</span>
+            <span data="warning" style={{ color: "#666" }}>
+              Email is most important part of profile.
+            </span>
           </div>
           {/* Assuming setUserSession is defined elsewhere */}
           <Button
@@ -224,15 +224,8 @@ function Signup() {
           <div className={styles.login_privacy_section}>
             <div className={styles.login_privacy_section1}>
               <span>
-                <span data="mission-statement">
-                  On mission to make money work for you!
-                </span>
-                <br />
-                <br />
                 By continuing it is considered that you have accepted{" "}
-                <span style={{ color: "#3e92f2" }}>
-                  Terms & Conditions
-                </span> and{" "}
+                <span style={{ color: "#3e92f2" }}>Terms & Conditions</span> and{" "}
                 <span style={{ color: "#3e92f2" }}>Privacy Policy</span>.
               </span>
             </div>

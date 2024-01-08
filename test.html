@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .skeleton-article,
+      .skeleton-product {
+        width: 100%;
+        height: 100px;
+        background-color: #f0f0f0; /* Placeholder background color */
+        margin-bottom: 10px; /* Adjust as needed */
+        animation: pulse 1.5s infinite alternate; /* Example animation */
+      }
+
+      @keyframes pulse {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0.6;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content">
+      <!-- Skeleton UI for an article -->
+      <div class="skeleton-article"></div>
+
+      <!-- Skeleton UI for a product grid -->
+      <div class="skeleton-product"></div>
+
+      <!-- Add more skeleton UI as needed -->
+    </div>
+  </body>
+  <script>
+    // Replace skeleton with actual content once loaded
+    window.addEventListener("load", function () {
+      document.getElementById("content").innerHTML =
+        "<p>Your actual content goes here.</p>";
+    });
+  </script>
+</html>

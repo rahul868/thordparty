@@ -137,9 +137,7 @@ function Signin() {
   }, []);
 
   return (
-    <div
-      className={`${styles.login_main_container} ${styles.card_appearance_effect}`}
-    >
+    <div className={`${styles.login_main_container}`}>
       <div className={styles.login_content}>
         <div style={{ textAlign: "center" }}>
           <img width={250} src="assets/images/logo.png" alt="" />
@@ -177,7 +175,9 @@ function Signin() {
             <></>
           )}
           <div className={styles.login_meta_info}>
-            <span data="warning">Signed out after 2 days inactivity</span>
+            <span data="warning" style={{ color: "#666" }}>
+              Signed out after 1 day
+            </span>
             <span data="forgot-password">Forgot Password?</span>
           </div>
           {/* Assuming setUserSession is defined elsewhere */}
@@ -222,15 +222,8 @@ function Signin() {
           <div className={styles.login_privacy_section}>
             <div className={styles.login_privacy_section1}>
               <span>
-                <span data="mission-statement">
-                  On mission to make money work for you!
-                </span>
-                <br />
-                <br />
                 By continuing it is considered that you have accepted{" "}
-                <span style={{ color: "#3e92f2" }}>
-                  Terms & Conditions
-                </span> and{" "}
+                <span style={{ color: "#3e92f2" }}>Terms & Conditions</span> and{" "}
                 <span style={{ color: "#3e92f2" }}>Privacy Policy</span>.
               </span>
             </div>
