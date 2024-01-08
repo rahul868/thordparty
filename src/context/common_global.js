@@ -100,6 +100,7 @@ const Gcommonprovider = (props) => {
   };
 
   useEffect(() => {
+    console.log("common")
     // Get userinfo from cookies.
     if (user && user !== null) {
       fetchUserFiles();

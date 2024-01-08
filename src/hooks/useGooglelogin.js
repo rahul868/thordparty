@@ -1,26 +1,21 @@
 import axios from "axios";
 import { useGoogleLogin } from "@react-oauth/google";
 
-const useGooglelogin = () => {
-  const login = useGoogleLogin({
+const useGooglelogin = (callback) => {
+  const googleLogin = useGoogleLogin({
     onSuccess: async (coderesponse) => {
-      console.log(coderesponse);
-      const data = await googleloginfunction(coderesponse.access_token);
-      console.log(data);
-      if (data) {
-        // window.location.replace("/home");
-      }
+      let data = await googleloginfunction(coderesponse.access_token);
+      return callback(data);
     },
     onError: (error) => console.log("Login Failed:", error),
   });
 
-  return { login };
+  return { googleLogin };
 };
 
 // get result token with user
 const googleloginfunction = async (access_token) => {
   try {
-    console.log(access_token);
     const getinfo = await axios.get(
       `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${access_token}`,
       {
@@ -32,10 +27,8 @@ const googleloginfunction = async (access_token) => {
     );
 
     let googleresult = await getinfo.data;
-    console.log(googleresult);
     return googleresult;
   } catch (error) {
-    console.log(error);
   }
 };
 
