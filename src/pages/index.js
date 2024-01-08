@@ -21,13 +21,56 @@ const Landingrhs = dynamic(() => import("@/components/landing/landingrhs"));
 function Home() {
   const { loading, filemeta, error } = useContext(Gcommoncontext);
 
-  useEffect(() => {
-    // Checking for user valid or unvalid with help token and userinformation which is in cookies
-    // cookies are set for one day after it it will expire automatically from client side.
-    const cookies = parse(document.cookie);
-    if (!cookies.documentiatoken || !cookies.documentiauser) {
-      window.location.href = "/signin";
+  const userValidation = async (enc_token) => {
+    // API call for validating token. Also for fetching full fedge data of authenticated user.
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/encfull`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: enc_token,
+          },
+        }
+      );
+
+      // Check if the user's token is valid
+      if (response.status === 401) {
+        // First clear cookie from clients browser.
+        // Then navigate for fresh login and authentication.
+        document.cookie = `${documentiatoken}=; expires=Thu, 01 Jan 1970 00:00:00 GMT;`;
+        return (window.location.href = "/signin");
+      }
+
+      // Check if the google login process was successful or not.
+      if (!response.ok) {
+        throw new Error();
+      }
+
+      // Everything is fine we have received user's full fledge data which is required
+      // For preceeding with application and which will require by application.
+      // We can set this users data in Global context (common_globalcontext) So that any component
+      // in tree can use this user's data
+
+      const user_data = response.json();
+
+    } catch (error) {
+      document.cookie = `documentiatoke=; expires=Thu, 01 Jan 1970 00:00:00 GMT;`;
+      return (window.location.href = "/signin");
+    } finally {
     }
+  };
+  useEffect(async () => {
+    // Checking for user is valid or unvalid with help token which is in cookies
+    // cookies are set for one day, after it it will expire automatically from client side.
+    const cookies = parse(document.cookie);
+    if (!cookies.documentiatoken) {
+      return (window.location.href = "/signin");
+    }
+    console.log("eihfe")
+    // If coockies exist then check it and verify with documentia server.
+    await userValidation(cookies.documentiatoken);
+    console.log("mainapp exit")
     return () => {
       // Any cleanup logic we can add here
     };

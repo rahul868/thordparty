@@ -5,7 +5,6 @@ import Button from "@/components/home/reusable/button";
 import Sociallogin from "@/components/home/reusable/googleloginbtn";
 import { parse } from "cookie";
 import useGooglelogin from "@/hooks/useGooglelogin";
-import { Appwrapper } from "@/layouts";
 
 function Signin() {
   const [email, setEmail] = useState("");
@@ -13,9 +12,60 @@ function Signin() {
   const [isvalidemail, setIsvalidemail] = useState(true);
   const [isvalidpassword, setIsvalidpassword] = useState(true);
   const [isloading, setIsloading] = useState(false);
+  const [isgoogleloading, setIsGoogleloading] = useState(false);
+
+  // Callback for handling response from google servers.
+  const googleLoginProcesscCallback = async (userdata) => {
+    manupleting_events(true);
+    setIsGoogleloading(true);
+    try {
+      // Call API which is handling google login case.
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/onetap-login`,
+        {
+          method: "POST",
+          body: JSON.stringify(userdata),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      // Not receive wrong credentials at all because. IF user not exist
+      // in DB backend will create new entry for resp user.
+
+      // So need to handle 500 error.
+
+      // Check if the google login process was successful or not.
+      if (!response.ok) {
+        throw new Error("Failed in google login process.");
+      }
+
+      const user = await response.json();
+      if (user.access_token) {
+        // Set cookies for application use
+        // Setting cookies with a max-age of 1 day
+        document.cookie = `documentiatoken=${user.access_token}; max-age=${
+          60 * 60 * 24
+        }`;
+        // Navigate to mainApp
+        clearForm();
+        return (window.location.href = "/");
+      }
+    } catch (err) {
+      // handle error
+      alert(err);
+      clearForm();
+    } finally {
+      manupleting_events(false);
+      setIsGoogleloading(false);
+    }
+  };
 
   // get google login functionality
-  const { login } = useGooglelogin();
+  // Click continue with google
+  // Here we need to process or authenticate user with one tap
+  const { googleLogin } = useGooglelogin(googleLoginProcesscCallback);
 
   const verifyEmail = () => {
     const emailRegex = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
@@ -90,9 +140,6 @@ function Signin() {
         // Set cookies for application use
         // Setting cookies with a max-age of 1 day
         document.cookie = `documentiatoken=${user.access_token}; max-age=${
-          60 * 60 * 24
-        }`;
-        document.cookie = `documentiauser=${JSON.stringify(user)}; max-age=${
           60 * 60 * 24
         }`;
         // Navigate to mainApp
