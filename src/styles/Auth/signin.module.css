@@ -40,27 +40,15 @@
     cursor: pointer;
   }
 
-  .login_main_container .login_content .login_privacy_section {
-    margin-top: 70px;
-  }
-
-  .login_main_container
-    .login_content
-    .login_privacy_section
-    .login_privacy_section1 {
+  .auth_two_wrapper .login_right_side .login_privacy_section1 {
     display: flex;
-    justify-content: center;
   }
 
-  .login_main_container
-    .login_content
-    .login_privacy_section
-    .login_privacy_section1
-    span {
+  .auth_two_wrapper .login_right_side .login_privacy_section1 span {
     width: 90%;
     color: #666666;
     font-size: 12px;
-    text-align: center;
+    text-align: start;
   }
 
   .login_main_container
@@ -81,17 +69,89 @@
     font-size: 12px;
     text-align: center;
   }
+
+  .auth_two_wrapper .login_right_side .login_privacy_info {
+    color: var(--app-light-color-text);
+    font-size: var(--web-small-fontsize);
+    margin-top: 20px;
+    font-style: italic;
+  }
+
+  .auth_title_wrapper {
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 30px;
+  }
+  .auth_title_wrapper span {
+    font-weight: bold;
+    color: var(--app-light-color-text);
+    font-size: var(--web-largefontsize);
+  }
 }
 
 @media only screen and (min-width: 600px) {
   .login_main_container {
-    margin: 40px auto 50px auto;
-    padding: 20px;
-    max-width: 350px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .login_main_container .login_content {
+    max-width: 750px;
+    margin: auto;
+    gap: 2rem;
     background-color: white;
     border-radius: 5px;
-    -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    user-select: none;
+  }
+
+  .auth_title_wrapper {
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 30px;
+  }
+  .auth_title_wrapper span {
+    font-weight: bold;
+    color: var(--app-light-color-text);
+    font-size: var(--web-largefontsize);
+  }
+
+  .login_main_container .login_content .auth_two_wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 3.5rem;
+    margin-top: 20px;
+  }
+
+  .login_content .auth_two_wrapper .login_right_side,
+  .login_left_side {
+    flex: 1;
+  }
+
+  .auth_two_wrapper .login_right_side .login_privacy_info {
+    color: var(--app-light-color-text);
+    font-size: var(--web-small-fontsize);
+    margin-top: 20px;
+    font-style: italic;
+  }
+
+  .login_main_container
+    .login_content
+    .login_right_side
+    .login_privacy_section1
+    span {
+    width: 90%;
+    color: #666666;
+    font-size: var(--label-font-desk);
+    text-align: center;
+  }
+
+  .login_main_container .login_content .login_join_opt {
+    margin: 15px;
+    display: flex;
+    justify-content: center;
   }
 
   .login_main_container .login_content .login_join_opt {
@@ -131,10 +191,6 @@
     cursor: pointer;
   }
 
-  .login_main_container .login_content .login_privacy_section {
-    margin-top: 40px;
-  }
-
   .login_main_container
     .login_content
     .login_privacy_section
@@ -151,7 +207,6 @@
     width: 90%;
     color: #666666;
     font-size: var(--label-font-desk);
-    text-align: center;
   }
 
   .login_main_container
@@ -159,7 +214,6 @@
     .login_privacy_section
     .login_privacy_section2 {
     display: flex;
-    justify-content: center;
     padding: 20px 0px;
   }
 
@@ -170,6 +224,5 @@
     span {
     color: #666666;
     font-size: var(--label-font-desk);
-    text-align: center;
   }
 }

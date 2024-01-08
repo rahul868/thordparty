@@ -199,6 +199,9 @@ export default function Rchatinput() {
   };
 
   function sendenterquery(e, isbtn) {
+    if (query == "") {
+      return;
+    }
     if (e.key == "Enter" || isbtn) {
       let obj = {
         isChatUI: false,

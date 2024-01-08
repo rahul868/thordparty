@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "@/styles/Auth/signin.module.css";
 import { Input } from "@/components/home/reusable/input";
 import Button from "@/components/home/reusable/button";
-import Googlelogin from "@/components/home/reusable/googleloginbtn";
+import Sociallogin from "@/components/home/reusable/googleloginbtn";
 import { parse } from "cookie";
 import useGooglelogin from "@/hooks/useGooglelogin";
 import { Appwrapper } from "@/layouts";
@@ -120,14 +120,12 @@ function Signin() {
     }
 
     document.querySelectorAll("[data-common-input]").forEach((input) => {
-      console.log(input);
       input.addEventListener("keypress", (e) => {
         if (e.keyCode === 13) {
           console.log("cliekrd");
           let cur_btn = document.querySelector([
             `data-btn-context=${input.getAttribute("btn_id")}`,
           ]);
-          console.log(cur_btn);
           if (cur_btn) {
             cur_btn.click();
           }
@@ -140,86 +138,75 @@ function Signin() {
     <div className={`${styles.login_main_container}`}>
       <div className={styles.login_content}>
         <div style={{ textAlign: "center" }}>
-          <img width={250} src="assets/images/logo.png" alt="" />
+          <img width={300} src="assets/images/logo.png" alt="" />
         </div>
-        <br />
-        <div>
-          <Input
-            placeholder="Email"
-            disable={"false"}
-            onchange={(e) => setEmail(e.target.value)}
-            type="text"
-            value={email}
-            autoFocus="autofocus"
-            unique_id="login_email"
-          />
-          {!isvalidemail ? (
-            <div style={{ color: "red" }}>Please enter valid email</div>
-          ) : (
-            <></>
-          )}
-          <Input
-            btn_id="login-context"
-            placeholder="Password"
-            disable={"false"}
-            onchange={(e) => setPassword(e.target.value)}
-            type="password"
-            value={password}
-            autoFocus={false}
-            unique_id="login_password"
-            data-common-input
-          />
-          {!isvalidpassword ? (
-            <div style={{ color: "red" }}>Please create strong password.</div>
-          ) : (
-            <></>
-          )}
-          <div className={styles.login_meta_info}>
-            <span data="warning" style={{ color: "#666" }}>
-              Signed out after 1 day
-            </span>
-            <span data="forgot-password">Forgot Password?</span>
-          </div>
-          {/* Assuming setUserSession is defined elsewhere */}
-          <Button
-            callback={verifyUser}
-            btn_id={"login-context"}
-            unique_id="verification_btn"
-            title="Continue"
-            loading={isloading}
-          />
-          <div
-            style={{
-              marginTop: "10px",
-              marginBottom: "10px",
-              textAlign: "center",
-              color: "#666",
-            }}
-          >
-            or
-          </div>
-          <Googlelogin func={login} />
+        <div className={styles.auth_title_wrapper}>
+          <span>Let's understand your content better</span>
         </div>
-        <div>
-          <div className={styles.awesome_divider_div}>
-            <div className={styles.awesome_divider} data-label="or"></div>
-          </div>
-          <div className={styles.login_join_opt}>
-            <span data="warning">New here ?</span>{" "}
-            <a
-              href="/signup"
+        <div className={styles.auth_two_wrapper}>
+          <div className={styles.login_left_side}>
+            <span style={{ fontWeight: "bold" }}>Signin</span>
+            <hr
               style={{
-                paddingLeft: 8,
-                cursor: "pointer",
-                fontSize: "12px",
-                fontWeight: "500",
+                marginTop: "12px",
+                border: "1px solid #eee",
+                marginBottom: "35px",
               }}
-              data="forgot-password"
-            >
-              Signup
-            </a>
+            />
+            <Input
+              placeholder="Email"
+              disable={"false"}
+              onchange={(e) => setEmail(e.target.value)}
+              type="text"
+              value={email}
+              autoFocus="autofocus"
+              unique_id="login_email"
+            />
+            {!isvalidemail ? (
+              <div style={{ color: "red" }}>Please enter valid email</div>
+            ) : (
+              <></>
+            )}
+            <Input
+              btn_id="login-context"
+              placeholder="Password"
+              disable={"false"}
+              onchange={(e) => setPassword(e.target.value)}
+              type="password"
+              value={password}
+              autoFocus={false}
+              unique_id="login_password"
+              data-common-input
+            />
+            {!isvalidpassword ? (
+              <div style={{ color: "red" }}>Please create strong password.</div>
+            ) : (
+              <></>
+            )}
+            <div className={styles.login_meta_info}>
+              <span data="warning" style={{ color: "#666" }}>
+                Login with existing email
+              </span>
+              <span data="forgot-password">Forgot Password?</span>
+            </div>
+            {/* Assuming setUserSession is defined elsewhere */}
+            <Button
+              callback={verifyUser}
+              btn_id={"login-context"}
+              unique_id="verification_btn"
+              title="Continue"
+              loading={isloading}
+            />
+            <div
+              style={{
+                marginTop: "10px",
+                marginBottom: "10px",
+                textAlign: "center",
+                color: "#666",
+              }}
+            ></div>
           </div>
-          <div className={styles.login_privacy_section}>
+          <div className={styles.login_right_side}>
             <div className={styles.login_privacy_section1}>
               <span>
                 By continuing it is considered that you have accepted{" "}
@@ -227,13 +214,60 @@ function Signin() {
                 <span style={{ color: "#3e92f2" }}>Privacy Policy</span>.
               </span>
             </div>
-            <div className={styles.login_privacy_section2}>
+            <br />
+            <Sociallogin func={login} />
+            <div
+              style={{
+                marginTop: "10px",
+                marginBottom: "10px",
+                textAlign: "center",
+                color: "#666",
+              }}
+            >
+              or
+            </div>
+            <a href="/signup">
+              <Sociallogin
+                text={"Signup with us"}
+                svg={
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="#666"
+                    class="bi bi-person-plus-fill"
+                    viewBox="0 0 16 16"
+                    style={{
+                      verticalAlign: "middle",
+                    }}
+                  >
+                    <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                    <path
+                      fill-rule="evenodd"
+                      d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"
+                    />
+                  </svg>
+                }
+              />
+            </a>
+            <div className={styles.login_privacy_info}>
               <span>
-                Contact us on{" "}
-                <span style={{ color: "#3e92f2" }}>pointersinc@gmail.com</span>{" "}
-                <br />
-                @2022 pointers inc. All rights are reserved.
+                Documentia is a proprietary AI-based foundational model which
+                generates the foundation for the Generative AI applications like
+                ChatGPT, Llama, and Falcon.
               </span>
+            </div>
+            <div className={styles.login_privacy_section}>
+              <div className={styles.login_privacy_section2}>
+                <span>
+                  Contact us on{" "}
+                  <span style={{ color: "#3e92f2" }}>
+                    pointersinc@gmail.com
+                  </span>{" "}
+                  <br />
+                  @2022 pointers inc. All rights are reserved.
+                </span>
+              </div>
             </div>
           </div>
         </div>

@@ -5,41 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      .skeleton-article,
-      .skeleton-product {
-        width: 100%;
-        height: 100px;
-        background-color: #f0f0f0; /* Placeholder background color */
-        margin-bottom: 10px; /* Adjust as needed */
-        animation: pulse 1.5s infinite alternate; /* Example animation */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+
+      .skeleton-container {
+        width: 300px;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .skelete-article {
+        height: 1000px;
+        border-radius: 5px;
+      }
+
+      .skeleton-header,
+      .skeleton-footer,
+      .skeleton-content,
+      .skelete-article {
+        height: 30px;
+        border-radius: 5px;
+        background-color: #ddd;
+        margin-bottom: 10px;
+        animation: pulse 1.5s infinite;
       }
 
       @keyframes pulse {
-        from {
+        0% {
+          opacity: 0.7;
+        }
+        50% {
           opacity: 1;
         }
-        to {
+        100% {
           opacity: 0.6;
         }
       }
     </style>
   </head>
   <body>
-    <div id="content">
-      <!-- Skeleton UI for an article -->
-      <div class="skeleton-article"></div>
+    <div class="skeleton-container">
+      <div class="skeleton-header"></div>
+      <div class="skeleton-content"></div>
+      <div class="skeleton-content"></div>
+      <div class="skeleton-content"></div>
+      <div class="skeleton-footer"></div>
 
-      <!-- Skeleton UI for a product grid -->
-      <div class="skeleton-product"></div>
-
-      <!-- Add more skeleton UI as needed -->
+      <div class="skelete-article"></div>
     </div>
   </body>
-  <script>
-    // Replace skeleton with actual content once loaded
-    window.addEventListener("load", function () {
-      document.getElementById("content").innerHTML =
-        "<p>Your actual content goes here.</p>";
-    });
-  </script>
+  <script></script>
 </html>
