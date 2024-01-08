@@ -262,7 +262,7 @@ function Signin() {
               </span>
             </div>
             <br />
-            <Sociallogin func={login} />
+            <Sociallogin loading={isgoogleloading} func={googleLogin} />
             <div
               style={{
                 marginTop: "10px",
