@@ -161,7 +161,7 @@ function Signin() {
     const cookies = parse(document.cookie);
 
     // If both documentiatoken and documentiauser exist, redirect to "/"
-    if (cookies.documentiatoken && cookies.documentiauser) {
+    if (cookies.documentiatoken) {
       window.location.href = "/";
       return;
     }
@@ -169,7 +169,6 @@ function Signin() {
     document.querySelectorAll("[data-common-input]").forEach((input) => {
       input.addEventListener("keypress", (e) => {
         if (e.keyCode === 13) {
-          console.log("cliekrd");
           let cur_btn = document.querySelector([
             `data-btn-context=${input.getAttribute("btn_id")}`,
           ]);
@@ -196,8 +195,8 @@ function Signin() {
             <hr
               style={{
                 marginTop: "12px",
-                border: "1px solid #eee",
-                marginBottom: "35px",
+                border: "0.5px solid #eee",
+                marginBottom: "25px",
               }}
             />
             <Input
@@ -232,7 +231,7 @@ function Signin() {
             )}
             <div className={styles.login_meta_info}>
               <span data="warning" style={{ color: "#666" }}>
-                Login with existing email
+                Session is valid only for 1 day.
               </span>
               <span data="forgot-password">Forgot Password?</span>
             </div>
@@ -308,11 +307,8 @@ function Signin() {
               <div className={styles.login_privacy_section2}>
                 <span>
                   Contact us on{" "}
-                  <span style={{ color: "#3e92f2" }}>
-                    pointersinc@gmail.com
-                  </span>{" "}
-                  <br />
-                  @2022 pointers inc. All rights are reserved.
+                  <span style={{ color: "#3e92f2" }}>bigiota@gmail.com</span>{" "}
+                  @2023 Documentia inc. All rights are reserved.
                 </span>
               </div>
             </div>

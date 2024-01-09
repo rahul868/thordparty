@@ -1,0 +1,62 @@
+METHOD : GET
+PATH : /userenc
+
+Will send token in headers, Token name :  Authorization 
+
+RESPONSE SCHEMA : 
+{
+  "sucess": true,
+  "user_meta": {
+    username: "Rahul Darekar",
+    email: "ssatale@bigiota.ai",
+  },
+  "user_access": {
+    curr_plans : {
+      id:plan_id,
+      name:plan_name,
+      initiated_on:timestamp of initiating,
+      last_date:timestamps of last date,
+      active:true
+    }
+  }
+}
+
+*****************************************************************************
+
+METHOD : POST
+PATH : /userofa
+
+Will send below data in body. API should return valid token.
+
+REQUEST SCHEMA : 
+{
+  email: "rahuldarekar369782@gmail.com"
+  family_name: "Darekar"
+  given_name: "Rahul"
+  id: "103191102177581264904"
+  locale: "en-GB"
+  name: "Rahul Darekar"
+  picture : "https://lh3.googleusercontent.com/a/ACg8ocJkes1YP1N1t-CkYAlDL3SWOxbGwxqTbvBAXWl6u3uk1OY=s96-c"
+  verified_email : true
+}
+
+If user is available then login and if not then register new user.
+
+Response : 
+{
+  access_token: valid token for further use,
+  verified_email : true,
+  restricted_user:false
+}
+
+
+******************************************************************************
+
+Existing login API should return below SCHEMA
+
+REQUEST SCHEMA : 
+{
+  access_token: valid token for further use,
+  verified_email : true,
+  restricted_user:false
+}

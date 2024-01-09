@@ -25,7 +25,7 @@ const Gcommonprovider = (props) => {
       }
     }
     // Check if running on the client side where document is defined
-  },[]);
+  }, []);
 
   const [error, seterror] = useState(false);
   const [loading, setloading] = useState(true);
@@ -75,37 +75,6 @@ const Gcommonprovider = (props) => {
     document.body.style.pointerEvents = "auto";
   }
 
-  // Simulating fetching user file metadata
-  const fetchUserFiles = async () => {
-    try {
-      // Simulate API call for user file metadata
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/DocumentHistory?emailid=${user.email}`
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch user files");
-      }
-      const files = await response.json();
-      setfilemeta(files.documents);
-      if (files.documents.length > 0) {
-        setcurrdoc(files.documents[0]);
-      }
-    } catch (err) {
-      seterror(err.message);
-    } finally {
-      setTimeout(() => {
-        setloading(false);
-      }, 1000);
-    }
-  };
-
-  useEffect(() => {
-    console.log("common")
-    // Get userinfo from cookies.
-    if (user && user !== null) {
-      fetchUserFiles();
-    }
-  }, [user]);
 
   return (
     <Gcommoncontext.Provider

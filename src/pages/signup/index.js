@@ -127,7 +127,7 @@ function Signup() {
               style={{
                 marginTop: "12px",
                 border: "1px solid #eee",
-                marginBottom: "35px",
+                marginBottom: "25px",
               }}
             />
             <Input
@@ -263,7 +263,7 @@ function Signup() {
                 <span>
                   Contact us on{" "}
                   <span style={{ color: "#3e92f2" }}>
-                    pointersinc@gmail.com
+                    bigiota@gmail.com
                   </span>{" "}
                   <br />
                   @2022 pointers inc. All rights are reserved.

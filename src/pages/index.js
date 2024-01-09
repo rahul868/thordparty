@@ -1,5 +1,5 @@
 import { Gcommoncontext } from "@/context/common_global";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import styles from "@/styles/home.module.css";
 const Lhswrapper = dynamic(() =>
@@ -19,45 +19,79 @@ const Gpopup = dynamic(() => import("@/components/home/reusable/gpopup"));
 const Indicator = dynamic(() => import("@/components/home/reusable/indicator"));
 const Landingrhs = dynamic(() => import("@/components/landing/landingrhs"));
 function Home() {
-  const { loading, filemeta, error } = useContext(Gcommoncontext);
+  // States for handling main app most important data API call flow.
+  // This APP is main app and first component to render after authentication process.
+  // So this component is reponsible for handling USER FULL FLEDGE API DATA
+
+  const [loading, setLoading] = useState(true);
+  // Set true while calling Application's first API after landing. Loading screen will be displayed.
+
+  const [error, setError] = useState(false);
+  // Set true while facing issue with Application's first API after landing. Error screen will be displayed.
+
+  const { filemeta, setuser } = useContext(Gcommoncontext);
 
   const userValidation = async (enc_token) => {
     // API call for validating token. Also for fetching full fedge data of authenticated user.
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/encfull`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: enc_token,
-          },
-        }
-      );
+      const user_test = new Promise((res, rej) => {
+        setTimeout(() => {
+          res({
+            sucess: true,
+            user_meta: {
+              username: "Rahul Darekar",
+              email: "ssatale@bigiota.ai",
+            },
+            user_access: {
+              curr_plans: {
+                id: "plan_id",
+                name: "plan_name",
+                initiated_on: "imestamp of initiating",
+                last_date: "timestamps of last date",
+                active: true,
+              },
+            },
+          })
+        }, 3000);
+      });
+      const user_data = await user_test
+      // const response = await fetch(
+      //   `${process.env.NEXT_PUBLIC_API_URL}/encfull`,
+      //   {
+      //     method: "GET",
+      //     headers: {
+      //       Authorization: enc_token,
+      //     },
+      //   }
+      // );
 
       // Check if the user's token is valid
-      if (response.status === 401) {
-        // First clear cookie from clients browser.
-        // Then navigate for fresh login and authentication.
-        document.cookie = `${documentiatoken}=; expires=Thu, 01 Jan 1970 00:00:00 GMT;`;
-        return (window.location.href = "/signin");
-      }
+      // if (response.status === 401) {
+      // First clear cookie from clients browser.
+      // Then navigate for fresh login and authentication.
+      //   document.cookie = `${documentiatoken}=; expires=Thu, 01 Jan 1970 00:00:00 GMT;`;
+      //   return (window.location.href = "/signin");
+      // }
 
       // Check if the google login process was successful or not.
-      if (!response.ok) {
-        throw new Error();
-      }
+      // if (!response.ok) {
+      //   throw new Error("Something went wrong");
+      // }
 
       // Everything is fine we have received user's full fledge data which is required
       // For preceeding with application and which will require by application.
       // We can set this users data in Global context (common_globalcontext) So that any component
       // in tree can use this user's data
 
-      const user_data = response.json();
-
+      // const user_data = await response.json();
+      // if (user_data) {
+      // Set received userdata in gloabl context so that everyone can access it.
+      setuser(user_data.user_meta);
+      // }
     } catch (error) {
-      document.cookie = `documentiatoke=; expires=Thu, 01 Jan 1970 00:00:00 GMT;`;
-      return (window.location.href = "/signin");
+      setError(true);
     } finally {
+      setLoading(false);
     }
   };
   useEffect(async () => {
@@ -67,10 +101,9 @@ function Home() {
     if (!cookies.documentiatoken) {
       return (window.location.href = "/signin");
     }
-    console.log("eihfe")
+
     // If coockies exist then check it and verify with documentia server.
     await userValidation(cookies.documentiatoken);
-    console.log("mainapp exit")
     return () => {
       // Any cleanup logic we can add here
     };
@@ -104,7 +137,7 @@ function Home() {
 
       <div className={styles.app_container}>
         {/* LHS SECTION */}
-        {filemeta.length > 0 ? (
+        {/* {filemeta.length > 0 ? ( */}
           <div
             data-sec-lhswrapper
             id="lhs_wrapper"
@@ -115,14 +148,14 @@ function Home() {
               <Lhswrapper />
             </Lhsprovider>
           </div>
-        ) : (
+        {/* ) : (
           <></>
-        )}
+        )} */}
 
         {/* RHS SECTION */}
         <main data-sec-rhswrapper className={styles.main_rhs_container}>
           <Rhsprovider>
-            {filemeta.length <= 0 ? (
+            {/* {filemeta.length <= 0 ? (
               <>
                 <div
                   className="set_img_newchat"
@@ -149,7 +182,7 @@ function Home() {
               </>
             ) : (
               <></>
-            )}
+            )} */}
             <Rhswrapper />
           </Rhsprovider>
         </main>
