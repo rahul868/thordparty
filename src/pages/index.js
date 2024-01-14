@@ -50,7 +50,7 @@ function Home() {
       });
       const user_data = await user_test;
       // const response = await fetch(
-      //   `${process.env.NEXT_PUBLIC_API_URL}/encfull`,
+      //   `${process.env.NEXT_PUBLIC_API_URL}/userplan`,
       //   {
       //     method: "GET",
       //     headers: {
