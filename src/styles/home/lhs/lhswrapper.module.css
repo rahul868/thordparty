@@ -6,3 +6,10 @@
   flex-grow: 1;
   /* position: relative; */
 }
+
+.lhs_content_wrapper .lhs_loading_indicator {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

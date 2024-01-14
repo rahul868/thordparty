@@ -112,51 +112,51 @@ const Rhsprovider = (props) => {
     setfiles([...files, ...Array.from(selectedFiles)]);
   };
 
-  // Function for fetching chat hostory of individual doc
-  const fetchFileChats = async () => {
-    try {
-      // Simulate API call for user file metadata
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/chatHistory?email=${user.email}&fileid=${currdoc.id}`
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch user files");
-      }
-      const chats_data = await response.json();
-      setSavedMessages(chats_data.data);
-    } catch (err) {
-      seterror(err.message);
-    } finally {
-      setloading(false);
-    }
-  };
+  // // Function for fetching chat hostory of individual doc
+  // const fetchFileChats = async () => {
+  //   try {
+  //     // Simulate API call for user file metadata
+  //     const response = await fetch(
+  //       `${process.env.NEXT_PUBLIC_API_URL}/chatHistory?email=${user.email}&fileid=${currdoc.id}`
+  //     );
+  //     if (!response.ok) {
+  //       throw new Error("Failed to fetch user files");
+  //     }
+  //     const chats_data = await response.json();
+  //     setSavedMessages(chats_data.data);
+  //   } catch (err) {
+  //     seterror(err.message);
+  //   } finally {
+  //     setloading(false);
+  //   }
+  // };
 
-  // Function for updating lastaccesstime of individual doc
-  const updateLastAcces = async () => {
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/document_update`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json", // content type based on your API requirements
-          },
-          body: JSON.stringify({
-            emailid: user.email,
-            fileid: currdoc.id,
-            lastedittimestamp: Date.now().toString(),
-          }),
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to update lastaccess time for doc.");
-      }
-      const chats_data = await response.json();
-    } catch (err) {
-      console.log("while updating lastaccess time of doc", err.message);
-      // seterror(err.message);
-    }
-  };
+  // // Function for updating lastaccesstime of individual doc
+  // const updateLastAcces = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       `${process.env.NEXT_PUBLIC_API_URL}/document_update`,
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json", // content type based on your API requirements
+  //         },
+  //         body: JSON.stringify({
+  //           emailid: user.email,
+  //           fileid: currdoc.id,
+  //           lastedittimestamp: Date.now().toString(),
+  //         }),
+  //       }
+  //     );
+  //     if (!response.ok) {
+  //       throw new Error("Failed to update lastaccess time for doc.");
+  //     }
+  //     const chats_data = await response.json();
+  //   } catch (err) {
+  //     console.log("while updating lastaccess time of doc", err.message);
+  //     // seterror(err.message);
+  //   }
+  // };
 
   // Function for sending created group to backend for persistent purpose.
   const setUserGroup = async (groupobj) => {
@@ -259,17 +259,18 @@ const Rhsprovider = (props) => {
     }
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (currdoc) {
-        setloading(true);
-        await fetchFileChats();
-        updateLastAcces();
-      }
-    };
+  // useEffect(() => {
+  //   console.log("douigeufe")
+  //   const fetchData = async () => {
+  //     if (currdoc) {
+  //       setloading(true);
+  //       await fetchFileChats();
+  //       updateLastAcces();
+  //     }
+  //   };
 
-    fetchData();
-  }, [currdoc]);
+  //   fetchData();
+  // }, [currdoc]);
 
   const save_tofiles = () => {
     let fileName = `${currdoc.name.split(".")[0]}_chats.txt`;

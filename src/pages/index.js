@@ -2,12 +2,8 @@ import { Gcommoncontext } from "@/context/common_global";
 import { useContext, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import styles from "@/styles/home.module.css";
-const Lhswrapper = dynamic(() =>
-  import("@/components/home/main_lhs/lhswrapper")
-);
-const Rhswrapper = dynamic(() =>
-  import("@/components/home/main_rhs/rhswrapper")
-);
+import Lhswrapper from "@/components/home/main_lhs/lhswrapper";
+import Rhswrapper from "@/components/home/main_rhs/rhswrapper";
 import { Rhsprovider } from "@/context/provider";
 import { Lhsprovider } from "@/context/lhsprovider";
 import { Appwrapper } from "@/layouts";
@@ -15,9 +11,7 @@ import { parse } from "cookie";
 import Serror from "@/components/home/reusable/error";
 const Alert = dynamic(() => import("@/components/home/reusable/alert"));
 const Splash = dynamic(() => import("@/components/home/reusable/splashscreen"));
-const Gpopup = dynamic(() => import("@/components/home/reusable/gpopup"));
 const Indicator = dynamic(() => import("@/components/home/reusable/indicator"));
-const Landingrhs = dynamic(() => import("@/components/landing/landingrhs"));
 function Home() {
   // States for handling main app most important data API call flow.
   // This APP is main app and first component to render after authentication process.
@@ -29,7 +23,7 @@ function Home() {
   const [error, setError] = useState(false);
   // Set true while facing issue with Application's first API after landing. Error screen will be displayed.
 
-  const { filemeta, setuser } = useContext(Gcommoncontext);
+  const { filemeta, setuser, setuseraccess } = useContext(Gcommoncontext);
 
   const userValidation = async (enc_token) => {
     // API call for validating token. Also for fetching full fedge data of authenticated user.
@@ -44,17 +38,17 @@ function Home() {
             },
             user_access: {
               curr_plans: {
-                id: "plan_id",
+                product_code: "P",
                 name: "plan_name",
                 initiated_on: "imestamp of initiating",
                 last_date: "timestamps of last date",
                 active: true,
               },
             },
-          })
-        }, 3000);
+          });
+        }, 1000);
       });
-      const user_data = await user_test
+      const user_data = await user_test;
       // const response = await fetch(
       //   `${process.env.NEXT_PUBLIC_API_URL}/encfull`,
       //   {
@@ -87,6 +81,7 @@ function Home() {
       // if (user_data) {
       // Set received userdata in gloabl context so that everyone can access it.
       setuser(user_data.user_meta);
+      setuseraccess(user_data.user_access);
       // }
     } catch (error) {
       setError(true);
@@ -123,7 +118,7 @@ function Home() {
   if (error) {
     /*
       error is essential state in common_global context which handle initial error state of
-      user's Document fetching API i.e (filemeta data).
+      user's Document fetching API i.e (filemeta data).emailid: x@bigiota.ai
       
       So if error is true then we are showing error screen which is indicating that main application
       facing some issue in starting journey i.e fetching users filementa data.
@@ -137,20 +132,16 @@ function Home() {
 
       <div className={styles.app_container}>
         {/* LHS SECTION */}
-        {/* {filemeta.length > 0 ? ( */}
-          <div
-            data-sec-lhswrapper
-            id="lhs_wrapper"
-            className={`${styles.left_section} ${styles.left_section_mob}`}
-          >
-            {/* SECTION 1. HEADER 2. CONTENT 3.FOOTER */}
-            <Lhsprovider>
-              <Lhswrapper />
-            </Lhsprovider>
-          </div>
-        {/* ) : (
-          <></>
-        )} */}
+        <div
+          data-sec-lhswrapper
+          id="lhs_wrapper"
+          className={`${styles.left_section} ${styles.left_section_mob}`}
+        >
+          {/* SECTION 1. HEADER 2. CONTENT 3.FOOTER */}
+          <Lhsprovider>
+            <Lhswrapper />
+          </Lhsprovider>
+        </div>
 
         {/* RHS SECTION */}
         <main data-sec-rhswrapper className={styles.main_rhs_container}>
@@ -158,7 +149,7 @@ function Home() {
             {/* {filemeta.length <= 0 ? (
               <>
                 <div
-                  className="set_img_newchat"
+                  className="set_img_newchat" 
                   style={{
                     position: "fixed",
                     width: "100%",

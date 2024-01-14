@@ -3,17 +3,23 @@ import Lheader from "./header";
 import Lmiddle from "./middle";
 import styles from "@/styles/home/lhs/lhswrapper.module.css";
 import { Gcommoncontext } from "@/context/common_global";
+import Loader from "../reusable/loader";
 
 export default function Lhswrapper() {
   // States for handling user documents meta data fetching from server according to user
   // It is dependent on users data which is available in global context.
 
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  // const [docsloading, setDocsloading] = useState(true);
+  const [error, setError] = useState(null); // Updated to store the actual error object
 
   // Global context dependencies
-  const { setcurrdoc, setfilemeta, filemeta, user } =
-    useContext(Gcommoncontext);
+  const {
+    setcurrdoc,
+    setfilemeta,
+    user,
+    docsloadingindicator,
+    setDocsloadingindicator,
+  } = useContext(Gcommoncontext);
 
   const fetchData = async () => {
     try {
@@ -22,7 +28,7 @@ export default function Lhswrapper() {
         `${process.env.NEXT_PUBLIC_API_URL}/DocumentHistory?emailid=${user.email}`
       );
       if (!response.ok) {
-        throw new Error("Failed to fetch user files");
+        throw new Error(`Failed to fetch user files: ${response.statusText}`);
       }
       const files = await response.json();
       setfilemeta(files.documents);
@@ -31,9 +37,9 @@ export default function Lhswrapper() {
         setcurrdoc(files.documents[0]);
       }
     } catch (err) {
-      setError(err.message);
+      setError(err); // Store the actual error object
     } finally {
-      setLoading(false);
+      setDocsloadingindicator(false);
     }
   };
 
@@ -41,17 +47,20 @@ export default function Lhswrapper() {
     fetchData();
   }, []); // Empty dependency array to run the effect only once
 
-  if (loading) {
-    return <>Loading docs...</>;
-  }
   if (error) {
-    return <>Something went wrong.</>;
+    return <>Error: {error.message}</>; // Display the actual error message
   }
 
   return (
     <div id="lhs_section" className={styles.lhs_content_wrapper}>
       <Lheader />
-      <Lmiddle />
+      {docsloadingindicator ? (
+        <div className={styles.lhs_loading_indicator}>
+          <Loader c_styles={{ background: "#666" }} />
+        </div>
+      ) : (
+        <Lmiddle />
+      )}
       {/* Documentia logo */}
       <img src="assets/images/logo.png" alt="Documentia Logo" />
     </div>

@@ -10,7 +10,7 @@ import Loader from "./loader";
 export default function Rmessages() {
   const context = useContext(Rhscontext);
   const messagesContainerRef = useRef(null);
-  const { SavedMessages, error, loading, isresponding } = context;
+  const { SavedMessages, isresponding } = context;
 
   useEffect(() => {
     const container = messagesContainerRef.current;
@@ -21,23 +21,6 @@ export default function Rmessages() {
       });
     }
   }, [SavedMessages]);
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
-  if (loading) {
-    return (
-      <div className={styles.loadingcallui}>
-        <div className={styles.loadingc}>
-          <div className={styles.loading_container}>
-            <div className={styles.loading_spinner}></div>
-            <p>Loading...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div ref={messagesContainerRef}>

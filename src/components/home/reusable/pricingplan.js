@@ -6,7 +6,7 @@ import style from "@/styles/reusable/pricing.module.css";
 import { Gcommoncontext } from "@/context/common_global";
 
 export default function Pricingplan({ close }) {
-  const { manupleting_events, setiopen, setimsg, setitype } =
+  const { manupleting_events, setiopen, setimsg, setitype, useraccess } =
     useContext(Gcommoncontext);
   const [selectedplan, setselectedplan] = useState("");
 
@@ -69,11 +69,24 @@ export default function Pricingplan({ close }) {
                       &nbsp;
                       <span>{plan.product_billing_desc}</span>
                     </div>
-                    <Button
-                      callback={() => payment_process(plan.product_code)}
-                      loading={selectedplan == plan.product_code ? true : false}
-                      title={"Upgrade"}
-                    />
+                    {useraccess.curr_plans.product_code == plan.product_code ? (
+                      <Button
+                        callback={() => null}
+                        disable={true}
+                        loading={
+                          selectedplan == plan.product_code ? true : false
+                        }
+                        title={"Active plan"}
+                      />
+                    ) : (
+                      <Button
+                        callback={() => payment_process(plan.product_code)}
+                        loading={
+                          selectedplan == plan.product_code ? true : false
+                        }
+                        title={"Upgrade"}
+                      />
+                    )}
                   </div>
                   <span className={style.info_features}>
                     Everything in {plan.product_title}

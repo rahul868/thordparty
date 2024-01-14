@@ -12,23 +12,11 @@ const Gcommonprovider = (props) => {
   //   // email: "ru1@gmail.com",
   // });
   const [user, setuser] = useState(null);
-
-  useEffect(() => {
-    if (typeof document !== "undefined") {
-      /*
-      
-      */
-      const cookies = parse(document.cookie);
-      if (cookies.documentiauser) {
-        let newuserObj = JSON.parse(cookies.documentiauser);
-        setuser(newuserObj);
-      }
-    }
-    // Check if running on the client side where document is defined
-  }, []);
+  const [useraccess, setuseraccess] = useState(null);
 
   const [error, seterror] = useState(false);
   const [loading, setloading] = useState(true);
+  const [docsloadingindicator, setDocsloadingindicator] = useState(true);
   const [filemeta, setfilemeta] = useState([]);
 
   // Indicator states
@@ -75,7 +63,6 @@ const Gcommonprovider = (props) => {
     document.body.style.pointerEvents = "auto";
   }
 
-
   return (
     <Gcommoncontext.Provider
       value={{
@@ -83,6 +70,8 @@ const Gcommonprovider = (props) => {
         setcurrdoc,
         user,
         setuser,
+        useraccess,
+        setuseraccess,
         filemeta,
         error,
         loading,
@@ -107,6 +96,8 @@ const Gcommonprovider = (props) => {
         isfirstupload,
         setisfirstupload,
         manupleting_events,
+        docsloadingindicator,
+        setDocsloadingindicator,
       }}
     >
       {props.children}
