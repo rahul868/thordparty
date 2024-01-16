@@ -28,49 +28,49 @@ function Home() {
   const userValidation = async (enc_token) => {
     // API call for validating token. Also for fetching full fedge data of authenticated user.
     try {
-      const user_test = new Promise((res, rej) => {
-        setTimeout(() => {
-          res({
-            sucess: true,
-            user_meta: {
-              username: "Rahul Darekar",
-              email: "ssatale@bigiota.ai",
-            },
-            user_access: {
-              curr_plans: {
-                product_code: "P",
-                name: "plan_name",
-                initiated_on: "imestamp of initiating",
-                last_date: "timestamps of last date",
-                active: true,
-              },
-            },
-          });
-        }, 1000);
-      });
-      const user_data = await user_test;
-      // const response = await fetch(
-      //   `${process.env.NEXT_PUBLIC_API_URL}/userplan`,
-      //   {
-      //     method: "GET",
-      //     headers: {
-      //       Authorization: enc_token,
-      //     },
-      //   }
-      // );
+      // const user_test = new Promise((res, rej) => {
+      //   setTimeout(() => {
+      //     res({
+      //       sucess: true,
+      //       user_meta: {
+      //         username: "Rahul Darekar",
+      //         email: "ssatale@bigiota.ai",
+      //       },
+      //       user_access: {
+      //         curr_plans: {
+      //           product_code: "P",
+      //           name: "plan_name",
+      //           initiated_on: "imestamp of initiating",
+      //           last_date: "timestamps of last date",
+      //           active: true,
+      //         },
+      //       },
+      //     });
+      //   }, 1000);
+      // });
+      // const user_data = await user_test;
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/userplan`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: enc_token,
+          },
+        }
+      );
 
       // Check if the user's token is valid
-      // if (response.status === 401) {
+      if (response.status === 401) {
       // First clear cookie from clients browser.
       // Then navigate for fresh login and authentication.
-      //   document.cookie = `${documentiatoken}=; expires=Thu, 01 Jan 1970 00:00:00 GMT;`;
-      //   return (window.location.href = "/signin");
-      // }
+        document.cookie = `${documentiatoken}=; expires=Thu, 01 Jan 1970 00:00:00 GMT;`;
+        return (window.location.href = "/signin");
+      }
 
       // Check if the google login process was successful or not.
-      // if (!response.ok) {
-      //   throw new Error("Something went wrong");
-      // }
+      if (!response.ok) {
+        throw new Error("Something went wrong");
+      }
 
       // Everything is fine we have received user's full fledge data which is required
       // For preceeding with application and which will require by application.
@@ -78,11 +78,11 @@ function Home() {
       // in tree can use this user's data
 
       // const user_data = await response.json();
-      // if (user_data) {
+      if (user_data) {
       // Set received userdata in gloabl context so that everyone can access it.
       setuser(user_data.user_meta);
       setuseraccess(user_data.user_access);
-      // }
+      }
     } catch (error) {
       setError(true);
     } finally {
