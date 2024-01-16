@@ -16,20 +16,89 @@ function Signup() {
   const [isvalidusername, setIsvalidusername] = useState(true);
   const [isloading, setIsloading] = useState(false);
   const [iserror, setIserror] = useState(false);
-
-  // get google login functionality
-  const { login } = useGooglelogin();
+  const [isgoogleloading, setIsGoogleloading] = useState(false);
 
   const verifyEmail = () => {
     const emailRegex = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
   };
 
+  // common function for event menupleting
+  function manupleting_events(status) {
+    if (status) {
+      document.body.style.pointerEvents = "none";
+      return;
+    }
+    document.body.style.pointerEvents = "auto";
+  }
+
   const verifyPassword = () => {
     const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-=_+{}|;:'",<>/`~])[a-zA-Z\d!@#$%^&*()-=_+{}|;:'",<>/`~]{8,}$/;
     return passwordRegex.test(password);
   };
+
+  // Callback for handling response from google servers.
+  const googleLoginProcesscCallback = async (userdata) => {
+    manupleting_events(true);
+    setIsGoogleloading(true);
+    // Backend is expecting exactly below schema.
+    let ctms_userobj = {
+      email: userdata.email,
+      familyname: userdata.family_name,
+      givenname: userdata.given_name,
+      locale: userdata.locale,
+      username: userdata.name,
+      picturelink: userdata.picture,
+      isemailverified: true,
+    };
+    try {
+      // Call API which is handling google login case.
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/useroauth`,
+        {
+          method: "POST",
+          body: JSON.stringify(ctms_userobj),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      // Not receive wrong credentials at all because. IF user not exist
+      // in DB backend will create new entry for resp user.
+
+      // So need to handle 500 error.
+
+      // Check if the google login process was successful or not.
+      if (!response.ok) {
+        throw new Error("Failed in google login process.");
+      }
+
+      const user = await response.json();
+      if (user.accesstoken && !user.restricted_user) {
+        // Set cookies for application use
+        // Setting cookies with a max-age of 1 day
+        document.cookie = `documentiatoken=${user.accesstoken}; max-age=${
+          60 * 60 * 24
+        }`;
+        // Navigate to mainApp
+        clearForm();
+        return (window.location.href = "/");
+      }
+      throw new Error("Failed in google login process.");
+    } catch (err) {
+      // handle error
+      alert(err);
+      clearForm();
+    } finally {
+      manupleting_events(false);
+      setIsGoogleloading(false);
+    }
+  };
+
+  // get google login functionality
+  const { googleLogin } = useGooglelogin(googleLoginProcesscCallback);
 
   const clearForm = () => {
     setEmail("");
@@ -216,7 +285,7 @@ function Signup() {
               </span>
             </div>
             <br />
-            <Sociallogin func={login} />
+            <Sociallogin loading={isgoogleloading} func={googleLogin} />
             <div
               style={{
                 marginTop: "10px",
@@ -229,6 +298,7 @@ function Signup() {
             </div>
             <a href="/signin">
               <Sociallogin
+                func={() => null}
                 text={"Signin with email"}
                 svg={
                   <svg
@@ -262,9 +332,7 @@ function Signup() {
               <div className={styles.login_privacy_section2}>
                 <span>
                   Contact us on{" "}
-                  <span style={{ color: "#3e92f2" }}>
-                    bigiota@gmail.com
-                  </span>{" "}
+                  <span style={{ color: "#3e92f2" }}>bigiota@gmail.com</span>{" "}
                   <br />
                   @2022 pointers inc. All rights are reserved.
                 </span>

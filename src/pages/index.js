@@ -50,7 +50,7 @@ function Home() {
       // });
       // const user_data = await user_test;
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/userplan`,
+        `${process.env.NEXT_PUBLIC_API_URL}/initialize`,
         {
           method: "GET",
           headers: {
@@ -63,7 +63,7 @@ function Home() {
       if (response.status === 401) {
       // First clear cookie from clients browser.
       // Then navigate for fresh login and authentication.
-        document.cookie = `${documentiatoken}=; expires=Thu, 01 Jan 1970 00:00:00 GMT;`;
+        document.cookie = `documentiatoken=; expires=Thu, 01 Jan 1970 00:00:00 GMT;`;
         return (window.location.href = "/signin");
       }
 
@@ -77,13 +77,14 @@ function Home() {
       // We can set this users data in Global context (common_globalcontext) So that any component
       // in tree can use this user's data
 
-      // const user_data = await response.json();
+      const user_data = await response.json();
       if (user_data) {
       // Set received userdata in gloabl context so that everyone can access it.
       setuser(user_data.user_meta);
       setuseraccess(user_data.user_access);
       }
     } catch (error) {
+      console.log(error)
       setError(true);
     } finally {
       setLoading(false);
