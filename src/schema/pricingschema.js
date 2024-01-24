@@ -1,6 +1,6 @@
 export const pricing = [
   {
-    product_code: "P",
+    product_code: "P0001",
     product_title: "Free plan",
     product_billing_desc: "It is completely free for you",
     tenure_interval: "Monthly",

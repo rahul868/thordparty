@@ -69,7 +69,7 @@ export default function Pricingplan({ close }) {
                       &nbsp;
                       <span>{plan.product_billing_desc}</span>
                     </div>
-                    {useraccess.curr_plans.product_code == plan.product_code ? (
+                    {useraccess.curr_plans.planid == plan.product_code ? (
                       <Button
                         callback={() => null}
                         disable={true}
