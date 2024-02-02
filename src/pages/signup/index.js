@@ -18,60 +18,6 @@ function Signup() {
   const [iserror, setIserror] = useState(false);
   const [isgoogleloading, setIsGoogleloading] = useState(false);
 
-  // Callback for handling response from google servers.
-  const googleLoginProcesscCallback = async (userdata) => {
-    manupleting_events(true);
-    setIsGoogleloading(true);
-    try {
-      // Call API which is handling google login case.
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/onetap-login`,
-        {
-          method: "POST",
-          body: JSON.stringify(userdata),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      // Not receive wrong credentials at all because. IF user not exist
-      // in DB backend will create new entry for resp user.
-
-      // So need to handle 500 error.
-
-      // Check if the google login process was successful or not.
-      if (!response.ok) {
-        throw new Error("Failed in google login process.");
-      }
-
-      const user = await response.json();
-      if (user.access_token) {
-        // Set cookies for application use
-        // Setting cookies with a max-age of 1 day
-        document.cookie = `documentiatoken=${user.access_token}; max-age=${
-          60 * 60 * 24
-        }`;
-        // Navigate to mainApp
-        clearForm();
-        return (window.location.href = "/");
-      }
-    } catch (err) {
-      // handle error
-      alert(err);
-      clearForm();
-    } finally {
-      manupleting_events(false);
-      setIsGoogleloading(false);
-    }
-  };
-
-  // get google login functionality
-  const { googleLogin } = useGooglelogin(googleLoginProcesscCallback);
-  // get google login functionality
-  // Click continue with google
-  // Here we need to process or authenticate user with one tap
-
   const verifyEmail = () => {
     const emailRegex = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
@@ -91,6 +37,68 @@ function Signup() {
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-=_+{}|;:'",<>/`~])[a-zA-Z\d!@#$%^&*()-=_+{}|;:'",<>/`~]{8,}$/;
     return passwordRegex.test(password);
   };
+
+  // Callback for handling response from google servers.
+  const googleLoginProcesscCallback = async (userdata) => {
+    manupleting_events(true);
+    setIsGoogleloading(true);
+    // Backend is expecting exactly below schema.
+    let ctms_userobj = {
+      email: userdata.email,
+      familyname: userdata.family_name,
+      givenname: userdata.given_name,
+      locale: userdata.locale,
+      username: userdata.name,
+      picturelink: userdata.picture,
+      isemailverified: true,
+    };
+    try {
+      // Call API which is handling google login case.
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/useroauth`,
+        {
+          method: "POST",
+          body: JSON.stringify(ctms_userobj),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      // Not receive wrong credentials at all because. IF user not exist
+      // in DB backend will create new entry for resp user.
+
+      // So need to handle 500 error.
+
+      // Check if the google login process was successful or not.
+      if (!response.ok) {
+        throw new Error("Failed in google login process.");
+      }
+
+      const user = await response.json();
+      if (user.accesstoken && !user.restricted_user) {
+        // Set cookies for application use
+        // Setting cookies with a max-age of 1 day
+        document.cookie = `documentiatoken=${user.accesstoken}; max-age=${
+          60 * 60 * 24
+        }`;
+        // Navigate to mainApp
+        clearForm();
+        return (window.location.href = "/");
+      }
+      throw new Error("Failed in google login process.");
+    } catch (err) {
+      // handle error
+      alert(err);
+      clearForm();
+    } finally {
+      manupleting_events(false);
+      setIsGoogleloading(false);
+    }
+  };
+
+  // get google login functionality
+  const { googleLogin } = useGooglelogin(googleLoginProcesscCallback);
 
   const clearForm = () => {
     setEmail("");
@@ -290,8 +298,8 @@ function Signup() {
             </div>
             <a href="/signin">
               <Sociallogin
-                text={"Signin with email"}
                 func={() => null}
+                text={"Signin with email"}
                 svg={
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

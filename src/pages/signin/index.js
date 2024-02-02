@@ -18,13 +18,23 @@ function Signin() {
   const googleLoginProcesscCallback = async (userdata) => {
     manupleting_events(true);
     setIsGoogleloading(true);
+    // Backend is expecting exactly below schema.
+    let ctms_userobj = {
+      email: userdata.email,
+      familyname: userdata.family_name,
+      givenname: userdata.given_name,
+      locale: userdata.locale,
+      username: userdata.name,
+      picturelink: userdata.picture,
+      isemailverified: true,
+    };
     try {
       // Call API which is handling google login case.
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/onetap-login`,
+        `${process.env.NEXT_PUBLIC_API_URL}/useroauth`,
         {
           method: "POST",
-          body: JSON.stringify(userdata),
+          body: JSON.stringify(ctms_userobj),
           headers: {
             "Content-Type": "application/json",
           },
@@ -42,16 +52,17 @@ function Signin() {
       }
 
       const user = await response.json();
-      if (user.access_token) {
+      if (user.accesstoken && !user.restricted_user) {
         // Set cookies for application use
         // Setting cookies with a max-age of 1 day
-        document.cookie = `documentiatoken=${user.access_token}; max-age=${
+        document.cookie = `documentiatoken=${user.accesstoken}; max-age=${
           60 * 60 * 24
         }`;
         // Navigate to mainApp
         clearForm();
         return (window.location.href = "/");
       }
+      throw new Error("Failed in google login process.");
     } catch (err) {
       // handle error
       alert(err);
@@ -274,6 +285,7 @@ function Signin() {
             </div>
             <a href="/signup">
               <Sociallogin
+              func={() => null}
                 text={"Signup with us"}
                 func={() => null}
                 svg={
