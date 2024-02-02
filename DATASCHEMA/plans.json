@@ -1,0 +1,10 @@
+[
+  {
+    "title": "Basic Features",
+    "values": [true, true, true]
+  },
+  {
+    "title": "User",
+    "values": [1, 2, 10]
+  }
+]

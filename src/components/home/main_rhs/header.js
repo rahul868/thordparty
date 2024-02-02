@@ -519,6 +519,7 @@ export default function Rheader() {
         id="doc-setting"
         isOpen={issetting}
         onClose={() => handleClose("setting")}
+        c_contentstyle={{ overflowY: "auto" }}
       >
         <Gpopupheader
           content={"Chat Experience"}

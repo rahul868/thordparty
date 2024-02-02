@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import styles from "../../../styles/gpopup.module.css";
 
-const Gpopup = ({ id, isOpen, onClose, targetElement, children, c_ostyle }) => {
+const Gpopup = ({ id, isOpen, onClose, targetElement, children,c_contentstyle, c_ostyle }) => {
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const [ismobile, setismobile] = useState(false);
 
@@ -61,6 +61,7 @@ const Gpopup = ({ id, isOpen, onClose, targetElement, children, c_ostyle }) => {
   };
 
   const contentStyle = {
+    ...c_contentstyle,
     ...(targetElement && {
       position: ismobile ? "" : "fixed", // Use absolute on mobile, fixed otherwise
       top: position.top + 5,

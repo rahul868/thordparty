@@ -32,7 +32,13 @@
   --mobile-mediumfontsize: 16px;
   --mobile-small-fontsize: 15px;
 
-  /* Color global variables */
+  /* plans and pricing variables */
+  --plan-box-maxwidth:23%;
+  --commontd-padding:5px 10px 15px 10px;
+  --commontd-padding-thtd:7px 10px 7px 10px;
+
+  --gpopup-maxheight:calc(100vh - 100px);
+  --gpopup-maxwidth:calc(100vw - 100px);
 }
 
 * {

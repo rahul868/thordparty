@@ -2,6 +2,9 @@
   display: flex;
   width: auto;
   padding: 10px;
+  width: 1200px;
+  height: var(--gpopup-maxheight);
+  /* overflow: auto; */
 }
 .pricing_plan_model .wrapping_pricing_model {
   display: flex;
@@ -21,20 +24,23 @@
   gap: 1.5rem;
 }
 
-.plan_box_display_user .supwrappe_pan_box .heading_plan {
+.heading_plan {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.7rem;
 }
 
 .heading_plan .title_for_plan {
-  font-size: var(--web-extralargefontsize);
+  font-size: var(--web-largefontsize);
   font-weight: 700;
   color: #424245;
 }
-
+.heading_plan .tenure_interval span {
+  font-size: 12px;
+}
 .heading_plan .tenure_interval .amount {
   font-size: var(--web-largefontsize);
+  color: rgb(55, 53, 47);
   font-weight: bold;
 }
 
@@ -48,4 +54,59 @@
   gap: 0.3rem;
   padding-bottom: 12px;
   color: var(--app-light-color-code);
+}
+
+.feature_row {
+  border-bottom: 1px solid #eee;
+  padding: 8px;
+}
+
+.plans_features_section {
+  border-collapse: separate;
+  border-spacing: 0px; /* You can adjust the gap size as needed */
+  font-size: 14px;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: initial;
+}
+.plans_features_section th {
+  border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+  color: rgba(55, 53, 47, 0.65);
+  vertical-align: middle;
+  width: auto;
+  min-width: auto;
+  text-align: left;
+  padding: var(--commontd-padding-thtd);
+}
+.plans_features_section td {
+  border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+  color: rgba(55, 53, 47, 0.65);
+  padding: var(--commontd-padding-thtd);
+  text-align: left;
+  overflow: hidden;
+  background: transparent;
+  border-left: 1px solid rgba(55, 53, 47, 0.06);
+  width: 20%;
+  vertical-align: middle;
+  max-width: var(--plan-box-maxwidth);
+}
+
+.plans_features_section .plansmeta_header {
+  vertical-align: top;
+}
+
+.plans_features_section .plans_updatetrigger {
+  border-bottom: unset;
+}
+.plans_features_section .plansubtn_align {
+  vertical-align: middle;
+}
+
+.plans_features_section .plansubtn_title {
+  font-weight: 600;
+  color: var(--app-light-color-text);
+}
+
+.plans_features_section .plans_logo {
+  width: 100px;
 }

@@ -1,7 +1,7 @@
 {
   "name": "doc_ai",
   "version": "0.1.0",
-  "private": true,
+  "private": true,  
   "scripts": {
     "start:dev-unix": "export DOCUMENTIA_ENV=DEV && echo Current environment for application is $DOCUMENTIA_ENV && next dev --port 3001",
     "start:dev-windows": "set DOCUMENTIA_ENV=DEV && next dev --port 3001",

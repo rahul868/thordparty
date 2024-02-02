@@ -339,9 +339,10 @@ export default function Lheader() {
         </>
       </Gpopup>
       <Gpopup
-        id="doc-newchat"
+        id="plans"
         isOpen={ispricing}
         onClose={() => handleClose("pricing")}
+        c_contentstyle={{ overflowY: "auto" }}
       >
         <>
           <Gpopupheader

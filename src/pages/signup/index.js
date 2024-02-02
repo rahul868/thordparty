@@ -16,14 +16,75 @@ function Signup() {
   const [isvalidusername, setIsvalidusername] = useState(true);
   const [isloading, setIsloading] = useState(false);
   const [iserror, setIserror] = useState(false);
+  const [isgoogleloading, setIsGoogleloading] = useState(false);
+
+  // Callback for handling response from google servers.
+  const googleLoginProcesscCallback = async (userdata) => {
+    manupleting_events(true);
+    setIsGoogleloading(true);
+    try {
+      // Call API which is handling google login case.
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/onetap-login`,
+        {
+          method: "POST",
+          body: JSON.stringify(userdata),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      // Not receive wrong credentials at all because. IF user not exist
+      // in DB backend will create new entry for resp user.
+
+      // So need to handle 500 error.
+
+      // Check if the google login process was successful or not.
+      if (!response.ok) {
+        throw new Error("Failed in google login process.");
+      }
+
+      const user = await response.json();
+      if (user.access_token) {
+        // Set cookies for application use
+        // Setting cookies with a max-age of 1 day
+        document.cookie = `documentiatoken=${user.access_token}; max-age=${
+          60 * 60 * 24
+        }`;
+        // Navigate to mainApp
+        clearForm();
+        return (window.location.href = "/");
+      }
+    } catch (err) {
+      // handle error
+      alert(err);
+      clearForm();
+    } finally {
+      manupleting_events(false);
+      setIsGoogleloading(false);
+    }
+  };
 
   // get google login functionality
-  const { login } = useGooglelogin();
+  const { googleLogin } = useGooglelogin(googleLoginProcesscCallback);
+  // get google login functionality
+  // Click continue with google
+  // Here we need to process or authenticate user with one tap
 
   const verifyEmail = () => {
     const emailRegex = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
   };
+
+  // common function for event menupleting
+  function manupleting_events(status) {
+    if (status) {
+      document.body.style.pointerEvents = "none";
+      return;
+    }
+    document.body.style.pointerEvents = "auto";
+  }
 
   const verifyPassword = () => {
     const passwordRegex =
@@ -216,7 +277,7 @@ function Signup() {
               </span>
             </div>
             <br />
-            <Sociallogin func={login} />
+            <Sociallogin loading={isgoogleloading} func={googleLogin} />
             <div
               style={{
                 marginTop: "10px",
@@ -230,6 +291,7 @@ function Signup() {
             <a href="/signin">
               <Sociallogin
                 text={"Signin with email"}
+                func={() => null}
                 svg={
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -262,9 +324,7 @@ function Signup() {
               <div className={styles.login_privacy_section2}>
                 <span>
                   Contact us on{" "}
-                  <span style={{ color: "#3e92f2" }}>
-                    bigiota@gmail.com
-                  </span>{" "}
+                  <span style={{ color: "#3e92f2" }}>bigiota@gmail.com</span>{" "}
                   <br />
                   @2022 pointers inc. All rights are reserved.
                 </span>

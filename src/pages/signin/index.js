@@ -275,6 +275,7 @@ function Signin() {
             <a href="/signup">
               <Sociallogin
                 text={"Signup with us"}
+                func={() => null}
                 svg={
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
