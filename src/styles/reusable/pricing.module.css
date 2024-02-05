@@ -76,6 +76,8 @@
   width: auto;
   min-width: auto;
   text-align: left;
+  min-width: 280px;
+  width: 230px;
   padding: var(--commontd-padding-thtd);
 }
 .plans_features_section td {
@@ -90,6 +92,8 @@
   vertical-align: middle;
   max-width: var(--plan-box-maxwidth);
 }
+
+
 
 .plans_features_section .plansmeta_header {
   vertical-align: top;
@@ -107,9 +111,6 @@
   color: var(--app-light-color-text);
 }
 
-.plans_features_section .plans_logo {
-  width: 100px;
-} 
 
 .plans_features_section .active_plan {
   background-color: #ededed;

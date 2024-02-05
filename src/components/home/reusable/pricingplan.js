@@ -25,7 +25,7 @@ export default function Pricingplan({ close }) {
           },
           body: JSON.stringify({
             email: user.email,
-            productcode: plan,
+            plancode: plan,
           }),
         }
       );
@@ -126,7 +126,7 @@ export default function Pricingplan({ close }) {
       return <td className={style.feature_tab}>{featurevalue}</td>;
     });
   };
-  
+
 
   const return_features_row = () => {
     return plans["common_features"].map((feature, index) => {
@@ -138,7 +138,7 @@ export default function Pricingplan({ close }) {
                 className={`${style.plans_updatetrigger} ${style.plans_logo}`}
               >
                 <img
-                  width={"30%"}
+                  width={"80%"}
                   src="assets/images/croppedlogo.png"
                   alt="Documentia Logo"
                 />
