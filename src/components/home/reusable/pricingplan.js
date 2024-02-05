@@ -1,6 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import Gpopup from "./gpopup";
-import { pricing } from "@/schema/pricingschema";
 import Button from "./button";
 import style from "@/styles/reusable/pricing.module.css";
 import { Gcommoncontext } from "@/context/common_global";
@@ -102,12 +100,34 @@ export default function Pricingplan({ close }) {
     return feature_arr.map((featurevalue) => {
       if (typeof featurevalue == "boolean") {
         return (
-          <td className={style.feature_tab}>{featurevalue ? "1" : "0"}</td>
+          <td className={`${style.feature_tab}`}>
+            {featurevalue ? (
+              <svg
+                fill="inherit"
+                className="thinCheck"
+                color="#37352F"
+                viewBox="0 0 16 16"
+                style={{
+                  width: 12,
+                  height: 12,
+                  WebkitFlexShrink: "0",
+                  MsFlexShrink: "0",
+                  flexShrink: "0",
+                }}
+              >
+                <path d="M6.385 14.162c.362 0 .642-.15.84-.444L13.652 3.71c.144-.226.205-.417.205-.602 0-.485-.341-.82-.833-.82-.335 0-.54.123-.746.444l-5.926 9.4L3.31 8.229c-.205-.267-.417-.376-.718-.376-.492 0-.848.348-.848.827 0 .212.075.417.253.629l3.541 4.416c.24.3.492.437.848.437z"></path>
+              </svg>
+            ) : (
+              ""
+            )}
+          </td>
         );
       }
       return <td className={style.feature_tab}>{featurevalue}</td>;
     });
   };
+  
+
   const return_features_row = () => {
     return plans["common_features"].map((feature, index) => {
       if (index == 0) {
@@ -159,7 +179,7 @@ export default function Pricingplan({ close }) {
                   <td
                     className={`${style.plansmeta_header} ${style.plansubtn_align}`}
                   >
-                    {useraccess.curr_plans.product_code == plan.plan_code ? (
+                    {useraccess.curr_plans.planid == plan.plan_code ? (
                       <Button
                         callback={() => null}
                         disable={true}

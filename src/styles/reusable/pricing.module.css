@@ -109,4 +109,8 @@
 
 .plans_features_section .plans_logo {
   width: 100px;
+} 
+
+.plans_features_section .active_plan {
+  background-color: #ededed;
 }
