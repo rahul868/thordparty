@@ -60,7 +60,7 @@ function Signin() {
         }`;
         // Navigate to mainApp
         clearForm();
-        return (window.location.href = "/");
+        return (window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/`);
       }
       throw new Error("Failed in google login process.");
     } catch (err) {
@@ -155,7 +155,7 @@ function Signin() {
         }`;
         // Navigate to mainApp
         clearForm();
-        return (window.location.href = "/");
+        return (window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/`);
       }
       alert("Invalid credentials. Please try again.");
     } catch (err) {
@@ -173,7 +173,8 @@ function Signin() {
 
     // If both documentiatoken and documentiauser exist, redirect to "/"
     if (cookies.documentiatoken) {
-      window.location.href = "/";
+      console.log(process.env.NEXT_PUBLIC_BASE_URL)
+      window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/`;
       return;
     }
 

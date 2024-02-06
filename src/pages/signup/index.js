@@ -84,7 +84,7 @@ function Signup() {
         }`;
         // Navigate to mainApp
         clearForm();
-        return (window.location.href = "/");
+        return (window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/signin`);
       }
       throw new Error("Failed in google login process.");
     } catch (err) {
@@ -169,7 +169,7 @@ function Signup() {
         alert("Registration is successful");
         clearForm();
         setTimeout(() => {
-          return (window.location.href = "/signin");
+          return (window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/signin`);
         }, 3000);
       }
     } catch (err) {
