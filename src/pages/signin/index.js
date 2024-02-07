@@ -55,9 +55,10 @@ function Signin() {
       if (user.accesstoken && !user.restricted_user) {
         // Set cookies for application use
         // Setting cookies with a max-age of 1 day
-        document.cookie = `documentiatoken=${user.accesstoken}; max-age=${
+        document.cookie = `documentiatoken=${user.access_token}; max-age=${
           60 * 60 * 24
-        }`;
+        }; path=/`;
+
         // Navigate to mainApp
         clearForm();
         return (window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/`);
@@ -152,7 +153,8 @@ function Signin() {
         // Setting cookies with a max-age of 1 day
         document.cookie = `documentiatoken=${user.access_token}; max-age=${
           60 * 60 * 24
-        }`;
+        }; path=/`;
+
         // Navigate to mainApp
         clearForm();
         return (window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/`);
@@ -173,7 +175,6 @@ function Signin() {
 
     // If both documentiatoken and documentiauser exist, redirect to "/"
     if (cookies.documentiatoken) {
-      console.log(process.env.NEXT_PUBLIC_BASE_URL)
       window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/`;
       return;
     }

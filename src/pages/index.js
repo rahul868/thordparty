@@ -63,7 +63,8 @@ function Home() {
       if (response.status === 401) {
       // First clear cookie from clients browser.
       // Then navigate for fresh login and authentication.
-        document.cookie = `documentiatoken=; expires=Thu, 01 Jan 1970 00:00:00 GMT;`;
+      document.cookie =
+      "documentiatoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         return (window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/signin`);
       }
 
@@ -95,7 +96,6 @@ function Home() {
     // cookies are set for one day, after it it will expire automatically from client side.
     const cookies = parse(document.cookie);
     if (!cookies.documentiatoken) {
-      console.log(process.env.NEXT_PUBLIC_BASE_URL)
       return (window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/signin`);
     }
 

@@ -51,8 +51,6 @@ export default function Lheader() {
     // All tokens also and navigate to login page.
     document.cookie =
       "documentiatoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    document.cookie =
-      "documentiauser=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     return (window.location.href = `${process.env.NEXT_PUBLIC_BASE_URL}/signin`);
   };
 
