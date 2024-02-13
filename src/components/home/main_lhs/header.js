@@ -13,7 +13,7 @@ import Pricingplan from "../reusable/pricingplan";
 export default function Lheader() {
   const { filemeta } = useContext(Gcommoncontext);
   const { setSeperateFileLhs, setfilelhs } = useContext(Lhscontext);
-  const { user } = useContext(Gcommoncontext);
+  const { user, useraccess } = useContext(Gcommoncontext);
 
   const [isprofileopt, setisprofileopt] = useState(false);
   const [issortby, setissortby] = useState(false);
@@ -88,10 +88,11 @@ export default function Lheader() {
           onClick={() => setisprofileopt(true)}
         >
           <div data-g-popup-tab className={styles.first_sec}>
-            <Namemodel name={user.username} />
+            <Namemodel name={user.username} />  
             <div className={styles.header_user_cont}>
               <span>Welcome, {user.username}</span>
               <div id={styles.uid}>{user.email}</div>
+              <div id={styles.uid}>{useraccess.curr_plans.planname}</div>
             </div>
           </div>
         </div>

@@ -285,7 +285,7 @@ function Signin() {
             >
               or
             </div>
-            <a href="/signup">
+            <a href={`${process.env.NEXT_PUBLIC_BASE_URL}/signup`}>
               <Sociallogin
                 func={() => null}
                 text={"Signup with us"}
@@ -321,7 +321,7 @@ function Signin() {
               <div className={styles.login_privacy_section2}>
                 <span>
                   Contact us on{" "}
-                  <span style={{ color: "#3e92f2" }}>bigiota@gmail.com</span>{" "}
+                  <span style={{ color: "#3e92f2" }}>contact@bigiota.ai</span>{" "}
                   @2023 Documentia inc. All rights are reserved.
                 </span>
               </div>

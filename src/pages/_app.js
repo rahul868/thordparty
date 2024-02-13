@@ -101,7 +101,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <GoogleOAuthProvider clientId="928923089849-hr5t4dedrv9b3iikk88joitjapvrldea.apps.googleusercontent.com">
+      <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GCLIENTID}>
         <Head>
           <title>Documentia</title>
           <meta name="description" content="DOCUMENTIA AI MODEL INTERACTION" />

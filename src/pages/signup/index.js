@@ -296,7 +296,7 @@ function Signup() {
             >
               or
             </div>
-            <a href="/signin">
+            <a href={`${process.env.NEXT_PUBLIC_BASE_URL}/signin`}>
               <Sociallogin
                 func={() => null}
                 text={"Signin with email"}
@@ -332,7 +332,7 @@ function Signup() {
               <div className={styles.login_privacy_section2}>
                 <span>
                   Contact us on{" "}
-                  <span style={{ color: "#3e92f2" }}>bigiota@gmail.com</span>{" "}
+                  <span style={{ color: "#3e92f2" }}>contact@bigiota.ai</span>{" "}
                   <br />
                   @2022 pointers inc. All rights are reserved.
                 </span>
